@@ -12,21 +12,29 @@
   </title>
   
     
-      <meta property='og:description' content='[[nixos-asia.svg]]' />
+      <meta property='og:description' content='Visit /en for English.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
       <meta property='og:title' content='NixOS Asia' />
     
     
-      <base href='/emanote-template/' />
+      <base href='/' />
       <link href='favicon.svg' rel='icon' />
     
-    <meta name='generator' content='Emanote' />
+    <!-- highlight.js -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
+<!-- Include languages that Emanote itself uses -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
+<script>hljs.highlightAll();</script>
+
+
 
   
   
-  <link href='tailwind.css?instanceId=88c49cfe-ca62-4e13-b496-15d892fa6d33' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=c3aa2dca-7c68-4105-a4f5-0fd21f402f15' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -144,7 +152,7 @@
 <script src='_emanote-static/stork/stork.js'></script>
 
   
-    <script id='emanote-stork' data-emanote-base-url='/emanote-template/'>
+    <script id='emanote-stork' data-emanote-base-url='/'>
       window.emanote = {};
       window.emanote.stork = {
         searchShown: false,
@@ -268,58 +276,10 @@
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
-  <div class='flex items-center justify-center w-full'><div class='w-32'><img class='inline mb-3' src='static/nixos-asia.svg' alt='/nix/store/d7kbdmrd4gv5lpf3carfyagxiv5gpc1f-95pgzn89gak2k05gqv7a9pkrc0li34yn-source/static/nixos-asia.svg' style='width: inherit;' /></div></div>
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
-      
-        <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
   
-      CI & Github Pages
-    
-</span>
-
-  
-        </li>
-      
-        <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      <code class='py-0.5 px-0.5 bg-gray-100'>index.html</code> should be custom designed HTML?
-    
-</span>
-
-  
-        </li>
-      
-        <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      Start add <code class='py-0.5 px-0.5 bg-gray-100'>en/*</code> (start with <code class='py-0.5 px-0.5 bg-gray-100'>en/install</code>)
-    
-</span>
-
-  
-        </li>
-      
-        <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      Add <code class='py-0.5 px-0.5 bg-gray-100'>en/blog/*</code>
-    
-</span>
-
-  
-        </li>
-      
-    </ul>
+    <p class='mb-3'>
+      Visit <a href='en' class='text-green-600 mavenLinkBold hover:underline'>/en</a> for English.
+    </p>
   
 
   <div class='flex items-center justify-center mt-2'>
@@ -357,7 +317,7 @@
     </a>
   </div>
   <div>
-    <a href='-/all.html' title='View Index'>
+    <a href='-/all' title='View Index'>
       <svg class='w-6 h-6 hover:text-green-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
         </path>
@@ -370,7 +330,7 @@
     </a>
   </div>
   <div>
-    <a href='-/tags.html' title='View tags'>
+    <a href='-/tags' title='View tags'>
       <svg class='w-6 h-6 hover:text-green-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
@@ -378,7 +338,7 @@
     </a>
   </div>
   <div>
-    <a href='-/tasks.html' title='View tasks'>
+    <a href='-/tasks' title='View tasks'>
       <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
