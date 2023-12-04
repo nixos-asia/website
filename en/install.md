@@ -1,6 +1,6 @@
 # Install Nix
 
-Install Nix using [the DeterminateSystems installer](https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer):
+Install [[nix]] using [the DeterminateSystems installer](https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer):
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
