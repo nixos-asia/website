@@ -8,6 +8,7 @@ page:
 
 template:
   theme: green
+  iconUrl: static/nixos-asia.svg
 
   # You can add your own variables here, like editBaseUrl.
   # See after-note.tpl to see where editBaseUrl gets used.
