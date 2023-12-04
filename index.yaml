@@ -3,6 +3,8 @@
 
 page:
   siteTitle: NixOS Asia
+  headHtml: |
+    <snippet var="js.highlightjs" />
 
 template:
   theme: green
