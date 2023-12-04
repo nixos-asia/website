@@ -1,0 +1,6 @@
+*.md linguist-detectable
+*.md linguist-language=Markdown
+*.md linguist-documentation=false
+*.md text
+flake.lock linguist-generated=true
+*.tpl linguist-language=HTML
