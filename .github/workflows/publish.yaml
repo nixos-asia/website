@@ -13,7 +13,7 @@ jobs:
           nix_conf: |
             experimental-features = nix-command flakes
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - uses: cachix/cachix-action@v11
+      - uses: cachix/cachix-action@v13
         with:
           name: srid
       - name: Build the website (Nix) 🔧
