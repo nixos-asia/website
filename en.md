@@ -15,10 +15,13 @@ emanote:
 ## TODOs
 
 - [x] CI & Github Pages
-    - [ ] Cloudflare domain to work
+    - [x] Cloudflare domain to work
 - [x] `index.html` should be custom designed HTML?
 - [x] Start add `en/*` (start with `en/install`)
 - [x] Add `en/blog/*`
+  - [ ] Import old blog post
+- [ ] Setup old URL redirects
+- [ ] Create content & structure
 
 ## Start
 
