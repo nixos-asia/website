@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=28c2bad8-33e3-4178-b8ec-84d82bea3aa9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=129144f4-2dea-4228-9c01-51bf68882d12' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -53,33 +53,43 @@
     }
 
     .callout[data-callout="note"] {
-      background-color: rgba(8, 109, 221, 0.1);
+      --callout-color: 8, 109, 221;
+    }
+
+    .callout[data-callout="info"] {
+      --callout-color: 8, 109, 221;
     }
 
     .callout[data-callout="tip"] {
-      background-color: rgba(0, 191, 188, 0.1)
+      --callout-color: 8, 191, 188;
     }
 
     .callout[data-callout="warning"] {
-      background-color: rgba(236, 117, 0, 0.1);
+      --callout-color: 236, 117, 0;
     }
 
     .callout[data-callout="failure"] {
-      background-color: rgba(233, 49, 71, 0.1);
+      --callout-color: 233, 49, 71;
+    }
+
+    div.callout {
+      background-color: rgba(var(--callout-color), 0.1);
+    }
+
+    .callout .callout-title {
+      color: rgb(var(--callout-color));
     }
 
     div.callout-title {
       display: flex;
       align-items: center;
       margin-bottom: 0.5em;
-      font-variation-settings: 'wght' 500;
+      font-variation-settings: 'wght' 600;
     }
 
     div.callout-title div.callout-title-inner {
       margin-left: 0.5em;
     }
-
-    div.callout-content {}
 
     /* External link icon */
     a[data-linkicon=""]::after {
@@ -313,7 +323,7 @@
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
-  <div class='flex items-center justify-center w-full'><div class='w-32'><img class='inline mb-3' src='static/nixos-asia.svg' alt='/nix/store/dh5s3lgvvxii4gq4i15n3rmy0idyz0m2-0llpixfm9awzqn468vlk9ld62s6bq5ja-source/static/nixos-asia.svg' style='width: inherit;' /></div></div><h2 id='todos' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>TODOs</h2>
+  <div class='flex items-center justify-center w-full'><div class='w-32'><img class='inline mb-3' src='static/nixos-asia.svg' alt='/nix/store/vg92775hvhmcidgjz9z81avvrq85qh6p-5bix1wniccr24j5ccf5w7qpifbq84ly2-source/static/nixos-asia.svg' style='width: inherit;' /></div></div><h2 id='todos' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>TODOs</h2>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
