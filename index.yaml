@@ -21,3 +21,6 @@ template:
 
   # If you are hosting on GitLab Pages, you may want to remove this.
   urlStrategy: pretty
+
+feed:
+  siteUrl: https://nixos.asia
