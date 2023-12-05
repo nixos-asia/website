@@ -34,7 +34,7 @@ We have an outer attrset with a single key `foo`, whose value is another attrset
 
 ## repl 
 
-Nix expressions can be readily evaluated in the [Nix repl][nix-repl]. To start the repl, run `nix repl`. 
+Nix expressions can be readily evaluated in the [[repl|Nix repl]]. To start the repl, run `nix repl`. 
 
 ```sh
 $ nix repl
@@ -63,12 +63,12 @@ nix-repl> x.foo.bar
 nix-repl>
 ```
 
-## Flakes
+## [[flakes|Flakes]]
 
 >[!info] To learn more
 > - [Serokell Blog: Basic flake structure](https://serokell.io/blog/practical-nix-flakes#basic-flake-structure)
 
-A Nix flake is defined in the `flake.nix` file, which denotes an attrset containing two keys `inputs` and `outputs`. *Outputs* can reference *inputs*. Thus, changing an *input* can change the *outputs*. The following is a simple example of a flake:
+A Nix [[flakes|flake]] is defined in the `flake.nix` file, which denotes an attrset containing two keys `inputs` and `outputs`. *Outputs* can reference *inputs*. Thus, changing an *input* can change the *outputs*. The following is a simple example of a flake:
 
 ```nix
 {
@@ -124,7 +124,7 @@ Let's do something more interesting with our `flake.nix` by adding the nixpkgs i
 
 The nixpkgs flake has an output called `legacyPackages`, which is indexed by the platform (called "system" in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key `foo`. 
 
->[!tip] You can use [`nix repl`][nix-repl] to explore the outputs of any flake, using TAB completion:
+>[!tip] You can use [[repl|`nix repl`]] to explore the outputs of any flake, using TAB completion:
 > 
 > ```sh
 > $ nix repl --extra-experimental-features 'flakes repl-flake' github:nixos/nixpkgs/nixpkgs-unstable
@@ -214,7 +214,7 @@ If you run `nix build` without arguments, it will default to `.#default`.
 > - [Official Nix manual][mkShell]
 > - [NixOS Wiki](https://nixos.wiki/wiki/Development_environment_with_nix-shell)
 
-Like `packages`, another predefined flake output is `devShells` - which is used to provide a development shell aka. a nix shell or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called [`mkShell`][mkShell] that can be used to create devshells.
+Like `packages`, another predefined flake output is `devShells` - which is used to provide a [[dev|development]] shell aka. a nix shell or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called [`mkShell`][mkShell] that can be used to create devshells.
 
 As an example, we will update our `flake.nix` to provide a devshell that contains the [jq](https://github.com/stedolan/jq) tool.
 
@@ -278,7 +278,6 @@ This mini tutorial provided a rapid introduction to Nix flakes, enabling you to 
 
 [zero-to-nix]: https://zero-to-nix.com/
 [nix-lang]: https://nixos.org/manual/nix/stable/language/index.html
-[nix-repl]: https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-repl.html
 [nix-flake-show]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html
 [nix-eval]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html
 [nix-function]: https://nixos.org/manual/nix/stable/language/constructs.html#functions
