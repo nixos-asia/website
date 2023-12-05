@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=144da041-6bf7-4ae4-90fe-1e939abfb1e1' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=ededff73-c763-401f-8a52-a3e077ccf2b7' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -433,7 +433,7 @@
     </p>
   <h2 id='repl' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>repl</h2>
     <p class='mb-3'>
-      Nix expressions can be readily evaluated in the <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-repl.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix repl</a>. To start the repl, run <code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code>.
+      Nix expressions can be readily evaluated in the <a href='en/repl' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code>.
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix repl
 Welcome to Nix 2.12.0. Type :? for help.
@@ -456,7 +456,7 @@ nix-repl&gt; x.foo
 nix-repl&gt; x.foo.bar
 1
 
-nix-repl&gt;</code></pre></div><h2 id='flakes' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Flakes</h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout'>
+nix-repl&gt;</code></pre></div><h2 id='flakes' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a></h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -484,7 +484,7 @@ nix-repl&gt;</code></pre></div><h2 id='flakes' class='mt-6 mb-4 text-4xl font-bo
   </div>
 </div>
     <p class='mb-3'>
-      A Nix flake is defined in the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> and <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
+      A Nix <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> and <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
   inputs = { };
@@ -566,7 +566,7 @@ $</code></pre></div>
       </svg>
     </div>
     <div class='callout-title-inner'>
-      You can use <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-repl.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code></a> to explore the outputs of any flake, using TAB completion:
+      You can use <a href='en/repl' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>`nix repl`</a> to explore the outputs of any flake, using TAB completion:
     </div>
   </div>
   <div class='callout-content'>
@@ -694,7 +694,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
   </div>
 </div>
     <p class='mb-3'>
-      Like <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>, another predefined flake output is <code class='py-0.5 px-0.5 bg-gray-100'>devShells</code> - which is used to provide a development shell aka. a nix shell or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>mkShell</code></a> that can be used to create devshells.
+      Like <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>, another predefined flake output is <code class='py-0.5 px-0.5 bg-gray-100'>devShells</code> - which is used to provide a <a href='en/dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>development</a> shell aka. a nix shell or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>mkShell</code></a> that can be used to create devshells.
     </p>
   
     <p class='mb-3'>

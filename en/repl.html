@@ -1,18 +1,22 @@
+<!DOCTYPE html>
+<!-- TODO: Main navigation links (Home, index, tags, ...) --><!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
 <html lang='en'>
 
 <head>
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Task Index – NixOS Asia
+    nix repl – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='!! This file is not rendered, but the metadata is used. !!' />
+      <meta property='og:description' content='nix repl starts an interactive environment for evaluating [[nix]] expressions' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Task Index' />
+      <meta property='og:title' content='nix repl' />
     
     
       <base href='/' />
@@ -29,7 +33,7 @@
 
 
   
-  <emaNoteFeedUrl></emaNoteFeedUrl>
+  
   <link href='tailwind.css?instanceId=ededff73-c763-401f-8a52-a3e077ccf2b7' rel='stylesheet' type='text/css' />
 
   <style>
@@ -165,7 +169,9 @@
 </style>
 
 
-  <head-main></head-main>
+  
+    <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+  
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->
 <style>
@@ -273,132 +279,140 @@
 
 <!-- DoNotFormat -->
 
-<body class='overflow-y-scroll bg-gray-100'>
+<body class='bg-gray-400 overflow-y-scroll'>
   
-    <div class='container mx-auto '>
-      <main class='flex-col items-center justify-center mx-2'>
-        <h1 class='pb-2 mt-2 mb-2 text-6xl text-center'>
-          Task Index
-        </h1>
-        <div class='pb-2 mx-auto my-4 lg:max-w-screen-md '>
+    <div class='container mx-auto max-w-screen-md'>
+      <div class='mt-2 md:mt-4'>
+        <!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+  <ul class='root'>
+    <li>
+      
+        <ul>
           
-    <div class='w-full bg-gray-300'>
-      <div class='w-full px-3 py-1'>
-        
+            <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/nix'>
+      Nix
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en'>
+      NixOS Asia
+    </a>
+  </div>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
           
-            <section class='mt-4 mb-6'>
-              <div class='mt-1 mb-2 py-0.5 px-1 rounded flex flex-row-reverse'>
-                
-                  
-                    <li class='inline-flex items-center'>
-                      <a class='text-gray-900 opacity-50 hover:opacity-100' href=''>
-                        NixOS Asia
-                      </a>
-                      <span class='text-gray-700 px-2'>\</span>
-                    </li>
-                  
-                
+        </ul>
+      
+    </li>
+  </ul>
+</nav>
 
-                <div class='flex-1'>
-                  <a class='font-bold text-green-700  hover:underline' href='en'>
-                    NixOS Asia
-                  </a>
-                </div>
-              </div>
-              <div class>
-                
-                  
-                    <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-green-600'>
-                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
+        <div class='relative md:shadow-2xl md:mb-8'>
+
+          <div class='absolute -top-6 right-1 md:right-0 flex flex-row items-center justify-center'>
+            <a title='Search (Ctrl+K)' class='cursor-pointer' onclick='window.emanote.stork.toggleSearch()'>
+              <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
+ fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
+  <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+</svg>
+            </a>
+          </div>
+          <div class='flex-1 w-full overflow-x-auto bg-white'>
+            <main class='px-4 py-4'>
+              <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
+  <a class='z-40 tracking-tighter '>
+    nix repl
+  </a>
+</h1>
+              <article class='overflow-auto'>
+  <!-- What goes in this file will appear on top of note body-->
   
-                        Import old blog post
-                      
-</span>
-
-                    </div>
-                  
-                    <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-green-600'>
-                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
+    <p class='mb-3'>
+      <code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code> starts an interactive environment for evaluating <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix</a> expressions
+    </p>
   
-                        Setup old URL redirects
-                      
-</span>
-
-                    </div>
-                  
-                    <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-green-600'>
-                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
+    <p class='mb-3'>
+      <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-repl.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-repl.html</a>
+    </p>
+  <h2 id='tips' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Tips</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          To load a <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a>, use <code class='py-0.5 px-0.5 bg-gray-100'>:lf &lt;flake-url&gt;</code>
+        </li>
+      
+    </ul>
   
-                        Create content & structure
-                      
-</span>
 
-                    </div>
-                  
+  <div class='flex items-center justify-center mt-2'>
+  
+    
+      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/repl.md'>
+        <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+          <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
+        </svg>
+      </a>
+    
+  
+</div>
+</article>
+              <div class='flex flex-col lg:flex-row lg:space-x-2'>
                 
-              </div>
-            </section>
+                
+  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
+    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
+    <ul class='space-y-1'>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/blog/nix-rapid'>
+            Rapid Introduction to Nix
+          </a>
           
-            <section class='mt-4 mb-6'>
-              <div class='mt-1 mb-2 py-0.5 px-1 rounded flex flex-row-reverse'>
-                
-                  
-                    <li class='inline-flex items-center'>
-                      <a class='text-gray-900 opacity-50 hover:opacity-100' href=''>
-                        NixOS Asia
-                      </a>
-                      <span class='text-gray-700 px-2'>\</span>
-                    </li>
-                  
-                    <li class='inline-flex items-center'>
-                      <a class='text-gray-900 opacity-50 hover:opacity-100' href='en'>
-                        NixOS Asia
-                      </a>
-                      <span class='text-gray-700 px-2'>\</span>
-                    </li>
-                  
-                    <li class='inline-flex items-center'>
-                      <a class='text-gray-900 opacity-50 hover:opacity-100' href='en/blog'>
-                        Blog
-                      </a>
-                      <span class='text-gray-700 px-2'>\</span>
-                    </li>
-                  
-                
-
-                <div class='flex-1'>
-                  <a class='font-bold text-green-700  hover:underline' href='en/blog/nixify-haskell-project-intro'>
-                    nixify-haskell-project-intro
-                  </a>
-                </div>
-              </div>
-              <div class>
-                
-                  
-                    <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-green-600'>
-                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
-                        Import <a href='https://flakular.in/blog/nixify-haskell-project-intro' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://flakular.in/blog/nixify-haskell-project-intro</a>
-                      
-</span>
-
-                    </div>
-                  
-                
-              </div>
-            </section>
-          
-        
-      </div>
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Nix expressions can be readily evaluated in the <a href='en/repl' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code>nix repl</code>.</p></div>
     </div>
   
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>[!tip] You can use <a href='en/repl' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>`nix repl`</a> to explore the outputs of any flake, using TAB completion:</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+    </ul>
+  </div>
+
+              </div>
+              
+  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
+    
+  </section>
+
+              <!-- What goes in this file will at the very end of the main div -->
+            </main>
+          </div>
         </div>
-      </main>
-      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+        <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
   
   <div>
     <a href='' title='Go to Home page'>
@@ -436,6 +450,7 @@
     </a>
   </div>
 </footer>
+      </div>
     </div>
   
   <div id='stork-search-container' class='hidden fixed w-screen h-screen inset-0 backdrop-filter backdrop-blur-sm'>

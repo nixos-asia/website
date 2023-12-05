@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=144da041-6bf7-4ae4-90fe-1e939abfb1e1' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=ededff73-c763-401f-8a52-a3e077ccf2b7' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -377,11 +377,34 @@
     <ul class='space-y-1'>
       
         <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/repl'>
+            nix repl
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div>To load a <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a>, use <code>:lf &lt;flake-url&gt;</code></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/blog/nix-rapid'>
             Rapid Introduction to Nix
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>A Nix <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code>flake.nix</code> file, which denotes an attrset containing two keys <code>inputs</code> and <code>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><h2 id='flakes'><a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a></h2></div>
+    </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>The goal of this mini-tutorial is to introduce you to <a href='en/nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Nix</a> as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>flake</a> for building a package and providing a developer environment shell.</p></div>
