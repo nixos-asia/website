@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<!-- TODO: Main navigation links (Home, index, tags, ...) --><!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>
+    Rapid Introduction to Nix – NixOS Asia
+  </title>
+  
+    
+      <meta property='og:description' content='The goal of this mini-tutorial is to introduce you to [[nix]] as quickly as possible while also preparing the motivated learner to dive deeper into the whole Nix ecosystem. At the end of this introduction, you will be able to create a flakeflake for building a package and providing a developer environment shell.' />
+      <meta property='og:site_name' content='NixOS Asia' />
+      <meta property='og:image' content />
+      <meta property='og:type' content='website' />
+      <meta property='og:title' content='Rapid Introduction to Nix' />
+    
+    
+      <base href='/' />
+      <link href='static/nixos-asia.svg' rel='icon' />
+    
+    <!-- highlight.js -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
+<!-- Include languages that Emanote itself uses -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
+<script>hljs.highlightAll();</script>
+
+
+
+  
+  
+  <link href='tailwind.css?instanceId=144da041-6bf7-4ae4-90fe-1e939abfb1e1' rel='stylesheet' type='text/css' />
+
+  <style>
+    /* Heist error element */
+    strong.error {
+      color: lightcoral;
+      font-size: 90%;
+      font-family: monospace;
+    }
+
+    /* Callouts */
+    div.callout {
+      background-color: #f5f5f5;
+      padding: 1em 1em 0.5em;
+      border-radius: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    .callout[data-callout="note"] {
+      background-color: rgba(8, 109, 221, 0.1);
+    }
+
+    .callout[data-callout="tip"] {
+      background-color: rgba(0, 191, 188, 0.1)
+    }
+
+    .callout[data-callout="warning"] {
+      background-color: rgba(236, 117, 0, 0.1);
+    }
+
+    .callout[data-callout="failure"] {
+      background-color: rgba(233, 49, 71, 0.1);
+    }
+
+    div.callout-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+      font-variation-settings: 'wght' 500;
+    }
+
+    div.callout-title div.callout-title-inner {
+      margin-left: 0.5em;
+    }
+
+    div.callout-content {}
+
+    /* External link icon */
+    a[data-linkicon=""]::after {
+      content: ""
+    }
+
+    a[data-linkicon=none]::after {
+      content: ""
+    }
+
+    a[data-linkicon="external"]::after {
+      content: url('data:image/svg+xml,\
+      <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
+        <g style="stroke:gray;stroke-width:1"> \
+          <line x1="5" y1="5" x2="5" y2="14" /> \
+          <line x1="14" y1="9" x2="14" y2="14" /> \
+          <line x1="5" y1="14" x2="14" y2="14" /> \
+          <line x1="5" y1="5" x2="9" y2="5"  /> \
+          <line x1="10" y1="2" x2="17" y2="2"  /> \
+          <line x1="17" y1="2" x2="17" y2="9" /> \
+          <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
+        </g> \
+      </svg>');
+    }
+
+    a[data-linkicon="external"][href^="mailto:"]::after {
+      content: url('data:image/svg+xml,\
+        <svg \
+          xmlns="http://www.w3.org/2000/svg" \
+          height="0.7em" \
+          fill="none" \
+          viewBox="0 0 24 24" \
+          stroke="gray" \
+          stroke-width="2"> \
+          <path \
+            stroke-linecap="round" \
+            stroke-linejoin="round" \
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
+        </svg>');
+    }
+  </style>
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
+
+<style>
+  @font-face {
+    font-family: 'WorkSans';
+    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf */
+    src: url(_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf) format("truetype");
+    font-display: swap;
+  }
+
+  body {
+    font-family: 'WorkSans', sans-serif;
+    font-variation-settings: 'wght' 350;
+  }
+
+  a.mavenLinkBold {
+    font-variation-settings: 'wght' 400;
+  }
+
+  strong {
+    font-variation-settings: 'wght' 500;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  header,
+  .header-font {
+    font-family: 'WorkSans', sans-serif;
+  }
+
+  h1 {
+    font-variation-settings: 'wght' 500;
+  }
+
+  h2 {
+    font-variation-settings: 'wght' 400;
+  }
+
+  h3 {
+    font-variation-settings: 'wght' 300;
+  }
+</style>
+
+
+  
+    <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+  
+  <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
+<!-- Custom Stork-search styling for Emanote -->
+<style>
+  #stork-search-container {
+    z-index: 1000;
+    background-color: rgb(15 23 42/.8);
+  }
+
+  .stork-overflow-hidden-important {
+    overflow: hidden !important;
+  }
+</style>
+
+
+<script src='_emanote-static/stork/stork.js'></script>
+
+  
+    <script id='emanote-stork' data-emanote-base-url='/'>
+      window.emanote = {};
+      window.emanote.stork = {
+        searchShown: false,
+        indexIsStale: false,
+        toggleSearch: function () {
+          window.emanote.stork.refreshIndex();
+          document.getElementById('stork-search-container').classList.toggle('hidden');
+          window.emanote.stork.searchShown = document.body.classList.toggle('stork-overflow-hidden-important');
+          if (window.emanote.stork.searchShown) {
+            document.getElementById('stork-search-input').focus();
+          }
+        },
+        clearSearch: function () {
+          document.getElementById('stork-search-container').classList.add('hidden');
+          document.body.classList.remove('stork-overflow-hidden-important');
+          window.emanote.stork.searchShown = false;
+        },
+
+        getBaseUrl: function () {
+          const baseUrl = document.getElementById("emanote-stork").getAttribute('data-emanote-base-url') || '/';
+          return baseUrl;
+        },
+
+        registerIndex: function (options) {
+          const indexName = 'emanote-search'; // used to match input[data-stork] attribute value
+          const indexUrl = window.emanote.stork.getBaseUrl() + '-/stork.st';
+          stork.register(
+            indexName,
+            indexUrl,
+            options);
+        },
+
+        init: function () {
+          if (document.readyState !== 'complete') {
+            window.addEventListener('load', function () {
+              stork.initialize(window.emanote.stork.getBaseUrl() + '_emanote-static/stork/stork.wasm');
+              window.emanote.stork.registerIndex();
+            });
+
+            document.addEventListener('keydown', event => {
+              if (window.emanote.stork.searchShown && event.key === 'Escape') {
+                window.emanote.stork.clearSearch();
+                event.preventDefault();
+              } else if ((event.key == 'k' || event.key == 'K') && (event.ctrlKey || event.metaKey)) {
+                window.emanote.stork.toggleSearch();
+                event.preventDefault();
+              }
+            });
+          } else {
+            // This section is called during Ema's hot reload.
+            // 
+            // Mark the current index as stale, and refresh it *only when* the
+            // user actually invokes search.
+            // 
+            // We do not refresh the index *right away*, as that will cause
+            // memory leaks in the browser. See
+            // https://github.com/srid/emanote/issues/411#issuecomment-1402056235
+            console.log("stork: Marking index as stale");
+            window.emanote.stork.markIndexAsStale();
+          }
+        },
+
+        markIndexAsStale: function () {
+          window.emanote.stork.indexIsStale = true;
+        },
+
+        refreshIndex: function () {
+          if (window.emanote.stork.indexIsStale) {
+            console.log("stork: Reloading index");
+            window.emanote.stork.indexIsStale = false;
+            // NOTE: This will leak memory. See the comment above.
+            window.emanote.stork.registerIndex({ forceOverwrite: true });
+          }
+        }
+
+      };
+
+      window.emanote.stork.init();
+    </script>
+  
+
+</head>
+
+<!-- DoNotFormat -->
+
+
+
+<!-- DoNotFormat -->
+
+<body class='bg-gray-400 overflow-y-scroll'>
+  
+    <div class='container mx-auto max-w-screen-md'>
+      <div class='mt-2 md:mt-4'>
+        <!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+  <ul class='root'>
+    <li>
+      
+        <ul>
+          
+            <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/flakes'>
+      Flakes
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/nix'>
+      Nix
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en'>
+      NixOS Asia
+    </a>
+  </div>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/blog'>
+      Blog
+    </a>
+  </div>
+
+  
+</li>
+          
+        </ul>
+      
+    </li>
+  </ul>
+</nav>
+
+        <div class='relative md:shadow-2xl md:mb-8'>
+
+          <div class='absolute -top-6 right-1 md:right-0 flex flex-row items-center justify-center'>
+            <a title='Search (Ctrl+K)' class='cursor-pointer' onclick='window.emanote.stork.toggleSearch()'>
+              <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
+ fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
+  <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+</svg>
+            </a>
+          </div>
+          <div class='flex-1 w-full overflow-x-auto bg-white'>
+            <main class='px-4 py-4'>
+              <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
+  <a class='z-40 tracking-tighter '>
+    Rapid Introduction to Nix
+  </a>
+</h1>
+              <article class='overflow-auto'>
+  <!-- What goes in this file will appear on top of note body-->
+  
+    <p class='mb-3'>
+      The goal of this mini-tutorial is to introduce you to <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix</a> as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake</a> for building a package and providing a developer environment shell.
+    </p>
+  
+    <p class='mb-3'>
+      If you are already experienced in <a href='https://en.wikipedia.org/wiki/Purely_functional_programming' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>purely functional programming</a>, it is highly recommended to read <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a> to gain a foundational perspective into Nix being purely functional but in the context of <em>file system</em> (as opposed to values stored in memory).
+    </p>
+  
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      Dolstra proposed that we can treat the file system in an operating system like memory in a running program, and equate package management to memory management
+    </p>
+  
+    </blockquote>
+  <h2 id='install' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Install</h2>
+    <p class='mb-3'>
+      Nix can be <a href='en/install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='en/nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
+    </p>
+  <h2 id='attrset' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Attrset</h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      To learn more
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://nixos.org/manual/nix/stable/language/values.html#attribute-set' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Official manual</a>
+        </li>
+      
+        <li>
+          <a href='https://nix.dev/tutorials/nix-language#attribute-set' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nix.dev on attrsets</a>
+        </li>
+      
+    </ul>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      The <a href='https://nixos.org/manual/nix/stable/language/index.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix programming language</a> provides a lot of general constructs. But at its most basic use, it makes heavy use of <em>nested hash maps</em> otherwise called an “attrset”. They are equivalent to <a href='https://hackage.haskell.org/package/containers-0.6.7/docs/Data-Map-Strict.html#t:Map' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>Map Text a</code></a> in Haskell. The following is a simple example of an attrset:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  foo = {
+    bar = 1;
+  };
+}</code></pre></div>
+    <p class='mb-3'>
+      We have an outer attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>, whose value is another attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100'>bar</code> and a value of <code class='py-0.5 px-0.5 bg-gray-100'>1</code>.
+    </p>
+  <h2 id='repl' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>repl</h2>
+    <p class='mb-3'>
+      Nix expressions can be readily evaluated in the <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-repl.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix repl</a>. To start the repl, run <code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code>.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix repl
+Welcome to Nix 2.12.0. Type :? for help.
+
+nix-repl&gt;</code></pre></div>
+    <p class='mb-3'>
+      You can then evaluate expressions:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>nix-repl&gt; 2+3
+5
+
+nix-repl&gt; x = { foo = { bar = 1; }; }
+
+nix-repl&gt; x
+{ foo = { ... }; }
+
+nix-repl&gt; x.foo
+{ bar = 1; }
+
+nix-repl&gt; x.foo.bar
+1
+
+nix-repl&gt;</code></pre></div><h2 id='flakes' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Flakes</h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      To learn more
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://serokell.io/blog/practical-nix-flakes#basic-flake-structure' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Serokell Blog: Basic flake structure</a>
+        </li>
+      
+    </ul>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      A Nix flake is defined in the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> and <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = { };
+
+  outputs = inputs: {
+    foo = 42;
+  };
+}</code></pre></div>
+    <p class='mb-3'>
+      This flake has zero <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code>. <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code> is a <a href='https://nixos.org/manual/nix/stable/language/constructs.html#functions' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>function</a> that takes the (realised) inputs as an argument and returns the final output attrset. This output attrset, in our example, has a single key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code> with a value of <code class='py-0.5 px-0.5 bg-gray-100'>42</code>.
+    </p>
+  
+    <p class='mb-3'>
+      We can use the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix flake show</code></a> command to see the output structure of a flake:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix flake show
+path:/Users/srid/code/nixplay?lastModified=1675373998&amp;narHash=sha256-ifNiFGU1VV784kVcssn2rXIil%2feHfMLhPfmvaELefwA=
+└───foo: unknown
+$</code></pre></div>
+    <p class='mb-3'>
+      We can use <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix eval</code></a> to evaluate any output. For example,
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix eval .#foo
+42</code></pre></div><h3 id='graph' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Graph</h3>
+    <p class='mb-3'>
+      A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='https://zero-to-nix.com/concepts/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.
+    </p>
+  <h3 id='inputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Inputs</h3><div data-callout-metadata data-callout-fold data-callout='info' class='callout'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      To learn more
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>URL-like syntax</a> used by the <code class='py-0.5 px-0.5 bg-gray-100'>url</code> attribute
+        </li>
+      
+    </ul>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      Let’s do something more interesting with our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> by adding the nixpkgs input:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+
+  outputs = inputs: {
+    # Note: If you are macOS, substitute `x86_64-linux` with `aarch64-darwin`
+    foo = inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay;
+  };
+}</code></pre></div>
+    <p class='mb-3'>
+      The nixpkgs flake has an output called <code class='py-0.5 px-0.5 bg-gray-100'>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>.
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+</path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      You can use <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-repl.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code></a> to explore the outputs of any flake, using TAB completion:
+    </div>
+  </div>
+  <div class='callout-content'>
+    <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix repl --extra-experimental-features 'flakes repl-flake' github:nixos/nixpkgs/nixpkgs-unstable
+Welcome to Nix 2.12.0. Type :? for help.
+
+Loading installable 'github:nixos/nixpkgs/nixpkgs-unstable#'...
+Added 5 variables.
+nix-repl&gt; legacyPackages.aarch64-darwin.cowsay
+«derivation /nix/store/0s2vdpkpdiljmh8y06xgdw5vg2cqfs0m-cowsay-3.7.0.drv»
+
+nix-repl&gt;</code></pre></div>
+  </div>
+</div><h3 id='predefined-outputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Predefined outputs</h3>
+    <p class='mb-3'>
+      Nix commands treat certain outputs as special. These are:
+    </p>
+  <table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Output</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Nix command</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Description</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>packages</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix build</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='en/drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> output</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>devShells</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='en/dev' class='text-green-600 mavenLinkBold hover:underline'>Development</a> shells</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>apps</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix run</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Runnable applications</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>checks</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix flake check</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Tests and checks</td></tr></tbody></table>
+    <p class='mb-3'>
+      All of these predefined outputs are further indexed by the “system” value.
+    </p>
+  <h4 id='packages' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Packages</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      To learn more
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-using-stdenv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>pkgs.stdenv.mkDerivation</code></a> can be used to build a custom package from scratch
+        </li>
+      
+    </ul>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> is the most often used output. Let us extend our previous <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> to use it:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+
+  outputs = inputs: {
+    foo = 42;
+    packages.x86_64-linux = {
+      cowsay = inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay;
+    };
+  };
+}</code></pre></div>
+    <p class='mb-3'>
+      Here, we are producing an output named <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> that is an attrset of systems (currently, only <code class='py-0.5 px-0.5 bg-gray-100'>x86_64-linux</code>) to attrsets of packages. We are definining exactly one package, <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code>, for the <code class='py-0.5 px-0.5 bg-gray-100'>x86_64-linux</code> system.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix flake show
+path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09fX3hutGa8+dagOCSQKVYAsHI6BsnCSEQ7PG8=
+├───foo: unknown
+└───packages
+    └───aarch64-darwin
+        └───cowsay: package 'cowsay-3.7.0'</code></pre></div>
+    <p class='mb-3'>
+      Notice that <code class='py-0.5 px-0.5 bg-gray-100'>nix flake show</code> recognizes the <em>type</em> of <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>. With <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>, it couldn’t (hence type is <code class='py-0.5 px-0.5 bg-gray-100'>unknown</code>) but with <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>, it can (hence type is “package”).
+    </p>
+  
+    <p class='mb-3'>
+      The <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> output is recognized by <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code>.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix build .#cowsay</code></pre></div>
+    <p class='mb-3'>
+      The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix build</code></a> command takes as argument a value of the form <code class='py-0.5 px-0.5 bg-gray-100'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-0.5 px-0.5 bg-gray-100'>.</code> (which is a <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>flake URL</a>) refers to the current flake. Thus, <code class='py-0.5 px-0.5 bg-gray-100'>nix build .#cowsay</code> will build the <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> package from the current flake under the current system. <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> produces a <code class='py-0.5 px-0.5 bg-gray-100'>./result</code> symlink that points to the Nix store path containing the package:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ ./result/bin/cowsay hello
+ _______
+&lt; hello &gt;
+ -------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre></div>
+    <p class='mb-3'>
+      If you run <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> without arguments, it will default to <code class='py-0.5 px-0.5 bg-gray-100'>.#default</code>.
+    </p>
+  <h4 id='devshells' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>DevShells</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      To learn more
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Official Nix manual</a>
+        </li>
+      
+        <li>
+          <a href='https://nixos.wiki/wiki/Development_environment_with_nix-shell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>NixOS Wiki</a>
+        </li>
+      
+    </ul>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      Like <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>, another predefined flake output is <code class='py-0.5 px-0.5 bg-gray-100'>devShells</code> - which is used to provide a development shell aka. a nix shell or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>mkShell</code></a> that can be used to create devshells.
+    </p>
+  
+    <p class='mb-3'>
+      As an example, we will update our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> to provide a devshell that contains the <a href='https://github.com/stedolan/jq' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>jq</a> tool.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
+  };
+  outputs = inputs: {
+    foo = 42;
+    devShells = {  # nix develop
+      aarch64-darwin = {
+        default =
+          let 
+            pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+          in pkgs.mkShell {
+            nativeBuildInputs = [
+              pkgs.jq
+            ];
+          };
+      };
+    };
+  };
+}</code></pre></div>
+    <p class='mb-3'>
+      <code class='py-0.5 px-0.5 bg-gray-100'>nix flake show</code> will recognize this output as a “development environmenet”:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix flake show
+path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD1wbjc+vQ+IUTMXWv%2fm%2f7qb91Hk3ip5MNefeU=
+├───devShells
+│   └───aarch64-darwin
+│       └───default: development environment 'nix-shell'
+└───foo: unknown</code></pre></div>
+    <p class='mb-3'>
+      Just as <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> can be built using <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code>, you can enter the devshell using <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code></a>:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix develop
+❯ which jq
+/nix/store/33n0kx526i5dnv2gf39qv1p3a046p9yd-jq-1.6-bin/bin/jq
+❯ echo '{"foo": 42}' | jq .foo
+42
+❯ </code></pre></div>
+    <p class='mb-3'>
+      Typing <code class='py-0.5 px-0.5 bg-gray-100'>Ctrl+D</code> or <code class='py-0.5 px-0.5 bg-gray-100'>exit</code> will exit the devshell.
+    </p>
+  <h2 id='conclusion' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Conclusion</h2>
+    <p class='mb-3'>
+      This mini tutorial provided a rapid introduction to Nix flakes, enabling you to get started with writing simple flake for your projects. Consult the links above for more information. There is a lot more to Nix than the concepts presented here! You can also read <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix</a> for a highlevel introduction to all things Nix and flakes.
+    </p>
+  <h2 id='see-also' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>See also</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://github.com/tazjin/nix-1p' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>A (more or less) one page introduction to Nix, the language</a>
+        </li>
+      
+        <li>
+          <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a>
+        </li>
+      
+    </ul>
+  
+
+  <div class='flex items-center justify-center mt-2'>
+  
+    
+      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/blog/nix-rapid.md'>
+        <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+          <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
+        </svg>
+      </a>
+    
+  
+</div>
+</article>
+              <div class='flex flex-col lg:flex-row lg:space-x-2'>
+                
+                
+              </div>
+              
+  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
+    
+  </section>
+
+              <!-- What goes in this file will at the very end of the main div -->
+            </main>
+          </div>
+        </div>
+        <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+  
+  <div>
+    <a href='' title='Go to Home page'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/all' title='View Index'>
+      <svg class='w-6 h-6 hover:text-green-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.2.1.0'>
+      <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
+    </a>
+  </div>
+  <div>
+    <a href='-/tags' title='View tags'>
+      <svg class='w-6 h-6 hover:text-green-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/tasks' title='View tasks'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+      </div>
+    </div>
+  
+  <div id='stork-search-container' class='hidden fixed w-screen h-screen inset-0 backdrop-filter backdrop-blur-sm'>
+  <div class='fixed w-screen h-screen inset-0' onclick='window.emanote.stork.toggleSearch()'></div>
+
+  <div class='container mx-auto p-10 mt-10'>
+    <div class='stork-wrapper-flat container mx-auto'>
+      <input id='stork-search-input' data-stork='emanote-search' class='stork-input' placeholder='Search (Ctrl+K) ...' />
+      <div data-stork='emanote-search-output' class='stork-output'></div>
+    </div>
+  </div>
+</div>
+  
+    
+  
+</body>
+
+</html>
