@@ -1,0 +1,5 @@
+# Tips
+
+```query
+path:./*
+```
