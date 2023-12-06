@@ -1,6 +1,5 @@
 ---
 date: 2023-09-08
-description: Using Nix to setup the haskell development workflow along with services that it depends on.
 authors: shivaraj-bh
 ---
 
