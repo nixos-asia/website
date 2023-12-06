@@ -8,7 +8,7 @@ cache or rebuilding them.
 nix copy --to ssh-ng://admin@100.96.121.13 /nix/store/???
 ```
 
-If you use [nixci](#nixci), this looks like:
+If you use [nixci], this looks like:
 
 ```sh
 nixci . -- --option system aarch64-linux | xargs nix copy --to ssh-ng://admin@100.96.121.13
