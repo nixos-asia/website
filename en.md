@@ -7,7 +7,7 @@ emanote:
 # NixOS Asia
 
 > [!tip] Welcome to NixOS Asia
-> NixOS Asia is community of [[nix]] and [[nixos]] users, originating from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
+> NixOS Asia is community of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
 
 ## Progress
 
@@ -28,3 +28,4 @@ emanote:
 
 - [[install]]
 - [[blog]]
+- More pages in [the index](-/all)
