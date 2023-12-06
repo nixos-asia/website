@@ -6,6 +6,8 @@ feed:
 
 # Blog
 
+Recent posts:
+
 ```query {.timeline}
 path:./*
 ```
