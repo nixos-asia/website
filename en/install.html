@@ -12,7 +12,7 @@
   </title>
   
     
-      <meta property='og:description' content='Install [[nix]] using the unofficial installer:You may use the official installer, but since it doesn’t include an uninstaller, you will have to manually uninstall (macOS instructions here) when the time comes. Also, the official installer will not automatically enable [[flakes]].' />
+      <meta property='og:description' content='Install [[nix]] using the unofficial installer:You can use the official installer. However, there are a couple of manual steps necessary:As it does not yet include an uninstaller, you will have to manually uninstall Nix when the time comes (exampleexample).As it does not automatically enable [[flakes]], you will have to manually enable it.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=b4ce52a8-1d0d-4066-a6fb-8fc45ff0b274' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=72b91cda-fe52-47ab-a9c0-d36ce77c2f02' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -365,9 +365,13 @@
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install</code></pre></div>
     <p class='mb-3'>
-      Before proceeding, run <a href='https://flakular.in/health' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix Health</a>,
+      After installing Nix, run the <a href='https://github.com/juspay/nix-browser/tree/main/crates/nix_health' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix Health</a> checks,
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nix run nixpkgs#nix-health</code></pre></div>
+    <p class='mb-3'>
+      Expect to see all results in either green (or yellow).
+    </p>
+  
     <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
       <header class='font-semibold'>Footnotes</header>
       
@@ -376,7 +380,23 @@
             1.
           </header>
           <div class='inline-block mb-2 ml-4'>
-            You <em>may</em> use the official installer, but since it doesn’t include an uninstaller, you will have to manually uninstall (<a href='https://nixos.org/manual/nix/stable/installation/uninstall.html#macos' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>macOS instructions here</a>) when the time comes. Also, the official installer will not automatically enable <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>.
+            
+    <p class='mb-3'>
+      You <em>can</em> use <a href='https://nixos.org/download' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the official installer</a>. However, there are a couple of manual steps necessary:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          As it <a href='https://discourse.nixos.org/t/anyone-up-for-picking-at-some-nix-onboarding-improvements/13152/4' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>does not yet</a> include an uninstaller, you will have to manually uninstall Nix when the time comes (<a href='en/gotchas/macos-upgrade' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>example</a>).
+        </li>
+      
+        <li>
+          As it does not automatically enable <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>, you will have to <a href='https://nixos.wiki/wiki/Flakes' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>manually enable it</a>.
+        </li>
+      
+    </ul>
+  
           </div>
         </div>
       
