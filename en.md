@@ -1,6 +1,5 @@
 ---
 emanote:
-  # Whether to automatically treat folder notes as a folgezettel parent of its contents
   folder-folgezettel: false
 ---
 
@@ -9,23 +8,6 @@ emanote:
 > [!tip] Welcome to NixOS Asia
 > NixOS Asia is a community of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
 
-## Progress
+## Explore this website
 
-> [!warning] WIP 
-> This website is not yet ready for public consumption. Here are some TODOs:
-
-- [x] CI & Github Pages
-    - [x] Cloudflare domain to work
-- [x] `index.html` should be custom designed HTML?
-- [x] Start add `en/*` (start with `en/install`)
-- [x] Add `en/blog/*`
-  - [x] Import old blog post
-- [x] Setup old URL redirects (flakular.in)
-- [ ] Add introduction, some content & structure
-- [ ] Final styling
-
-## Start
-
-- [[install]]
-- [[blog]]
-- More pages in [the index](-/all)
+We are still building this website. Start from [[install|here]] if you are new to Nix. We have a [[blog]], and you can browse the rest of the content  in [the index](-/all).
