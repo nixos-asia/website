@@ -11,3 +11,7 @@ emanote:
 ## Explore this website
 
 We are still building this website. Start from [[install|here]] if you are new to Nix. We have a [[blog]], and you can browse the rest of the content  in [the index](-/all).
+
+## Upcoming
+
+- [ ] Meetups in Bangalore
