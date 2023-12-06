@@ -1,5 +1,9 @@
 # Install Nix
 
+
+>[!info] Linux
+> If you prefer to use Linux, you may be interested in installing [[nixos]]. The following instructions for users of other Linux distros as well as macOS.
+
 Install #[[nix]] using [the unofficial installer](https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer):[^official]
 
 ```sh
