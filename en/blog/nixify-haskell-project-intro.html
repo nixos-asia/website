@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    nixify-haskell-project-intro – NixOS Asia
+    Nixify your haskell project: Introduction – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='TODO,' />
+      <meta property='og:description' content='This is the start of a series of blog posts aimed at simplifying [[haskell]] development & packaging workflow using [[nix]]. In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='nixify-haskell-project-intro' />
+      <meta property='og:title' content='Nixify your haskell project: Introduction' />
     
     
       <base href='/' />
@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=e7c9f1b1-146a-444a-9cd2-0759bff98ac4' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=0756bdce-48ea-41bf-a06a-5b0bc13eed1f' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -305,8 +305,19 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
-    <a href='en/blog'>
-      Blog
+    <a href='en/flakes'>
+      Flakes
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/nix'>
+      Nix
     </a>
   </div>
 
@@ -325,6 +336,47 @@
 </li>
       
     </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/haskell'>
+      Haskell
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/dev'>
+      Nix for Development
+    </a>
+  </div>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/blog'>
+      Blog
+    </a>
+  </div>
+
   
 </li>
           
@@ -348,31 +400,690 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    nixify-haskell-project-intro
+    Nixify your haskell project: Introduction
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      TODO,
+      This is the start of a series of blog posts aimed at simplifying <a href='en/haskell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Haskell</a> development & packaging workflow using <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a>. In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.
+    </p>
+  
+    <p class='mb-3'>
+      Nix is a powerful package manager and build system that provides reproducible and declarative development environment. We will utilize <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix Flakes</a> to declaratively configure this environment.
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <line x1='18' y1='2' x2='22' y2='6'></line>
+<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      Note
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      We strongly recommend flakes for anyone getting started with Nix. Flakes is <a href='https://determinate.systems/posts/experimental-does-not-mean-unstable' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>production ready despite being marked as experimental</a>.
+    </p>
+  
+  </div>
+</div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+      Info
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      The <a href='https://community.flake.parts/haskell-flake/nixpkgs-haskell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Haskell infrastructure in nixpkgs</a> is the simplest way to get started with Nixifying a Haskell project. There are also other approaches (like <a href='https://github.com/input-output-hk/haskell.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell.nix</a>, <a href='https://github.com/cdepillabout/stacklock2nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>stacklock2nix</a>). Later in the blog post series, we’ll explore <a href='https://community.flake.parts/haskell-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> which builds on top of the Haskell infrastructure in nixpkgs
+    </p>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      If you’re unfamiliar with Nix, we have <a href='en/blog/nix-rapid' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> available to help you get started quickly or you can take your time and explore it at <a href='https://zero-to-nix.com' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix</a>. A basic understanding of the Nix expression language is assumed. Throughout the series, we will utilize a simple Haskell app called <a href='https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>todo-app</a> to illustrate how to build a Haskell project and automatically manage runtime dependencies such as databases (ie., <a href='https://www.postgresql.org' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>postgres</a>) and and other services (here, we use <a href='https://postgrest.org/en/stable' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>postgREST</a>), eliminating the need for any manual onboarding setup. This will allow us to highlight the advantages of using Nix.
+    </p>
+  <h2 id='why-nixify' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Why Nixify?</h2>
+    <p class='mb-3'>
+      Why use Nix to develop a Haskell project rather than something like Stack or GHCup?
     </p>
   
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      Import <a href='https://flakular.in/blog/nixify-haskell-project-intro' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://flakular.in/blog/nixify-haskell-project-intro</a>
+          <strong>Instant onboarding</strong>: Projects have READMEs that describe how to setup the development environment but these instructions do not work the same way for every developer and usually takes hours or days to setup. With Nix the setup is instantaneous and reproducible,
+    <sup class='px-0.5'>
+      <a class='text-green-600 hover:underline' href='en/blog/nixify-haskell-project-intro#fn1'>
+        1
+      </a>
+    </sup>
+   which means any new developer can get the development environment up and running with one command.
+        </li>
+      
+        <li>
+          <strong>Enhanced productivity</strong>: More time spent on writing Haskell as Nix gives a fully working development environment with <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code>.
+        </li>
+      
+        <li>
+          <strong>Multi-platform</strong>: Same configuration generally works on macOS, Linux and WSL.
+        </li>
+      
+    </ul>
+  <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <line x1='18' y1='2' x2='22' y2='6'></line>
+<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       macOS support
+    </div>
+  </div>
+  <div class='callout-content'>
     
-</span>
+    <p class='mb-3'>
+      Although macOS doesn’t have first-class support in nixpkgs, <a href='https://github.com/NixOS/nixpkgs/issues/116341' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>it is getting there</a>.
+    </p>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      The rest of this blog post will provide a step-by-step demonstration of how to Nixify the todo-app project.
+    </p>
+  <h2 id='introduce-flake' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Introduce Flake</h2>
+    <p class='mb-3'>
+      To begin, clone the <a href='https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>todo-app</a> repository and checkout the specified commit.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>git clone https://github.com/juspay/todo-app.git
+cd todo-app
+git checkout 076185e34f70e903b992b597232bc622eadfcd51</code></pre></div>
+    <p class='mb-3'>
+      Next, in the project’s root directory, create a file named <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> and run <code class='py-0.5 px-0.5 bg-gray-100'>git add flake.nix</code> (Nix searches for <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> in git files). We will begin by setting up a basic template for the flake, which includes:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Defining <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> and <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>
+        </li>
+      
+        <li>
+          Specifying the <code class='py-0.5 px-0.5 bg-gray-100'>system</code> corresponding to your machine.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      Tl;dr This is how your <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> will look:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+  outputs = { self, nixpkgs }:
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      packages.${system}.default = pkgs.hello;
+      apps.${system}.default = {
+        type = "app";
+        program = "${pkgs.hello}/bin/hello";
+      };
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = [
+          pkgs.hello
+        ];
+      };
+    };
+}</code></pre></div>
+    <p class='mb-3'>
+      A nix flake such as the one above consumes certain <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> and produces certain <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>. Let’s break down each part of this <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>:
+    </p>
+  <h3 id='inputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Inputs</h3><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       There are two ways to access the attributes of <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> within <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>:
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Adding the attribute as a parameter to <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>, like <code class='py-0.5 px-0.5 bg-gray-100'>outputs = { self, &lt;attribute&gt; }</code>. This allows you to use the <code class='py-0.5 px-0.5 bg-gray-100'>&lt;attribute&gt;</code> without requiring any prefix.
+        </li>
+      
+        <li>
+          Bind a variable to all the parameters of <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>, like <code class='py-0.5 px-0.5 bg-gray-100'>outputs = inputs@{self, ...}</code>. This enables you to access any attribute from <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> in this fashion: <code class='py-0.5 px-0.5 bg-gray-100'>inputs.&lt;attribute&gt;</code>.
+        </li>
+      
+    </ul>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      A flake can reference other flakes, which are specified in the <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> attribute. We will use the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>URL-like representation</a> to specify our input flakes.
+    </p>
+  
+    <p class='mb-3'>
+      In this example, we will use <a href='https://www.gnu.org/software/hello' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>GNU hello</a> package from <a href='https://github.com/NixOS/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs</code></a> flake. Therefore, we’ll specify the nixpkgs flake as an input, specifically using its <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code> branch.
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <line x1='18' y1='2' x2='22' y2='6'></line>
+<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       The <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code> naming
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      The <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code> branch is named as such because of the frequent updates it receives and doesn’t imply that it is unsafe.
+    </p>
+  
+  </div>
+</div><h3 id='outputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Outputs</h3>
+    <p class='mb-3'>
+      The <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code> attribute of a flake is essentially a Nix function that takes inputs and returns the outputs attribute.
+    </p>
+  
+    <p class='mb-3'>
+      The inputs argument is an attrset containing <code class='py-0.5 px-0.5 bg-gray-100'>self</code> as well as the flake inputs (in our flake, we reference the only input <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs</code>).
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       What is <code class='py-0.5 px-0.5 bg-gray-100'>self</code>?
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      <code class='py-0.5 px-0.5 bg-gray-100'>self</code> refers to the final state of attributes in the <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>. For example, <code class='py-0.5 px-0.5 bg-gray-100'>self.packages.${system}.default</code> refers to the attribute after assigning <code class='py-0.5 px-0.5 bg-gray-100'>pkgs.hello</code> to it.
+    </p>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      <a href='https://nixos.wiki/wiki/Flakes#Output_schema' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Refer here</a> for a detailed schema of <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>. Note that the <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs</code> key within the inputs attrset refers to the <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code> of the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> located at <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs.url</code>. If <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs.flake = false</code> is set, then the parameter will represent the source code.
+    </p>
+  
+    <p class='mb-3'>
+      The body of the function defines the flake outputs. Within the <code class='py-0.5 px-0.5 bg-gray-100'>let</code> block we define two values – <code class='py-0.5 px-0.5 bg-gray-100'>system</code> (set as “aarch64-darwin” in this example, assuming we are on an ARM mac) and <code class='py-0.5 px-0.5 bg-gray-100'>pkgs</code> (referring to nixpkgs packages for <code class='py-0.5 px-0.5 bg-gray-100'>system</code>). In our example, <code class='py-0.5 px-0.5 bg-gray-100'>system</code> is hardcoded to a single system, but <a href='https://zero-to-nix.com/concepts/flakes#system-specificity' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>forAllSystems</a> can be used to define packages for an array of systems.
+    </p>
+  
+    <p class='mb-3'>
+      Here are some standard outputs a flake may produce:
+    </p>
+  <h4 id='packages' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Packages</h4>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          A flake’s <code class='py-0.5 px-0.5 bg-gray-100'>packages.${system}</code> output contains <a href='en/drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>derivations</a> that can be utilized to build the package.
+        </li>
+      
+        <li>
+          Executing <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> will build the <code class='py-0.5 px-0.5 bg-gray-100'>packages.${system}.default</code> output. Run <code class='py-0.5 px-0.5 bg-gray-100'>nix build .#&lt;packageName&gt;</code> to build the package named <code class='py-0.5 px-0.5 bg-gray-100'>packages.${system}.&lt;packageName&gt;</code>.
+        </li>
+      
+    </ul>
+  <h4 id='apps' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Apps</h4>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          A flake’s <code class='py-0.5 px-0.5 bg-gray-100'>apps.${system}.&lt;appName&gt;</code> output refers to a flake app that can be exeucted using <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code>.
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          It is attribute set containing two keys <code class='py-0.5 px-0.5 bg-gray-100'>type</code> and <code class='py-0.5 px-0.5 bg-gray-100'>program</code>. The <code class='py-0.5 px-0.5 bg-gray-100'>type</code> attribute determines how the program should be executed. For instance, “shell” indicates a shell script, “python” indicates a Python script, and “app” indicates an executable. The <code class='py-0.5 px-0.5 bg-gray-100'>program</code> attribute is a string representing the path in the Nix store where the executable is located.
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          Executing <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code> will run the <code class='py-0.5 px-0.5 bg-gray-100'>apps.${system}.default</code> app. Run <code class='py-0.5 px-0.5 bg-gray-100'>nix run .#&lt;appName&gt;</code> to run the app named <code class='py-0.5 px-0.5 bg-gray-100'>&lt;appName&gt;</code>.
+        </li>
+      
+    </ul>
+  <h4 id='devshells' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>DevShells</h4>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          By utilizing <code class='py-0.5 px-0.5 bg-gray-100'>pkgs.mkShell</code>, you can configure your development shell to include only the necessary packages.
+        </li>
+      
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>pkgs.mkShell</code> generates a derivation that is evaluated when running the <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code> command.
+        </li>
+      
+        <li>
+          By default the derivation specified by <code class='py-0.5 px-0.5 bg-gray-100'>devShells.${system}.default</code> is evaluated. However, you also have the flexibility to define a custom development shell, such as <code class='py-0.5 px-0.5 bg-gray-100'>devShells.${system}.mydevShell</code> and execute it using <code class='py-0.5 px-0.5 bg-gray-100'>nix develop .#mydevShell</code>
+        </li>
+      
+    </ul>
+  <h4 id='visualize-the-flake-outputs' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Visualize the flake outputs</h4>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Run <code class='py-0.5 px-0.5 bg-gray-100'>nix flake show</code>
+        </li>
+      
+    </ul>
+  <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <line x1='18' y1='2' x2='22' y2='6'></line>
+<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       IFD
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      Run <code class='py-0.5 px-0.5 bg-gray-100'>nix flake show --allow-import-from-derivation</code> in the further sections as <code class='py-0.5 px-0.5 bg-gray-100'>callCabal2nix</code> relies on <a href='https://nixos.wiki/wiki/Import_From_Derivation' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>IFD</a>
+    </p>
+  
+  </div>
+</div>
+    <p class='mb-3'>
+      Here’s how it will look:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>├───apps
+│   └───aarch64-darwin
+│       └───default: app
+├───devShells
+│   └───aarch64-darwin
+│       └───default: development environment 'nix-shell'
+└───packages
+    └───aarch64-darwin
+        └───default: package 'hello-2.12.1'</code></pre></div><h4 id='see-the-flake-in-action' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>See the flake in action</h4><div xmlhtmlRaw><script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
+</div><h2 id='nixify-haskell-package' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Nixify Haskell package</h2>
+    <p class='mb-3'>
+      In the previous section we wrote a hello world flake that contains the “hello” package. Now, let’s write a flake for our Haskell project <code class='py-0.5 px-0.5 bg-gray-100'>todo-app</code>.
+    </p>
+  
+    <p class='mb-3'>
+      Tl;dr Here is the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> for this section:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+  outputs = { self, nixpkgs }:
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+      overlay = final: prev: {
+        todo-app = final.callCabal2nix "todo-app" ./. { };
+      };
+      myHaskellPackages = pkgs.haskellPackages.extend overlay;
+    in
+    {
+      packages.${system}.default = myHaskellPackages.todo-app;
+      apps.${system}.default = {
+        type = "app";
+        program = "${self.packages.${system}.default}/bin/todo-app";
+      };
+    };
+}</code></pre></div>
+    <p class='mb-3'>
+      Let’s break it down!
+    </p>
+  <h3 id='haskellpackages' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>haskellPackages</h3>
+    <p class='mb-3'>
+      Consult <a href='https://nixos.org/manual/nixpkgs/unstable/#haskell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the official manual</a> to learn more about the Haskell infrastructure in nixpkgs, but for the purpose of our blog post it is suffice to know that:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>pkgs.haskellPackages</code> is an attribute set that contains all Haskell packages maintained within <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs</code>.
+        </li>
+      
+        <li>
+          Since our local package (<code class='py-0.5 px-0.5 bg-gray-100'>todo-app</code>) is not already included in <code class='py-0.5 px-0.5 bg-gray-100'>pkgs.haskellPackages</code>, we need to manually add it.
+        </li>
+      
+        <li>
+          Technically, you can use <code class='py-0.5 px-0.5 bg-gray-100'>packages.${system}.default = pkgs.${system}.haskellPackages.callCabal2nix "todo-app" ./. { };</code> to include the package. However, adding it to <code class='py-0.5 px-0.5 bg-gray-100'>haskellPackages</code> consolidates every Haskell package in one place.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      In summary, adding the local package to <code class='py-0.5 px-0.5 bg-gray-100'>pkgs.haskellPackages</code> centralizes the package management process and simplifies the usage of the package within other flakes.
+    </p>
+  <h3 id='overlay' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Overlay</h3>
+    <p class='mb-3'>
+      <a href='https://nixos.wiki/wiki/Overlays' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Overlays</a> are used to override an existing package set, such as <code class='py-0.5 px-0.5 bg-gray-100'>pkgs.haskellPackages</code>, and produce a new package set containing the changes. These changes could be either about overriding a single package in the package set (the second argument <code class='py-0.5 px-0.5 bg-gray-100'>super</code> references the original package set), or it could be about adding new packages to it.
+    </p>
+  <h3 id='callcabal2nix' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>callCabal2nix</h3>
+    <p class='mb-3'>
+      The <code class='py-0.5 px-0.5 bg-gray-100'>callCabal2nix</code> function generates a Haskell package derivation based on its source. This function internally utilizes <a href='https://github.com/NixOS/cabal2nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>“cabal2nix”</a>, which is a Haskell utility that generates Nix build instructions from a cabal file.
+    </p>
+  <h3 id='time-to-run' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Time to run!</h3><div xmlhtmlRaw><script async id="asciicast-591422" src="https://asciinema.org/a/591422.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
+</div><h2 id='nixify-devshell' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Nixify DevShell</h2>
+    <p class='mb-3'>
+      Our existing flake enables us to <em>build</em> the <code class='py-0.5 px-0.5 bg-gray-100'>todo-app</code>. However, what if want to develop it, by adding a feature or fixing a bug? For Haskell development, we normally use <a href='https://cabal.readthedocs.io/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>cabal</a> and tools like <a href='https://github.com/ndmitchell/ghcid' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>ghcid</a>. These tools require a GHC environment that includes the packages specified in the <code class='py-0.5 px-0.5 bg-gray-100'>build-depends</code> of our cabal file. This is where <code class='py-0.5 px-0.5 bg-gray-100'>devShell</code> becomes useful as it provides an isolated environment with all packages required by the project, catering to our development needs.
+    </p>
+  
+    <p class='mb-3'>
+      Tl;dr Here is the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> for this section:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+  outputs = { self, nixpkgs }:
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+      overlay = final: prev: {
+        todo-app = final.callCabal2nix "todo-app" ./. { };
+      };
+      myHaskellPackages = pkgs.haskellPackages.extend overlay;
+    in
+    {
+      devShells.${system}.default = myHaskellPackages.shellFor {
+        packages = p : [
+          p.todo-app
+        ];
+        buildInputs = with myHaskellPackages; [
+          ghcid
+          cabal-install
+        ];
+      };
+    };
+}</code></pre></div><h3 id='shellfor' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>shellFor</h3>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          In the above flake, we utilize the <a href='https://nixos.wiki/wiki/Haskell#Using_shellFor_.28multiple_packages.29' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>shellFor</code></a> function from the <code class='py-0.5 px-0.5 bg-gray-100'>haskellPackages</code> attribute set to set up the default shell for our project.
+        </li>
+      
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>shellFor</code> is an abstraction over <a href='https://ryantm.github.io/nixpkgs/builders/special/mkshell/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>mkShell</code></a> geared specifically for Haskell development shells. Generally, we only need to define two keys <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> and <code class='py-0.5 px-0.5 bg-gray-100'>nativeBuildInputs</code>. <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> marks which of the packages in the package set are <em>local</em> packages (to be compiled by cabal). <code class='py-0.5 px-0.5 bg-gray-100'>nativeBuildInputs</code> is used to ensure that the specified packages are present in the <code class='py-0.5 px-0.5 bg-gray-100'>PATH</code> of the isolated development environment.
+        </li>
+      
+    </ul>
+  <h3 id='lets-run' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Let’s run!</h3><div xmlhtmlRaw><script async id="asciicast-591426" src="https://asciinema.org/a/591426.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
+</div><h2 id='nixify-external-dependencies' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Nixify external dependencies</h2>
+    <p class='mb-3'>
+      Up until now, we have nixified the Haskell portion of our project. However, a project can also have non-Haskell dependencies, like Postgres, MySQL and Redis. In this section we will specifically look at how you can start a postgres server using Nix without relying or mutating global state (outside of project directory).
+    </p>
+  
+    <p class='mb-3'>
+      Tl;dr Here’s the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+  outputs = { self, nixpkgs }:
+  let
+    system = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in
+  {
+    apps.${system}.postgres = {
+      type = "app";
+      program = 
+        let
+          script = pkgs.writeShellApplication {
+            name = "pg_start";
+            runtimeInputs = [ pkgs.postgresql ];
+            text = 
+            ''
+              # Initialize a database with data stored in current project dir
+              [ ! -d "./data/db" ] && initdb --no-locale -D ./data/db
 
+              postgres -D ./data/db -k "$PWD"/data
+            '';
+          };
+        in "${script}/bin/pg_start";
+    };
+  };
+}</code></pre></div><h3 id='writeshellapplication' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>writeShellApplication</h3>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          The <a href='https://noogle.dev/?selected=%22build-support.trivial-builders.writeShellApplication%22&amp;term=%22writeShellApplication%22' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>writeShellApplication</code></a> function generates a derivation for a shell script specified as the value for <code class='py-0.5 px-0.5 bg-gray-100'>text</code> attribute.
+        </li>
+      
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>runtimeInputs</code>: packages to be made available to the shell application’s PATH.
+        </li>
+      
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>writeShellApplication</code> uses <a href='https://github.com/koalaman/shellcheck' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>shellcheck</a> to statically analyze your bash script for issues.
+        </li>
+      
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>"${script}"</code> provides the path in the <code class='py-0.5 px-0.5 bg-gray-100'>nix/store</code> where the application is located.
+        </li>
+      
+    </ul>
+  <h3 id='run-it' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Run it!</h3><div xmlhtmlRaw><script async id="asciicast-591427" src="https://asciinema.org/a/591427.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
+</div><h2 id='nixify-combined' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Nixify Combined</h2>
+    <p class='mb-3'>
+      Now it’s time to consolidate all the previously discussed sections into a single <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>. Additionally, we should incorporate the necessary apps for <code class='py-0.5 px-0.5 bg-gray-100'>postgrest</code> and <code class='py-0.5 px-0.5 bg-gray-100'>createdb</code>. <code class='py-0.5 px-0.5 bg-gray-100'>postgrest</code> app will start the service and <code class='py-0.5 px-0.5 bg-gray-100'>createdb</code> will handle tasks such as loading the database dump, creating a database user, and configuring the database for postgREST.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+  outputs = { self, nixpkgs }:
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+      overlay = final: prev: {
+        todo-app = final.callCabal2nix "todo-app" ./. { };
+      };
+      myHaskellPackages = pkgs.haskellPackages.extend overlay;
+    in
+    {
+      packages.${system}.default = myHaskellPackages.todo-app;
+
+      devShells.${system}.default = myHaskellPackages.shellFor {
+        packages = p: [
+          p.todo-app
+        ];
+        buildInputs = with myHaskellPackages; [
+          ghcid
+          cabal-install
+          haskell-language-server
+        ];
+      };
+
+      apps.${system} = {
+        default = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/todo-app";
+        };
+        postgres = {
+          type = "app";
+          program =
+            let
+              script = pkgs.writeShellApplication {
+                name = "pg_start";
+                runtimeInputs = [ pkgs.postgresql ];
+                text =
+                  ''
+                    # Initialize a database with data stored in current project dir
+                    [ ! -d "./data/db" ] && initdb --no-locale -D ./data/db
+
+                    postgres -D ./data/db -k "$PWD"/data
+                  '';
+              };
+            in
+            "${script}/bin/pg_start";
+        };
+        createdb = {
+          type = "app";
+          program =
+            let
+              script = pkgs.writeShellApplication {
+                name = "createDB";
+                runtimeInputs = [ pkgs.postgresql ];
+                text =
+                  ''
+                    # Create a database of your current user
+                    if ! psql -h "$PWD"/data -lqt | cut -d \| -f 1 | grep -qw "$(whoami)"; then
+                      createdb -h "$PWD"/data "$(whoami)"
+                    fi
+
+                    # Load DB dump
+                    psql -h "$PWD"/data &lt; db.sql
+
+                    # Create configuration file for postgrest
+                    echo "db-uri = \"postgres://authenticator:mysecretpassword@localhost:5432/$(whoami)\"
+                    db-schemas = \"api\"
+                    db-anon-role = \"todo_user\"" &gt; data/db.conf
+                  '';
+              };
+            in
+            "${script}/bin/createDB";
+        };
+        postgrest = {
+          type = "app";
+          program =
+            let
+              script = pkgs.writeShellApplication {
+                name = "pgREST";
+                runtimeInputs = [ myHaskellPackages.postgrest ];
+                text =
+                  ''
+                    postgrest ./data/db.conf
+                  '';
+              };
+            in
+            "${script}/bin/pgREST";
+        };
+      };
+    };
+}</code></pre></div>
+    <p class='mb-3'>
+      For the complete souce code, visit <a href='https://github.com/juspay/todo-app/tree/tutorial/1' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a>. It’s worth noting that the source code uses <a href='https://zero-to-nix.com/concepts/flakes#system-specificity' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>forAllSystems</code></a>, which was not included in the tutorial above to maintain simplicity.
+    </p>
+  <h3 id='video-walkthrough' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Video Walkthrough</h3><div xmlhtmlRaw><script async id="asciicast-591435" src="https://asciinema.org/a/591435.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
+</div><h2 id='conclusion' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Conclusion</h2>
+    <p class='mb-3'>
+      Let’s see how the blog post addresses the points from the section <a href='#why-nixify' class='text-green-600 mavenLinkBold hover:underline'>Why Nixify?</a>
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <strong>Instant onboarding</strong>: There is no confusion about how to setup the development environment. It is <code class='py-0.5 px-0.5 bg-gray-100'>nix run .#postgres</code> to start the postgres server, <code class='py-0.5 px-0.5 bg-gray-100'>nix run .#createdb</code> to setup the database and <code class='py-0.5 px-0.5 bg-gray-100'>nix run .#postgrest</code> to start the Postgrest web server. This happens in a reproducible way, ensuring every developer gets the same environment.
+        </li>
+      
+        <li>
+          <strong>Enhanced productivity</strong>: The commands mentioned in the previous points in conjunction with <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code> is all that is needed to make a quick change and see it in effect.
+        </li>
+      
+        <li>
+          <strong>Multi-platform</strong>: All the commands mentioned in the previous points will work in the same way across platforms.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      In the next blog post, we will modularize this <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> using the <a href='en/flake-parts' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake-parts</a> framework by Robert Hensing.
+    </p>
+  <h2 id='credits' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Credits</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          After going through numerous iterations, I am grateful to <a href='https://srid.ca/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>srid</a> for his valuable assistance in bringing this blog to its current stage.
+        </li>
+      
+        <li>
+          I would also like to thank the following folks for their valuable feedback:
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://github.com/cdepillabout' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>cdepillabout</a>
+        </li>
+      
+        <li>
+          <a href='https://github.com/leomayleomay' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Hao Liu</a>
+        </li>
+      
+    </ul>
   
         </li>
       
     </ul>
+  
+    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
+      <header class='font-semibold'>Footnotes</header>
+      
+        <div id='fn1'>
+          <header class='italic'>
+            1.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            Considering the packages are available in Nix for the host platform.
+          </div>
+        </div>
+      
+    </div>
   
 
   <div class='flex items-center justify-center mt-2'>
