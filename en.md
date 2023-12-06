@@ -6,13 +6,13 @@ emanote:
 
 # NixOS Asia
 
-:::{.flex .items-center .justify-center .w-full}
-:::{.w-32}
-![[nixos-asia.svg]]
-:::
-:::
+> [!tip] Welcome to NixOS Asia
+> NixOS Asia is community of [[nix]] and [[nixos]] users, originating from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
 
-## TODOs
+## Progress
+
+> [!warning] WIP 
+> This website is not yet ready for public consumption. Here are some TODOs:
 
 - [x] CI & Github Pages
     - [x] Cloudflare domain to work
@@ -20,8 +20,9 @@ emanote:
 - [x] Start add `en/*` (start with `en/install`)
 - [x] Add `en/blog/*`
   - [ ] Import old blog post
-- [ ] Setup old URL redirects
+- [ ] Setup old URL redirects (flakular.in)
 - [ ] Create content & structure
+- [ ] Final styling
 
 ## Start
 
