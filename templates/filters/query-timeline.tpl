@@ -11,7 +11,7 @@
                             <span data-nosnippet class="mr-2 text-right font-mono text-gray-600" title="Posted on">
                                 <value var="date" />
                             </span>
-                            <span data-nosnippet class="mr-2 w-32 text-right font-mono text-gray-600" title="Author">
+                            <span data-nosnippet class="mr-2 w-28 text-right font-mono text-gray-300" title="Author">
                                 <value var="author" />
                             </span>
                         </ema:note:metadata>
