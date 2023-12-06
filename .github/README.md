@@ -19,6 +19,7 @@ Contents are stored in Markdown and can be edited using your favourite [text edi
 ### Guidelines
 
 - When linking to a concept, see if there is an existing page for it. For eg., if you are linking to "nix flakes", use the wikilink `[[flakes]]` since the website already has a page, `flakes.md` for it.
+- Create parent (folgezettel) relationships are appropriate by using `#[[..]]` stylf of wikilinks such as to shape the [uplink tree](https://emanote.srid.ca/guide/html-template/uptree) of any page.
 
 ## Discussion
 

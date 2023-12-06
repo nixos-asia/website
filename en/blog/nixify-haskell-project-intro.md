@@ -8,9 +8,9 @@ tags: [haskell, basics, flakes, nix]
 
 # Nixify your haskell project: Introduction
 
-This is the start of a series of blog posts aimed at simplifying [[haskell]] development & packaging workflow using [[nix]]. In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.
+This is the start of a series of blog posts aimed at simplifying #[[haskell]] development & packaging workflow using [[nix]]. In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.
 
-Nix is a powerful package manager and build system that provides reproducible and declarative development environment. We will utilize [[flakes|Nix Flakes]] to declaratively configure this environment.
+Nix is a powerful package manager and build system that provides reproducible and declarative development environment. We will utilize #[[flakes|Nix Flakes]] to declaratively configure this environment.
 
 >[!note] 
 > We strongly recommend flakes for anyone getting started with Nix. Flakes is [production ready despite being marked as experimental](https://determinate.systems/posts/experimental-does-not-mean-unstable).
