@@ -8,9 +8,9 @@ tags: [haskell, basics, flakes, nix]
 
 # Nixify your haskell project: Introduction
 
-This is the start of a series of blog posts aimed at simplifying Haskell development & packaging workflow using [Nix](https://nixos.org/). In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.
+This is the start of a series of blog posts aimed at simplifying [[haskell]] development & packaging workflow using [[nix]]. In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.
 
-Nix is a powerful package manager and build system that provides reproducible and declarative development environment. We will utilize [Nix flakes](https://nixos.wiki/wiki/Flakes) to declaratively configure this environment.
+Nix is a powerful package manager and build system that provides reproducible and declarative development environment. We will utilize [[flakes|Nix Flakes]] to declaratively configure this environment.
 
 >[!note] 
 > We strongly recommend flakes for anyone getting started with Nix. Flakes is [production ready despite being marked as experimental](https://determinate.systems/posts/experimental-does-not-mean-unstable).
@@ -115,7 +115,7 @@ Here are some standard outputs a flake may produce:
 
 #### Packages
 
-- A flake's `packages.${system}` output contains [derivations](https://nixos.org/manual/nix/stable/language/derivations.html) that can be utilized to build the package.
+- A flake's `packages.${system}` output contains [[drv|derivations]] that can be utilized to build the package.
 - Executing `nix build` will build the `packages.${system}.default` output. Run `nix build .#<packageName>` to build the package named `packages.${system}.<packageName>`.
 
 #### Apps
@@ -410,7 +410,7 @@ developer gets the same environment.
 and see it in effect.
 - **Multi-platform**: All the commands mentioned in the previous points will work in the same way across platforms.
 
-In the next blog post, we will modularize this `flake.nix` using the [`flake-parts`](https://flake.parts/) framework by Robert Hensing.
+In the next blog post, we will modularize this `flake.nix` using the [[flake-parts]] framework by Robert Hensing.
 
 ## Credits
 - After going through numerous iterations, I am grateful to [srid](https://srid.ca/) for his valuable assistance in bringing this blog to its current stage.
