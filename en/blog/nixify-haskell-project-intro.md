@@ -12,9 +12,11 @@ This is the start of a series of blog posts aimed at simplifying Haskell develop
 
 Nix is a powerful package manager and build system that provides reproducible and declarative development environment. We will utilize [Nix flakes](https://nixos.wiki/wiki/Flakes) to declaratively configure this environment.
 
->[!info] We strongly recommend flakes for anyone getting started with Nix. Flakes is [production ready despite being marked as experimental](https://determinate.systems/posts/experimental-does-not-mean-unstable).
+>[!note] 
+> We strongly recommend flakes for anyone getting started with Nix. Flakes is [production ready despite being marked as experimental](https://determinate.systems/posts/experimental-does-not-mean-unstable).
 
->[!info] The [Haskell infrastructure in nixpkgs](https://community.flake.parts/haskell-flake/nixpkgs-haskell) is the simplest way to get started with Nixifying a Haskell project. There are also other approaches (like [haskell.nix](https://github.com/input-output-hk/haskell.nix), [stacklock2nix](https://github.com/cdepillabout/stacklock2nix)). Later in the blog post series, we'll explore [haskell-flake](https://community.flake.parts/haskell-flake) which builds on top of the Haskell infrastructure in nixpkgs
+>[!info] 
+> The [Haskell infrastructure in nixpkgs](https://community.flake.parts/haskell-flake/nixpkgs-haskell) is the simplest way to get started with Nixifying a Haskell project. There are also other approaches (like [haskell.nix](https://github.com/input-output-hk/haskell.nix), [stacklock2nix](https://github.com/cdepillabout/stacklock2nix)). Later in the blog post series, we'll explore [haskell-flake](https://community.flake.parts/haskell-flake) which builds on top of the Haskell infrastructure in nixpkgs
 
 
 If you're unfamiliar with Nix, we have [[nix-rapid]] available to help you get started quickly or you can take your time and explore it at [Zero to Nix](https://zero-to-nix.com). A basic understanding of the Nix expression language is assumed. 
@@ -31,7 +33,8 @@ can get the development environment up and running with one command.
 - **Enhanced productivity**: More time spent on writing Haskell as Nix gives a fully working development environment with `nix develop`.
 - **Multi-platform**: Same configuration generally works on macOS, Linux and WSL.
 
->[!note] Although macOS doesn't have first-class support in nixpkgs, [it is getting there](https://github.com/NixOS/nixpkgs/issues/116341).
+>[!note] 
+> Although macOS doesn't have first-class support in nixpkgs, [it is getting there](https://github.com/NixOS/nixpkgs/issues/116341).
 
 [^1]: Considering the packages are available in Nix for the host platform.
 
@@ -91,7 +94,8 @@ A flake can reference other flakes, which are specified in the `inputs` attribut
 
 In this example, we will use [GNU hello](https://www.gnu.org/software/hello) package from [`nixpkgs`](https://github.com/NixOS/nixpkgs) flake. Therefore, we'll specify the nixpkgs flake as an input, specifically using its `nixpkgs-unstable` branch.
 
->[!note] `nixpkgs-unstable` branch is named as such because of the frequent updates it receives and doesn't imply that it is unsafe.
+>[!note] The `nixpkgs-unstable` naming
+> The `nixpkgs-unstable` branch is named as such because of the frequent updates it receives and doesn't imply that it is unsafe.
 
 
 ### Outputs
@@ -100,7 +104,8 @@ The `outputs` attribute of a flake is essentially a Nix function that takes inpu
 
 The inputs argument is an attrset containing `self` as well as the flake inputs (in our flake, we reference the only input `nixpkgs`).
 
->[!info] `self` refers to the final state of attributes in the `outputs`. For example, `self.packages.${system}.default` refers to the attribute after assigning `pkgs.hello` to it.
+>[!info] What is `self`?
+> `self` refers to the final state of attributes in the `outputs`. For example, `self.packages.${system}.default` refers to the attribute after assigning `pkgs.hello` to it.
 
 [Refer here](https://nixos.wiki/wiki/Flakes#Output_schema) for a detailed schema of `outputs`. Note that the `nixpkgs` key within the inputs attrset refers to the `outputs` of the `flake.nix` located at `nixpkgs.url`. If `nixpkgs.flake = false` is set, then the parameter will represent the source code.
 
@@ -129,7 +134,8 @@ Here are some standard outputs a flake may produce:
 
 - Run `nix flake show`
 
->[!note] Run `nix flake show --allow-import-from-derivation` in the further sections as `callCabal2nix` relies on [IFD](https://nixos.wiki/wiki/Import_From_Derivation)
+>[!note] IFD
+> Run `nix flake show --allow-import-from-derivation` in the further sections as `callCabal2nix` relies on [IFD](https://nixos.wiki/wiki/Import_From_Derivation)
 
 Here's how it will look:
 ```sh
