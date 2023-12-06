@@ -31,7 +31,7 @@ can get the development environment up and running with one command.
 - **Enhanced productivity**: More time spent on writing Haskell as Nix gives a fully working development environment with `nix develop`.
 - **Multi-platform**: Same configuration generally works on macOS, Linux and WSL.
 
->[!note] 
+>[!note] macOS support
 > Although macOS doesn't have first-class support in nixpkgs, [it is getting there](https://github.com/NixOS/nixpkgs/issues/116341).
 
 [^1]: Considering the packages are available in Nix for the host platform.
