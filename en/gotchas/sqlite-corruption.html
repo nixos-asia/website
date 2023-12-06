@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Flakes – NixOS Asia
+    Nix’s sqlite database is corrupted/broken – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='Flakes is a necessary abstraction of top of [[nix]] that improves on usability and reproducibility.' />
+      <meta property='og:description' content='If [[nix]] throws an error like:' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Flakes' />
+      <meta property='og:title' content='Nix’s sqlite database is corrupted/broken' />
     
     
       <base href='/' />
@@ -305,6 +305,17 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
+    <a href='en/gotchas'>
+      Gotchas
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
     <a href='en/nix'>
       Nix
     </a>
@@ -321,6 +332,10 @@
     </a>
   </div>
 
+  
+</li>
+      
+    </ul>
   
 </li>
       
@@ -348,29 +363,29 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Flakes
+    Nix’s sqlite database is corrupted/broken
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      Flakes is a necessary abstraction of top of <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix</a> that improves on usability and reproducibility.
+      If <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> throws an error like:
     </p>
-  <h2 id='links' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Links</h2>
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>error: getting status of '/nix/store/....drv': No such file or directory</code></pre></div>
+    <p class='mb-3'>
+      You can try to fix it by running:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nix-store --verify --repair</code></pre></div>
+    <p class='mb-3'>
       
-        <li>
-          <a href='https://nixos.wiki/wiki/Flakes' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://nixos.wiki/wiki/Flakes</a>
-        </li>
-      
-    </ul>
+    </p>
   
 
   <div class='flex items-center justify-center mt-2'>
   
     
-      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/flakes.md'>
+      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/gotchas/sqlite-corruption.md'>
         <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
         </svg>
@@ -382,85 +397,6 @@
               <div class='flex flex-col lg:flex-row lg:space-x-2'>
                 
                 
-  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
-    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
-    <ul class='space-y-1'>
-      
-        <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/repl'>
-            nix repl
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div>To load a <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a>, use <code>:lf &lt;flake-url&gt;</code></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/blog/nix-rapid'>
-            Rapid Introduction to Nix
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>A Nix <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code>flake.nix</code> file, which denotes an attrset containing two keys <code>inputs</code> and <code>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:</p></div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><h2 id='flakes'><a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a></h2></div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>The goal of this mini-tutorial is to introduce you to <a href='en/nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Nix</a> as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>flake</a> for building a package and providing a developer environment shell.</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/gotchas/new-file'>
-            Nix does not recognize a new file I added
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>This usually means you have not staged this new file/ directory to the Git index. When using <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Flakes</a>, Nix will not see untracked files/ directories by default. To resolve this, just <code>git add -N</code> the untracked file/ directory.</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/install'>
-            Install Nix
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>Install <a href='en/nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Nix</a> using <a href='https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the unofficial installer</a>:<sup>*</sup></p></div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>You <em>may</em> use the official installer, but since it doesn’t include an uninstaller, you will have to manually uninstall (<a href='https://nixos.org/manual/nix/stable/installation/uninstall.html#macos' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>macOS instructions here</a>) when the time comes. Also, the official installer will not automatically enable <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a>.</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-    </ul>
-  </div>
-
               </div>
               
   <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
