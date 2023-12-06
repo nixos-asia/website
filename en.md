@@ -7,7 +7,7 @@ emanote:
 # NixOS Asia
 
 > [!tip] Welcome to NixOS Asia
-> NixOS Asia is community of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
+> NixOS Asia is a community of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
 
 ## Progress
 
@@ -20,8 +20,8 @@ emanote:
 - [x] Start add `en/*` (start with `en/install`)
 - [x] Add `en/blog/*`
   - [x] Import old blog post
-- [ ] Setup old URL redirects (flakular.in)
-- [ ] Create content & structure
+- [x] Setup old URL redirects (flakular.in)
+- [ ] Add introduction, some content & structure
 - [ ] Final styling
 
 ## Start
