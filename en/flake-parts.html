@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Blog – NixOS Asia
+    flake-parts – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content />
+      <meta property='og:description' content='A module system for [[flakes]]. See https://flake.parts/ & https://community.flake.parts/' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Blog' />
+      <meta property='og:title' content='flake-parts' />
     
     
       <base href='/' />
@@ -33,7 +33,7 @@
 
 
   
-  <link href='/en/blog.xml' rel='alternate' type='application/atom+xml' title='Atom Feed' />
+  
   <link href='tailwind.css?instanceId=4a84bdeb-e2b8-43db-8ff8-ab0efd1fd4ee' rel='stylesheet' type='text/css' />
 
   <style>
@@ -305,11 +305,41 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
+    <a href='en/flakes'>
+      Flakes
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/nix'>
+      Nix
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
     <a href='en'>
       NixOS Asia
     </a>
   </div>
 
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
   
 </li>
           
@@ -333,56 +363,21 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Blog
+    flake-parts
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
-  <!-- TODO: DRY (same as query-default.tpl, except for date column)--><nav>
-  <div class='mb-8'>
-    <header data-nosnippet class='pb-2 mb-2 font-semibold text-gray-600'>
-      Pages matching path './*'
-    </header>
-    <ul>
-      
-        <li>
-          <div class='flex flex-wrap flex-row my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right font-mono text-gray-600'>
-                2023-09-08
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='en/blog/nixify-haskell-project-intro'>
-              nixify-haskell-project-intro
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap flex-row my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right font-mono text-gray-600'>
-                2023-03-01
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='en/blog/nix-rapid'>
-              Rapid Introduction to Nix
-            </a>
-          </div>
-        </li>
-      
-    </ul>
-  </div>
-</nav>
+  
     <p class='mb-3'>
-      
+      A module system for <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Flakes</a>. See <a href='https://flake.parts/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://flake.parts/</a> & <a href='https://community.flake.parts/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://community.flake.parts/</a>
     </p>
   
 
   <div class='flex items-center justify-center mt-2'>
   
     
-      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/blog.md'>
+      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/flake-parts.md'>
         <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
         </svg>
@@ -399,14 +394,14 @@
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en'>
-            NixOS Asia
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/treefmt'>
+            Auto formatting using <code>treefmt-nix</code>
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><a href='en/blog' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Blog</a></div>
+      <div><p>The <a href='https://github.com/srid/flake-root' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code>flake-root</code></a> <a href='en/flake-parts' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code>flake.nix</code>.</p></div>
     </div>
   
 </div>

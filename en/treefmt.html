@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Blog – NixOS Asia
+    Auto formatting using treefmt-nix – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content />
+      <meta property='og:description' content='treefmt provides an interface to run multiple code formatters at once, so you don’t have to run them manually for each file type in your developmentdevelopment project.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Blog' />
+      <meta property='og:title' content='Auto formatting using treefmt-nix' />
     
     
       <base href='/' />
@@ -33,7 +33,7 @@
 
 
   
-  <link href='/en/blog.xml' rel='alternate' type='application/atom+xml' title='Atom Feed' />
+  
   <link href='tailwind.css?instanceId=4a84bdeb-e2b8-43db-8ff8-ab0efd1fd4ee' rel='stylesheet' type='text/css' />
 
   <style>
@@ -305,11 +305,67 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
+    <a href='en/dev'>
+      Nix for Development
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/nix'>
+      Nix
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
     <a href='en'>
       NixOS Asia
     </a>
   </div>
 
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/flake-parts'>
+      flake-parts
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/flakes'>
+      Flakes
+    </a>
+  </div>
+
+  
+</li>
+      
+    </ul>
   
 </li>
           
@@ -333,56 +389,113 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Blog
+    Auto formatting using <code>treefmt-nix</code>
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
-  <!-- TODO: DRY (same as query-default.tpl, except for date column)--><nav>
-  <div class='mb-8'>
-    <header data-nosnippet class='pb-2 mb-2 font-semibold text-gray-600'>
-      Pages matching path './*'
-    </header>
-    <ul>
+  
+    <p class='mb-3'>
+      <a href='https://github.com/numtide/treefmt' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt</a> provides an interface to run multiple <a href='https://en.wikipedia.org/wiki/Prettyprint' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>code formatters</a> at once, so you don’t have to run them manually for each file type in your <a href='en/dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>development</a> project.
+    </p>
+  <h2 id='writing-the-nix-to-configure-treefmt-in-your-project' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Writing the Nix to configure treefmt in your project</h2><h3 id='add-treefmt-and-flake-root-to-your-inputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Add treefmt and flake-root to your inputs</h3>
+    <p class='mb-3'>
+      The <a href='https://github.com/srid/flake-root' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>flake-root</code></a> <a href='en/flake-parts' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  # Inside `inputs`
+  treefmt-nix.url = "github:numtide/treefmt-nix";
+  flake-root.url = "github:srid/flake-root";
+}</code></pre></div><h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Import <code class='py-0.5 px-0.5 bg-gray-100'>flakeModule</code> output of treefmt and flake-root</h3><div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  # Inside outputs' `flake-parts.lib.mkFlake` 
+  imports = [
+    inputs.treefmt-nix.flakeModule
+    inputs.flake-root.flakeModule
+  ];
+}</code></pre></div><h3 id='configure-your-formatter' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Configure your formatter</h3>
+    <p class='mb-3'>
+      To actually enable the individual formatters you want to configure treefmt. The example configuration below only consists of formatters required by a haskell project using nix. Refer to <a href='https://numtide.github.io/treefmt/formatters/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt-doc</a> for more formatters.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  # Inside mkFlake's `perSystem`
+  treefmt.config = {
+    inherit (config.flake-root) projectRootFile;
+    # This is the default, and can be overriden.
+    package = pkgs.treefmt;
+    # formats .hs files (fourmolu is also available)
+    programs.ormolu.enable = true;
+    # formats .nix files
+    programs.nixpkgs-fmt.enable = true;
+    # formats .cabal files
+    programs.cabal-fmt.enable = false;
+    # Suggests improvements for your code in .hs files
+    programs.hlint.enable = false;
+  };
+}</code></pre></div><h3 id='add-treefmt-to-your-devshell' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Add treefmt to your devShell</h3>
+    <p class='mb-3'>
+      Finally, add the resulting treefmt wrapper (<code class='py-0.5 px-0.5 bg-gray-100'>build.wrapper</code>) to your devShell. We also add the individual formatters (<code class='py-0.5 px-0.5 bg-gray-100'>build.programs</code>) to the devShell, so that they can be used directly in text editors and IDEs.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  # Inside mkFlake's `perSystem`
+  haskellProjects.default = {
+    devShell.tools = _: {
+      treefmt = config.treefmt.build.wrapper;
+    } // config.treefmt.build.programs;
+  };
+}</code></pre></div><h3 id='flake-check' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Flake check</h3>
+    <p class='mb-3'>
+      The <code class='py-0.5 px-0.5 bg-gray-100'>treefmt-nix</code> flake module automatically adds a flake check that can be evaluated to make sure that the project is already autoformatted.
+    </p>
+  <h2 id='tips' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Tips</h2><h3 id='exclude-folders' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Exclude folders</h3>
+    <p class='mb-3'>
+      If there are folders where you wouldn’t want to run the formatter on, use the following:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
+  settings.formatter.&lt;formatter-name&gt;.excludes = [ "./foo/*" ];</code></pre></div><h3 id='use-a-different-package-for-formatter' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Use a different package for formatter</h3>
+    <p class='mb-3'>
+      The package shipped with the current nixpkgs might not be the desired one, follow the snippet below to override the package (assuming <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-21_11</code> is present in your flake’s inputs).
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
+  programs.ormolu.package = nixpkgs-21_11.haskellPackages.ormolu;</code></pre></div>
+    <p class='mb-3'>
+      The same can be applied to other formatters.
+    </p>
+  <h3 id='pass-additional-parameters-to-your-formatter' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Pass additional parameters to your formatter</h3>
+    <p class='mb-3'>
+      You might want to change a certain behaviour of your formatter by overriding by passing the input to the executable. The following example shows how to pass <code class='py-0.5 px-0.5 bg-gray-100'>ghc-opt</code> to ormolu:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
+  settings.formatter.ormolu = {
+    options = [
+      "--ghc-opt"
+      "-XTypeApplications"
+    ];
+  };</code></pre></div>
+    <p class='mb-3'>
+      Ormolu requires this <code class='py-0.5 px-0.5 bg-gray-100'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-0.5 px-0.5 bg-gray-100'>ormolu --manual-exts</code>.
+    </p>
+  <h2 id='example' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Example</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <div class='flex flex-wrap flex-row my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right font-mono text-gray-600'>
-                2023-09-08
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='en/blog/nixify-haskell-project-intro'>
-              nixify-haskell-project-intro
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap flex-row my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right font-mono text-gray-600'>
-                2023-03-01
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='en/blog/nix-rapid'>
-              Rapid Introduction to Nix
-            </a>
-          </div>
+          <a href='https://github.com/srid/haskell-template/blob/a8b6d1f547d761ba392a31e644494d0eeee49c2a/flake.nix#L38-L55' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Sample treefmt config for your haskell project</a>
         </li>
       
     </ul>
-  </div>
-</nav>
-    <p class='mb-3'>
+  <h2 id='upcoming' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Upcoming</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
       
-    </p>
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>treefmt</code> will provide a pre-commit mode to disable commit if formatting checks fail. This is tracked here: <a href='https://github.com/numtide/treefmt/issues/78' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/numtide/treefmt/issues/78</a>
+        </li>
+      
+    </ul>
   
 
   <div class='flex items-center justify-center mt-2'>
   
     
-      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/blog.md'>
+      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/treefmt.md'>
         <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
         </svg>
@@ -394,28 +507,6 @@
               <div class='flex flex-col lg:flex-row lg:space-x-2'>
                 
                 
-  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
-    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
-    <ul class='space-y-1'>
-      
-        <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en'>
-            NixOS Asia
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><a href='en/blog' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Blog</a></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-    </ul>
-  </div>
-
               </div>
               
   <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
