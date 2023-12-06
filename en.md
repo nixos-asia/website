@@ -19,7 +19,7 @@ emanote:
 - [x] `index.html` should be custom designed HTML?
 - [x] Start add `en/*` (start with `en/install`)
 - [x] Add `en/blog/*`
-  - [ ] Import old blog post
+  - [x] Import old blog post
 - [ ] Setup old URL redirects (flakular.in)
 - [ ] Create content & structure
 - [ ] Final styling
