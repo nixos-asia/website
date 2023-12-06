@@ -1,5 +1,6 @@
 ---
 date: 2023-03-01
+authors: srid
 ---
 
 # Rapid Introduction to Nix
