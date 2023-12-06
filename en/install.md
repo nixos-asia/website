@@ -6,10 +6,14 @@ Install #[[nix]] using [the unofficial installer](https://github.com/Determinate
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-Before proceeding, run [Nix Health](https://flakular.in/health),
+After installing Nix, run the [Nix Health](https://github.com/juspay/nix-browser/tree/main/crates/nix_health) checks,
 
 ```sh
 nix run nixpkgs#nix-health
 ```
 
-[^official]: You *may* use the official installer, but since it doesn't include an uninstaller, you will have to manually uninstall ([macOS instructions here](https://nixos.org/manual/nix/stable/installation/uninstall.html#macos)) when the time comes. Also, the official installer will not automatically enable [[flakes]].
+Expect to see all results in either green (or yellow).
+
+[^official]: You *can* use [the official installer](https://nixos.org/download). However, there are a couple of manual steps necessary:
+    - As it [does not yet](https://discourse.nixos.org/t/anyone-up-for-picking-at-some-nix-onboarding-improvements/13152/4) include an uninstaller, you will have to manually uninstall Nix when the time comes ([[macos-upgrade|example]]). 
+    - As it does not automatically enable [[flakes]], you will have to [manually enable it](https://nixos.wiki/wiki/Flakes).
