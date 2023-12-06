@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=2c938a85-1576-4ce8-81bf-a99e49500724' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=293f4266-09e5-4f23-89e7-070f58d27a77' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -291,7 +291,7 @@
 
 <body class='bg-gray-400 overflow-y-scroll'>
   
-    <div class='container mx-auto max-w-screen-md'>
+    <div class='container mx-auto max-w-screen-lg'>
       <div class='mt-2 md:mt-4'>
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
@@ -357,11 +357,7 @@
     <p class='mb-3'>
       While package management is the key purpose of <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix</a>, its <a href='en/drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>derivations</a> can also be used to produce non-package types, such as development environments (aka. “devShell”).
     </p>
-  <h2 id='development-environments' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Development Environments</h2>
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
-      
-        <li>
-          Languages
+  <h2 id='language-support' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Language support</h2>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
@@ -369,7 +365,11 @@
         </li>
       
     </ul>
-  
+  <h2 id='tools' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Tools</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='en/direnv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'><code class='py-0.5 px-0.5 bg-gray-100'>direnv</code>: manage dev environments</a>
         </li>
       
     </ul>
@@ -393,6 +393,21 @@
   <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
     <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
     <ul class='space-y-1'>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/direnv'>
+            <code>direnv</code>: manage dev environments
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p><code>direnv</code> (along with <a href='https://github.com/nix-community/nix-direnv' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a>) allows one to persist<sup>*</sup> nix <a href='en/dev' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>devshell</a> environments and share them seamlessly with text editors and IDEs. It obviates having to run <code>nix develop</code> manually every time you open a new terminal. The moment you <code>cd</code> into your project directory, the devshell is automatically activated, thanks to <code>direnv</code>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
       
         <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/blog/nix-rapid'>

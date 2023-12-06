@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Haskell – NixOS Asia
+    direnv: manage dev environments – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='For nixifying Haskell projects, see https://github.com/srid/haskell-flake' />
+      <meta property='og:description' content='direnv (along with nix-direnv) allows one to persistnix-direnv prevents garbage collection of the devshell, so you do not have to re-download things again. direnv also enables activating the devshell in your current shell, without needing to use a customized bash. nix devshelldevshell environments and share them seamlessly with text editors and IDEs. It obviates having to run nix develop manually every time you open a new terminal. The moment you cd into your project directory, the devshell is automatically activated, thanks to direnv.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Haskell' />
+      <meta property='og:title' content='direnv: manage dev environments' />
     
     
       <base href='/' />
@@ -363,25 +363,158 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Haskell
+    <code>direnv</code>: manage dev environments
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      For nixifying Haskell projects, see <a href='https://github.com/srid/haskell-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/srid/haskell-flake</a>
+      <code class='py-0.5 px-0.5 bg-gray-100'>direnv</code> (along with <a href='https://github.com/nix-community/nix-direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a>) allows one to persist
+    <sup class='px-0.5'>
+      <a class='text-green-600 hover:underline' href='en/direnv#fn1'>
+        1
+      </a>
+    </sup>
+   nix <a href='en/dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>devshell</a> environments and share them seamlessly with text editors and IDEs. It obviates having to run <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code> manually every time you open a new terminal. The moment you <code class='py-0.5 px-0.5 bg-gray-100'>cd</code> into your project directory, the devshell is automatically activated, thanks to <code class='py-0.5 px-0.5 bg-gray-100'>direnv</code>.
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+</path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       Starship
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      It is recommended to use <a href='https://starship.rs/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><strong>starship</strong></a> along with nix-direnv, because it gives a visual indication of the current environment. For example, if you are in a <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code> shell, your terminal prompt automatically changes to something like this:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>srid on nixos haskell-template on  master [!] via λ 9.2.6 via ❄️  impure (ghc-shell-for-haskell-template-0.1.0.0-0-env)
+❯</code></pre></div>
+  </div>
+</div><h2 id='setup' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Setup</h2><div class='flex items-center justify-center mb-8'><div xmlhtmlRaw><iframe width="560" height="315" src="https://www.youtube.com/embed/1joZLTgYLxY?si=ljZLcFAIhrJ7XawV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div></div>
+    <p class='mb-3'>
+      If you use <a href='en/home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, both <code class='py-0.5 px-0.5 bg-gray-100'>nix-direnv</code> and <code class='py-0.5 px-0.5 bg-gray-100'>starship</code> can be installed using the following configuration:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'># home.nix
+programs.direnv = {
+  enable = true;
+  nix-direnv.enable = true;
+};
+programs.starship = {
+  enable = true;
+};</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+</path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       Newcomer Tip
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      If you have never used <a href='en/home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a> before, we recommend that you set it up
+    <sup class='px-0.5'>
+      <a class='text-green-600 hover:underline' href='en/direnv#fn1'>
+        1
+      </a>
+    </sup>
+   by following the instrutions at <a href='https://github.com/juspay/nix-dev-home' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/juspay/nix-dev-home</a>.
     </p>
   
+    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
+      <header class='font-semibold'>Footnotes</header>
+      
+        <div id='fn1'>
+          <header class='italic'>
+            1.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            The “nix-dev-home” template uses <a href='https://community.flake.parts/nixos-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixos-flake</a>, and works on both Linux or macOS.
+          </div>
+        </div>
+      
+    </div>
+  
+  </div>
+</div><h3 id='text-editor-configuration' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Text Editor configuration</h3><h4 id='vscode' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>VSCode</h4>
     <p class='mb-3'>
-      For further details, <a href='https://nixos.wiki/wiki/Haskell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://nixos.wiki/wiki/Haskell</a>
+      For VSCode, use <a href='https://marketplace.visualstudio.com/items?itemName=mkhl.direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Martin Kühl’s direnv extension</a>.
     </p>
+  <h4 id='doom-emacs' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Doom Emacs</h4>
+    <p class='mb-3'>
+      Doom Emacs has the <a href='https://github.com/doomemacs/doomemacs/tree/master/modules/tools/direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>:tools</code> <code class='py-0.5 px-0.5 bg-gray-100'>direnv</code> module</a> to automatically load the devshell environment when you open the project directory.
+    </p>
+  <h2 id='add-a-envrc' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Add a <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code></h2>
+    <p class='mb-3'>
+      To enable direnv on Flake-based projects, add the following to your <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code>:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>use flake</code></pre></div>
+    <p class='mb-3'>
+      Now run <code class='py-0.5 px-0.5 bg-gray-100'>direnv allow</code> to authorize the current <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code> file. You can now <code class='py-0.5 px-0.5 bg-gray-100'>cd</code> into the project directory in a terminal and the devshell will be automatically activated.
+    </p>
+  <h3 id='reload-automatically-when-some-files-change' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Reload automatically when some files change</h3><h4 id='---when-cabal-files-change' class='mt-6 mb-2 text-2xl font-bold text-gray-700'><a href='en/haskell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Haskell</a> - when <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> files change</h4>
+    <p class='mb-3'>
+      Since both <a href='https://community.flake.parts/haskell-flake/nixpkgs-haskell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file changes. This can be achieved using the <code class='py-0.5 px-0.5 bg-gray-100'>nix_direnv_watch_file</code> function. Modify your <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code> to contain:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>nix_direnv_watch_file *.cabal
+use flake</code></pre></div>
+    <p class='mb-3'>
+      As a result of this whenever you change a <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file, direnv will reload the environment. If you are using VSCode, you will see a notification that the environment has changed, prompting you to restart it (<a href='https://github.com/nammayatri/nammayatri/tree/main/Backend#visual-studio-code' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>see example</a>).
+    </p>
+  <h2 id='external-links' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>External Links</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://determinate.systems/posts/nix-direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Effortless dev environments with Nix and direnv</a>
+        </li>
+      
+    </ul>
+  
+    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
+      <header class='font-semibold'>Footnotes</header>
+      
+        <div id='fn1'>
+          <header class='italic'>
+            1.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            <a href='https://github.com/nix-community/nix-direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a> prevents garbage collection of the devshell, so you do not have to re-download things again. direnv also enables activating the devshell in your current shell, without needing to use a customized bash.
+          </div>
+        </div>
+      
+        <div id='fn2'>
+          <header class='italic'>
+            2.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            The “nix-dev-home” template uses <a href='https://community.flake.parts/nixos-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixos-flake</a>, and works on both Linux or macOS.
+          </div>
+        </div>
+      
+    </div>
   
 
   <div class='flex items-center justify-center mt-2'>
   
     
-      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/haskell.md'>
+      <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/direnv.md'>
         <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
         </svg>
@@ -398,21 +531,6 @@
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/direnv'>
-            <code>direnv</code>: manage dev environments
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><h4 id='---when-cabal-files-change'><a href='en/haskell' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Haskell</a> - when <code>.cabal</code> files change</h4></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/dev'>
             Nix for Development
           </a>
@@ -420,7 +538,7 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><a href='en/haskell' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkBranch'>Haskell</a></div>
+      <div><a href='en/direnv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkBranch'><code>direnv</code>: manage dev environments</a></div>
     </div>
   
 </div>
