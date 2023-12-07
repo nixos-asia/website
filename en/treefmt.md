@@ -83,7 +83,7 @@ If there are folders where you wouldn't want to run the formatter on, use the fo
 
 ### Use a different package for formatter
 
-The package shipped with the current nixpkgs might not be the desired one, follow the snippet below to override the package (assuming `nixpkgs-21_11` is present in your flake's inputs).
+The package shipped with the current [[nixpkgs]] might not be the desired one, follow the snippet below to override the package (assuming `nixpkgs-21_11` is present in your flake's inputs).
 
 ```nix
   # Inside mkFlake's `perSystem.treefmt.config`

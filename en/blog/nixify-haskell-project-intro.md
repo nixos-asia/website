@@ -14,7 +14,7 @@ Nix is a powerful package manager and build system that provides reproducible an
 > We strongly recommend flakes for anyone getting started with Nix. Flakes is [production ready despite being marked as experimental](https://determinate.systems/posts/experimental-does-not-mean-unstable).
 
 >[!info] 
-> The [Haskell infrastructure in nixpkgs](https://community.flake.parts/haskell-flake/nixpkgs-haskell) is the simplest way to get started with Nixifying a Haskell project. There are also other approaches (like [haskell.nix](https://github.com/input-output-hk/haskell.nix), [stacklock2nix](https://github.com/cdepillabout/stacklock2nix)). Later in the blog post series, we'll explore [haskell-flake](https://community.flake.parts/haskell-flake) which builds on top of the Haskell infrastructure in nixpkgs
+> The [Haskell infrastructure in nixpkgs](https://community.flake.parts/haskell-flake/nixpkgs-haskell) is the simplest way to get started with Nixifying a Haskell project. There are also other approaches (like [haskell.nix](https://github.com/input-output-hk/haskell.nix), [stacklock2nix](https://github.com/cdepillabout/stacklock2nix)). Later in the blog post series, we'll explore [haskell-flake](https://community.flake.parts/haskell-flake) which builds on top of the Haskell infrastructure in [[nixpkgs]].
 
 
 If you're unfamiliar with Nix, we have [[nix-rapid]] available to help you get started quickly or you can take your time and explore it at [Zero to Nix](https://zero-to-nix.com). A basic understanding of the Nix expression language is assumed. 
@@ -32,7 +32,7 @@ can get the development environment up and running with one command.
 - **Multi-platform**: Same configuration generally works on macOS, Linux and WSL.
 
 >[!note] macOS support
-> Although macOS doesn't have first-class support in nixpkgs, [it is getting there](https://github.com/NixOS/nixpkgs/issues/116341).
+> Although [[macos]] doesn't have first-class support in [[nixpkgs]], [it is getting there](https://github.com/NixOS/nixpkgs/issues/116341).
 
 [^1]: Considering the packages are available in Nix for the host platform.
 
@@ -90,7 +90,7 @@ A nix flake such as the one above consumes certain `inputs` and produces certain
 
 A flake can reference other flakes, which are specified in the `inputs` attribute. We will use the [URL-like representation](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax) to specify our input flakes.
 
-In this example, we will use [GNU hello](https://www.gnu.org/software/hello) package from [`nixpkgs`](https://github.com/NixOS/nixpkgs) flake. Therefore, we'll specify the nixpkgs flake as an input, specifically using its `nixpkgs-unstable` branch.
+In this example, we will use [GNU hello](https://www.gnu.org/software/hello) package from [[nixpkgs]] flake. Therefore, we'll specify the [[nixpkgs]] flake as an input, specifically using its `nixpkgs-unstable` branch.
 
 >[!note] The `nixpkgs-unstable` naming
 > The `nixpkgs-unstable` branch is named as such because of the frequent updates it receives and doesn't imply that it is unsafe.
@@ -107,7 +107,7 @@ The inputs argument is an attrset containing `self` as well as the flake inputs 
 
 [Refer here](https://nixos.wiki/wiki/Flakes#Output_schema) for a detailed schema of `outputs`. Note that the `nixpkgs` key within the inputs attrset refers to the `outputs` of the `flake.nix` located at `nixpkgs.url`. If `nixpkgs.flake = false` is set, then the parameter will represent the source code.
 
-The body of the function defines the flake outputs. Within the `let` block we define two values -- `system` (set as "aarch64-darwin" in this example, assuming we are on an ARM mac) and `pkgs` (referring to nixpkgs packages for `system`). In our example, `system` is hardcoded to a single system, but [forAllSystems](https://zero-to-nix.com/concepts/flakes#system-specificity) can be used to define packages for an array of systems.
+The body of the function defines the flake outputs. Within the `let` block we define two values -- `system` (set as "aarch64-darwin" in this example, assuming we are on an ARM mac) and `pkgs` (referring to [[nixpkgs]] packages for `system`). In our example, `system` is hardcoded to a single system, but [forAllSystems](https://zero-to-nix.com/concepts/flakes#system-specificity) can be used to define packages for an array of systems.
 
 Here are some standard outputs a flake may produce:
 
@@ -183,7 +183,7 @@ Tl;dr Here is the `flake.nix` for this section:
 Let's break it down!
 ### haskellPackages
 
-Consult [the official manual](https://nixos.org/manual/nixpkgs/unstable/#haskell) to learn more about the Haskell infrastructure in nixpkgs, but for the purpose of our blog post it is suffice to know that:
+Consult [the official manual](https://nixos.org/manual/nixpkgs/unstable/#haskell) to learn more about the Haskell infrastructure in [[nixpkgs]], but for the purpose of our blog post it is suffice to know that:
 
 - `pkgs.haskellPackages` is an attribute set that contains all Haskell packages maintained within `nixpkgs`.
 - Since our local package (`todo-app`) is not already included in `pkgs.haskellPackages`, we need to manually add it.

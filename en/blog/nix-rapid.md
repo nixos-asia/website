@@ -101,14 +101,14 @@ $ nix eval .#foo
 
 ### Graph
 
-A flake can refer to other flakes in its inputs. Phrased differently, a flake's outputs can be used as inputs in other flakes. The most common example is the [nixpkgs](https://zero-to-nix.com/concepts/nixpkgs) flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.
+A flake can refer to other flakes in its inputs. Phrased differently, a flake's outputs can be used as inputs in other flakes. The most common example is the [[nixpkgs]] flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.
 
 ### Inputs
 
 > [!info] To learn more
 > - [URL-like syntax][flake-url] used by the `url` attribute
 
-Let's do something more interesting with our `flake.nix` by adding the nixpkgs input:
+Let's do something more interesting with our `flake.nix` by adding the [[nixpkgs]] input:
 
 ```nix
 {
@@ -123,7 +123,7 @@ Let's do something more interesting with our `flake.nix` by adding the nixpkgs i
 }
 ```
 
-The nixpkgs flake has an output called `legacyPackages`, which is indexed by the platform (called "system" in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key `foo`. 
+The [[nixpkgs]] flake has an output called `legacyPackages`, which is indexed by the platform (called "system" in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key `foo`. 
 
 >[!tip] You can use [[repl|`nix repl`]] to explore the outputs of any flake, using TAB completion:
 > 
