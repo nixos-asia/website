@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Blog – NixOS Asia
+    Module System – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='Recent posts:' />
+      <meta property='og:description' content='The [[nixpkgs]] library provides a module system for [[nix]] expressions. See https://nixos.wiki/wiki/NixOS_modules for a detailed explanation.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Blog' />
+      <meta property='og:title' content='Module System' />
     
     
       <base href='/' />
@@ -33,7 +33,7 @@
 
 
   
-  <link href='/en/blog.xml' rel='alternate' type='application/atom+xml' title='Atom Feed' />
+  
   <link href='tailwind.css?instanceId=0ab3605c-f6db-4ea9-acf0-1286038cdda7' rel='stylesheet' type='text/css' />
 
   <style>
@@ -305,11 +305,41 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
+    <a href='en/nixpkgs'>
+      nixpkgs
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
+    <a href='en/nix'>
+      Nix
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='text-gray-900 forest-link'>
     <a href='en'>
       NixOS Asia
     </a>
   </div>
 
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
   
 </li>
           
@@ -333,57 +363,32 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Blog
+    Module System
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      Recent posts:
+      The <a href='en/nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>nixpkgs</a> library provides a module system for <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> expressions. See <a href='https://nixos.wiki/wiki/NixOS_modules' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://nixos.wiki/wiki/NixOS_modules</a> for a detailed explanation.
     </p>
-  <nav>
-    <div class='mb-8'>
-        <!-- header data-nosnippet class="pb-2 mb-2 font-semibold text-gray-600">
-            <query />
-        </header -->
-        <ul>
-            
-                <li>
-                    <div class='flex flex-wrap flex-row my-2'>
-                        
-                            <span data-nosnippet class='mr-2 text-right font-mono text-gray-600' title='Posted on'>
-                                2023-09-08
-                            </span>
-                            <span data-nosnippet class='mr-2 w-28 text-right font-mono text-gray-300' title='Author'>
-                                shivaraj-bh
-                            </span>
-                        
-                        <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='en/blog/nixify-haskell-project-intro'>
-                            Nixify your haskell project: Introduction
-                        </a>
-                    </div>
-                </li>
-            
-                <li>
-                    <div class='flex flex-wrap flex-row my-2'>
-                        
-                            <span data-nosnippet class='mr-2 text-right font-mono text-gray-600' title='Posted on'>
-                                2023-03-01
-                            </span>
-                            <span data-nosnippet class='mr-2 w-28 text-right font-mono text-gray-300' title='Author'>
-                                srid
-                            </span>
-                        
-                        <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='en/blog/nix-rapid'>
-                            Rapid Introduction to Nix
-                        </a>
-                    </div>
-                </li>
-            
-        </ul>
-    </div>
-</nav>
+  <h2 id='nixos' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>NixOS</h2>
+    <p class='mb-3'>
+      <a href='en/nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a> makes use of the module system to provide various functionality including services and programs. See <a href='https://search.nixos.org/options' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://search.nixos.org/options</a> for a list of all available options.
+    </p>
+  <h2 id='flakes' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Flakes</h2>
+    <p class='mb-3'>
+      This module system is not natively supported in <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>. However, flakes can define and use modules using <a href='en/flake-parts' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
+    </p>
+  <h2 id='links' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Links</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://zero-to-nix.com/concepts/nixos#modules' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix: Modules</a>
+        </li>
+      
+    </ul>
+  
 
   <aside class='flex items-center justify-center mt-2'>
   
@@ -399,7 +404,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/blog.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/modules.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>
@@ -417,14 +422,14 @@
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en'>
-            NixOS Asia
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/flake-parts'>
+            flake-parts
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>We are still building this website. Start from <a href='en/install' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>here</a> if you are new to Nix. We have a <a href='en/blog' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Blog</a>, and you can browse the rest of the content in <a href='-/all' class='text-gray-600 font-bold hover:bg-gray-50'>the index</a>.</p></div>
+      <div><p>A <a href='en/modules' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Module System</a> for <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Flakes</a>. See <a href='https://flake.parts/' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://flake.parts/</a> & <a href='https://community.flake.parts/' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://community.flake.parts/</a></p></div>
     </div>
   
 </div>
