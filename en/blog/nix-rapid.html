@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=ed5acd12-02e8-4a74-a133-0c4b96f6c78a' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=ec477020-1490-46ca-a2ec-49a8288f5da3' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -399,7 +399,7 @@
     <p class='mb-3'>
       Nix can be <a href='en/install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='en/nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
     </p>
-  <h2 id='attrset' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Attrset</h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+  <h2 id='attrset' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Attrset</h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -466,7 +466,7 @@ nix-repl&gt; x.foo
 nix-repl&gt; x.foo.bar
 1
 
-nix-repl&gt;</code></pre></div><h2 id='flakes' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a></h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+nix-repl&gt;</code></pre></div><h2 id='flakes' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a></h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -520,9 +520,9 @@ $</code></pre></div>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix eval .#foo
 42</code></pre></div><h3 id='graph' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Graph</h3>
     <p class='mb-3'>
-      A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='https://zero-to-nix.com/concepts/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.
+      A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='en/nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.
     </p>
-  <h3 id='inputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Inputs</h3><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+  <h3 id='inputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Inputs</h3><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -550,7 +550,7 @@ $</code></pre></div>
   </div>
 </div>
     <p class='mb-3'>
-      Let’s do something more interesting with our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> by adding the nixpkgs input:
+      Let’s do something more interesting with our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> by adding the <a href='en/nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> input:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
   inputs = {
@@ -563,9 +563,9 @@ $</code></pre></div>
   };
 }</code></pre></div>
     <p class='mb-3'>
-      The nixpkgs flake has an output called <code class='py-0.5 px-0.5 bg-gray-100'>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>.
+      The <a href='en/nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake has an output called <code class='py-0.5 px-0.5 bg-gray-100'>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>.
     </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10'>
+  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -598,7 +598,7 @@ nix-repl&gt;</code></pre></div>
     <p class='mb-3'>
       All of these predefined outputs are further indexed by the “system” value.
     </p>
-  <h4 id='packages' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Packages</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+  <h4 id='packages' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Packages</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -672,7 +672,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <p class='mb-3'>
       If you run <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> without arguments, it will default to <code class='py-0.5 px-0.5 bg-gray-100'>.#default</code>.
     </p>
-  <h4 id='devshells' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>DevShells</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10'>
+  <h4 id='devshells' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>DevShells</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -862,7 +862,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.2.1.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.2.1.1'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

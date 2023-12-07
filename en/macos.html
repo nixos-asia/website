@@ -12,7 +12,7 @@
   </title>
   
     
-      <meta property='og:description' content />
+      <meta property='og:description' content='[[nix]] is supported on macOS.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=ed5acd12-02e8-4a74-a133-0c4b96f6c78a' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=ec477020-1490-46ca-a2ec-49a8288f5da3' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -339,6 +339,32 @@
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
+    <p class='mb-3'>
+      <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> is supported on macOS.
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'></path>
+<line x1='12' y1='9' x2='12' y2='13'></line>
+<line x1='12' y1='17' x2='12.01' y2='17'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       Darwin support in nixpkgs
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      macOS support in <a href='en/nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not of same quality and priority as Linux. See <a href='https://github.com/NixOS/nixpkgs/issues/145230' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/NixOS/nixpkgs/issues/145230</a> & <a href='https://github.com/NixOS/nixpkgs/issues/116341' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/NixOS/nixpkgs/issues/116341</a>
+    </p>
+  
+  </div>
+</div>
 
   <aside class='flex items-center justify-center mt-2'>
   
@@ -372,6 +398,21 @@
     <ul class='space-y-1'>
       
         <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/blog/nixify-haskell-project-intro'>
+            Nixify your haskell project: Introduction
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>[!note] macOS support Although <a href='en/macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>macOS</a> doesn’t have first-class support in <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>, <a href='https://github.com/NixOS/nixpkgs/issues/116341' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>it is getting there</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/gotchas/macos-upgrade'>
             Nix is broken after macOS upgrade
           </a>
@@ -380,6 +421,21 @@
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>Upgrading <a href='en/macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>macOS</a> is known to break <a href='en/nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix</a>. When this happens, just uninstall Nix and then <a href='en/install' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>install</a> it again.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/install'>
+            Install Nix
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>[!info] Linux If you prefer to use Linux, you may be interested in installing <a href='en/nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>NixOS</a>. The following instructions are for users of other Linux distros as well as <a href='en/macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>macOS</a>.</p></div>
     </div>
   
 </div>
@@ -416,7 +472,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.2.1.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.2.1.1'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

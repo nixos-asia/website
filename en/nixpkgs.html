@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Derivation – NixOS Asia
+    nixpkgs – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='[[nix]] derivations are instructions (recipes) for building a Nix package.' />
+      <meta property='og:description' content='nixpkgs (https://github.com/NixOS/nixpkgs) contains a collection of [[nix]] packages. It also includes various utility functions for [[nix]], as well as the [[nixos]] Linux distribution.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Derivation' />
+      <meta property='og:title' content='nixpkgs' />
     
     
       <base href='/' />
@@ -305,26 +305,11 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
-    <a href='en/nix'>
-      Nix
-    </a>
-  </div>
-
-  
-    <ul>
-      
-        <li>
-
-  <div class='text-gray-900 forest-link'>
     <a href='en'>
       NixOS Asia
     </a>
   </div>
 
-  
-</li>
-      
-    </ul>
   
 </li>
           
@@ -348,20 +333,24 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Derivation
+    nixpkgs
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix</a> derivations are instructions (recipes) for building a Nix package.
+      nixpkgs (<a href='https://github.com/NixOS/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/NixOS/nixpkgs</a>) contains a collection of <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> packages. It also includes various utility functions for <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a>, as well as the <a href='en/nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a> Linux distribution.
+    </p>
+  
+    <p class='mb-3'>
+      In <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>, nixpkgs is the most commonly used input.
     </p>
   <h2 id='links' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Links</h2>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <a href='https://zero-to-nix.com/concepts/derivations' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://zero-to-nix.com/concepts/derivations</a>
+          <a href='https://zero-to-nix.com/concepts/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix: nixpkgs</a>
         </li>
       
     </ul>
@@ -381,7 +370,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/drv.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/nixpkgs.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>
@@ -399,6 +388,21 @@
     <ul class='space-y-1'>
       
         <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/macos'>
+            macOS
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>[!warning] Darwin support in nixpkgs macOS support in <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not of same quality and priority as Linux. See <a href='https://github.com/NixOS/nixpkgs/issues/145230' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/NixOS/nixpkgs/issues/145230</a> & <a href='https://github.com/NixOS/nixpkgs/issues/116341' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/NixOS/nixpkgs/issues/116341</a></p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/blog/nix-rapid'>
             Rapid Introduction to Nix
           </a>
@@ -406,7 +410,15 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><a href='en/drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Derivation</a> output</div>
+      <div><p>A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Let’s do something more interesting with our <code>flake.nix</code> by adding the <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> input:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>The <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake has an output called <code>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code>foo</code>.</p></div>
     </div>
   
 </div>
@@ -421,7 +433,23 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div>A flake’s <code>packages.${system}</code> output contains <a href='en/drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>derivations</a> that can be utilized to build the package.</div>
+      <div><p>Consult <a href='https://nixos.org/manual/nixpkgs/unstable/#haskell' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the official manual</a> to learn more about the Haskell infrastructure in <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>, but for the purpose of our blog post it is suffice to know that:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>In this example, we will use <a href='https://www.gnu.org/software/hello' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>GNU hello</a> package from <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake. Therefore, we’ll specify the <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake as an input, specifically using its <code>nixpkgs-unstable</code> branch.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>The body of the function defines the flake outputs. Within the <code>let</code> block we define two values – <code>system</code> (set as “aarch64-darwin” in this example, assuming we are on an ARM mac) and <code>pkgs</code> (referring to <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> packages for <code>system</code>). In our example, <code>system</code> is hardcoded to a single system, but <a href='https://zero-to-nix.com/concepts/flakes#system-specificity' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>forAllSystems</a> can be used to define packages for an array of systems.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>[!info] The <a href='https://community.flake.parts/haskell-flake/nixpkgs-haskell' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Haskell infrastructure in nixpkgs</a> is the simplest way to get started with Nixifying a Haskell project. There are also other approaches (like <a href='https://github.com/input-output-hk/haskell.nix' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell.nix</a>, <a href='https://github.com/cdepillabout/stacklock2nix' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>stacklock2nix</a>). Later in the blog post series, we’ll explore <a href='https://community.flake.parts/haskell-flake' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> which builds on top of the Haskell infrastructure in <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>[!note] macOS support Although <a href='en/macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>macOS</a> doesn’t have first-class support in <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>, <a href='https://github.com/NixOS/nixpkgs/issues/116341' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>it is getting there</a>.</p></div>
     </div>
   
 </div>
@@ -429,14 +457,14 @@
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/dev'>
-            Nix for Development
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/treefmt'>
+            Auto formatting using <code>treefmt-nix</code>
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>While package management is the key purpose of <a href='en/nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Nix</a>, its <a href='en/drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>derivations</a> can also be used to produce non-package types, such as development environments (aka. “devShell”).</p></div>
+      <div><p>The package shipped with the current <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> might not be the desired one, follow the snippet below to override the package (assuming <code>nixpkgs-21_11</code> is present in your flake’s inputs).</p></div>
     </div>
   
 </div>
