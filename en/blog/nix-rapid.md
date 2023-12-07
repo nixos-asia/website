@@ -5,7 +5,10 @@ author: srid
 
 # Rapid Introduction to Nix
 
+
 The goal of this mini-tutorial is to introduce you to #[[nix]] as quickly as possible while also preparing the motivated learner to dive deeper into [the whole Nix ecosystem][zero-to-nix]. At the end of this introduction, you will be able to create a #[[flakes|flake]] for building a package and providing a developer environment shell.
+
+![[rapid-nix.png]]
 
 If you are already experienced in [purely functional programming](https://en.wikipedia.org/wiki/Purely_functional_programming), it is highly recommended to read [Nix - taming Unix with functional programming](https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/) to gain a foundational perspective into Nix being purely functional but in the context of *file system* (as opposed to values stored in memory).
 
