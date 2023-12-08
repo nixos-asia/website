@@ -26,4 +26,4 @@ Also consider taking a look at our sister community, [Functional Programming Ind
 
 - [ ] Meetups in Bangalore, starting from January 2024.
 
-[^nav]: In particular, [navigation UX](https://github.com/srid/emanote/issues/473
+[^nav]: In particular, the [navigation UX](https://github.com/srid/emanote/issues/473) will be improved.
