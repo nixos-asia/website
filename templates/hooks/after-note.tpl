@@ -1,3 +1,6 @@
+<!-- Disabled until we can limit this template to a subset of notes (blog posts):
+     https://github.com/nixos-asia/website/issues/9
+
 <aside class="flex items-center justify-center mt-2">
   <ema:metadata>
     <span id="yamlauthor" class="mb-4 text-right text-gray-600">
@@ -7,6 +10,7 @@
   </ema:metadata>
   <script>if (yamlauthor.innerText.includes('error')) yamlauthor.innerText = ''</script>
 </aside>
+-->
 
 <div class="flex items-center justify-center mt-2">
   <div class="flex items-center justify-center mt-2">
