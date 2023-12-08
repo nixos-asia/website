@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=a7d434bc-68a7-450d-97b9-d0812e15774d' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=fc103d4e-77ea-4e6b-98c9-5fa868dc57d5' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -366,17 +366,19 @@
   </div>
 </div>
 
-  <aside class='flex items-center justify-center mt-2'>
-  
-    <span id='yamlauthor' class='mb-4 text-right text-gray-600'>
+  <!-- Disabled until we can limit this template to a subset of notes (blog posts):
+     https://github.com/nixos-asia/website/issues/9
+
+<aside class="flex items-center justify-center mt-2">
+  <ema:metadata>
+    <span id="yamlauthor" class="mb-4 text-right text-gray-600">
       Written by
-      <strong class='error'>expression error: can't find "author" in JSON object (&lt;value&gt; tag)</strong>
+      <value var="author" />
     </span>
-  
+  </ema:metadata>
   <script>if (yamlauthor.innerText.includes('error')) yamlauthor.innerText = ''</script>
 </aside>
-
-<div class='flex items-center justify-center mt-2'>
+--><div class='flex items-center justify-center mt-2'>
   <div class='flex items-center justify-center mt-2'>
     
       
