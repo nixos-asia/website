@@ -10,8 +10,19 @@ emanote:
 
 ## Explore this website
 
-We are still building this website. Start from [[install|here]] if you are new to Nix. We have a [[blog]], and you can browse the rest of the content  in [the index](-/all).
+We are still building this website.[^nav] Start from [[install|here]] if you are new to Nix. We have a [[blog]], and you can browse the rest of the content  in [the index](-/all).
+
+## Community
+
+You can participate in the community discussion through the following venues:
+
+- [Zulip](https://nixos.zulipchat.com/): Zulip is an alamagam of "chat" and "forum".
+- [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
+
+Also consider taking a look at our sister community, [Functional Programming India](https://functionalprogramming.in/).
 
 ## Upcoming
 
-- [ ] Meetups in Bangalore
+- [ ] Meetups in Bangalore, starting from January 2024.
+
+[^nav]: In particular, [navigation UX](https://github.com/srid/emanote/issues/473) will be improved.
