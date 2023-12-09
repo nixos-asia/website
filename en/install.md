@@ -23,7 +23,7 @@ Expect to see all results in either green (or yellow).
 Checkout [[nix-rapid]] and 
 
 - [[dev]] if you are looking to use Nix for development.
-- ...
+- [[home-manager]] (and [[nix-darwin]] if you are on [[macos]]) if you would like to use Nix for more than packages and [[dev|devShells]].
 
 [^official]: You *can* use [the official installer](https://nixos.org/download). However, there are a couple of manual steps necessary:
     - As it [does not yet](https://discourse.nixos.org/t/anyone-up-for-picking-at-some-nix-onboarding-improvements/13152/4) include an uninstaller, you will have to manually uninstall Nix when the time comes ([[macos-upgrade|example]]). 
