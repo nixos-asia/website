@@ -5,7 +5,7 @@ author: shivaraj-bh
 
 # NixOS Remote Development
 
-In this series of blog posts, we'll explore how to set up a remote [[dev|development environment]] using #[[nixos|NixOS]]. The goal of this post is to:
+In this series of blog posts, we'll explore how to set up a remote #[[dev|development environment]] using #[[nixos|NixOS]]. The goal of this post is to:
 - Create a minimal [[nixos]] configuration.
 - Deploy the configuration to a remote machine over SSH
   - Without a bootable USB, we will partition the disk and install the OS on the remote machine
