@@ -5,27 +5,43 @@ author: shivaraj-bh
 
 # NixOS Remote Development
 
-In this series of blog posts, we'll explore how to set up a remote development environment using #[[nixos|NixOS]]. The goal of this post is to:
-- Create a minimal NixOS configuration.
-- Deploy the configuration (partition the disk and install the OS) to a remote machine over SSH (without a bootable USB).
+In this series of blog posts, we'll explore how to set up a remote [[dev|development environment]] using #[[nixos|NixOS]]. The goal of this post is to:
+- Create a minimal [[nixos]] configuration.
+- Deploy the configuration to a remote machine over SSH
+  - Without a bootable USB, we will partition the disk and install the OS on the remote machine
+
+**Table of Contents:**
+
+- [Why?](#why)
+- [The `flake.nix` file](#the-flakenix-file)
+  - [`nixosConfigurations` attribute](#nixosconfigurations-attribute)
+  - [`nixpkgs.lib.nixosSystem` function](#nixpkgslibnixossystem-function)
+  - [Disko module](#disko-module)
+  - [`configuration.nix` as a module](#configurationnix-as-a-module)
+- [Installing NixOS](#installing-nixos)
+- [What's next?](#whats-next)
+- [Credits](#credits)
+
 
 ## Why?
 
-For starters, your system configuration is defined in code. This means that you don't have to login to see the state, like what users are present on the system, what services are running, etc. You can also deploy the configuration remotely.
+Why develop remotely on a NixOS machine? There are two reasons:
 
-If you are someone who would like to use a powerful remote machine for development, while carrying around a lightweight laptop, then this post is for you.
+- You can use a powerful remote machine for development, while carrying around a lightweight laptop.
+- You remote machine's configuration is defined in [[nix]] expressions. The entire state of the machine (including users and services) can be reproduced from these expressions. This includes initial install and subsequent updates.
 
 ## The `flake.nix` file
 
->[!info] Tl;dr
-> If you are looking to just get started, you can skip this section and jump to the [installation](#installing-nixos).
+>[!info] tl;dr
+> If you just want to perform the installation, you may skip this section and jump to [installation](#installing-nixos).
 
 >[!note]
->It is assumed that the user has a basic understanding of Nix (the language), if not, you can check out the rapid introduction to [[nix-rapid|Nix]] and #[[flakes|Flakes]].
+>It is assumed that the user has a basic understanding of Nix (the language), if not, you can check out [[nix-rapid]] and #[[flakes|Flakes]].
 
-Here's a flake that contains a single NixOS configuration called "office"
+Here's a [[flakes|flake]] with a single output of type NixOS configuration, named "office":
 
 ```nix title="flake.nix"
+# flake.nix
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -87,12 +103,14 @@ Flakes can output a special attribute called `nixosConfigurations` which can con
 
 ### `nixpkgs.lib.nixosSystem` function
 
-A high-level function with `system` and `modules` as its required parameters, among others, returning an attribute set. The attribute that we are interested in is `nixosConfigurations.office.config.system.build.toplevel`, which is a derivation that builds the system and provides a script to activate it.
+`nixosConfigurations.*` must be a NixOS configuration, which is created using the `nixosSystem` function from [[nixpkgs]]. This function takes an attrset with several keys, of which two are mandatory: `system` and [[modules|`modules`]]. The functions returns an attrset with several attributes, of which we are interested in `config.system.build.toplevel` as this represents the [[drv]] for our entire NixOS system.
 
 ### Disko module
 
-[Disko](https://github.com/nix-community/disko) allows you to define your disk configuration in nix. The configuration that we are using is:
+We do not have to manually partition our disk. To declaraticely define our partition layout in our configuration, we use [Disko](https://github.com/nix-community/disko):
+
 ```nix title="disk-config.nix"
+# disk-config.nix
 {
   disko.devices = {
     disk = {
@@ -141,19 +159,20 @@ The two important attributes here are:
 
 ### `configuration.nix` as a module
 
-Traditionally, `configuration.nix` is a file that contains the entire NixOS configuration. But, in this case, we are using it as a module. This is how it looks like, in the [`flake.nix`](#the-flakenix-file):
+In pre-[[flakes]] world, `configuration.nix` has been the top-level [[modules|module]] specifying entire NixOS configuration. When using [`flake.nix`](#the-flakenix-file), however, we can add the configuration to the `modules` attribute of `nixosSystem` function.
+
 ```nix
 # Inside `outputs`
 {
-    nixosConfigurations.office = lib.nixosSystem{
-        # ...
-        modules = [
-            # ...
-            ({ ... }: {
-                # Your `configuration.nix` goes here
-            })
-        ];
-    }
+  nixosConfigurations.office = lib.nixosSystem {
+    # ...
+    modules = [
+      # ...
+      ({ ... }: {
+        # Your `configuration.nix` goes here
+      })
+    ];
+  }
 }
 ```
 
@@ -168,9 +187,10 @@ In this module we do the following things:
 
 ## Installing NixOS
 
-This is where we address the elephant in the room. How do we install an operating system without a bootable USB? The answer is, we use the RAM as a bootable disk. We achieve this with [`kexec`](https://en.wikipedia.org/wiki/Kexec) to load the nixos image into RAM. Once loaded, the control is switched from your current OS to the image running on the RAM, this image then partitions the disk and installs the system on your hard drive.
+Once our configuration is ready, we can deploy it to a remote machine over SSH. This machine must already be running a linux based OS. If it doesn't, boot it using a [live/rescue image](https://en.wikipedia.org/wiki/Live_USB).
 
-But don't we already need a linux based OS to be running to run `kexec` in the first place? Yes, we do. If you don't have one, you can also use a [live/rescue image](https://en.wikipedia.org/wiki/Live_USB) to do this.
+>[!info] kexec
+> If a machine has no OS installed on it yet, how do we install an OS without a bootable USB? The answer is, we use the RAM as a bootable disk. We achieve this with [`kexec`](https://en.wikipedia.org/wiki/Kexec) to load the nixos image into RAM. Once loaded, the control is switched from your current OS to the image running on the RAM, this image then partitions the disk and installs the system on your hard drive.
 
 [`nixos-anywhere`](https://github.com/nix-community/nixos-anywhere) is a tool that automates this process for us. To follow along:
 ```sh
