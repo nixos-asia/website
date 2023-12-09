@@ -8,15 +8,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Nix is broken after macOS upgrade – NixOS Asia
+    nix-darwin – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='Upgrading [[macos]] is known to break [[nix]]. When this happens, just uninstall Nix and then installinstall it again.' />
+      <meta property='og:description' content='nix-darwin brings [[nixos]] like configuration to [[macos]].' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Nix is broken after macOS upgrade' />
+      <meta property='og:title' content='nix-darwin' />
     
     
       <base href='/' />
@@ -305,19 +305,8 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
-    <a href='en/install'>
-      Install Nix
-    </a>
-  </div>
-
-  
-    <ul>
-      
-        <li>
-
-  <div class='text-gray-900 forest-link'>
-    <a href='en/nix'>
-      Nix
+    <a href='en/macos'>
+      macOS
     </a>
   </div>
 
@@ -336,32 +325,6 @@
 </li>
       
     </ul>
-  
-</li>
-      
-    </ul>
-  
-</li>
-          
-            <li>
-
-  <div class='text-gray-900 forest-link'>
-    <a href='en/macos'>
-      macOS
-    </a>
-  </div>
-
-  
-</li>
-          
-            <li>
-
-  <div class='text-gray-900 forest-link'>
-    <a href='en/gotchas'>
-      Gotchas
-    </a>
-  </div>
-
   
 </li>
           
@@ -385,43 +348,15 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Nix is broken after macOS upgrade
+    nix-darwin
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      Upgrading <a href='en/macos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>macOS</a> is known to break <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a>. When this happens, just uninstall Nix and then <a href='en/install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>install</a> it again.
+      <a href='https://github.com/LnL7/nix-darwin' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nix-darwin</a> brings <a href='en/nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a> like configuration to <a href='en/macos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>macOS</a>.
     </p>
-  
-    <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
-      
-        <li>
-          Uninstall Nix
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
-      
-        <li>
-          Run <code class='py-0.5 px-0.5 bg-gray-100'>/nix/nix-installer uninstall</code>
-        </li>
-      
-        <li>
-          If that path above does not exist, <a href='https://nixos.org/manual/nix/stable/installation/uninstall.html#macos' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>follow these instructions</a> to manually unintall Nix.
-        </li>
-      
-    </ul>
-  
-        </li>
-      
-        <li>
-          Reboot your Mac
-        </li>
-      
-        <li>
-          <a href='en/install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Install Nix</a>
-        </li>
-      
-    </ul>
   
 
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
@@ -440,7 +375,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/gotchas/macos-upgrade.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/nix-darwin.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>
@@ -458,6 +393,21 @@
     <ul class='space-y-1'>
       
         <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/nixos'>
+            NixOS
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div>Allows you to use <a href='en/home-manager' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>home-manager</a>, as well as share config with <a href='en/nix-darwin' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nix-darwin</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/install'>
             Install Nix
           </a>
@@ -465,11 +415,7 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div>As it <a href='https://discourse.nixos.org/t/anyone-up-for-picking-at-some-nix-onboarding-improvements/13152/4' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>does not yet</a> include an uninstaller, you will have to manually uninstall Nix when the time comes (<a href='en/gotchas/macos-upgrade' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>example</a>).</div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>Install <a href='en/nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Nix</a> using <a href='https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the unofficial installer</a>:<sup>*</sup></p></div>
+      <div><a href='en/home-manager' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>home-manager</a> (and <a href='en/nix-darwin' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nix-darwin</a> if you are on <a href='en/macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>macOS</a>) if you would like to use Nix for more than packages and <a href='en/dev' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>devShells</a>.</div>
     </div>
   
 </div>

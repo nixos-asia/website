@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=9b881268-d1fd-4523-b913-9a26fec7f6ab' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=3c127f7f-f2db-40b0-8db3-f7a6a761ea05' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -351,10 +351,34 @@
       
         <li>
           <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakify</a> your NixOS configuration in <code class='py-0.5 px-0.5 bg-gray-100'>/etc/nixos/configuration.nix</code>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          This can be done by as simple as adding a <code class='py-0.5 px-0.5 bg-gray-100'>/etc/nixos/flake.nix</code> file containing:<div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  outputs = { self, nixpkgs }: {
+    # replace 'joes-desktop' with your hostname here.
+    nixosConfigurations.joes-desktop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ ./configuration.nix ];
+    };
+  };
+}</code></pre></div>See <a href='https://nixos.wiki/wiki/Flakes#Using_nix_flakes_with_NixOS' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a> for further information.
+        </li>
+      
+    </ul>
+  
         </li>
       
         <li>
-          Convert your NixOS <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> to use <a href='https://community.flake.parts/nixos-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixos-flake</a> (optionally with <a href='en/home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>)
+          Convert your NixOS <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> to use <a href='https://community.flake.parts/nixos-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixos-flake</a>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Allows you to use <a href='en/home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, as well as share config with <a href='en/nix-darwin' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nix-darwin</a>
+        </li>
+      
+    </ul>
+  
         </li>
       
     </ul>
@@ -402,6 +426,21 @@
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>nixpkgs (<a href='https://github.com/NixOS/nixpkgs' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/NixOS/nixpkgs</a>) is a monorepo containing a collection of <a href='en/nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Nix</a> packages. It also includes various utility Nix functions, as well as the <a href='en/nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>NixOS</a> Linux distribution (including the <a href='en/modules' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Module System</a>).</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/nix-darwin'>
+            nix-darwin
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p><a href='https://github.com/LnL7/nix-darwin' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nix-darwin</a> brings <a href='en/nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>NixOS</a> like configuration to <a href='en/macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>macOS</a>.</p></div>
     </div>
   
 </div>
