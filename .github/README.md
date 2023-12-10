@@ -23,7 +23,7 @@ Contents are stored in Markdown and can be edited using your favourite [text edi
 
 ### PR guidelines
 
-Use `nix run github:nixos-asia/website/branch#preview -- -o /en/whatever` to provide a handy command as preview URL for your posts.
+To assist the reviewer, use `nix run github:nixos-asia/website/branch#preview -- -o /en/whatever` in the PR description to provide a handy command for previewing the changes in the PR. See example: https://github.com/nixos-asia/website/pull/12
 
 ## Discussion
 
