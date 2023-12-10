@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=61c8d8db-1003-4b7a-bef5-ec01d79ce4b9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=17ac5192-839f-40e6-a0b3-0f7c2ec77e83' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -484,21 +484,6 @@
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/nixos'>
-            NixOS
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakify</a> your NixOS configuration in <code>/etc/nixos/configuration.nix</code></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/gotchas/new-file'>
             Nix does not recognize a new file I added
           </a>
@@ -522,6 +507,37 @@
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>This module system is not natively supported in <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a>. However, flakes can define and use modules using <a href='en/flake-parts' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/tutorial/nixos-config'>
+            Install NixOS and put configuration on Git
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>As a final step, let’s permanently enable <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a> on our system, which is particular useful if you do a lot of <a href='en/dev' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>software development</a>. This time, instead of editing <code>configuration.nix</code> again, let’s do it in a separate <a href='en/modules' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>module</a> (for no particular reasons other than pedagogic purposes). Remember the <code>modules</code> argument to <code>nixosSystem</code> function in our <code>flake.nix</code>? It is a list of modules, so we can add a second module there:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Now, <code>/etc/nixos</code> is technically a <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a>. We can “inspect” this flake using the <code>nix flake show</code> command:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>One problem with our <code>configuration.nix</code> is that it is not “pure” and thus not reproducible (see <a href='https://www.tweag.io/blog/2020-07-31-nixos-flakes/#what-problems-are-we-trying-to-solve' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a>), because it still uses a mutable Nix channel (which is <a href='https://zero-to-nix.com/concepts/channels#the-problem-with-nix-channel' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>discouraged</a>). For this reason (among others), we will immediately switch to using <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a> for our NixOS configuration. Doing this is pretty simple. Just add a <code>flake.nix</code> file in <code>/etc/nixos</code>:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>This short tutorial will walk you through the steps necessary to install <a href='en/nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>NixOS</a>, convert your configuration to be a <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a> before storing it on a <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a> repository.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>You have successfully installed NixOS. The entire system configuration is also stored in a Git repo, and can be reproduced at will during either a reinstallation or a new machine purchase. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a> permanently, which means you can now use all the modern <code>nix</code> commands, such as running a package directly from <a href='en/nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> (same version pinned in <code>flake.lock</code> file):</p></div>
     </div>
   
 </div>

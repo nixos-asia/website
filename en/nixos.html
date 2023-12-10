@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=61c8d8db-1003-4b7a-bef5-ec01d79ce4b9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=17ac5192-839f-40e6-a0b3-0f7c2ec77e83' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -343,45 +343,9 @@
       NixOS is a Linux distribution based on the <a href='en/nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> package manager.
     </p>
   <h2 id='getting-started' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Getting Started</h2>
-    <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
-      
-        <li>
-          <a href='https://nixos.org/download#download-nixos' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Download</a> and install NixOS
-        </li>
-      
-        <li>
-          <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakify</a> your NixOS configuration in <code class='py-0.5 px-0.5 bg-gray-100'>/etc/nixos/configuration.nix</code>
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
-      
-        <li>
-          This can be done by as simple as adding a <code class='py-0.5 px-0.5 bg-gray-100'>/etc/nixos/flake.nix</code> file containing:<div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
-  outputs = { self, nixpkgs }: {
-    # replace 'joes-desktop' with your hostname here.
-    nixosConfigurations.joes-desktop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [ ./configuration.nix ];
-    };
-  };
-}</code></pre></div>See <a href='https://nixos.wiki/wiki/Flakes#Using_nix_flakes_with_NixOS' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a> for further information.
-        </li>
-      
-    </ul>
-  
-        </li>
-      
-        <li>
-          Convert your NixOS <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> to use <a href='https://community.flake.parts/nixos-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixos-flake</a>
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
-      
-        <li>
-          Allows you to use <a href='en/home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, as well as share config with <a href='en/nix-darwin' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nix-darwin</a>
-        </li>
-      
-    </ul>
-  
-        </li>
-      
-    </ul>
+    <p class='mb-3'>
+      See our tutorial: <a href='en/tutorial/nixos-config' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Install NixOS and put configuration on Git</a>
+    </p>
   
 
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
@@ -501,6 +465,21 @@
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p><a href='en/nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>NixOS</a> makes use of the module system to provide various functionality including services and programs. See <a href='https://search.nixos.org/options' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://search.nixos.org/options</a> for a list of all available options.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/tutorial/nixos-config'>
+            Install NixOS and put configuration on Git
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>This short tutorial will walk you through the steps necessary to install <a href='en/nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>NixOS</a>, convert your configuration to be a <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a> before storing it on a <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a> repository.</p></div>
     </div>
   
 </div>
