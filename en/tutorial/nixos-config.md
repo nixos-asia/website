@@ -173,7 +173,7 @@ index cc77fb9..4e84bdf 100644
 @@ -8,7 +8,14 @@
      # NOTE: 'nixos' is the default hostname
      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-       system = "aarch64-linux";
+       system = "x86_64-linux";
 -      modules = [ ./configuration.nix ];
 +      modules = [
 +        ./configuration.nix
