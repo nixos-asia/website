@@ -1,7 +1,7 @@
 
-# Install NixOS and keep configuration on Git
+# Install NixOS and put configuration on Git
 
-This short tutorial will walk you through the steps necessary to install #[[nixos]], convert your configuration to be a [[flakes|flake]] and then store it on Git.
+This short tutorial will walk you through the steps necessary to install #[[nixos]], convert your configuration to be a [[flakes|flake]] before storing it on a Git repository.
 
 ## Install NixOS
 
@@ -37,13 +37,28 @@ sudo nano /etc/nixos/configuration.nix
 
 Press <kbd>Ctrl+X</kbd> to exit nano.
 
-Once `configuration.nix` is changed, you must activate that new configuration:
+Your `configuration.nix` should look like:
+
+```nix
+# /etc/nixos/configuration.nix
+{
+  ...
+  environment.systemPackages = with pkgs; [
+    neovim
+  ];
+  ...
+  services.openssh.enable = true;
+  ...
+}
+```
+
+Once the `configuration.nix` file has been saved to disk, you must activate that new configuration using:
 
 ```sh
 sudo nixos-rebuild switch
 ```
 
-This will take a few minutes to complete. Once it is done, you should expect to see something like this:
+This will take a few minutes to complete―as it will have to fetch neovim and its dependencies from the official [[cache|binary cache]] (`cache.nixos.org`). Once it is done, you should expect to see something like this:
 
 :::{.center}
 ![[nixos-rebuild-switch.png]]
@@ -54,7 +69,7 @@ This will take a few minutes to complete. Once it is done, you should expect to 
 
 ## Flakeify
 
-Our `configuration.nix` is not "pure", because it still uses mutable Nix channel. For this reason (among others), we will immediately switch to using [[flakes]] for our NixOS configuration. Doing this is pretty simple. Just add a `flake.nix` file in `/etc/nixos`:
+One problem with our `configuration.nix` is that it is not "pure" and thus not reproducible (see [here](https://www.tweag.io/blog/2020-07-31-nixos-flakes/#what-problems-are-we-trying-to-solve)), because it still uses a mutable Nix channel. For this reason (among others), we will immediately switch to using [[flakes]] for our NixOS configuration. Doing this is pretty simple. Just add a `flake.nix` file in `/etc/nixos`:
 
 ```sh
 sudo nvim /etc/nixos/flake.nix
@@ -82,7 +97,7 @@ Add the following:
 ```
 
 > [!note] Make sure to change a couple of things in the above snippet:
-> - `nixos-23.11` should match the `system.stateVersion` in your `configuration.nix`
+> - `nixos-23.11` should match the `system.stateVersion` in your `/etc/nixos/configuration.nix`
 > - `x86_64-linux` should be `aarch64-linux` if you are on ARM
 
 Now, `/etc/nixos` is technically a [[flakes|flake]]. We can "inspect" this flake using the `nix flake show` command:
@@ -92,7 +107,7 @@ $ nix flake show /etc/nixos
 error: experimental Nix feature 'nix-command' is disabled; use '--extra-experimental-features nix-command' to override
 ```
 
-Oops, what happened here? Because flakes is a so-called "experimental" feature you must manually enable it. We'll _temporarily_ enable it for now, and then latter enable it _permanently_. The `--extra-experimental-features` flag can be used to enable experimental features. Let's try again:
+Oops, what happened here? As flakes is a so-called "experimental" feature, you must manually enable it. We'll _temporarily_ enable it for now, and then enable it _permanently_ latter. The `--extra-experimental-features` flag can be used to enable experimental features. Let's try again:
 
 ```sh
 $ nix --extra-experimental-features 'nix-command flakes' flake show /etc/nixos
@@ -103,7 +118,7 @@ error:
        error: opening file '/etc/nixos/flake.lock': Permission denied
 ```
 
-Alright, now Nix understandably cannot write to root-owned directory. At this point, we are better off moving the whole configuration to our home directory, which would also prepare the ground for storing it on Git.
+Progress, but we hit another error---Nix understandably cannot write to root-owned directory. One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in Git.
 
 ## Move configuration to user directory
 
@@ -151,7 +166,7 @@ If everything went well, you should see something like this:
 ![[nixos-rebuild-switch-flake.png]]
 :::
 
-Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store it on Git.
+Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store it in a Git repository.
 
 ## Store the configuration on Git
 
@@ -212,9 +227,9 @@ git+file:///home/srid/nixos-config
     └───nixos: NixOS configuration
 ```
 
-## Conclusion
+## Recap
 
-Congratulations, you now have a flake-ified NixOS configuration that is stored in a Git repo. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled [[flakes]] permanently, which means you can now use all the modern `nix` commands, such as running a package directly from [[nixpkgs]] (same version pinned in `flake.lock` file):
+You have successfully installed NixOS. The entire system configuration is also stored in a Git repo, and can be reproduced at will during either a reinstallation or a new machine purchase. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled [[flakes]] permanently, which means you can now use all the modern `nix` commands, such as running a package directly from [[nixpkgs]] (same version pinned in `flake.lock` file):
 
 :::{.center}
 ![[nixos-pony.png]]
