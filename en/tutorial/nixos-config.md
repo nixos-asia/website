@@ -221,6 +221,6 @@ Congratulations, you now have a flake-ified NixOS configuration that is stored i
 :::
 
 
-## Next Steps
+## Up Next
 
-- Check out [nixos-flake](https://community.flake.parts/nixos-flake) for more convenience, and especially if you wish to use [[home-manager]] (to manage home configuration) and/or also have a [[macos|Mac]].
+In part 2 of this tutorial, we will use [nixos-flake](https://community.flake.parts/nixos-flake) for more convenience, as well as use [[home-manager]] (to manage home configuration). Then we'll describe several common NixOS workflows.
