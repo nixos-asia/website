@@ -1,7 +1,7 @@
 
 # Install NixOS and put configuration on Git
 
-This short tutorial will walk you through the steps necessary to install #[[nixos]], convert your configuration to be a [[flakes|flake]] before storing it on a Git repository.
+This short tutorial will walk you through the steps necessary to install #[[nixos]], convert your configuration to be a [[flakes|flake]] before storing it on a [[git]] repository.
 
 ## Install NixOS
 
@@ -118,7 +118,7 @@ error:
        error: opening file '/etc/nixos/flake.lock': Permission denied
 ```
 
-Progress, but we hit another error---Nix understandably cannot write to root-owned directory. One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in Git.
+Progress, but we hit another error---Nix understandably cannot write to root-owned directory. One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in [[git]].
 
 ## Move configuration to user directory
 
@@ -166,7 +166,7 @@ If everything went well, you should see something like this:
 ![[nixos-rebuild-switch-flake.png]]
 :::
 
-Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store it in a Git repository.
+Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store it in a [[git]] repository.
 
 ## Store the configuration on Git
 
