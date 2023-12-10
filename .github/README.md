@@ -21,6 +21,10 @@ Contents are stored in Markdown and can be edited using your favourite [text edi
 - When linking to a concept, see if there is an existing page for it. For eg., if you are linking to "nix flakes", use the wikilink `[[flakes]]` since the website already has a page, `flakes.md` for it. If there isn't one, you usually want to create such an [atomic](https://neuron.zettel.page/atomic) note for it.
 - Create parent-child ([folgezettel](https://neuron.zettel.page/folgezettel)) relationships as appropriate by using `#[[..]]` style of wikilinks such as to shape the [uplink tree](https://emanote.srid.ca/guide/html-template/uptree) of any page.
 
+### PR guidelines
+
+Use `nix run github:nixos-asia/website/branch#preview -- -o /en/whatever` to provide a handy command as preview URL for your posts.
+
 ## Discussion
 
 We hang out in [Zulip](https://nixos.zulipchat.com/) ― come say hi.

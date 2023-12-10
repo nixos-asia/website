@@ -30,6 +30,14 @@
             pkgs.nixpkgs-fmt
           ];
         };
+        apps.preview.program = pkgs.writeShellApplication {
+          name = "emanote-preview";
+          runtimeInputs = [ pkgs.nodePackages.http-server ];
+          text = ''
+            set -x
+            http-server ${self'.packages.default} "$@"
+          '';
+        };
         formatter = pkgs.nixpkgs-fmt;
       };
     };
