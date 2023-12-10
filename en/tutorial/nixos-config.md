@@ -141,18 +141,21 @@ error:
        error: opening file '/etc/nixos/flake.lock': Permission denied
 ```
 
-Progress, but we hit another error---Nix understandably cannot write to root-owned directory. One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in [[git]].
+Progress, but we hit another error---Nix understandably cannot write to root-owned directory (it tries to create the `flake.lock` file). One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in [[git]]. We will do this in the next section.
+
+> [!info] `flake.lock` 
+> Nix commands automatically generate a (or update the) `flake.lock` file. This file contains the exacted pinned version of the inputs of the flake, which is important for reproducibility.
 
 {#homedir}
 ## Move configuration to user directory
 
-Move the entire `/etc/nixos` directory to your home directory:
+Move the entire `/etc/nixos` directory to your home directory and gain control of it:
 
 ```sh
 $ sudo mv /etc/nixos ~/nixos-config && sudo chown -R $USER ~/nixos-config
 ```
 
-It should now look like this:
+Your configuration directory should now look like:
 
 ```sh
 $ ls -l ~/nixos-config/
@@ -173,16 +176,15 @@ path:/home/srid/nixos-config?lastModified=1702156518&narHash=sha256-nDtDyzk3fMfA
     └───nixos: NixOS configuration
 ```
 
-This flake has a single output, `nixosConfigurations.nixos`, which is the NixOS configuration. 
-
-You may have now noticed that a `flake.lock` file will have been generated. This file contains the exacted pinned version of the inputs of the flake, which is important for reproducibility.
+Voila! Incidentally, this flake has a single output, `nixosConfigurations.nixos`, which is the NixOS configuration itself. 
 
 >[!info] More on Flakes
 > See [[nix-rapid]] for more information on flakes.
 
-Once flake-ified, in order to activate the new configuration we must pass the `--flake` flag, viz.:
+Once flake-ified, we can use the same command to activate the new configuration but we must additionally pass the `--flake` flag, viz.:
 
 ```sh
+# The '.' is the path to the flake, which is current directory.
 $ sudo nixos-rebuild switch --flake .
 ```
 
@@ -192,12 +194,16 @@ If everything went well, you should see something like this:
 ![[nixos-rebuild-switch-flake.png]]
 :::
 
-Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store it in a [[git]] repository.
+Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store our whole configuration in a [[git]] repository.
 
 {#git}
-## Store the configuration on Git
+## Store the configuration in Git
 
-First we need to install [[git]]: add `git` to `environment.systemPackages`, and activate your new configuration using `sudo nixos-rebuild switch --flake .`. Then, create a Git repository for your configuration:
+First we need to install [[git]]: 
+- add `git` to `environment.systemPackages`, and 
+- activate your new configuration using `sudo nixos-rebuild switch --flake .`. 
+ 
+Then, create a Git repository for your configuration:
 
 
 ```sh
