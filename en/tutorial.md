@@ -1,0 +1,6 @@
+
+# Tutorials
+
+```query
+path:./*
+```

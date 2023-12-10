@@ -10,7 +10,7 @@ emanote:
 
 ## Explore this website
 
-We are still building this website.[^nav] Start from [[install|here]] if you are new to Nix. We have a [[blog]], and you can browse the rest of the content  in [the index](-/all).
+We are still building this website.[^nav] Start from [[install|here]] if you are new to Nix. We have [[tutorial]] and a [[blog]], and you can browse the rest of the content  in [the index](-/all).
 
 ## Community
 
