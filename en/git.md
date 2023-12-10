@@ -16,5 +16,6 @@ Git can be declaratively configured in [[nix]] via [[home-manager]]. [Here is](h
     extraConfig = {
       init.defaultBranch = "master";
     };
+  };
 }
 ```
