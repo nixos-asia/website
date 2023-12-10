@@ -18,11 +18,19 @@ Once NixOS install is complete, reboot into your new system. You will be greeted
 ## Your first `configuration.nix` change
 
 
-Your systems configuration includes everything from partition layout to kernel version to packages to services. It is defined in `/etc/nixos/configuration.nix`. In order to add or remove a package, for instance, we should edit this file. Let's do this now to install [neovim](https://neovim.io/):
+Your systems configuration includes everything from partition layout to kernel version to packages to services. It is defined in `/etc/nixos/configuration.nix`. 
+
+>[!info] What is `hardware-configuration.nix`?
+> Hardware specific configuration (eg: disk partitions to mount) are defined in `/etc/nixos/hardware-configuration.nix` which is `import`ed, as a [[modules|module]], by `configuration.nix`.
+
+All system changes require a change to this `configuration.nix`. In order to "install" or "uninstall" a package, for instance, we would edit this `configuration.nix`. Let's do this now to install the [neovim](https://neovim.io/) text editor:
 
 ```sh
 sudo nano /etc/nixos/configuration.nix
 ```
+
+>[!tip] Nix language
+> These `*.nix` files are written in the [[nix]] language.
 
 - Add `neovim` under `environment.systemPackages`
 - Bonus: uncomment `services.openssh.enable = true;` (this will enable the SSH server)
@@ -46,7 +54,7 @@ This will take a few minutes to complete. Once it is done, you should expect to 
 
 ## Flakeify
 
-Our `configuration.nix` is not "pure", because it still uses mutable Nix channel. For this reason (amomng others), we'll switch to using [[flakes]] for our NixOS configuration. Doing this is pretty simple. Just add a `flake.nix` file in `/etc/nixos`:
+Our `configuration.nix` is not "pure", because it still uses mutable Nix channel. For this reason (among others), we will immediately switch to using [[flakes]] for our NixOS configuration. Doing this is pretty simple. Just add a `flake.nix` file in `/etc/nixos`:
 
 ```sh
 sudo nvim /etc/nixos/flake.nix
@@ -73,21 +81,21 @@ Add the following:
 }
 ```
 
-> [!note] Make sure that to change a couple of things in the above snippet:
+> [!note] Make sure to change a couple of things in the above snippet:
 > - `nixos-23.11` should match the `system.stateVersion` in your `configuration.nix`
 > - `x86_64-linux` should be `aarch64-linux` if you are on ARM
 
-Now, `/etc/nixos` is technically a [[flakes|flake]]. We can "inspect" this flake usin the `nix flake show` command:
+Now, `/etc/nixos` is technically a [[flakes|flake]]. We can "inspect" this flake using the `nix flake show` command:
 
 ```sh
 $ nix flake show /etc/nixos
 error: experimental Nix feature 'nix-command' is disabled; use '--extra-experimental-features nix-command' to override
 ```
 
-Oops, what happened here? Because flakes is a so-called "experimental" feature you must manually enable it. We'll temporarily enable it for now, and then enable it permanently latter. The `--extra-experimental-features` flag can be used to enable experimental features. Let's try again:
+Oops, what happened here? Because flakes is a so-called "experimental" feature you must manually enable it. We'll _temporarily_ enable it for now, and then latter enable it _permanently_. The `--extra-experimental-features` flag can be used to enable experimental features. Let's try again:
 
 ```sh
-nix --extra-experimental-features 'nix-command flakes' flake show /etc/nixos
+$ nix --extra-experimental-features 'nix-command flakes' flake show /etc/nixos
 warning: creating lock file '/etc/nixos/flake.lock'
 error:
        … while updating the lock file of flake 'path:/etc/nixos?lastModified=1702156351&narHash=sha256-km4AQoP/ha066o7tALAzk4tV0HEE%2BNyd9SD%2BkxcoJDY%3D'
@@ -95,7 +103,7 @@ error:
        error: opening file '/etc/nixos/flake.lock': Permission denied
 ```
 
-Alright, at this point, we are better off moving the whole configuration to our home directory, which would also prepare the ground for storing it on Git.
+Alright, now Nix understably cannot to write to root-owned directory. At this point, we are better off moving the whole configuration to our home directory, which would also prepare the ground for storing it on Git.
 
 ## Move configuration to user directory
 
@@ -126,9 +134,12 @@ path:/home/srid/nixos-config?lastModified=1702156518&narHash=sha256-nDtDyzk3fMfA
     └───nixos: NixOS configuration
 ```
 
-This flake has a single output, `nixosConfigurations.nixos`, which is the NixOS configuration. See [[nix-rapid]] for more information on flakes.
+This flake has a single output, `nixosConfigurations.nixos`, which is the NixOS configuration. 
 
-Once flakeified, for activating the new configuration we must use the `--flake` flag. For example:
+>[!info] More on Flakes
+> See [[nix-rapid]] for more information on flakes.
+
+Once flake-ified, in order to activate the new configuration we must pass the `--flake` flag, viz.:
 
 ```sh
 $ sudo nixos-rebuild switch --flake .
@@ -140,11 +151,11 @@ If everything went well, you should see something like this:
 ![[nixos-rebuild-switch-flake.png]]
 :::
 
-Excellent, now we have a flakeified NixOS configuration. Let's store it on Git.
+Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store it on Git.
 
-## Store configuration on Git
+## Store the configuration on Git
 
-Add `git` to `environment.systemPackages`, and activate your new configuration using `sudo nixos-rebuild switch --flake .`. Then, create a Git repository for your configuration:
+First we need to install Git: add `git` to `environment.systemPackages`, and activate your new configuration using `sudo nixos-rebuild switch --flake .`. Then, create a Git repository for your configuration:
 
 
 ```sh
@@ -163,7 +174,7 @@ You may now [create a repository](https://docs.github.com/en/get-started/quickst
 
 ## Enable flakes
 
-As a final step, let's permanently enable [[flakes]] on our system, which is particular useful if you do a lot of [[dev|software development]]. This time, instead of editing `configuration.nix` again, let's do it in a separate [[modules|module]]. Remember the `modules` argument to `nixosSystem` function `flake.nix`? We can add a new module there:
+As a final step, let's permanently enable [[flakes]] on our system, which is particular useful if you do a lot of [[dev|software development]]. This time, instead of editing `configuration.nix` again, let's do it in a separate [[modules|module]] (for no particular reasons other than pedagogic purposes). Remember the `modules` argument to `nixosSystem` function in our `flake.nix`? It is a list of modules, so we can add a second module there:
 
 ```diff
 diff --git a/flake.nix b/flake.nix
@@ -203,7 +214,7 @@ git+file:///home/srid/nixos-config
 
 ## Conclusion
 
-Congratulations, you now have a flakeified NixOS configuration and stored it on a Git repo. You can now make changes to your configuration, commit them to Git, and push them to GitHub. Additionally we also enabled [[flakes]] permanently, which means you can now use `nix` commands, such as running a package directly from [[nixpkgs]]:
+Congratulations, you now have a flake-ified NixOS configuration that is stored in a Git repo. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled [[flakes]] permanently, which means you can now use all the modern `nix` commands, such as running a package directly from [[nixpkgs]] (same version pinned in `flake.lock` file):
 
 :::{.center}
 ![[nixos-pony.png]]
