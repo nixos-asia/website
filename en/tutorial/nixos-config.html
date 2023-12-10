@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=c6eb985d-704d-4ad3-afe4-533ae87dd4df' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=82da6180-58ae-42aa-b69b-c9457f8c3d62' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -383,7 +383,7 @@
     <p class='mb-3'>
       NixOS will boot into a graphical environment with the installer already running.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-installer.png' alt='/nix/store/xpb54l0hgkr5vdb6rghmqisyxr1xwxlj-hqp6vz59hzaifmn7c60m7i2zm5zvc85q-source/en/tutorial/nixos-installer.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-installer.png' alt='/nix/store/x0jxzwy0l1ahg8150yl1prlkdrs355g4-91qb187i7a3b9lgcq6ngmp6yp0q0sysx-source/en/tutorial/nixos-installer.png' style='width: inherit;' /></div>
     <p class='mb-3'>
       Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen.
     </p>
@@ -494,7 +494,7 @@
     <p class='mb-3'>
       This will take a few minutes to complete―as it will have to fetch neovim and its dependencies from the official <a href='en/cache' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>binary cache</a> (<code class='py-0.5 px-0.5 bg-gray-100'>cache.nixos.org</code>). Once it is done, you should expect to see something like this:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-rebuild-switch.png' alt='/nix/store/xpb54l0hgkr5vdb6rghmqisyxr1xwxlj-hqp6vz59hzaifmn7c60m7i2zm5zvc85q-source/en/tutorial/nixos-rebuild-switch.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-rebuild-switch.png' alt='/nix/store/x0jxzwy0l1ahg8150yl1prlkdrs355g4-91qb187i7a3b9lgcq6ngmp6yp0q0sysx-source/en/tutorial/nixos-rebuild-switch.png' style='width: inherit;' /></div>
     <p class='mb-3'>
       You can confirm that neovim is installed by running <code class='py-0.5 px-0.5 bg-gray-100'>which nvim</code>:
     </p>
@@ -588,15 +588,37 @@ error:
 
        error: opening file '/etc/nixos/flake.lock': Permission denied</code></pre></div>
     <p class='mb-3'>
-      Progress, but we hit another error—Nix understandably cannot write to root-owned directory. One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in <a href='en/git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a>.
+      Progress, but we hit another error—Nix understandably cannot write to root-owned directory (it tries to create the <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file). One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in <a href='en/git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a>. We will do this in the next section.
     </p>
-  <h2 id='homedir' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Move configuration to user directory</h2>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code>
+    </div>
+  </div>
+  <div class='callout-content'>
+    
     <p class='mb-3'>
-      Move the entire <code class='py-0.5 px-0.5 bg-gray-100'>/etc/nixos</code> directory to your home directory:
+      Nix commands automatically generate a (or update the) <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file. This file contains the exacted pinned version of the inputs of the flake, which is important for reproducibility.
+    </p>
+  
+  </div>
+</div><h2 id='homedir' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Move configuration to user directory</h2>
+    <p class='mb-3'>
+      Move the entire <code class='py-0.5 px-0.5 bg-gray-100'>/etc/nixos</code> directory to your home directory and gain control of it:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ sudo mv /etc/nixos ~/nixos-config && sudo chown -R $USER ~/nixos-config</code></pre></div>
     <p class='mb-3'>
-      It should now look like this:
+      Your configuration directory should now look like:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ ls -l ~/nixos-config/
 total 12
@@ -613,11 +635,7 @@ path:/home/srid/nixos-config?lastModified=1702156518&amp;narHash=sha256-nDtDyzk3
 └───nixosConfigurations
     └───nixos: NixOS configuration</code></pre></div>
     <p class='mb-3'>
-      This flake has a single output, <code class='py-0.5 px-0.5 bg-gray-100'>nixosConfigurations.nixos</code>, which is the NixOS configuration.
-    </p>
-  
-    <p class='mb-3'>
-      You may have now noticed that a <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file will have been generated. This file contains the exacted pinned version of the inputs of the flake, which is important for reproducibility.
+      Voila! Incidentally, this flake has a single output, <code class='py-0.5 px-0.5 bg-gray-100'>nixosConfigurations.nixos</code>, which is the NixOS configuration itself.
     </p>
   <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
@@ -643,19 +661,36 @@ path:/home/srid/nixos-config?lastModified=1702156518&amp;narHash=sha256-nDtDyzk3
   </div>
 </div>
     <p class='mb-3'>
-      Once flake-ified, in order to activate the new configuration we must pass the <code class='py-0.5 px-0.5 bg-gray-100'>--flake</code> flag, viz.:
+      Once flake-ified, we can use the same command to activate the new configuration but we must additionally pass the <code class='py-0.5 px-0.5 bg-gray-100'>--flake</code> flag, viz.:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ sudo nixos-rebuild switch --flake .</code></pre></div>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># The '.' is the path to the flake, which is current directory.
+$ sudo nixos-rebuild switch --flake .</code></pre></div>
     <p class='mb-3'>
       If everything went well, you should see something like this:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-rebuild-switch-flake.png' alt='/nix/store/xpb54l0hgkr5vdb6rghmqisyxr1xwxlj-hqp6vz59hzaifmn7c60m7i2zm5zvc85q-source/en/tutorial/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-rebuild-switch-flake.png' alt='/nix/store/x0jxzwy0l1ahg8150yl1prlkdrs355g4-91qb187i7a3b9lgcq6ngmp6yp0q0sysx-source/en/tutorial/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
     <p class='mb-3'>
-      Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let’s store it in a <a href='en/git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a> repository.
+      Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let’s store our whole configuration in a <a href='en/git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a> repository.
     </p>
-  <h2 id='git' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Store the configuration on Git</h2>
+  <h2 id='git' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Store the configuration in Git</h2>
     <p class='mb-3'>
-      First we need to install <a href='en/git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a>: add <code class='py-0.5 px-0.5 bg-gray-100'>git</code> to <code class='py-0.5 px-0.5 bg-gray-100'>environment.systemPackages</code>, and activate your new configuration using <code class='py-0.5 px-0.5 bg-gray-100'>sudo nixos-rebuild switch --flake .</code>. Then, create a Git repository for your configuration:
+      First we need to install <a href='en/git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a>:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          add <code class='py-0.5 px-0.5 bg-gray-100'>git</code> to <code class='py-0.5 px-0.5 bg-gray-100'>environment.systemPackages</code>, and
+        </li>
+      
+        <li>
+          activate your new configuration using <code class='py-0.5 px-0.5 bg-gray-100'>sudo nixos-rebuild switch --flake .</code>.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      Then, create a Git repository for your configuration:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ cd ~/nixos-config
 $ git config --global user.email "srid@srid.ca"
@@ -750,7 +785,7 @@ git+file:///home/srid/nixos-config
     <p class='mb-3'>
       You have successfully installed NixOS. The entire system configuration is also stored in a Git repo, and can be reproduced at will during either a reinstallation or a new machine purchase. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a> permanently, which means you can now use all the modern <code class='py-0.5 px-0.5 bg-gray-100'>nix</code> commands, such as running a package directly from <a href='en/nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> (same version pinned in <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file):
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-pony.png' alt='/nix/store/xpb54l0hgkr5vdb6rghmqisyxr1xwxlj-hqp6vz59hzaifmn7c60m7i2zm5zvc85q-source/en/tutorial/nixos-pony.png' style='width: inherit;' /></div><h2 id='up-next' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Up Next</h2>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-pony.png' alt='/nix/store/x0jxzwy0l1ahg8150yl1prlkdrs355g4-91qb187i7a3b9lgcq6ngmp6yp0q0sysx-source/en/tutorial/nixos-pony.png' style='width: inherit;' /></div><h2 id='up-next' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Up Next</h2>
     <p class='mb-3'>
       In part 2 of this tutorial, we will use <a href='https://community.flake.parts/nixos-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixos-flake</a> for more convenience, as well as use <a href='en/home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a> (to manage home configuration). Then we’ll describe several common NixOS workflows.
     </p>

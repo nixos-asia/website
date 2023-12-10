@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=c6eb985d-704d-4ad3-afe4-533ae87dd4df' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=82da6180-58ae-42aa-b69b-c9457f8c3d62' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -428,15 +428,15 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let’s store it in a <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a> repository.</p></div>
+      <div><p>Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let’s store our whole configuration in a <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a> repository.</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>First we need to install <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a>: add <code>git</code> to <code>environment.systemPackages</code>, and activate your new configuration using <code>sudo nixos-rebuild switch --flake .</code>. Then, create a Git repository for your configuration:</p></div>
+      <div><p>First we need to install <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a>:</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>Progress, but we hit another error—Nix understandably cannot write to root-owned directory. One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a>.</p></div>
+      <div><p>Progress, but we hit another error—Nix understandably cannot write to root-owned directory (it tries to create the <code>flake.lock</code> file). One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a>. We will do this in the next section.</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
