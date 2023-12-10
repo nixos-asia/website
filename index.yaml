@@ -17,7 +17,7 @@ template:
   name: /templates/layouts/note
   layout:
     note:
-      containerClass: container mx-auto max-w-screen-lg
+      containerClass: container mx-auto max-w-screen-md
 
   # If you are hosting on GitLab Pages, you may want to remove this.
   urlStrategy: pretty
