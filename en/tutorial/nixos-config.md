@@ -3,6 +3,7 @@
 
 This short tutorial will walk you through the steps necessary to install #[[nixos]], convert your configuration to be a [[flakes|flake]] before storing it on a [[git]] repository.
 
+{#install}
 ## Install NixOS
 
 Download the latest NixOS ISO from [here](https://nixos.org/download#download-nixos). Choose the GNOME image for the appropriate CPU architecture. Create a bootable USB flash drive ([instructions here](https://nixos.org/manual/nixos/stable/index.html#sec-booting-from-usb)) and boot the computer from it.
@@ -15,6 +16,7 @@ NixOS will boot into a graphical environment with the installer already running.
 
 Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen. Login as the user you created with the password you set during installation. Then open the "Console" application from the "Activities" menu.
 
+{#edit}
 ## Your first `configuration.nix` change
 
 
@@ -83,6 +85,7 @@ $ which nvim
 >[!tip] Remote access
 > Now that you have OpenSSH enabled, you may do the rest of the steps from another machine by ssh'ing to this machine.
 
+{#flakeify}
 ## Flakeify
 
 One problem with our `configuration.nix` is that it is not "pure" and thus not reproducible (see [here](https://www.tweag.io/blog/2020-07-31-nixos-flakes/#what-problems-are-we-trying-to-solve)), because it still uses a mutable Nix channel (which is [discouraged](https://zero-to-nix.com/concepts/channels#the-problem-with-nix-channel)). For this reason (among others), we will immediately switch to using [[flakes]] for our NixOS configuration. Doing this is pretty simple. Just add a `flake.nix` file in `/etc/nixos`:
@@ -136,6 +139,7 @@ error:
 
 Progress, but we hit another error---Nix understandably cannot write to root-owned directory. One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in [[git]].
 
+{#homedir}
 ## Move configuration to user directory
 
 Move the entire `/etc/nixos` directory to your home directory:
@@ -186,6 +190,7 @@ If everything went well, you should see something like this:
 
 Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let's store it in a [[git]] repository.
 
+{#git}
 ## Store the configuration on Git
 
 First we need to install [[git]]: add `git` to `environment.systemPackages`, and activate your new configuration using `sudo nixos-rebuild switch --flake .`. Then, create a Git repository for your configuration:
@@ -205,6 +210,7 @@ You may now [create a repository](https://docs.github.com/en/get-started/quickst
 > - Version controlling configuration changes makes it straightforward to point out problems and/or rollback to previous state.
 
 
+{#enable-flakes}
 ## Enable flakes
 
 As a final step, let's permanently enable [[flakes]] on our system, which is particular useful if you do a lot of [[dev|software development]]. This time, instead of editing `configuration.nix` again, let's do it in a separate [[modules|module]] (for no particular reasons other than pedagogic purposes). Remember the `modules` argument to `nixosSystem` function in our `flake.nix`? It is a list of modules, so we can add a second module there:
