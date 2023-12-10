@@ -103,7 +103,7 @@ error:
        error: opening file '/etc/nixos/flake.lock': Permission denied
 ```
 
-Alright, now Nix understably cannot to write to root-owned directory. At this point, we are better off moving the whole configuration to our home directory, which would also prepare the ground for storing it on Git.
+Alright, now Nix understandably cannot write to root-owned directory. At this point, we are better off moving the whole configuration to our home directory, which would also prepare the ground for storing it on Git.
 
 ## Move configuration to user directory
 
