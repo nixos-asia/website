@@ -18,12 +18,19 @@ Once NixOS install is complete, reboot into your new system. You will be greeted
 ## Your first `configuration.nix` change
 
 
-Your systems configuration includes everything from partition layout to kernel version to packages to services. It is defined in `/etc/nixos/configuration.nix`. 
+Your systems configuration includes everything from partition layout to kernel version to packages to services. It is defined in `/etc/nixos/configuration.nix`. The `/etc/nixos` directory looks like this:
+
+```sh
+$ ls -l /etc/nixos
+-rw-r--r-- 1 root root 4001 Dec  9 16:03 configuration.nix
+-rw-r--r-- 1 root root 1317 Dec  9 15:43 hardware-configuration.nix
+
+```
 
 >[!info] What is `hardware-configuration.nix`?
 > Hardware specific configuration (eg: disk partitions to mount) are defined in `/etc/nixos/hardware-configuration.nix` which is `import`ed, as a [[modules|module]], by `configuration.nix`.
 
-All system changes require a change to this `configuration.nix`. In order to "install" or "uninstall" a package, for instance, we would edit this `configuration.nix`. Let's do this now to install the [neovim](https://neovim.io/) text editor:
+All system changes require a change to this `configuration.nix`. For example, in order to "install" or "uninstall" a package, we would edit this `configuration.nix` and activate it. Let's do this now to install the [neovim](https://neovim.io/) text editor. NixOS includes the nano editor by default:
 
 ```sh
 sudo nano /etc/nixos/configuration.nix
@@ -32,12 +39,14 @@ sudo nano /etc/nixos/configuration.nix
 >[!tip] Nix language
 > These `*.nix` files are written in the [[nix]] language.
 
+In the text editor, make the following changes:
+
 - Add `neovim` under `environment.systemPackages`
 - Bonus: uncomment `services.openssh.enable = true;` (this will enable the SSH server)
 
 Press <kbd>Ctrl+X</kbd> to exit nano.
 
-Your `configuration.nix` should look like:
+Your `configuration.nix` should now look like:
 
 ```nix
 # /etc/nixos/configuration.nix
@@ -52,7 +61,7 @@ Your `configuration.nix` should look like:
 }
 ```
 
-Once the `configuration.nix` file has been saved to disk, you must activate that new configuration using:
+Once the `configuration.nix` file has been saved to disk, you must activate that new configuration using the [nixos-rebuild](https://nixos.wiki/wiki/Nixos-rebuild) command:
 
 ```sh
 sudo nixos-rebuild switch
@@ -64,12 +73,19 @@ This will take a few minutes to complete―as it will have to fetch neovim and i
 ![[nixos-rebuild-switch.png]]
 :::
 
+You can confirm that neovim is installed by running `which nvim`:
+
+```sh
+$ which nvim
+/run/current-system/sw/bin/nvim
+```
+
 >[!tip] Remote access
 > Now that you have OpenSSH enabled, you may do the rest of the steps from another machine by ssh'ing to this machine.
 
 ## Flakeify
 
-One problem with our `configuration.nix` is that it is not "pure" and thus not reproducible (see [here](https://www.tweag.io/blog/2020-07-31-nixos-flakes/#what-problems-are-we-trying-to-solve)), because it still uses a mutable Nix channel. For this reason (among others), we will immediately switch to using [[flakes]] for our NixOS configuration. Doing this is pretty simple. Just add a `flake.nix` file in `/etc/nixos`:
+One problem with our `configuration.nix` is that it is not "pure" and thus not reproducible (see [here](https://www.tweag.io/blog/2020-07-31-nixos-flakes/#what-problems-are-we-trying-to-solve)), because it still uses a mutable Nix channel (which is [discouraged](https://zero-to-nix.com/concepts/channels#the-problem-with-nix-channel)). For this reason (among others), we will immediately switch to using [[flakes]] for our NixOS configuration. Doing this is pretty simple. Just add a `flake.nix` file in `/etc/nixos`:
 
 ```sh
 sudo nvim /etc/nixos/flake.nix
@@ -151,6 +167,8 @@ path:/home/srid/nixos-config?lastModified=1702156518&narHash=sha256-nDtDyzk3fMfA
 
 This flake has a single output, `nixosConfigurations.nixos`, which is the NixOS configuration. 
 
+You may have now noticed that a `flake.lock` file will have been generated. This file contains the exacted pinned version of the inputs of the flake, which is important for reproducibility.
+
 >[!info] More on Flakes
 > See [[nix-rapid]] for more information on flakes.
 
@@ -170,7 +188,7 @@ Excellent, now we have a flake-ified NixOS configuration that is pure and reprod
 
 ## Store the configuration on Git
 
-First we need to install Git: add `git` to `environment.systemPackages`, and activate your new configuration using `sudo nixos-rebuild switch --flake .`. Then, create a Git repository for your configuration:
+First we need to install [[git]]: add `git` to `environment.systemPackages`, and activate your new configuration using `sudo nixos-rebuild switch --flake .`. Then, create a Git repository for your configuration:
 
 
 ```sh
