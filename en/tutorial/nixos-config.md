@@ -1,12 +1,13 @@
 
-# Install NixOS and put configuration on Git
+# Install NixOS, with conf on Git
 
-This short tutorial will walk you through the steps necessary to install #[[nixos]], convert your configuration to be a [[flakes|flake]] before storing it on a [[git]] repository.
+This short tutorial will walk you through the steps necessary to install #[[nixos]], enable [[flakes]] and put the resulting configuration in a [[git]] repository.
 
 {#install}
 ## Install NixOS
 
-Download the latest NixOS ISO from [here](https://nixos.org/download#download-nixos). Choose the GNOME image for the appropriate CPU architecture. Create a bootable USB flash drive ([instructions here](https://nixos.org/manual/nixos/stable/index.html#sec-booting-from-usb)) and boot the computer from it.
+- Download the latest NixOS ISO from [here](https://nixos.org/download#download-nixos). Choose the GNOME image for the appropriate CPU architecture. 
+- Create a bootable USB flash drive ([instructions here](https://nixos.org/manual/nixos/stable/index.html#sec-booting-from-usb)) and boot the computer from it.
 
 NixOS will boot into a graphical environment with the installer already running. 
 
@@ -14,7 +15,10 @@ NixOS will boot into a graphical environment with the installer already running.
 ![[nixos-installer.png]]
 :::
 
-Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen. Login as the user you created with the password you set during installation. Then open the "Console" application from the "Activities" menu.
+Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen. 
+
+- Login as the user you created with the password you set during installation. 
+- Then open the "Console" application from the "Activities" menu.
 
 {#edit}
 ## Your first `configuration.nix` change
