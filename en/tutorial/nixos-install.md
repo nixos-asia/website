@@ -1,15 +1,15 @@
 
 # Install NixOS with Flake configuration on Git
 
-This short tutorial will walk you through the steps necessary to install #[[nixos]], enable [[flakes]] while tracking the resulting configuration in a [[git]] repository.
+This tutorial will walk you through the steps necessary to install #[[nixos]], enable [[flakes]] while tracking the resulting system configuration in a [[git]] repository.
 
->[!info] Target audience
-> You have worked with other Linux distributions before, but are interested in switching to [[nixos]] as your primary operating system and require a quick start guide.
+>[!info] Welcome to the tutorial series on [[nixos]]
+> This page is the first in a planned series of tutorials aimed towards onboarding Linux/macOS users into comfortably using [[nixos]] as their primary operating system.
 
 {#install}
 ## Install NixOS
 
-- Download the latest NixOS ISO from [here](https://nixos.org/download#download-nixos). Choose the GNOME image for the appropriate CPU architecture. 
+- Download the latest NixOS ISO from [here](https://nixos.org/download#download-nixos). Choose the GNOME (or Plasma) graphical ISO image for the appropriate CPU architecture. 
 - Create a bootable USB flash drive ([instructions here](https://nixos.org/manual/nixos/stable/index.html#sec-booting-from-usb)) and boot the computer from it.
 
 NixOS will boot into a graphical environment with the installer already running. 
@@ -18,7 +18,7 @@ NixOS will boot into a graphical environment with the installer already running.
 ![[nixos-installer.png]]
 :::
 
-Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen. 
+Go through the installation wizard; it is fairly similar to other distros. Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen. 
 
 - Login as the user you created with the password you set during installation. 
 - Then open the "Console" application from the "Activities" menu.
@@ -51,7 +51,7 @@ sudo nano /etc/nixos/configuration.nix
 In the text editor, make the following changes:
 
 - Add `neovim` under `environment.systemPackages`
-- Bonus: uncomment `services.openssh.enable = true;` (this will enable the SSH server)
+- [Optional] uncomment `services.openssh.enable = true;` to enable the SSH server
 
 Press <kbd>Ctrl+X</kbd> to exit nano.
 
