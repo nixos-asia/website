@@ -107,8 +107,9 @@ Add the following:
 # /etc/nixos/flake.nix
 {
   inputs = {
-    # NOTE: We use "nixos-23.11", matching system.stateVersion in the configuration.nix
-    # You can also use `nixos-unstable` to use bleeding edge.
+    # NOTE: Replace "nixos-23.11" with that which is in system.stateVersion of
+    # configuration.nix. You can also use latter versions if you wish to
+    # upgrade.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
   };
   outputs = { self, nixpkgs }: {
@@ -123,7 +124,7 @@ Add the following:
 ```
 
 > [!note] Make sure to change a couple of things in the above snippet:
-> - We use `nixos-23.11` matching the `system.stateVersion` in your `/etc/nixos/configuration.nix`. You can also use latter versions, or use `nixos-unstable` to use the bleeding edge.
+> - Replace `nixos-23.11` with the version from [`system.stateVersion`](https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion) in your `/etc/nixos/configuration.nix`. If you wish to upgrade right away, you can also use latter versions, or use `nixos-unstable` for the bleeding edge.
 > - `x86_64-linux` should be `aarch64-linux` if you are on ARM
 
 Now, `/etc/nixos` is technically a [[flakes|flake]]. We can "inspect" this flake using the `nix flake show` command:
