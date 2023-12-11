@@ -1,7 +1,7 @@
 
-# Install NixOS, with conf on Git
+# Install NixOS with Flake configuration on Git
 
-This short tutorial will walk you through the steps necessary to install #[[nixos]], enable [[flakes]] and put the resulting configuration in a [[git]] repository.
+This short tutorial will walk you through the steps necessary to install #[[nixos]], enable [[flakes]] while tracking the resulting configuration in a [[git]] repository.
 
 {#install}
 ## Install NixOS
