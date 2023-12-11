@@ -3,6 +3,9 @@
 
 This short tutorial will walk you through the steps necessary to install #[[nixos]], enable [[flakes]] while tracking the resulting configuration in a [[git]] repository.
 
+>[!info] Target audience
+> You have worked with other Linux distributions before, but are interested in switching to [[nixos]] as your primary operating system and require a quick start guide.
+
 {#install}
 ## Install NixOS
 
