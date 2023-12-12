@@ -16,7 +16,7 @@ We are still building this website.[^nav] Start from [[install|here]] if you are
 
 You can participate in the community discussion through the following venues. Zulip is the primary venue for discussion.
 
-- [Zulip](https://nixos.zulipchat.com/): Zulip is an alamagam of "chat" and "forum".
+- [Zulip](https://nixos.zulipchat.com/): Zulip is a hybrid of "chat" and "forum".
 - [Matrix](https://matrix.to/#/#nixos-asia:matrix.org)
 - [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
 
