@@ -2,5 +2,5 @@
 # Tutorials
 
 ```query
-path:./*
+children:.
 ```

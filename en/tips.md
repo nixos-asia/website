@@ -1,5 +1,5 @@
 # Tips
 
 ```query
-path:./*
+children:.
 ```

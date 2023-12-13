@@ -9,5 +9,5 @@ feed:
 Recent posts:
 
 ```query {.timeline}
-path:./*
+children:.
 ```
