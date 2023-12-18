@@ -5,7 +5,7 @@ This tutorial adds another layer of reproducibility to the [[nixos-install]] by 
 >[!note] Flake configuration
 > We will use #[[flakes]] by default.
 
-{#install}
+{#iso}
 ## Install NixOS
 
 >[!note] Minimal ISO image
@@ -20,7 +20,7 @@ NixOS will boot into the USB in CLI mode.
 ![[nixos-installer-cli.jpeg]]
 :::
 
-{#disko}
+{#partition}
 ## Partition the disk
 
 The [disko quickstart guide](https://github.com/nix-community/disko/blob/master/docs/quickstart.md) does an excellent job of explaining it. We will follow the same steps and include screenshots wherever necessary. Additionally, in the last step we will use flakes to manage the configuration.
@@ -63,6 +63,7 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 ![[nixos-disko-post-partition.jpeg]]
 :::
 
+{#configuration}
 ## The NixOS configuration
 
 ```bash
@@ -138,12 +139,14 @@ Verify `fileSystems` set by `disko` in `nix repl`:
 :::
 
 
+{#install}
 ## Install NixOS
 
 ```bash
 sudo nixos-install --root /mnt --flake '.#nixos'
 ```
 
+{#extras}
 ## Extra configuration (Good to have)
 
 - [Move configuration to home dir](https://nixos.asia/en/tutorial/nixos-install#homedir)
