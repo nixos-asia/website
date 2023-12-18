@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=e8903a64-2fab-45f7-b511-52968cfd14e0' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=fcc438be-5394-47fc-9f18-87f7fab897e9' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -428,19 +428,30 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible! Let’s store our whole configuration in a <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a> repository.</p></div>
-    </div>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>First we need to install <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a>:</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>Progress, but we hit another error—Nix understandably cannot write to root-owned directory (it tries to create the <code>flake.lock</code> file). One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a>. We will do this in the next section.</p></div>
+      <div><p>Let’s store our whole configuration in a <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a> repository.</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>This tutorial will walk you through the steps necessary to install <a href='en/nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>NixOS</a>, enable <a href='en/flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flakes</a> while tracking the resulting system configuration in a <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a> repository.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/configuration-as-flake'>
+            Convert <code>configuration.nix</code> to be a flake
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Progress, but we hit another error—Nix understandably cannot write to root-owned directory (it tries to create the <code>flake.lock</code> file). One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in <a href='en/git' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Git</a>. We will do this in the next section.</p></div>
     </div>
   
 </div>
