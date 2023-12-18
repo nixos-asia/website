@@ -144,6 +144,7 @@ Verify `fileSystems` set by `disko` in `nix repl`:
 
 ```bash
 sudo nixos-install --root /mnt --flake '.#nixos'
+sudo reboot
 ```
 
 {#extras}
