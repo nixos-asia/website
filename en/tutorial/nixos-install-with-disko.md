@@ -110,6 +110,12 @@ Add the `disko` nixosModule:
 ![[nixos-flake-with-disko.jpeg]]
 :::
 
+Move the `disko-config.nix` to the flake directory:
+
+```bash
+mv /tmp/disko-config.nix /mnt/etc/nixos
+```
+
 Add the disk configuration and use GRUB:
 
 ```nix
