@@ -72,9 +72,10 @@ sudo nixos-generate-config --no-filesystems --root /mnt
 
 The [fileSystems](https://search.nixos.org/options?channel=23.11&show=fileSystems&from=0&size=50&sort=relevance&type=packages&query=fileSystems) configuration will be added by `disko`'s [nixosModule](https://nixos.wiki/wiki/NixOS_modules) hence we use `--no-filesystems` to avoid generating it. `--root` is to specify the mountpoint to generate `configuration.nix` and `hardware-configuration.nix` in. Here, it will be `/mnt/etc/nixos`.
 
-### Flakify the NixOS configuration
+{#flakeify}
+### Flakeify
 
-This step remains the same as the [Install NixOS with Flake configuration on Git](https://nixos.asia/en/tutorial/nixos-install#flakeify) tutorial.
+![[configuration-as-flake]]
 
 ### Add the `disko` nixosModule
 
