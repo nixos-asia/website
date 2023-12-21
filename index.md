@@ -9,3 +9,7 @@ template:
 # NixOS Asia
 
 !! This file is not rendered, but the metadata is used. !!
+
+## Folgezettel children
+
+[[en]]#

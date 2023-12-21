@@ -14,7 +14,7 @@ template:
   # See after-note.tpl to see where editBaseUrl gets used.
   editBaseUrl: https://github.com/nixos-asia/website/edit/master
 
-  name: /templates/layouts/note
+  name: /templates/layouts/book
   layout:
     note:
       containerClass: container mx-auto max-w-screen-md

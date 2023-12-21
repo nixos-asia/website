@@ -1,3 +1,7 @@
+---
+order: -1000
+---
+
 # Install Nix
 
 
