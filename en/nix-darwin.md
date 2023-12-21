@@ -1,1 +1,1 @@
-[nix-darwin](https://github.com/LnL7/nix-darwin) brings [[nixos]] like configuration to #[[macos]].
+[nix-darwin](https://github.com/LnL7/nix-darwin) brings [[nixos]] like configuration to #[[macos]], allowing you to install packages (among doing other things) purely through #[[nix]].
