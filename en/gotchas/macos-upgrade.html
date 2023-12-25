@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=427e9f88-fd96-4866-956f-2a12e1e4282b' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=fb113674-6f58-449e-b8b3-bbe72d8c98af' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -180,6 +180,26 @@
 
 
   
+    <style>
+      /* For use in sidebar.tpl, as we cannot achieve this in tailwind itself! */
+      #sidebar:hover {
+        width: auto;
+      }
+
+      /* md:min-w-48  */
+      @media (min-width: 768px) {
+        #sidebar {
+          min-width: 12rem;
+        }
+      }
+
+      /* xl:min-w-64  */
+      @media (min-width: 1280px) {
+        #sidebar {
+          min-width: 16rem;
+        }
+      }
+    </style>
   
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->

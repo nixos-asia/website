@@ -34,7 +34,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=427e9f88-fd96-4866-956f-2a12e1e4282b' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=fb113674-6f58-449e-b8b3-bbe72d8c98af' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -180,6 +180,26 @@
 
 
   
+    <style>
+      /* For use in sidebar.tpl, as we cannot achieve this in tailwind itself! */
+      #sidebar:hover {
+        width: auto;
+      }
+
+      /* md:min-w-48  */
+      @media (min-width: 768px) {
+        #sidebar {
+          min-width: 12rem;
+        }
+      }
+
+      /* xl:min-w-64  */
+      @media (min-width: 1280px) {
+        #sidebar {
+          min-width: 16rem;
+        }
+      }
+    </style>
   
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->
@@ -917,7 +937,7 @@
     <p class='mb-3'>
       NixOS will boot into a graphical environment with the installer already running.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-installer.png' alt='/nix/store/4kr61j5qhilg632vnpma5g1krv786dnj-lxqzs9i8i4n6nkaa33c2pns4smawv9n8-source/en/tutorial/nixos-install/nixos-installer.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-installer.png' alt='/nix/store/nfi160g9vz4j1w216ym0xsda9kr3jp18-dx66ay0197rkinf95dckv9mzz100h8l6-source/en/tutorial/nixos-install/nixos-installer.png' style='width: inherit;' /></div>
     <p class='mb-3'>
       Go through the installation wizard; it is fairly similar to other distros. Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen.
     </p>
@@ -1028,7 +1048,7 @@
     <p class='mb-3'>
       This will take a few minutes to complete―as it will have to fetch neovim and its dependencies from the official <a href='en/cache' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>binary cache</a> (<code class='py-0.5 px-0.5 bg-gray-100'>cache.nixos.org</code>). Once it is done, you should expect to see something like this:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-rebuild-switch.png' alt='/nix/store/4kr61j5qhilg632vnpma5g1krv786dnj-lxqzs9i8i4n6nkaa33c2pns4smawv9n8-source/en/tutorial/nixos-install/nixos-rebuild-switch.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-rebuild-switch.png' alt='/nix/store/nfi160g9vz4j1w216ym0xsda9kr3jp18-dx66ay0197rkinf95dckv9mzz100h8l6-source/en/tutorial/nixos-install/nixos-rebuild-switch.png' style='width: inherit;' /></div>
     <p class='mb-3'>
       You can confirm that neovim is installed by running <code class='py-0.5 px-0.5 bg-gray-100'>which nvim</code>:
     </p>
@@ -1210,7 +1230,7 @@ $ sudo nixos-rebuild switch --flake .</code></pre></div>
     <p class='mb-3'>
       If everything went well, you should see something like this:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-rebuild-switch-flake.png' alt='/nix/store/4kr61j5qhilg632vnpma5g1krv786dnj-lxqzs9i8i4n6nkaa33c2pns4smawv9n8-source/en/tutorial/nixos-install/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-rebuild-switch-flake.png' alt='/nix/store/nfi160g9vz4j1w216ym0xsda9kr3jp18-dx66ay0197rkinf95dckv9mzz100h8l6-source/en/tutorial/nixos-install/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
     <p class='mb-3'>
       Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible!
     </p>
@@ -1334,7 +1354,7 @@ git+file:///home/srid/nixos-config
     <p class='mb-3'>
       You have successfully installed NixOS. The entire system configuration is also stored in a Git repo, and can be reproduced at will during either a reinstallation or a new machine purchase. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled <a href='en/flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a> permanently, which means you can now use all the modern <code class='py-0.5 px-0.5 bg-gray-100'>nix</code> commands, such as running a package directly from <a href='en/nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> (same version pinned in <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file):
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-pony.png' alt='/nix/store/4kr61j5qhilg632vnpma5g1krv786dnj-lxqzs9i8i4n6nkaa33c2pns4smawv9n8-source/en/tutorial/nixos-install/nixos-pony.png' style='width: inherit;' /></div><h2 id='up-next' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Up Next</h2>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='en/tutorial/nixos-install/nixos-pony.png' alt='/nix/store/nfi160g9vz4j1w216ym0xsda9kr3jp18-dx66ay0197rkinf95dckv9mzz100h8l6-source/en/tutorial/nixos-install/nixos-pony.png' style='width: inherit;' /></div><h2 id='up-next' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Up Next</h2>
     <p class='mb-3'>
       In part 2 of this tutorial, we will use <a href='https://community.flake.parts/nixos-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixos-flake</a> for more convenience, as well as use <a href='en/home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a> (to manage home configuration). Then we’ll describe several common NixOS workflows.
     </p>
