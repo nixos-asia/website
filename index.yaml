@@ -15,9 +15,8 @@ template:
   editBaseUrl: https://github.com/nixos-asia/website/edit/master
 
   name: /templates/layouts/book
-  layout:
-    note:
-      containerClass: container mx-auto max-w-screen-md
+  flag:
+    uptree: true
 
   # If you are hosting on GitLab Pages, you may want to remove this.
   urlStrategy: pretty
