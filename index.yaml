@@ -14,9 +14,7 @@ template:
   # See after-note.tpl to see where editBaseUrl gets used.
   editBaseUrl: https://github.com/nixos-asia/website/edit/master
 
-  uptree: 
-    enable: true
-  breadcrumbs:
+  uptree:
     enable: false
 
   # If you are hosting on GitLab Pages, you may want to remove this.
