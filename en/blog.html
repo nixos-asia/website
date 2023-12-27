@@ -37,7 +37,7 @@
 
   
   <link href='/en/blog.xml' rel='alternate' type='application/atom+xml' title='Atom Feed' />
-  <link href='tailwind.css?instanceId=35a0286a-a8c7-469c-9e00-c1fb86c18021' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=ccf1214a-de8c-4686-80f8-6dd7d51db135' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -205,8 +205,6 @@
     </style>
 
     
-      <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
-    
   
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->
@@ -319,48 +317,60 @@
   
     <div class='container mx-auto md:mt-8 '>
       
-        <!-- DoNotFormat -->
-<!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
-  <ul class='root'>
-    <li>
       
-        <ul>
+        <nav id='breadcrumbs' class='w-full text-gray-700 md:hidden'>
+  <div class='flex justify-left'>
+    <div class='w-full px-2 py-2 bg-gray-50'>
+      <ul class='flex flex-wrap text-lg'>
+        <li class='inline-flex items-center'>
           
-            <li>
-
-  <a href='en'>
-    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
-      NixOS Asia
-    </div>
-  </a>
-
-  
-    <ul>
-      
-        <li>
-
-  <a href=''>
-    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
-      🏠
-    </div>
-  </a>
-
-  
-</li>
-      
-    </ul>
-  
-</li>
+            
+              <img style='width: 1rem;' src='static/nixos-asia.svg' />
+            
           
-        </ul>
-      
-    </li>
-  </ul>
+        </li>
+        
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href=''>
+                🏠
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href='en'>
+                NixOS Asia
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+        
+      </ul>
+    </div>
+    <button class='inline px-2 py-1 bg-gray-50 outline-none cursor-pointer focus:outline-none' title='Search (Ctrl+K)' type='button' onclick='window.emanote.stork.toggleSearch()'>
+      <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
+ fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
+  <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+</svg>
+    </button>
+    <button class='inline px-2 py-1 text-white bg-green-600 outline-none cursor-pointer focus:outline-none' title='Toggle sidebar' type='button' onclick="toggleHidden('sidebar')">
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'></path>
+      </svg>
+    </button>
+    <script>
+      function toggleHidden(elemId) {
+        document.getElementById(elemId).classList.toggle("hidden");
+      }
+    </script>
+  </div>
 </nav>
-      
-
       
 
       
