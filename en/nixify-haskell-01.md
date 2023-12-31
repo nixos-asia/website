@@ -399,11 +399,4 @@ developer gets the same environment.
 and see it in effect.
 - **Multi-platform**: All the commands mentioned in the previous points will work in the same way across platforms.
 
-In the next blog post, we will modularize this `flake.nix` using the [[flake-parts]] framework by Robert Hensing.
-
-## Credits
-- After going through numerous iterations, I am grateful to [srid](https://srid.ca/) for his valuable assistance in bringing this blog to its current stage.
-- I would also like to thank the following folks for their valuable feedback:
-  - [cdepillabout](https://github.com/cdepillabout)
-  - [Hao Liu](https://github.com/leomayleomay)
- 
+In the next tutorial series, we will modularize this `flake.nix` using [[flake-parts]].
