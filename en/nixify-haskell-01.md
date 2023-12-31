@@ -4,7 +4,7 @@ author: shivaraj-bh
 ---
 
 
-# Nixify your haskell project: Introduction
+# Nixifying a Haskell project using nixpkgs
 
 This is the start of a series of blog posts aimed at simplifying #[[haskell]] development & packaging workflow using [[nix]]. In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.
 
