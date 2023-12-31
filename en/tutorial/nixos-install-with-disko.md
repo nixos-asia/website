@@ -2,9 +2,6 @@
 
 This tutorial adds another layer of reproducibility to the [[nixos-install]] by writing your partitioning scheme for #[[nixos]] in #[[nix]].
 
->[!note] Flake configuration
-> We will use #[[flakes]] by default.
-
 {#iso}
 ## Install NixOS
 
