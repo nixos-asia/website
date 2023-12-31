@@ -10,7 +10,22 @@ emanote:
 
 ## Explore this website
 
-We are still building this website.[^nav] Start from [[install|here]] if you are new to Nix. We have [[tutorial]] and a [[blog]], and you can browse the rest of the content  in [the index](-/all).
+<!--
+
+NOTE to editors:
+
+Here, you must establish `[[..]]#` style folgezettel links which will shape our
+sidebar navigation.
+
+-->
+
+> [!info] WIP
+> We are currently in the process of  building this website.
+
+- Start from [[install|here]] if you are new to Nix. 
+- We have [[tutorial]]# and a [[blog]]#
+- Topical entry points: [[nix]]#, [[nixos]]#
+- You can browse the rest of the content  in [the index](-/all).
 
 ## Community
 
@@ -25,5 +40,3 @@ Also consider taking a look at our sister community, [Functional Programming Ind
 ## Upcoming
 
 - [ ] Meetups in Bangalore, starting from January 2024.
-
-[^nav]: We are fleshing out more content. Also, the [navigation UX](https://github.com/srid/emanote/issues/473) will be improved to make navigation of this website easier.

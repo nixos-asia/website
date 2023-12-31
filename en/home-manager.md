@@ -1,3 +1,4 @@
+Use #[[nix]] to manage your user environment.
 
 https://github.com/nix-community/home-manager
 
