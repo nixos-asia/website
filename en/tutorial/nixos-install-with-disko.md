@@ -2,8 +2,9 @@
 
 This tutorial adds another layer of reproducibility to the [[nixos-install]] by writing your partitioning scheme for #[[nixos]] in #[[nix]].
 
-{#iso}
-## Install NixOS
+{#prepare}
+## Prepare to install NixOS
+
 
 >[!note] Minimal ISO image
 > This tutorial doesn't use a graphical installer. Instead, it uses the minimal ISO image. This is primarily because we don't want the installer to partion the disk for us. We will use [disko](https://github.com/nix-community/disko) to do that.
@@ -61,7 +62,7 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 :::
 
 {#configuration}
-## The NixOS configuration
+## Generate initial NixOS configuration
 
 ```bash
 sudo nixos-generate-config --no-filesystems --root /mnt
@@ -70,11 +71,12 @@ sudo nixos-generate-config --no-filesystems --root /mnt
 The [fileSystems](https://search.nixos.org/options?channel=23.11&show=fileSystems&from=0&size=50&sort=relevance&type=packages&query=fileSystems) configuration will be added by `disko`'s [nixosModule](https://nixos.wiki/wiki/NixOS_modules) hence we use `--no-filesystems` to avoid generating it. `--root` is to specify the mountpoint to generate `configuration.nix` and `hardware-configuration.nix` in. Here, it will be `/mnt/etc/nixos`.
 
 {#flakeify}
-### Flakeify
+## Flakeify the configuration
 
 ![[configuration-as-flake]]
 
-### Add the `disko` nixosModule
+{#add-disko}
+## Add the `disko` nixosModule
 
 Add the `disko` flake input:
 
@@ -165,16 +167,3 @@ You now have a reproducible disk partitioning scheme. This does come with a cost
 ## Up next
 
 We will use [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) to automate the steps above and eliminate the need for a USB flash drive (assuming you have a working Linux system or are booted into a rescue image).
-
-#
-
-
-
-
-
-
-
-
-
-
-
