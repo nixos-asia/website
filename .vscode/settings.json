@@ -24,7 +24,8 @@
     "pasteImage.insertPattern": "![[${imageFilePath}]]",
     "search.exclude": {
         ".direnv": true
-    }
+    },
+    "markdown.extension.toc.levels": "2..6"
     // If use Git, these might be interesting:
     // "git.autofetch": true,
     // "git.postCommitCommand": "push"
