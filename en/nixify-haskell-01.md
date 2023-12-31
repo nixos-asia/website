@@ -1,8 +1,3 @@
----
-date: 2023-09-08
-author: shivaraj-bh
----
-
 
 # Nixifying a Haskell project using nixpkgs
 
