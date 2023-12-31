@@ -1,18 +1,14 @@
+---
+short-title: Using nixpkgs only
+---
 
 # Nixifying a Haskell project using nixpkgs
 
-This is the start of a series of blog posts aimed at simplifying #[[haskell]] development & packaging workflow using [[nix]]. In this post, we begin the series by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command.
+This is part 1 of [[nixify-haskell]] series. In this post, we begin by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command. At the end of this post, we will have a [[flakes|flake.nix]] that can be used to build the project, setup the development environment and run the Haskell application including the dependent services (PostgreSQL and PostgREST) with one command.
 
-Nix is a powerful package manager and build system that provides reproducible and declarative development environment. We will utilize #[[flakes|Nix Flakes]] to declaratively configure this environment.
+>[!warning] 
+> A basic understanding of the [[nix]] expression language is assumed. See [[nix-rapid]] for a quick introduction.
 
->[!note] 
-> We strongly recommend flakes for anyone getting started with Nix. Flakes is [production ready despite being marked as experimental](https://determinate.systems/posts/experimental-does-not-mean-unstable).
-
->[!info] 
-> The [Haskell infrastructure in nixpkgs](https://community.flake.parts/haskell-flake/nixpkgs-haskell) is the simplest way to get started with Nixifying a Haskell project. There are also other approaches (like [haskell.nix](https://github.com/input-output-hk/haskell.nix), [stacklock2nix](https://github.com/cdepillabout/stacklock2nix)). Later in the blog post series, we'll explore [haskell-flake](https://community.flake.parts/haskell-flake) which builds on top of the Haskell infrastructure in [[nixpkgs]].
-
-
-If you're unfamiliar with Nix, we have [[nix-rapid]] available to help you get started quickly or you can take your time and explore it at [Zero to Nix](https://zero-to-nix.com). A basic understanding of the Nix expression language is assumed. 
 Throughout the series, we will utilize a simple Haskell app called [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) to illustrate how to build a Haskell project and automatically manage runtime dependencies such as databases (ie., [postgres](https://www.postgresql.org)) and and other services (here, we use [postgREST](https://postgrest.org/en/stable)), eliminating the need for any manual onboarding setup. This will allow us to highlight the advantages of using Nix.
 
 
