@@ -11,20 +11,7 @@ Welcome to the first installment of the [[nixify-haskell]] series. In this artic
 
 Throughout this series, we'll use a simple Haskell application called [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) as a case study to demonstrate building a Haskell project and managing runtime dependencies like databases (i.e., [postgres](https://www.postgresql.org/)) and other services (in this case, [postgREST](https://postgrest.org/en/stable)), thereby removing the need for manual setup. This approach highlights the benefits of utilizing Nix.
 
-
-{#why}
-## Why Choose Nix for Haskell Development?
-
-Why opt for [[nix]] when developing a Haskell project instead of alternatives like Stack or GHCup?
-
-- **Instantaneous Onboarding**: Typical project READMEs detail environment setup instructions that often fail to work uniformly across different developers' machines, taking hours or even days to configure. Nix offers an instant and reproducible setup, allowing any newcomer to get their development environment ready swiftly with one command.
-- **Boosted Productivity**: Developers can dedicate more time to writing Haskell, as Nix ensures a fully functional development environment through `nix develop`.
-- **Multi-Platform Support**: The same configuration reliably works across [[macos]], Linux, and WSL.
-
->[!note] macOS support
-> While [[macos]] doesn't enjoy first-class support in [[nixpkgs]] yet, [improvements are underway](https://github.com/NixOS/nixpkgs/issues/116341).
-
-The remainder of this article will guide you step-by-step through Nixifying the todo-app project.
+To understand why Nix is a great choice for Haskell development, see [[why-dev]].
 
 
 {#flake}
