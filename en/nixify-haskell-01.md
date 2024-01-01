@@ -4,7 +4,7 @@ short-title: Using nixpkgs only
 
 # Nixifying a Haskell project using nixpkgs
 
-This is part 1 of [[nixify-haskell]] series. In this post, we begin by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command. At the end of this post, we will have a [[flakes|flake.nix]] that can be used to build the project, setup the development environment and run the Haskell application including the dependent services (PostgreSQL and PostgREST) with one command.
+Welcome to the inaugural installment of the [[nixify-haskell]] series. In this article, we begin by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command. At the end of this post, we will have a [[flakes|flake.nix]] that can be used to build the project, setup the development environment and run the Haskell application including the dependent services (PostgreSQL and PostgREST) with one command.
 
 >[!warning] 
 > A basic understanding of the [[nix]] expression language is assumed. See [[nix-rapid]] for a quick introduction.
@@ -171,24 +171,78 @@ Tl;dr Here is the `flake.nix` for this section:
     };
 }
 ```
+
 Let's break it down!
+
 ### haskellPackages
 
-Consult [the official manual](https://nixos.org/manual/nixpkgs/unstable/#haskell) to learn more about the Haskell infrastructure in [[nixpkgs]], but for the purpose of our blog post it is suffice to know that:
+Consult [the official manual](https://nixos.org/manual/nixpkgs/stable/#haskell) to learn more about the Haskell infrastructure in [[nixpkgs]], but for the purpose of our blog post it is suffice to know that:
 
 - `pkgs.haskellPackages` is an attribute set that contains all Haskell packages maintained within `nixpkgs`.
+  - They are built, in part, from Stackage but also Hackage.
 - Since our local package (`todo-app`) is not already included in `pkgs.haskellPackages`, we need to manually add it.
 - Technically, you can use `packages.${system}.default = pkgs.${system}.haskellPackages.callCabal2nix "todo-app" ./. { };` to include the package. However, adding it to `haskellPackages` consolidates every Haskell package in one place. 
 
 In summary, adding the local package to `pkgs.haskellPackages` centralizes the package management process and simplifies the usage of the package within other flakes.
 
-### Overlay
+>[!tip] Exploring `pkgs.haskellPackages`
+>
+> You can use [[repl]].  In the repl session below, we locate and build the `aeson` package:
+>
+> ```nix
+> nix repl github:nixos/nixpkgs/nixpkgs-unstable
+> nix-repl> pkgs = legacyPackages.${builtins.currentSystem}
+> 
+> nix-repl> pkgs.haskellPackages.aeson
+> «derivation /nix/store/sjaqjjnizd7ybirh94ixs51x4n17m97h-aeson-2.0.3.0.drv»
+> 
+> nix-repl> :b pkgs.haskellPackages.aeson
+> 
+> This derivation produced the following outputs:
+>   doc -> /nix/store/xjvm45wxqasnd5p2kk9ngcc0jbjhx1pf-aeson-2.0.3.0-doc
+>   out -> /nix/store/1dc6b11k93a6j9im50m7qj5aaa5p01wh-aeson-2.0.3.0
+> ```
 
-[Overlays](https://nixos.wiki/wiki/Overlays) are used to override an existing package set, such as `pkgs.haskellPackages`, and produce a new package set containing the changes. These changes could be either about overriding a single package in the package set (the second argument `super` references the original package set), or it could be about adding new packages to it. 
 
 ### callCabal2nix
 
-The `callCabal2nix` function generates a Haskell package derivation based on its source. This function internally utilizes ["cabal2nix"](https://github.com/NixOS/cabal2nix), which is a Haskell utility that generates Nix build instructions from a cabal file.
+The `callCabal2nix` function from [[nixpkgs]] returns a Haskell package [[drv]] given its source. It internally utilizes the ["cabal2nix"](https://github.com/NixOS/cabal2nix) program, which generates the Nix derivation from a cabal file.
+
+
+### Overlay
+
+> [!info]
+> - [NixOS Wiki on Overlays](https://nixos.wiki/wiki/Overlays)
+> - [Overlay implementation in fixed-points.nix](https://github.com/NixOS/nixpkgs/blob/master/lib/fixed-points.nix)>
+
+Using the overlay system, you can *extend* the `pkgs.haskellPackages` (or any) package set, to either add new packages or override existing ones. The package set exposes a function called `extend` for this purpose. In the repl session below, we extend the default Haskell package set to override the `shower` package to be built from the Git repo instead:
+
+```nix
+nix-repl> :b pkgs.haskellPackages.shower
+
+This derivation produced the following outputs:
+  doc -> /nix/store/crzcx007h9j0p7qj35kym2rarkrjp9j1-shower-0.2.0.3-doc
+  out -> /nix/store/zga3nhqcifrvd58yx1l9aj4raxhcj2mr-shower-0.2.0.3
+
+nix-repl> myHaskellPackages = pkgs.haskellPackages.extend 
+    (self: super: {
+       shower = self.callCabal2nix "shower" 
+         (pkgs.fetchgit { 
+            url = "https://github.com/monadfix/shower.git";
+            rev = "2d71ea1"; 
+            sha256 = "sha256-vEck97PptccrMX47uFGjoBVSe4sQqNEsclZOYfEMTns="; 
+         }) {}; 
+    })
+
+nix-repl> :b myHaskellPackages.shower
+
+This derivation produced the following outputs:
+  doc -> /nix/store/vkpfbnnzyywcpfj83pxnj3n8dfz4j4iy-shower-0.2.0.3-doc
+  out -> /nix/store/55cgwfmayn84ynknhg74bj424q8fz5rl-shower-0.2.0.3
+```
+
+Notice how we used `callCabal2nix` to build a new Haskell package from the source (located in the specified Git repository).
+
 
 
 ### Time to run!
@@ -230,8 +284,10 @@ Tl;dr Here is the `flake.nix` for this section:
 
 ### shellFor
 
+A Haskell [[dev]] can be provided in one of the two ways. The default way is to use the (language-independent) `mkShell` function (Generic shell). However to get full IDE support, it is best to use the (haskell-specific) `shellFor` function, which is an abstraction over [`mkShell`](https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell) geared specifically for Haskell development shells
+
 - In the above flake, we utilize the [`shellFor`](https://nixos.wiki/wiki/Haskell#Using_shellFor_.28multiple_packages.29) function from the `haskellPackages` attribute set to set up the default shell for our project. 
-- `shellFor` is an abstraction over [`mkShell`](https://ryantm.github.io/nixpkgs/builders/special/mkshell/) geared specifically for Haskell development shells. Generally, we only need to define two keys `packages` and `nativeBuildInputs`. `packages` marks which of the packages in the package set are *local* packages (to be compiled by cabal). `nativeBuildInputs` is used to ensure that the specified packages are present in the `PATH` of the isolated development environment.
+- `shellFor` gives us the devShell. Generally, we only need to define two keys `packages` and `nativeBuildInputs`. `packages` refers to *local* Haskell packages (to be compiled by cabal). `nativeBuildInputs` contains the programs to put in the `PATH` of the development environment.
 
 ### Let's run!
 <script async id="asciicast-591426" src="https://asciinema.org/a/591426.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
@@ -391,7 +447,7 @@ For the complete souce code, visit [here](https://github.com/juspay/todo-app/tre
 
 ## Conclusion
 
-Let's see how the blog post addresses the points from the section [Why Nixify?](#why-nixify) 
+Let's see how the article addresses the points from the section [Why Nixify?](#why-nixify) 
 - **Instant onboarding**: There is no confusion about how to setup the development environment. It is `nix run .#postgres` to start the postgres server,
 `nix run .#createdb` to setup the database and `nix run .#postgrest` to start the Postgrest web server. This happens in a reproducible way, ensuring every
 developer gets the same environment.
@@ -399,4 +455,4 @@ developer gets the same environment.
 and see it in effect.
 - **Multi-platform**: All the commands mentioned in the previous points will work in the same way across platforms.
 
-In the next tutorial series, we will modularize this `flake.nix` using [[flake-parts]].
+In the next tutorial part, we will modularize this `flake.nix` using [[flake-parts]].
