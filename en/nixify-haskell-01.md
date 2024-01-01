@@ -1,38 +1,36 @@
 ---
-short-title: Using nixpkgs only
+short-title: 1. Using nixpkgs only
 ---
 
 # Nixifying a Haskell project using nixpkgs
 
-Welcome to the inaugural installment of the [[nixify-haskell]] series. In this article, we begin by nixifying a Haskell application that uses PostgreSQL database and package it for end-users to run with one command. At the end of this post, we will have a [[flakes|flake.nix]] that can be used to build the project, setup the development environment and run the Haskell application including the dependent services (PostgreSQL and PostgREST) with one command.
+Welcome to the first installment of the [[nixify-haskell]] series. In this article, we embark on the journey of integrating a Haskell application, specifically one utilizing a PostgreSQL database, into a convenient package that can be executed with a single command. By the conclusion of this article, you will have a [[flakes|flake.nix]] file ready to build the project, establish the development environment, and execute the Haskell application, including all dependent services such as PostgreSQL and PostgREST, through a singular command.
 
 >[!warning] 
 > A basic understanding of the [[nix]] expression language is assumed. See [[nix-rapid]] for a quick introduction.
 
-Throughout the series, we will utilize a simple Haskell app called [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) to illustrate how to build a Haskell project and automatically manage runtime dependencies such as databases (ie., [postgres](https://www.postgresql.org)) and and other services (here, we use [postgREST](https://postgrest.org/en/stable)), eliminating the need for any manual onboarding setup. This will allow us to highlight the advantages of using Nix.
+Throughout this series, we'll use a simple Haskell application called [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) as a case study to demonstrate building a Haskell project and managing runtime dependencies like databases (i.e., [postgres](https://www.postgresql.org/)) and other services (in this case, [postgREST](https://postgrest.org/en/stable)), thereby removing the need for manual setup. This approach highlights the benefits of utilizing Nix.
 
 
-## Why Nixify?
+{#why}
+## Why Choose Nix for Haskell Development?
 
-Why use Nix to develop a Haskell project rather than something like Stack or GHCup?
+Why opt for [[nix]] when developing a Haskell project instead of alternatives like Stack or GHCup?
 
-- **Instant onboarding**: Projects have READMEs that describe how to setup the development environment but these instructions do not work the same way for 
-every developer and usually takes hours or days to setup. With Nix the setup is instantaneous and reproducible,[^1] which means any new developer
-can get the development environment up and running with one command.
-- **Enhanced productivity**: More time spent on writing Haskell as Nix gives a fully working development environment with `nix develop`.
-- **Multi-platform**: Same configuration generally works on macOS, Linux and WSL.
+- **Instantaneous Onboarding**: Typical project READMEs detail environment setup instructions that often fail to work uniformly across different developers' machines, taking hours or even days to configure. Nix offers an instant and reproducible setup, allowing any newcomer to get their development environment ready swiftly with one command.
+- **Boosted Productivity**: Developers can dedicate more time to writing Haskell, as Nix ensures a fully functional development environment through `nix develop`.
+- **Multi-Platform Support**: The same configuration reliably works across [[macos]], Linux, and WSL.
 
 >[!note] macOS support
-> Although [[macos]] doesn't have first-class support in [[nixpkgs]], [it is getting there](https://github.com/NixOS/nixpkgs/issues/116341).
+> While [[macos]] doesn't enjoy first-class support in [[nixpkgs]] yet, [improvements are underway](https://github.com/NixOS/nixpkgs/issues/116341).
 
-[^1]: Considering the packages are available in Nix for the host platform.
-
-The rest of this blog post will provide a step-by-step demonstration of how to Nixify the todo-app project.
+The remainder of this article will guide you step-by-step through Nixifying the todo-app project.
 
 
-## Introduce Flake
+{#flake}
+## Introducing Flake
 
-To begin, clone the [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) repository and checkout the specified commit.
+Start by cloning the [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) repository and checking out the specified commit.
 
 ```sh
 git clone https://github.com/juspay/todo-app.git
@@ -40,11 +38,12 @@ cd todo-app
 git checkout 076185e34f70e903b992b597232bc622eadfcd51
 ```
 
-Next, in the project's root directory, create a file named `flake.nix` and run `git add flake.nix` (Nix searches for `flake.nix` in git files). We will begin by setting up a basic template for the flake, which includes:
-- Defining `inputs` and `outputs`
-- Specifying the `system` corresponding to your machine.
+Next, create a file named `flake.nix` in the project's root directory and [[new-file|add it to git]]. Begin by outlining a basic flake structure, which includes:
 
-Tl;dr This is how your `flake.nix` will look:
+- Defining `inputs` and `outputs`
+- Specifying the `system` for your specific machine.
+
+Here's how your `flake.nix` will look initially:
 
 ```nix title="flake.nix"
 {
@@ -70,61 +69,59 @@ Tl;dr This is how your `flake.nix` will look:
     };
 }
 ```
-A nix flake such as the one above consumes certain `inputs` and produces certain `outputs`. Let's break down each part of this `flake.nix`:
+
+This nix flake consumes specified `inputs` and generates defined `outputs`. Let's deconstruct each part of this `flake.nix`:
 
 ### Inputs
 
 >[!info] There are two ways to access the attributes of `inputs` within `outputs`:
-> - Adding the attribute as a parameter to `outputs`, like `outputs = { self, <attribute> }`. This allows you to use the `<attribute>` without requiring any prefix.
-> - Bind a variable to all the parameters of `outputs`, like `outputs = inputs@{self, ...}`. This enables you to access any attribute from `inputs` in this fashion: `inputs.<attribute>`.
+> - Adding the attribute as a parameter to `outputs`, e.g., `outputs = { self, <attribute> }`. This allows you to use the `<attribute>` directly.
+> - Binding all parameters of `outputs` to a variable, e.g., `outputs = inputs@{self, ...}`. This enables access to any attribute from `inputs` as `inputs.<attribute>`.
 
+Flakes can reference other flakes, specified in the `inputs` attribute. We utilize the [URL-like representation](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax) for input flakes.
 
-A flake can reference other flakes, which are specified in the `inputs` attribute. We will use the [URL-like representation](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax) to specify our input flakes.
+In our example, we're using the [GNU hello](https://www.gnu.org/software/hello) package from the \[\[nixpkgs\]\] flake. Hence, we'll specify the \[\[nixpkgs\]\] flake as an input, particularly its `nixpkgs-unstable` branch.
 
-In this example, we will use [GNU hello](https://www.gnu.org/software/hello) package from [[nixpkgs]] flake. Therefore, we'll specify the [[nixpkgs]] flake as an input, specifically using its `nixpkgs-unstable` branch.
-
->[!note] The `nixpkgs-unstable` naming
-> The `nixpkgs-unstable` branch is named as such because of the frequent updates it receives and doesn't imply that it is unsafe.
-
+>[!note] About `nixpkgs-unstable`
+> The `nixpkgs-unstable` branch is frequently updated, hence its name, but this doesn't imply instability or unsuitability for use.
 
 ### Outputs
 
-The `outputs` attribute of a flake is essentially a Nix function that takes inputs and returns the outputs attribute. 
+The `outputs` attribute is essentially a Nix function that takes inputs and returns the specified outputs.
 
-The inputs argument is an attrset containing `self` as well as the flake inputs (in our flake, we reference the only input `nixpkgs`).
+The inputs argument contains `self` as well as the flake inputs (in our case, the single input `nixpkgs`).
 
->[!info] What is `self`?
-> `self` refers to the final state of attributes in the `outputs`. For example, `self.packages.${system}.default` refers to the attribute after assigning `pkgs.hello` to it.
+>[!info] Understanding `self`?
+> `self` refers to the final state of attributes in `outputs`, for example, `self.packages.${system}.default` refers to the attribute after assigning `pkgs.hello` to it.
 
-[Refer here](https://nixos.wiki/wiki/Flakes#Output_schema) for a detailed schema of `outputs`. Note that the `nixpkgs` key within the inputs attrset refers to the `outputs` of the `flake.nix` located at `nixpkgs.url`. If `nixpkgs.flake = false` is set, then the parameter will represent the source code.
+For a detailed schema of `outputs`, refer [here](https://nixos.wiki/wiki/Flakes#Output_schema). Note that the `nixpkgs` key within the inputs attrset refers to the `outputs` of the `flake.nix` located at `nixpkgs.url`. If `nixpkgs.flake = false` is set, then the parameter will represent the (unevaluated) nixpkgs source tree.
 
-The body of the function defines the flake outputs. Within the `let` block we define two values -- `system` (set as "aarch64-darwin" in this example, assuming we are on an ARM mac) and `pkgs` (referring to [[nixpkgs]] packages for `system`). In our example, `system` is hardcoded to a single system, but [forAllSystems](https://zero-to-nix.com/concepts/flakes#system-specificity) can be used to define packages for an array of systems.
+Inside the function, we define the flake outputs. In the `let` block we establish two values: `system` (set as "aarch64-darwin" in this example, assuming an ARM mac) and `pkgs` (referencing [[nixpkgs]] packages for `system`). Typically, `system` is hardcoded to a single system, but [forAllSystems](https://zero-to-nix.com/concepts/flakes#system-specificity) can be used to define packages for an array of systems.
 
-Here are some standard outputs a flake may produce:
+Here's a look at some standard outputs a flake might produce:
 
 #### Packages
 
-- A flake's `packages.${system}` output contains [[drv|derivations]] that can be utilized to build the package.
-- Executing `nix build` will build the `packages.${system}.default` output. Run `nix build .#<packageName>` to build the package named `packages.${system}.<packageName>`.
+- The `packages.${system}`` output contains [[drv|derivations]] for building the package.
+- Executing `nix build` builds the `packages.${system}.default` output. To build a specific package, run `nix build .#<packageName>`.
 
 #### Apps
 
-- A flake's `apps.${system}.<appName>` output refers to a flake app that can be exeucted using `nix run`. 
-  - It is attribute set containing two keys `type` and `program`. The `type` attribute determines how the program should be executed. For instance, "shell" indicates a shell script, "python" indicates a Python script, and "app" indicates an executable. The `program` attribute is a string representing the path in the Nix store where the executable is located.
-- Executing `nix run` will run the `apps.${system}.default` app. Run `nix run .#<appName>` to run the app named `<appName>`.
+- The `apps.${system}.<appName>` output refers to an executable flake app run using `nix run`. It's an attribute set containing two keys: `type` and `program`, where `type` determines how the program should be executed (e.g., "shell" for a shell script, "python" for a Python script) and `program` is the path in the Nix store to the executable.
+- Executing `nix run` runs the `apps.${system}.default` app. Run `nix run .#<appName>` to execute a specific app.
 
 #### DevShells
 
-- By utilizing `pkgs.mkShell`, you can configure your development shell to include only the necessary packages.
-- `pkgs.mkShell` generates a derivation that is evaluated when running the `nix develop` command.
-- By default the derivation specified by `devShells.${system}.default` is evaluated. However, you also have the flexibility to define a custom development shell, such as `devShells.${system}.mydevShell` and execute it using `nix develop .#mydevShell`
+- `pkgs.mkShell` allows you to create a development shell with only the necessary packages.
+- `pkgs.mkShell` generates a derivation evaluated when running `nix develop`.
+- By default, the derivation specified by `devShells.${system}.default` is evaluated. You can define a custom development shell, such as `devShells.${system}.mydevShell`, and execute it using `nix develop .#mydevShell`.
 
-#### Visualize the flake outputs
+#### Visualizing Flake Outputs
 
 - Run `nix flake show`
 
 >[!note] IFD
-> Run `nix flake show --allow-import-from-derivation` in the further sections as `callCabal2nix` relies on [IFD](https://nixos.wiki/wiki/Import_From_Derivation)
+> For subsequent sections, run `nix flake show --allow-import-from-derivation` as `callCabal2nix` relies on [IFD](https://nixos.wiki/wiki/Import_From_Derivation)
 
 Here's how it will look:
 ```sh
@@ -144,9 +141,9 @@ Here's how it will look:
 
 ## Nixify Haskell package
 
-In the previous section we wrote a hello world flake that contains the "hello" package. Now, let's write a flake for our Haskell project `todo-app`.
+Previously, we constructed a basic flake containing the "hello" package. Now, let's build a flake for our Haskell project, `todo-app`.
 
-Tl;dr Here is the `flake.nix` for this section:
+Here's a brief look at the `flake.nix` for this purpose:
 
 ```nix title="flake.nix"
 {
@@ -172,18 +169,17 @@ Tl;dr Here is the `flake.nix` for this section:
 }
 ```
 
-Let's break it down!
+Now, let's dissect it.
 
 ### haskellPackages
 
-Consult [the official manual](https://nixos.org/manual/nixpkgs/stable/#haskell) to learn more about the Haskell infrastructure in [[nixpkgs]], but for the purpose of our blog post it is suffice to know that:
+For more insights into Haskell's infrastructure in \[\[nixpkgs\]\], refer to the [official manual](https://nixos.org/manual/nixpkgs/stable/#haskell), but here's what you need to know for our purposes:
 
-- `pkgs.haskellPackages` is an attribute set that contains all Haskell packages maintained within `nixpkgs`.
-  - They are built, in part, from Stackage but also Hackage.
-- Since our local package (`todo-app`) is not already included in `pkgs.haskellPackages`, we need to manually add it.
-- Technically, you can use `packages.${system}.default = pkgs.${system}.haskellPackages.callCabal2nix "todo-app" ./. { };` to include the package. However, adding it to `haskellPackages` consolidates every Haskell package in one place. 
+- `pkgs.haskellPackages` is an attribute set containing all Haskell packages within `nixpkgs`.
+- As our local package (`todo-app`) isn't included in `pkgs.haskellPackages`, we'll manually add it.
+- Technically, you could include the package using `packages.${system}.default = pkgs.${system}.haskellPackages.callCabal2nix "todo-app" ./. { };`. However, adding it to `haskellPackages` consolidates every Haskell package in one place.
 
-In summary, adding the local package to `pkgs.haskellPackages` centralizes the package management process and simplifies the usage of the package within other flakes.
+In summary, adding the local package to `pkgs.haskellPackages` centralizes package management and simplifies package usage within other flakes.
 
 >[!tip] Exploring `pkgs.haskellPackages`
 >
@@ -206,7 +202,7 @@ In summary, adding the local package to `pkgs.haskellPackages` centralizes the p
 
 ### callCabal2nix
 
-The `callCabal2nix` function from [[nixpkgs]] returns a Haskell package [[drv]] given its source. It internally utilizes the ["cabal2nix"](https://github.com/NixOS/cabal2nix) program, which generates the Nix derivation from a cabal file.
+The `callCabal2nix` function from [[nixpkgs]] generates a Haskell package [[drv]] from its source, utilizing the ["cabal2nix"](https://github.com/NixOS/cabal2nix) program to convert a cabal file into a Nix derivation.
 
 
 ### Overlay
@@ -215,7 +211,9 @@ The `callCabal2nix` function from [[nixpkgs]] returns a Haskell package [[drv]] 
 > - [NixOS Wiki on Overlays](https://nixos.wiki/wiki/Overlays)
 > - [Overlay implementation in fixed-points.nix](https://github.com/NixOS/nixpkgs/blob/master/lib/fixed-points.nix)>
 
-Using the overlay system, you can *extend* the `pkgs.haskellPackages` (or any) package set, to either add new packages or override existing ones. The package set exposes a function called `extend` for this purpose. In the repl session below, we extend the default Haskell package set to override the `shower` package to be built from the Git repo instead:
+Overlays allow you to _extend_ package sets like `pkgs.haskellPackages`, either adding new packages or overriding existing ones. The package set exposes an `extend` function for this purpose.
+
+In the repl session below, we extend the default Haskell package set to override the `shower` package to be built from the Git repo instead:
 
 ```nix
 nix-repl> :b pkgs.haskellPackages.shower
@@ -245,14 +243,15 @@ Notice how we used `callCabal2nix` to build a new Haskell package from the sourc
 
 
 
-### Time to run!
+### Putting It All Together
 <script async id="asciicast-591422" src="https://asciinema.org/a/591422.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
 
-## Nixify DevShell
+{#devshell}
+## Nixifying Development Shells
 
-Our existing flake enables us to *build* the `todo-app`. However, what if want to develop it, by adding a feature or fixing a bug? For Haskell development, we normally use [cabal](https://cabal.readthedocs.io/) and tools like [ghcid](https://github.com/ndmitchell/ghcid). These tools require a GHC environment that includes the packages specified in the `build-depends` of our cabal file. This is where `devShell` becomes useful as it provides an isolated environment with all packages required by the project, catering to our development needs.
+Our existing flake lets us _build_ `todo-app`. But what if we want to develop it by adding features or fixing bugs? Typically, Haskell development involves tools like [cabal](https://cabal.readthedocs.io/) and [ghcid](https://github.com/ndmitchell/ghcid). These tools require a GHC environment with the packages specified in the `build-depends` of our cabal file. This is where `devShell` comes in, providing an isolated environment with all packages required by the project.
 
-Tl;dr Here is the `flake.nix` for this section:
+Here's the `flake.nix` for setting up a development shell:
 
 ```nix title="flake.nix"
 {
@@ -292,11 +291,12 @@ A Haskell [[dev]] can be provided in one of the two ways. The default way is to 
 ### Let's run!
 <script async id="asciicast-591426" src="https://asciinema.org/a/591426.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
 
-## Nixify external dependencies
+{#ext-deps}
+## Nixifying External Dependencies
 
-Up until now, we have nixified the Haskell portion of our project. However, a project can also have non-Haskell dependencies, like Postgres, MySQL and Redis. In this section we will specifically look at how you can start a postgres server using Nix without relying or mutating global state (outside of project directory).
+While we've focused on Haskell components, many projects rely on non-Haskell dependencies like Postgres. We will demonstrate how to initiate a Postgres server using Nix without altering the global system state.
 
-Tl;dr Here's the `flake.nix`:
+Here's the `flake.nix`:
 
 ```nix title="flake.nix"
 {
@@ -339,7 +339,9 @@ Tl;dr Here's the `flake.nix`:
 ### Run it!
 <script async id="asciicast-591427" src="https://asciinema.org/a/591427.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
 
-## Nixify Combined
+{#combine}
+## Combining All Elements
+
 
 Now it's time to consolidate all the previously discussed sections into a single `flake.nix`. Additionally, we should incorporate the necessary apps for `postgrest` and `createdb`. `postgrest` app will start the service and `createdb` will handle tasks such as loading the database dump, creating a database user, and configuring the database for postgREST.
 
@@ -439,6 +441,7 @@ Now it's time to consolidate all the previously discussed sections into a single
     };
 }
 ```
+
 For the complete souce code, visit [here](https://github.com/juspay/todo-app/tree/tutorial/1). It's worth noting that the source code uses [`forAllSystems`](https://zero-to-nix.com/concepts/flakes#system-specificity), which was not included in the tutorial above to maintain simplicity.
 
 ### Video Walkthrough
