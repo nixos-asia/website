@@ -4,14 +4,13 @@ short-title: 1. Using nixpkgs only
 
 # Nixifying a Haskell project using nixpkgs
 
-Welcome to the first installment of the [[nixify-haskell]] series. In this article, we embark on the journey of integrating a Haskell application, specifically one utilizing a PostgreSQL database, into a convenient package that can be executed with a single command. By the conclusion of this article, you will have a [[flakes|flake.nix]] file ready to build the project, establish the development environment, and execute the Haskell application, including all dependent services such as PostgreSQL and PostgREST, through a singular command.
+Welcome to the [[nixify-haskell]] series, where we start our journey by integrating a Haskell application, particularly one using a PostgreSQL database, into a single-command deployable package. By the end of this article, you'll have a [[flakes|flake.nix]] file that's set to build the project, establish the [[dev|development environment]], and execute the Haskell application along with all its dependent services like PostgreSQL and [PostgREST]. We'll be using [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) as a running case study throughout the series, demonstrating the process of building a Haskell project and effectively managing runtime dependencies, such as databases and other services, thereby illustrating the streamlined and powerful capabilities Nix introduces to Haskell development.
 
->[!warning] 
-> A basic understanding of the [[nix]] expression language is assumed. See [[nix-rapid]] for a quick introduction.
+[PostgREST]: https://postgrest.org/en/stable
 
-Throughout this series, we'll use a simple Haskell application called [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) as a case study to demonstrate building a Haskell project and managing runtime dependencies like databases (i.e., [postgres](https://www.postgresql.org/)) and other services (in this case, [postgREST](https://postgrest.org/en/stable)), thereby removing the need for manual setup. This approach highlights the benefits of utilizing Nix.
-
-To understand why Nix is a great choice for Haskell development, see [[why-dev]].
+>[!warning] Pre-requisites
+> - A basic understanding of the [[nix]] is assumed. See [[nix-rapid]]
+> - To appreciate why Nix is a great choice for Haskell development, see [[why-dev]]
 
 ## Nixify Haskell package
 
