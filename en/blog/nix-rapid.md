@@ -6,13 +6,13 @@ author: srid
 # Rapid Introduction to Nix
 
 
-The goal of this mini-tutorial is to introduce you to #[[nix]] as quickly as possible while also preparing the motivated learner to dive deeper into [the whole Nix ecosystem][zero-to-nix]. At the end of this introduction, you will be able to create a #[[flakes|flake]] for building a package and providing a developer environment shell.
+The goal of this mini-tutorial is to introduce you to #[[nix]] as quickly as possible while also preparing the motivated learner to dive deeper into [the whole Nix ecosystem][zero-to-nix]. At the end of this introduction, you will be able to create a #[[flakes|flake.nix]] that builds a package and provides a [[dev|developer environment]] shell.
 
 ![[rapid-nix.png]]
 
 If you are already experienced in [purely functional programming](https://en.wikipedia.org/wiki/Purely_functional_programming), it is highly recommended to read [Nix - taming Unix with functional programming](https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/) to gain a foundational perspective into Nix being purely functional but in the context of *file system* (as opposed to values stored in memory).
 
-> Dolstra proposed that we can treat the file system in an operating system like memory in a running program, and equate package management to memory management
+> [..] we can treat the file system in an operating system like memory in a running program, and equate package management to memory management
 
 ## Install
 
@@ -126,6 +126,9 @@ Let's do something more interesting with our `flake.nix` by adding the [[nixpkgs
 }
 ```
 
+>[!note] About `nixpkgs-unstable`
+> The `nixpkgs-unstable` branch is frequently updated, hence its name, but this doesn't imply instability or unsuitability for use.
+
 The [[nixpkgs]] flake has an output called `legacyPackages`, which is indexed by the platform (called "system" in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key `foo`. 
 
 >[!tip] You can use [[repl|`nix repl`]] to explore the outputs of any flake, using TAB completion:
@@ -144,7 +147,7 @@ The [[nixpkgs]] flake has an output called `legacyPackages`, which is indexed by
 
 ### Predefined outputs
 
-Nix commands treat certain outputs as special. These are:
+Nix commands treat [certain outputs as special](https://nixos.wiki/wiki/Flakes#Output_schema). These are:
 
 | Output      | Nix command       | Description                     |
 | ----------- | ----------------- | ------------------------------- |
@@ -211,6 +214,34 @@ $ ./result/bin/cowsay hello
 ```
 
 If you run `nix build` without arguments, it will default to `.#default`.
+
+#### Apps
+
+A flake app is similar to a flake package except it always refers to a runnable program. You can expose the cowsay executable from the cowsay package as the default flake app:
+
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+
+  outputs = inputs: {
+    apps.x86_64-linux = {
+      default = {
+        type= "app";
+        program = "${inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay}/bin/cowsay";
+      } ;
+    };
+  };
+}
+```
+
+Now, you can run `nix run` to run the cowsay app, which is equivalent to doing `nix build .#cowsay && ./result/bin/cowsay` in the previous flake.
+
+{#demo}
+#### Interlude: demo
+
+<script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
 
 #### DevShells
 

@@ -13,122 +13,15 @@ Throughout this series, we'll use a simple Haskell application called [todo-app]
 
 To understand why Nix is a great choice for Haskell development, see [[why-dev]].
 
+## Nixify Haskell package
 
-{#flake}
-## Introducing Flake
-
-Start by cloning the [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) repository and checking out the specified commit.
+Previously, we constructed a basic flake containing the "hello" package. Now, let's build a flake for our Haskell project, `todo-app`. Start by cloning the [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) repository and checking out the specified commit.
 
 ```sh
 git clone https://github.com/juspay/todo-app.git
 cd todo-app
 git checkout 076185e34f70e903b992b597232bc622eadfcd51
 ```
-
-Next, create a file named `flake.nix` in the project's root directory and [[new-file|add it to git]]. Begin by outlining a basic flake structure, which includes:
-
-- Defining `inputs` and `outputs`
-- Specifying the `system` for your specific machine.
-
-Here's how your `flake.nix` will look initially:
-
-```nix title="flake.nix"
-{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
-  outputs = { self, nixpkgs }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      packages.${system}.default = pkgs.hello;
-      apps.${system}.default = {
-        type = "app";
-        program = "${pkgs.hello}/bin/hello";
-      };
-      devShells.${system}.default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.hello
-        ];
-      };
-    };
-}
-```
-
-This nix flake consumes specified `inputs` and generates defined `outputs`. Let's deconstruct each part of this `flake.nix`:
-
-### Inputs
-
->[!info] There are two ways to access the attributes of `inputs` within `outputs`:
-> - Adding the attribute as a parameter to `outputs`, e.g., `outputs = { self, <attribute> }`. This allows you to use the `<attribute>` directly.
-> - Binding all parameters of `outputs` to a variable, e.g., `outputs = inputs@{self, ...}`. This enables access to any attribute from `inputs` as `inputs.<attribute>`.
-
-Flakes can reference other flakes, specified in the `inputs` attribute. We utilize the [URL-like representation](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax) for input flakes.
-
-In our example, we're using the [GNU hello](https://www.gnu.org/software/hello) package from the \[\[nixpkgs\]\] flake. Hence, we'll specify the \[\[nixpkgs\]\] flake as an input, particularly its `nixpkgs-unstable` branch.
-
->[!note] About `nixpkgs-unstable`
-> The `nixpkgs-unstable` branch is frequently updated, hence its name, but this doesn't imply instability or unsuitability for use.
-
-### Outputs
-
-The `outputs` attribute is essentially a Nix function that takes inputs and returns the specified outputs.
-
-The inputs argument contains `self` as well as the flake inputs (in our case, the single input `nixpkgs`).
-
->[!info] Understanding `self`?
-> `self` refers to the final state of attributes in `outputs`, for example, `self.packages.${system}.default` refers to the attribute after assigning `pkgs.hello` to it.
-
-For a detailed schema of `outputs`, refer [here](https://nixos.wiki/wiki/Flakes#Output_schema). Note that the `nixpkgs` key within the inputs attrset refers to the `outputs` of the `flake.nix` located at `nixpkgs.url`. If `nixpkgs.flake = false` is set, then the parameter will represent the (unevaluated) nixpkgs source tree.
-
-Inside the function, we define the flake outputs. In the `let` block we establish two values: `system` (set as "aarch64-darwin" in this example, assuming an ARM mac) and `pkgs` (referencing [[nixpkgs]] packages for `system`). Typically, `system` is hardcoded to a single system, but [forAllSystems](https://zero-to-nix.com/concepts/flakes#system-specificity) can be used to define packages for an array of systems.
-
-Here's a look at some standard outputs a flake might produce:
-
-#### Packages
-
-- The `packages.${system}`` output contains [[drv|derivations]] for building the package.
-- Executing `nix build` builds the `packages.${system}.default` output. To build a specific package, run `nix build .#<packageName>`.
-
-#### Apps
-
-- The `apps.${system}.<appName>` output refers to an executable flake app run using `nix run`. It's an attribute set containing two keys: `type` and `program`, where `type` determines how the program should be executed (e.g., "shell" for a shell script, "python" for a Python script) and `program` is the path in the Nix store to the executable.
-- Executing `nix run` runs the `apps.${system}.default` app. Run `nix run .#<appName>` to execute a specific app.
-
-#### DevShells
-
-- `pkgs.mkShell` allows you to create a development shell with only the necessary packages.
-- `pkgs.mkShell` generates a derivation evaluated when running `nix develop`.
-- By default, the derivation specified by `devShells.${system}.default` is evaluated. You can define a custom development shell, such as `devShells.${system}.mydevShell`, and execute it using `nix develop .#mydevShell`.
-
-#### Visualizing Flake Outputs
-
-- Run `nix flake show`
-
->[!note] IFD
-> For subsequent sections, run `nix flake show --allow-import-from-derivation` as `callCabal2nix` relies on [IFD](https://nixos.wiki/wiki/Import_From_Derivation)
-
-Here's how it will look:
-```sh
-├───apps
-│   └───aarch64-darwin
-│       └───default: app
-├───devShells
-│   └───aarch64-darwin
-│       └───default: development environment 'nix-shell'
-└───packages
-    └───aarch64-darwin
-        └───default: package 'hello-2.12.1'
-```
-#### See the flake in action
-
-<script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
-
-## Nixify Haskell package
-
-Previously, we constructed a basic flake containing the "hello" package. Now, let's build a flake for our Haskell project, `todo-app`.
 
 Here's a brief look at the `flake.nix` for this purpose:
 
