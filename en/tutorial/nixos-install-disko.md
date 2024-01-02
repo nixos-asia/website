@@ -160,6 +160,12 @@ sudo reboot
 - [Store the configuration on Git](https://nixos.asia/en/tutorial/nixos-install#git)
 - [Enable flakes](https://nixos.asia/en/tutorial/nixos-install#enable-flakes)
 
+## Video walkthrough
+
+:::{class="flex items-center justify-center mb-8"}
+<iframe width="878" height="494" src="https://www.youtube.com/embed/H3NPVazMXOE" title="nixos install with disko" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+:::
+
 ## Recap
 
 You now have a reproducible disk partitioning scheme. This does come with a cost of few extra manual steps but you can automate them with a script. Which is what we will do in the next tutorial.
