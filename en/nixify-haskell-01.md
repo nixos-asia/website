@@ -19,7 +19,13 @@ Let's build a simple flake for our Haskell project, `todo-app`. Start by cloning
 ```sh
 git clone https://github.com/juspay/todo-app.git
 cd todo-app
-git checkout 076185e34f70e903b992b597232bc622eadfcd51 ``` Here's a brief look at the `flake.nix` for this purpose: ```nix title="flake.nix" {
+git checkout 076185e34f70e903b992b597232bc622eadfcd51
+``` 
+
+Here's a brief look at the `flake.nix` for this purpose: 
+
+```nix title="flake.nix" 
+{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
@@ -46,17 +52,15 @@ Now, let's dissect it.
 
 ### haskellPackages
 
-For more insights into Haskell's infrastructure in \[\[nixpkgs\]\], refer to the [official manual](https://nixos.org/manual/nixpkgs/stable/#haskell), but here's what you need to know for our purposes:
+The [official manual](https://nixos.org/manual/nixpkgs/stable/#haskell) explains the Haskell's infrastructure in [[nixpkgs]] detail. For our purposes, the main things to understand are:
 
 - `pkgs.haskellPackages` is an attribute set containing all Haskell packages within `nixpkgs`.
-- As our local package (`todo-app`) isn't included in `pkgs.haskellPackages`, we'll manually add it.
-- Technically, you could include the package using `packages.${system}.default = pkgs.${system}.haskellPackages.callCabal2nix "todo-app" ./. { };`. However, adding it to `haskellPackages` consolidates every Haskell package in one place.
-
-In summary, adding the local package to `pkgs.haskellPackages` centralizes package management and simplifies package usage within other flakes.
+- We can "extend" this package set to add our own Haskell packages. This is what we do when creating `myHaskellPackages`.
+- We add the `todo-app` package to `myHaskellPackages` (a package set derived from `pkgs.haskellPackages`), and then use that when defining the flake package, `packages.${system}.default`, below.
 
 >[!tip] Exploring `pkgs.haskellPackages`
 >
-> You can use [[repl]].  In the repl session below, we locate and build the `aeson` package:
+> You can use [[repl]] to explore any flake's output.  In the repl session below, we locate and build the `aeson` package:
 >
 > ```nix
 > nix repl github:nixos/nixpkgs/nixpkgs-unstable
@@ -75,7 +79,7 @@ In summary, adding the local package to `pkgs.haskellPackages` centralizes packa
 
 ### callCabal2nix
 
-The `callCabal2nix` function from [[nixpkgs]] generates a Haskell package [[drv]] from its source, utilizing the ["cabal2nix"](https://github.com/NixOS/cabal2nix) program to convert a cabal file into a Nix derivation.
+We used `callCabal2nix` function from [[nixpkgs]] to build the `todo-app` package above. This functio generates a Haskell package [[drv]] from its source, utilizing the ["cabal2nix"](https://github.com/NixOS/cabal2nix) program to convert a cabal file into a Nix derivation.
 
 
 ### Overlay
@@ -84,7 +88,7 @@ The `callCabal2nix` function from [[nixpkgs]] generates a Haskell package [[drv]
 > - [NixOS Wiki on Overlays](https://nixos.wiki/wiki/Overlays)
 > - [Overlay implementation in fixed-points.nix](https://github.com/NixOS/nixpkgs/blob/master/lib/fixed-points.nix)>
 
-Overlays allow you to _extend_ package sets like `pkgs.haskellPackages`, either adding new packages or overriding existing ones. The package set exposes an `extend` function for this purpose.
+To _extend_ the `pkgs.haskellPackages` package set above, we had to pass what is known as an "overlay". This allows us to either override an existing package or add a new one. 
 
 In the repl session below, we extend the default Haskell package set to override the `shower` package to be built from the Git repo instead:
 
