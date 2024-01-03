@@ -9,23 +9,17 @@ Welcome to the [[nixify-haskell]] series, where we start our journey by integrat
 [PostgREST]: https://postgrest.org/en/stable
 
 >[!warning] Pre-requisites
-> - A basic understanding of the [[nix]] is assumed. See [[nix-rapid]]
+> - A basic understanding of the [[nix]] and [[flakes]] is assumed. See [[nix-rapid]]
 > - To appreciate why Nix is a great choice for Haskell development, see [[why-dev]]
 
 ## Nixify Haskell package
 
-Previously, we constructed a basic flake containing the "hello" package. Now, let's build a flake for our Haskell project, `todo-app`. Start by cloning the [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) repository and checking out the specified commit.
+Let's build a simple flake for our Haskell project, `todo-app`. Start by cloning the [todo-app](https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555) repository and checking out the specified commit.
 
 ```sh
 git clone https://github.com/juspay/todo-app.git
 cd todo-app
-git checkout 076185e34f70e903b992b597232bc622eadfcd51
-```
-
-Here's a brief look at the `flake.nix` for this purpose:
-
-```nix title="flake.nix"
-{
+git checkout 076185e34f70e903b992b597232bc622eadfcd51 ``` Here's a brief look at the `flake.nix` for this purpose: ```nix title="flake.nix" {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
