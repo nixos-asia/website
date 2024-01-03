@@ -126,7 +126,7 @@ Notice how we used `callCabal2nix` to build a new Haskell package from the sourc
 {#devshell}
 ## Nixifying Development Shells
 
-Our existing flake lets us _build_ `todo-app`. But what if we want to develop it by adding features or fixing bugs? Typically, Haskell development involves tools like [cabal](https://cabal.readthedocs.io/) and [ghcid](https://github.com/ndmitchell/ghcid). These tools require a GHC environment with the packages specified in the `build-depends` of our cabal file. This is where `devShell` comes in, providing an isolated environment with all packages required by the project.
+Our existing flake lets us _build_ `todo-app`. But what if we want to _develop_ it? Typically, Haskell development involves tools like [cabal](https://cabal.readthedocs.io/) and [ghcid](https://github.com/ndmitchell/ghcid). These tools require a GHC environment with the packages specified in the `build-depends` of our cabal file. This is where `devShell` comes in, providing an isolated environment with all packages required by the project.
 
 Here's the `flake.nix` for setting up a development shell:
 
@@ -149,7 +149,7 @@ Here's the `flake.nix` for setting up a development shell:
         packages = p : [
           p.todo-app
         ];
-        buildInputs = with myHaskellPackages; [
+        nativeBuildInputs = with myHaskellPackages; [
           ghcid
           cabal-install
         ];
@@ -160,10 +160,12 @@ Here's the `flake.nix` for setting up a development shell:
 
 ### shellFor
 
-A Haskell [[dev]] can be provided in one of the two ways. The default way is to use the (language-independent) `mkShell` function (Generic shell). However to get full IDE support, it is best to use the (haskell-specific) `shellFor` function, which is an abstraction over [`mkShell`](https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell) geared specifically for Haskell development shells
+A Haskell [[dev|devShell]] can be provided in one of the two ways. The default way is to use the (language-independent) `mkShell` function (Generic shell). However to get full IDE support, it is best to use the (haskell-specific) `shellFor` function, which is an abstraction over [`mkShell`](https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell) geared specifically for Haskell development shells
 
-- In the above flake, we utilize the [`shellFor`](https://nixos.wiki/wiki/Haskell#Using_shellFor_.28multiple_packages.29) function from the `haskellPackages` attribute set to set up the default shell for our project. 
-- `shellFor` gives us the devShell. Generally, we only need to define two keys `packages` and `nativeBuildInputs`. `packages` refers to *local* Haskell packages (to be compiled by cabal). `nativeBuildInputs` contains the programs to put in the `PATH` of the development environment.
+- Every Haskell package set (such as `pkgs.haskellPackages`), exposes [`shellFor`](https://nixos.wiki/wiki/Haskell#Using_shellFor_.28multiple_packages.29) function, which returns a devShell with GHC package set configured with the Haskell packages in that package set.
+- As arguments to `shellFor` - generally, we only need to define two keys `packages` and `nativeBuildInputs`. 
+  - `packages` refers to *local* Haskell packages (that will be compiled by cabal rather than Nix). 
+  - `nativeBuildInputs` refers to programs to make available in the `PATH` of the devShell.
 
 ### Let's run!
 <script async id="asciicast-591426" src="https://asciinema.org/a/591426.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
@@ -171,9 +173,9 @@ A Haskell [[dev]] can be provided in one of the two ways. The default way is to 
 {#ext-deps}
 ## Nixifying External Dependencies
 
-While we've focused on Haskell components, many projects rely on non-Haskell dependencies like Postgres. We will demonstrate how to initiate a Postgres server using Nix without altering the global system state.
+We looked at how to package a Haskell package, and thereon how to setup a development shell. Now we come to the final part of this tutorial, where we will see how to package external dependencies (like Postgres). We will demonstrate how to initiate a Postgres server using Nix without altering the global system state.
 
-Here's the `flake.nix`:
+Here's the `flake.nix` for making `nix run .#postgres` launch a Postgres server:
 
 ```nix title="flake.nix"
 {
@@ -206,12 +208,8 @@ Here's the `flake.nix`:
   };
 }
 ```
-### writeShellApplication
 
-- The [`writeShellApplication`](https://noogle.dev/?selected=%22build-support.trivial-builders.writeShellApplication%22&term=%22writeShellApplication%22) function generates a derivation for a shell script specified as the value for `text` attribute. 
-- `runtimeInputs`: packages to be made available to the shell application's PATH.
-- `writeShellApplication` uses [shellcheck](https://github.com/koalaman/shellcheck) to statically analyze your bash script for issues.
-- `"${script}"` provides the path in the `nix/store` where the application is located.
+This flake defines a flake app that can be run using `nix run`. This app is simply a shell script that starts a Postgres server. [[nixpkgs]] provides the convenient [[writeShellApplication]] function to generate such a script. Note that `"${script}"` provides the path in the `nix/store` where the application is located.
 
 ### Run it!
 <script async id="asciicast-591427" src="https://asciinema.org/a/591427.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
@@ -319,7 +317,10 @@ Now it's time to consolidate all the previously discussed sections into a single
 }
 ```
 
-For the complete souce code, visit [here](https://github.com/juspay/todo-app/tree/tutorial/1). It's worth noting that the source code uses [`forAllSystems`](https://zero-to-nix.com/concepts/flakes#system-specificity), which was not included in the tutorial above to maintain simplicity.
+For the complete souce code, visit [here](https://github.com/juspay/todo-app/tree/tutorial/1). 
+
+>[!note] `forAllSystems`
+> The source code uses [`forAllSystems`](https://zero-to-nix.com/concepts/flakes#system-specificity), which was not included in the tutorial above to maintain simplicity. Later, we will obviate `forAllSystems` and simplify the flake further using [[flake-parts]].
 
 ### Video Walkthrough
 <script async id="asciicast-591435" src="https://asciinema.org/a/591435.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
@@ -327,12 +328,13 @@ For the complete souce code, visit [here](https://github.com/juspay/todo-app/tre
 
 ## Conclusion
 
-Let's see how the article addresses the points from the section [Why Nixify?](#why-nixify) 
-- **Instant onboarding**: There is no confusion about how to setup the development environment. It is `nix run .#postgres` to start the postgres server,
+This tutorial pratically demonstrated [[why-dev|why Nix is a great choice for Haskell development]]:
+
+- **Instantaneous Onboarding**: There is no confusion about how to setup the development environment. It is `nix run .#postgres` to start the postgres server,
 `nix run .#createdb` to setup the database and `nix run .#postgrest` to start the Postgrest web server. This happens in a reproducible way, ensuring every
 developer gets the same environment.
-- **Enhanced productivity**: The commands mentioned in the previous points in conjunction with `nix develop` is all that is needed to make a quick change
+- **Boosted Productivity**: The commands mentioned in the previous points in conjunction with `nix develop` is all that is needed to make a quick change
 and see it in effect.
-- **Multi-platform**: All the commands mentioned in the previous points will work in the same way across platforms.
+- **Multi-Platform Support**: All the commands mentioned in the previous points will work in the same way across platforms.
 
 In the next tutorial part, we will modularize this `flake.nix` using [[flake-parts]].
