@@ -30,6 +30,7 @@
                 layersString = [ name "global" ];
                 prettyUrls = true;
                 baseUrl = "/${name}/";
+                basePath = name;
               })
               langs;
           };
@@ -43,9 +44,9 @@
               buildInputs = [ ];
             } ''
             # TODO: Generalize this by iterating over `langs` list.
-            mkdir -p $out/{en,fr}
-            cp -r ${self'.packages.en}/* $out/en/
-            cp -r ${self'.packages.fr}/* $out/fr/
+            mkdir -p $out
+            cp -r ${self'.packages.en}/* $out/
+            cp -r ${self'.packages.fr}/* $out/
             # TODO: Lang selector?
             # echo '<meta http-equiv="refresh" content="0; URL=/en" />' >> $out/index.html
             echo '<body><a href="/en">English</a> | <a href="/fr">Français</a></body>' >> $out/index.html
