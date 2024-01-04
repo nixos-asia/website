@@ -6,8 +6,5 @@ feed:
 
 # Blog
 
-Recent posts:
-
-```query {.timeline}
-children:.
-```
+>[!warning] WIP
+> We don't have any posts yet. Checkout our [[tutorial]] in the meanwhile.
