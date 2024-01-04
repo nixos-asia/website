@@ -144,12 +144,12 @@ The [[nixpkgs]] flake has an output called `legacyPackages`, which is indexed by
 
 Nix commands treat [certain outputs as special](https://nixos.wiki/wiki/Flakes#Output_schema). These are:
 
-| Output      | Nix command       | Description                     |
-| ----------- | ----------------- | ------------------------------- |
-| `packages`  | `nix build`       | [[drv]] output                  |
-| `devShells` | `nix develop`     | [Development](../dev.md) shells |
-| `apps`      | `nix run`         | Runnable applications           |
-| `checks`    | `nix flake check` | Tests and checks                |
+| Output      | Nix command       | Description                  |
+| ----------- | ----------------- | ---------------------------- |
+| `packages`  | `nix build`       | [[drv]] output               |
+| `devShells` | `nix develop`     | [Development](dev.md) shells |
+| `apps`      | `nix run`         | Runnable applications        |
+| `checks`    | `nix flake check` | Tests and checks             |
 
 All of these predefined outputs are further indexed by the "system" value. 
 
