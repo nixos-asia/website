@@ -4,6 +4,9 @@ order: -100
 
 # Tutorials
 
-```query
-children:.
-```
+- [[nix-rapid]]# (TODO: change slug/folder)
+- [[nixos]] tutorial series
+  - [[nixos-install]]
+  - [ ] ...
+- [[nixify-haskell]]
+
