@@ -39,18 +39,32 @@
               pkgs.nixpkgs-fmt
             ];
           };
-          packages.default = pkgs.runCommand "nixos-asia-site-all-langs"
-            {
-              buildInputs = [ ];
-            } ''
-            # TODO: Generalize this by iterating over `langs` list.
-            mkdir -p $out
-            cp -r ${self'.packages.en}/* $out/
-            cp -r ${self'.packages.fr}/* $out/
-            # TODO: Lang selector?
-            # echo '<meta http-equiv="refresh" content="0; URL=/en" />' >> $out/index.html
-            echo '<body><a href="/en">English</a> | <a href="/fr">Français</a></body>' >> $out/index.html
-          '';
+          packages = rec {
+            indexPage = pkgs.writeTextDir
+              "index.html"
+              ''
+                <html>
+                  <head>
+                    <meta charset="utf-8" />
+                    <title>Welcome to NixOS Asia</title>
+                    <!-- meta http-equiv="refresh" content="0; URL=/en" /-->
+                  </head>
+                  <body>
+                    <!--  TODO: Lang selector? -->
+                    <div style="margin-top: 2em; text-align: center; font-size: 2em;">
+                      <a href="/en">English</a> | <a href="/fr">Français</a>
+                    </div>
+                  </body>
+                </html>
+              '';
+            site = pkgs.symlinkJoin {
+              name = "nixos-asia-site";
+              paths = [ indexPage ] ++ lib.mapAttrsToList
+                (name: _: self'.packages.${name})
+                langs;
+            };
+            default = site;
+          };
           apps.preview.program = pkgs.writeShellApplication {
             name = "emanote-preview";
             runtimeInputs = [ pkgs.nodePackages.http-server ];
