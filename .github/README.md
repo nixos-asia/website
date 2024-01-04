@@ -31,6 +31,7 @@ To assist the reviewer, use `nix run github:nixos-asia/website/branch#preview --
 This site is made of multiple Emanote layers:
 
 - `./global`: Static files and HTML temlpates (common to all languages)
+    - If a note uses images, you should put them here.
 - Language-specific content:
     - `./en`: English content
     - `./fr`: French content
