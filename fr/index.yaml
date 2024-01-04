@@ -1,0 +1,5 @@
+page:
+  lang: fr
+  siteTitle: NixOS Asie
+template:
+  editBaseUrl: https://github.com/nixos-asia/website/edit/master/fr
