@@ -46,7 +46,9 @@
             mkdir -p $out/{en,fr}
             cp -r ${self'.packages.en}/* $out/en/
             cp -r ${self'.packages.fr}/* $out/fr/
-            # TODO: Write index.html
+            # TODO: Lang selector?
+            # echo '<meta http-equiv="refresh" content="0; URL=/en" />' >> $out/index.html
+            echo '<body><a href="/en">English</a> | <a href="/fr">Français</a></body>' >> $out/index.html
           '';
           apps.preview.program = pkgs.writeShellApplication {
             name = "emanote-preview";
