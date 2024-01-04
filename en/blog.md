@@ -1,6 +1,6 @@
 ---
 feed:
-  enable: true
+  enable: false
   title: NixOS Asia Blog
 ---
 
