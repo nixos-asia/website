@@ -1,8 +1,3 @@
----
-emanote:
-  folder-folgezettel: false
----
-
 # NixOS Asia
 
 > [!tip] Welcome to NixOS Asia
