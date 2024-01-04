@@ -34,7 +34,9 @@ This site is made of multiple Emanote layers:
     - If a note uses images, you should put them here.
 - Language-specific content:
     - `./en`: English content
-    - `./fr`: French content
+    - `./fr`: French content[^fr]
+
+[^fr]: This is just a placeholder. See https://github.com/nixos-asia/website/issues/18
 
 
 ## Discussion
