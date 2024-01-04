@@ -14,31 +14,49 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = nixpkgs.lib.systems.flakeExposed;
       imports = [ inputs.emanote.flakeModule ];
-      perSystem = { self', pkgs, system, ... }: {
-        emanote = {
-          # By default, the 'emanote' flake input is used.
-          # package = inputs.emanote.packages.${system}.default;
-          sites."default" = {
-            layers = [ ./. ];
-            layersString = [ "." ];
-            port = 7788;
-            prettyUrls = true;
+      perSystem = { self', pkgs, lib, system, ... }:
+        let
+          langs = {
+            en = { path = ./en; port = 7788; };
+            fr = { path = ./fr; port = 7789; };
           };
-        };
-        devShells.default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.nixpkgs-fmt
-          ];
-        };
-        apps.preview.program = pkgs.writeShellApplication {
-          name = "emanote-preview";
-          runtimeInputs = [ pkgs.nodePackages.http-server ];
-          text = ''
-            set -x
-            http-server ${self'.packages.default} "$@"
+        in
+        {
+          emanote = {
+            sites = lib.mapAttrs
+              (name: lang: {
+                inherit (lang) port;
+                layers = [ ./global lang.path ];
+                layersString = [ "global" name ];
+                prettyUrls = true;
+                baseUrl = "/${name}/";
+              })
+              langs;
+          };
+          devShells.default = pkgs.mkShell {
+            buildInputs = [
+              pkgs.nixpkgs-fmt
+            ];
+          };
+          packages.default = pkgs.runCommand "nixos-asia-site-all-langs"
+            {
+              buildInputs = [ ];
+            } ''
+            # TODO: Generalize this by iterating over `langs` list.
+            mkdir -p $out/{en,fr}
+            cp -r ${self'.packages.en}/* $out/en/
+            cp -r ${self'.packages.fr}/* $out/fr/
+            # TODO: Write index.html
           '';
+          apps.preview.program = pkgs.writeShellApplication {
+            name = "emanote-preview";
+            runtimeInputs = [ pkgs.nodePackages.http-server ];
+            text = ''
+              set -x
+              http-server ${self'.packages.default} "$@"
+            '';
+          };
+          formatter = pkgs.nixpkgs-fmt;
         };
-        formatter = pkgs.nixpkgs-fmt;
-      };
     };
 }
