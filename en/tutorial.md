@@ -4,7 +4,7 @@ order: -100
 
 # Tutorials
 
-- [[nix-rapid]]# (TODO: change slug/folder)
+- [[nix-rapid]]#
 - [[nixos]] tutorial series
   - [[nixos-install]]
   - [ ] ...
