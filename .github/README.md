@@ -2,10 +2,10 @@
 
 This website is built using [Emanote](https://emanote.srid.ca/).
 
-To run it locally with live preview,
+To run the English site locally with live preview,
 
 ```sh
-nix run
+nix run .#en
 ```
 
 ## Goals
