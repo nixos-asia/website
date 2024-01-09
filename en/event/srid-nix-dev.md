@@ -11,7 +11,7 @@ author: srid
 | [Tuesday, January 23, 2024 at 4PM][srid-nix-dev-gcal] | [IndiQube Garden, Bengaluru][map-indiqube-garden] |
 :::
 
-[Sridhar Ratnakumar][srid] will demonstrate the delights of using [[nix]] to [[dev|develop]] Rust as well as [[haskell]] projects without needing to install any toolchain (or do any manual setup otherwise) on your system. We'll start from a pristine [[macos]] machine as well as a pristine Linux machine to get our [[dev|development environment]] up and running in no time, all the way up to [LSP] support in VSCode
+[Sridhar Ratnakumar][srid] will demonstrate the delights of using [[nix]] to [[dev|develop]] Rust as well as [[haskell]] projects without needing to do any manual global setup on your system. We'll start from a pristine [[macos]] machine as well as a pristine Linux machine to get our [[dev|development environment]] up and running in no time, all the way up to [LSP] support in VSCode
 
 RSVP links:
 
