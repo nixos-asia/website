@@ -3,7 +3,7 @@ date: 2023-01-23
 author: srid
 ---
 
-# Getting started with Nix for Haskell & Rust
+# Getting Started with Nix for Haskell & Rust
 
 :::{.center}
 | When                                                  | Where                                             |
