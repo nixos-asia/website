@@ -11,6 +11,10 @@ author: srid
 
 [Sridhar Ratnakumar][srid] will demonstrate the delights of using [[nix]] to [[dev|develop]] Rust as well as [[haskell]] projects without needing to install any toolchain (or do any manual setup otherwise) on your system. We'll start from a pristine [[macos]] machine as well as pristine Linux ([[nixos]]) machine to get our [[dev|development environment]] up and running in no time, all the way up to [LSP] support in VSCode
 
+RSVP links:
+
+- [The Bangalore Haskell User Group](https://www.meetup.com/the-bangalore-haskell-user-group/events/298349003)
+
 ![[vscode-haskell-template.png]]
 
 [srid-nix-dev-gcal]: https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MTkwaW8zMHZxNmVmZGQxMmFtMzFxZzhncnUgcGVydmFzaXZlcHJveGltaXR5QG0&tmsrc=pervasiveproximity%40gmail.com
