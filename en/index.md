@@ -32,6 +32,6 @@ You can participate in the community discussion through the following venues. Zu
 
 Also consider taking a look at our sister community, [Functional Programming India](https://functionalprogramming.in/).
 
-## Upcoming
+## Events
 
-- [ ] Meetups in Bangalore, starting from January 2024.
+See [[event]].
