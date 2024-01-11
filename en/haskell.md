@@ -1,6 +1,8 @@
 
 # Haskell
 
-For nixifying Haskell projects, see https://github.com/srid/haskell-flake
+For nixifying Haskell projects, see our tutorial series [[nixify-haskell]] and checkout [haskell-flake].
 
-For further details, https://nixos.wiki/wiki/Haskell
+For a comprehensive list of ways to nixify Haskell projects, see https://nixos.wiki/wiki/Haskell
+
+[haskell-flake]: https://github.com/srid/haskell-flake
