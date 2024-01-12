@@ -52,16 +52,15 @@
         "unionmount": "unionmount"
       },
       "locked": {
-        "lastModified": 1705076135,
-        "narHash": "sha256-Ccm8NcMH5uhZ4iiKXfd/Wn4q0pzJGcVKjtLSlytflv0=",
+        "lastModified": 1705076698,
+        "narHash": "sha256-PIePsVDAytclL0gdTKsRapdJTpP8NfHciEy/4coN1Fw=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "1f49854a114cef7075e4416927f51ef6379bd097",
+        "rev": "65d1b55270152c9fa8c16be2fafab829f57e42a2",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "stork-auto-layer",
         "repo": "emanote",
         "type": "github"
       }
