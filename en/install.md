@@ -24,7 +24,7 @@ Expect to see all results in either green (or yellow).
 
 ## Next Steps
 
-Checkout [[nix-rapid]] and 
+Checkout [[nix-first]] and 
 
 - [[dev]] if you are looking to use Nix for development.
 - [[home-manager]] (and [[nix-darwin]] if you are on [[macos]]) if you would like to use Nix for more than packages and [[dev|devShells]].
