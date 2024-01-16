@@ -244,7 +244,7 @@ Now, you can run `nix run` to run the cowsay app, which is equivalent to doing `
 > - [Official Nix manual][mkShell]
 > - [NixOS Wiki](https://nixos.wiki/wiki/Development_environment_with_nix-shell)
 
-Like `packages`, another predefined flake output is `devShells` - which is used to provide a [[dev|development]] shell aka. a nix shell or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called [`mkShell`][mkShell] that can be used to create devshells.
+Like `packages`, another predefined flake output is `devShells` - which is used to provide a [[dev|development]] shell aka. a nix [[shell|shell]] or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called [`mkShell`][mkShell] that can be used to create devshells.
 
 As an example, we will update our `flake.nix` to provide a devshell that contains the [jq](https://github.com/stedolan/jq) tool.
 
