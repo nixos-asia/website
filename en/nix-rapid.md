@@ -104,7 +104,7 @@ A flake can refer to other flakes in its inputs. Phrased differently, a flake's 
 ### Inputs
 
 > [!info] To learn more
-> - [URL-like syntax][flake-url] used by the `url` attribute
+> - [[flake-url|URL-like syntax]] used by the `url` attribute
 
 Let's do something more interesting with our `flake.nix` by adding the [[nixpkgs]] input:
 
@@ -194,7 +194,7 @@ The `packages` output is recognized by `nix build`.
 $ nix build .#cowsay
 ```
 
-The [`nix build`][nix-build] command takes as argument a value of the form `<flake-url>#<package-name>`. By default, `.` (which is a [flake URL][flake-url]) refers to the current flake. Thus, `nix build .#cowsay` will build the `cowsay` package from the current flake under the current system. `nix build` produces a `./result` symlink that points to the Nix store path containing the package:
+The [`nix build`][nix-build] command takes as argument a value of the form `<flake-url>#<package-name>`. By default, `.` (which is a [[flake-url|flake URL]]) refers to the current flake. Thus, `nix build .#cowsay` will build the `cowsay` package from the current flake under the current system. `nix build` produces a `./result` symlink that points to the Nix store path containing the package:
 
 ```sh
 $ ./result/bin/cowsay hello
@@ -311,7 +311,6 @@ This mini tutorial provided a rapid introduction to Nix flakes, enabling you to 
 [nix-flake-show]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html
 [nix-eval]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html
 [nix-function]: https://nixos.org/manual/nix/stable/language/constructs.html#functions
-[flake-url]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax
 [mkShell]: https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell
 [exa]: https://github.com/ogham/exa
 [nix-build]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html
