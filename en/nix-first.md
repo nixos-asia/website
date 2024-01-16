@@ -137,10 +137,10 @@ We can find the current Git revision of [[nixpkgs]] used by our [[registry|regis
 
 From here, you can see the revision [on GitHub](https://github.com/NixOS/nixpkgs/commit/317484b1ead87b9c1b8ac5261a8d2dd748a0492d).
 
-The discerning readers may have noticed the the registry specified *only* the branch (`nixpkgs-unstable`), but not the specific revision. Nix registry internally [caches flakes locally and updates them automatically](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description), thus the specific Git revision of [[nixpkgs]] used may change over time!
+The discerning readers may have noticed that the registry specifies *only* the branch (`nixpkgs-unstable`), but not the specific revision. Nix registry internally [caches flakes locally and updates them automatically](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description), thus the specific Git revision of [[nixpkgs]] used may change over time!
 
 > [!tip] Pinning nixpkgs
-> To avoid the aforementioned automatic update, you can [pin](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin) the registry entry for [[nixpkgs]]. However, in [[hm-tutorial|home-manager]], we will see a better way of doing it (through flake inputs).
+> To avoid the aforementioned automatic update, you can manually [pin](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin) the registry entry for [[nixpkgs]]. In [[hm-tutorial|home-manager]], we will see [an automatic and declarative way](https://github.com/juspay/nix-dev-home/commit/99f304a6512f59194932b2010af5e270efdfebe8) of doing this (through flake inputs).
 
 ## Using software outside of [[nixpkgs]]
 
