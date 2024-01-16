@@ -14,6 +14,9 @@ Install #[[nix]] using [the unofficial installer](https://github.com/Determinate
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
+> [!tip] Graphical installer for [[macos]]
+> The unofficial installer is also available as a graphical installer for [[macos]]. You can get get it [here](https://determinate.systems/posts/graphical-nix-installer).
+
 After installing Nix, run the [Nix Health](https://github.com/juspay/nix-browser/tree/main/crates/nix_health) checks,
 
 ```sh
