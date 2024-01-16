@@ -27,7 +27,7 @@ $
 
 ## Looking inside a package
 
-What is a Nix "package"? Technically, a Nix package is a special [[store-path]] built using instructions from a [[drv]], both of which reside in the [[store]]. To see what is contained by the `cowsay` package, you need look inside its [[store-path]]. To get the store path for a package (here, `cowsay`), run `nix build` as follows:
+What is a Nix "package"? Technically, a Nix package is a special [[store-path]] built using instructions from a [[drv]], both of which reside in the [[store]]. To see what is contained by the `cowsay` package, look inside its [[store-path]]. To get the store path for a package (here, `cowsay`), run `nix build` as follows:
 
 ```text
 $ nix build nixpkgs#cowsay --no-link --print-out-paths
