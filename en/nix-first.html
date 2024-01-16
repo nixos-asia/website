@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=b8fe28fd-f8b1-4967-b13d-485fb4e15b6a' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=52dfaa3d-dd73-4009-a4c8-94ea10c88e2c' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1182,7 +1182,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </p>
   
     <p class='mb-3'>
-      The discerning readers may have noticed the the registry specified <em>only</em> the branch (<code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!
+      The discerning readers may have noticed that the registry specifies <em>only</em> the branch (<code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!
     </p>
   <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
@@ -1201,7 +1201,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      To avoid the aforementioned automatic update, you can <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>pin</a> the registry entry for <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>. However, in <a href='hm-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, we will see a better way of doing it (through flake inputs).
+      To avoid the aforementioned automatic update, you can manually <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>pin</a> the registry entry for <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>. In <a href='hm-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, we will see <a href='https://github.com/juspay/nix-dev-home/commit/99f304a6512f59194932b2010af5e270efdfebe8' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>an automatic and declarative way</a> of doing this (through flake inputs).
     </p>
   
   </div>

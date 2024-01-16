@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=b8fe28fd-f8b1-4967-b13d-485fb4e15b6a' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=52dfaa3d-dd73-4009-a4c8-94ea10c88e2c' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1534,7 +1534,7 @@
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>The discerning readers may have noticed the the registry specified <em>only</em> the branch (<code>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!</p></div>
+      <div><p>The discerning readers may have noticed that the registry specifies <em>only</em> the branch (<code>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
@@ -1546,7 +1546,7 @@
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>[!tip] Pinning nixpkgs To avoid the aforementioned automatic update, you can <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>pin</a> the registry entry for <a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>. However, in <a href='hm-tutorial' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>home-manager</a>, we will see a better way of doing it (through flake inputs).</p></div>
+      <div><p>[!tip] Pinning nixpkgs To avoid the aforementioned automatic update, you can manually <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>pin</a> the registry entry for <a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>. In <a href='hm-tutorial' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>home-manager</a>, we will see <a href='https://github.com/juspay/nix-dev-home/commit/99f304a6512f59194932b2010af5e270efdfebe8' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>an automatic and declarative way</a> of doing this (through flake inputs).</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
