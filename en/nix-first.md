@@ -103,14 +103,14 @@ Notice that the registry specified only the branch (`nixpkgs-unstable`) from whe
 
 ## Using software outside of [[nixpkgs]]
 
-[[nixpkgs]] is not the only way to get software packaged by Nix. Many programs are either *not* packaged in [[nixpkgs]], or they may be out of date. For example, [Emanote](https://emanote.srid.ca/start/install) (which is used to build this very website), can be executed or installed directly off its flake:
+[[nixpkgs]] is not the only way to get software packaged by Nix. Many programs are either *not* packaged in [[nixpkgs]], or they may be out of date. For example, [Emanote](https://emanote.srid.ca/start/install) (which is used to build this very website) can be executed or installed directly off its flake:
 
 ```text
 $ nix run github:srid/emanote
 ...
 ```
 
-You can of course also install it:
+You can of course also install it to your home directory:
 
 ```text
 $ nix profile install github:srid/emanote
@@ -119,4 +119,5 @@ $ nix profile install github:srid/emanote
 
 ## What's next
 
-See [[nix-rapid]] where we will go over writing simple Nix expressions and [[flakes|flakes]].
+- See [[nix-rapid]] where we will go over writing simple Nix expressions and [[flakes|flakes]]. 
+- If you want to manage your system using Nix, see [[hm-tutorial]] (if you are on [[macos]] or non-NixOS Linux) or [[nixos-tutorial]] (if you are on [[nixos]]).
