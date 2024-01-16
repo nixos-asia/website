@@ -1,7 +1,7 @@
 
 # Install NixOS with Flake configuration on Git
 
-This tutorial will walk you through the steps necessary to install #[[nixos]], enable [[flakes]] while tracking the resulting system configuration in a [[git]] repository.
+This tutorial will walk you through the steps necessary to install [[nixos]], enable [[flakes]] while tracking the resulting system configuration in a [[git]] repository.
 
 >[!info] Welcome to the tutorial series on [[nixos]]
 > This page is the first in a planned series of tutorials aimed towards onboarding Linux/macOS users into comfortably using [[nixos]] as their primary operating system.
