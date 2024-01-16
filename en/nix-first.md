@@ -116,3 +116,7 @@ You can of course also install it:
 $ nix profile install github:srid/emanote
 ...
 ```
+
+## What's next
+
+See [[nix-rapid]] where we will go over writing simple Nix expressions and [[flakes|flakes]].
