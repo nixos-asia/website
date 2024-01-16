@@ -4,9 +4,17 @@ order: -100
 
 # Tutorials
 
-- [[nix-rapid]]#
-- [[nixos]] tutorial series
-  - [[nixos-install-flake]]#
-  - [ ] ...
-- [[nixify-haskell]]
+![[tutorial-philosophy]]
 
+>[!warning] WIP
+> Our tutorials are being written.
+
+- [[nix-tutorial]]#
+- [[nixos-tutorial]]#
+- [[hm-tutorial]]#
+- [[dev]] tutorial series
+  - [[nixify-haskell]]
+
+
+
+> [!note] See our [[tutorial-philosophy|Tutorial philosophy]]#
