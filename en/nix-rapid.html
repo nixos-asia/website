@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=d91f2671-27f5-4dbc-b8af-979139d48de6' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=79142deb-64c9-44f1-97fe-6c5b7a1085db' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1216,6 +1216,48 @@
         
       
     </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Flake URL' href='flake-url'>
+      Flake URL
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
     <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
       Nix does not recognize a new file I added
     </a>
@@ -1763,7 +1805,7 @@ $</code></pre></div>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>URL-like syntax</a> used by the <code class='py-0.5 px-0.5 bg-gray-100'>url</code> attribute
+          <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>URL-like syntax</a> used by the <code class='py-0.5 px-0.5 bg-gray-100'>url</code> attribute
         </li>
       
     </ul>
@@ -1900,7 +1942,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix build .#cowsay</code></pre></div>
     <p class='mb-3'>
-      The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix build</code></a> command takes as argument a value of the form <code class='py-0.5 px-0.5 bg-gray-100'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-0.5 px-0.5 bg-gray-100'>.</code> (which is a <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>flake URL</a>) refers to the current flake. Thus, <code class='py-0.5 px-0.5 bg-gray-100'>nix build .#cowsay</code> will build the <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> package from the current flake under the current system. <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> produces a <code class='py-0.5 px-0.5 bg-gray-100'>./result</code> symlink that points to the Nix store path containing the package:
+      The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix build</code></a> command takes as argument a value of the form <code class='py-0.5 px-0.5 bg-gray-100'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-0.5 px-0.5 bg-gray-100'>.</code> (which is a <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake URL</a>) refers to the current flake. Thus, <code class='py-0.5 px-0.5 bg-gray-100'>nix build .#cowsay</code> will build the <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> package from the current flake under the current system. <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> produces a <code class='py-0.5 px-0.5 bg-gray-100'>./result</code> symlink that points to the Nix store path containing the package:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ ./result/bin/cowsay hello
  _______
