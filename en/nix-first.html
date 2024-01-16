@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=ee14b510-aa3b-44de-9fbe-aa016d69df8c' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=b9089ba6-1cfd-492f-be71-ebf7412dd38a' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1341,18 +1341,26 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div><di
   </div>
 </div><h2 id='using-software-outside-of-' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Using software outside of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a></h2>
     <p class='mb-3'>
-      <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not the only way to get software packaged by Nix. Many programs are either <em>not</em> packaged in <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>, or they may be out of date. For example, <a href='https://emanote.srid.ca/start/install' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which is used to build this very website), can be executed or installed directly off its flake:
+      <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not the only way to get software packaged by Nix. Many programs are either <em>not</em> packaged in <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>, or they may be out of date. For example, <a href='https://emanote.srid.ca/start/install' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which is used to build this very website) can be executed or installed directly off its flake:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run github:srid/emanote
 ...</code></pre></div>
     <p class='mb-3'>
-      You can of course also install it:
+      You can of course also install it to your home directory:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix profile install github:srid/emanote
 ...</code></pre></div><h2 id='whats-next' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>What’s next</h2>
-    <p class='mb-3'>
-      See <a href='nix-rapid' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> where we will go over writing simple Nix expressions and <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>.
-    </p>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          See <a href='nix-rapid' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> where we will go over writing simple Nix expressions and <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>.
+        </li>
+      
+        <li>
+          If you want to manage your system using Nix, see <a href='hm-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager Tutorial Series</a> (if you are on <a href='macos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>macOS</a> or non-NixOS Linux) or <a href='nixos-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS Tutorial Series</a> (if you are on <a href='nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>).
+        </li>
+      
+    </ul>
   
 
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
