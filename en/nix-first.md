@@ -3,6 +3,8 @@
 
 You have [[install|installed Nix]]. Now let's play with the `nix` command but without bothering to write any Nix expressions yet (we reserve that for the [[nix-rapid|next tutorial]]). In particular, we will learn how use to packages from the [[nixpkgs]] repository and elsewhere.
 
+![[nix-first.png]]
+
 ## Running a package
 
 As of this writing, [[nixpkgs]] has over 80,000 packages. You can search them [here](https://search.nixos.org/packages). Search for "`cowsay`" and you will find that it is available in Nixpkgs. We can download and run the [cowsay](https://en.wikipedia.org/wiki/Cowsay) package as follows:
