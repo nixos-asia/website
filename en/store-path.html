@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=126f012d-ba13-431c-b403-4ac8be98cede' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=ae591d13-65ce-4fe6-9468-f1fcc7049796' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -907,7 +907,23 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p>[!info] Store Paths <code>/nix/store</code> is a special directory representing the <a href='store' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. The paths inside <code>/nix/store</code> are known as <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Store path</a>. Nix fundamentally is, in large part, about manipulating these store paths in a <em>pure</em> and <em>reproducible</em> fashion.</p></div>
+      <div><p>From here, you can verify that both the programs are indeed in <code>$PATH</code> as indicatex by the “bin” directory in their respective <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>store paths</a>:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Note that this is the same path used by both <code>nix build</code> and <code>nix shell</code>. Each specific package is uniquely identified by their <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Store path</a>; changing any part of its <a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>build recipe</a> (including dependencies), changes that path. Hence, nix is reproducible.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>These symlinks, ultimately, point to the package <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Store path</a> outputs under the <a href='store' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix Store</a>, viz.:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>What is a Nix “package”? Technically, a Nix package is a special <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Store path</a> built using instructions from a <a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Derivation</a>, both of which reside in the <a href='store' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. To see what is contained by the <code>cowsay</code> package, you need look inside its <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Store path</a>. To get the store path for a package (here, <code>cowsay</code>), run <code>nix build</code> as follows:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>[!info] Nix Store & Store Paths <code>/nix/store</code> is a special directory representing the <a href='store' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. The paths inside <code>/nix/store</code> are known as <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Store path</a>. Nix fundamentally is, in large part, about manipulating these store paths in a <em>pure</em> and <em>reproducible</em> fashion; <a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Derivation</a> are “recipes” that does this manipulation, and they too live in the <a href='store' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix Store</a>.</p></div>
     </div>
   
 </div>
