@@ -142,9 +142,16 @@ The discerning readers may have noticed that the registry specifies *only* the b
 > [!tip] Pinning nixpkgs
 > To avoid the aforementioned automatic update, you can manually [pin](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin) the registry entry for [[nixpkgs]]. In [[hm-tutorial|home-manager]], we will see [an automatic and declarative way](https://github.com/juspay/nix-dev-home/commit/99f304a6512f59194932b2010af5e270efdfebe8) of doing this (through flake inputs).
 
+You are not required to use a registry. Without a registry, getting a package off nixpkgs would instead involve its fully qualified [[flake-url|URL]]:
+
+```text
+$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
+...
+```
+
 ## Using software outside of [[nixpkgs]]
 
-[[nixpkgs]] is not the only way to get software packaged by Nix. Many programs are either *not* packaged in [[nixpkgs]], or they may be out of date. For example, [Emanote](https://emanote.srid.ca/start/install) (which is used to build this very website) can be executed or installed directly off its flake:
+[[nixpkgs]] is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from *any* [[flakes|flake]] by specifying its [[flake-url|flake URL]] to the `nix ?` commands. For example, [Emanote](https://emanote.srid.ca/start/install) (which is used to build this very website) can be executed or installed directly off its flake [on GitHub](https://github.com/srid/emanote):
 
 ```text
 $ nix run github:srid/emanote
