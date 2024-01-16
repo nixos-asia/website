@@ -1,13 +1,13 @@
 
 # First steps with Nix
 
-You have [[install|installed Nix]]. Now let's play with the `nix` command but without bothering to write any Nix expressions yet (we reserve that for the [[nix-rapid|next tutorial]]). In particular, we will learn how use to packages from the [[nixpkgs]] repository and elsewhere.
+You have [[install|installed Nix]]. Now let's play with the `nix` command but without bothering to write any Nix expressions yet (we reserve that for the [[nix-rapid|next tutorial]]). In particular, we will learn how to use packages from the [[nixpkgs]] repository and elsewhere.
 
 ![[nix-first.png]]
 
 ## Running a package
 
-As of this writing, [[nixpkgs]] has over 80,000 packages. You can search them [here](https://search.nixos.org/packages). Search for "`cowsay`" and you will find that it is available in Nixpkgs. We can download and run the [cowsay](https://en.wikipedia.org/wiki/Cowsay) package as follows:
+As of this writing, [[nixpkgs]] has over 80,000 packages. You can search them [here](https://search.nixos.org/packages). Search for "`cowsay`" and [you will find](https://search.nixos.org/packages?type=packages&query=cowsay) that it is available in Nixpkgs. We can download and run the [cowsay](https://en.wikipedia.org/wiki/Cowsay) package as follows:
 
 ```text
 $ nix run nixpkgs#cowsay "G'day $USER"
@@ -25,6 +25,37 @@ $
 >[!info] `nix run`
 > `nix run` command will run the specified package from the flake. Here `nixpkgs` is the [[flakes|flake]], followed by the letter `#`, which is followed by the package ([[drv]]) name `cowsay` that is outputted by that flake. See [[flake-url]] for details on the syntax.
 
+## Looking inside a package
+
+What is a Nix "package"? Technically, a Nix package is a special [[store-path]] built using instructions from a [[drv]], both of which reside in the [[store]]. To see what is contained by the `cowsay` package, you need look inside its [[store-path]]. To get the store path for a package (here, `cowsay`), run `nix build` as follows:
+
+```text
+$ nix build nixpkgs#cowsay --no-link --print-out-paths
+/nix/store/8ij2wj5nh4faqwqjy1fqg20llawbi0d5-cowsay-3.7.0-man
+/nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+```
+
+The `cowsay` [[drv]] produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that you will see the contents of it:
+
+```text
+$ lt /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+ n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+├──  bin
+│   ├──  cowsay
+│   └──  cowthink ⇒ cowsay
+└──  share
+    └──  cowsay
+        ├──  cows
+        │   ├──  beavis.zen.cow
+        │   ├──  blowfish.cow
+        │   ├──  bong.cow
+        │   ├── ...
+```
+
+>[!info] Nix Store & Store Paths
+> `/nix/store` is a special directory representing the [[store]]. The paths inside `/nix/store` are known as [[store-path]]. Nix fundamentally is, in large part, about manipulating these store paths in a *pure* and *reproducible* fashion; [[drv]] are "recipes" that does this manipulation, and they too live in the [[store]].
+
+
 ## Shell environment
 
 One of the powers of Nix is that it enables us to create *isolated* [[shell|shell]] environments containing just the packages we need. For eg., here's how we create a transient shell containing the "cowsay" and "[fortune](https://en.wikipedia.org/wiki/Fortune_(Unix))" packages:
@@ -34,7 +65,7 @@ $ nix shell nixpkgs#cowsay nixpkgs#fortune
 ❯
 ```
 
-From here, you can verify that both the programs are indeed in `$PATH`
+From here, you can verify that both the programs are indeed in `$PATH` as indicatex by the "bin" directory in their respective [[store-path|store paths]]:
 
 ```text
 $ nix shell nixpkgs#cowsay nixpkgs#fortune 
@@ -53,9 +84,6 @@ $ nix shell nixpkgs#cowsay nixpkgs#fortune
                 ||----w |
                 ||     ||
 ```
-
->[!info] Store Paths
-> `/nix/store` is a special directory representing the [[store]]. The paths inside `/nix/store` are known as [[store-path]]. Nix fundamentally is, in large part, about manipulating these store paths in a *pure* and *reproducible* fashion.
 
 
 ## Installing a package
@@ -76,9 +104,18 @@ $
 
 `nix profile install` installs symlinks under the `$HOME/.nix-profile` directory, which the Nix [[install|installer]] already added to your `$PATH`. For details, see the [Nix manual](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-profile-install).
 
+These symlinks, ultimately, point to the package [[store-path]] outputs under the [[store]], viz.:
+
+```text
+$ readlink $(which fortune)
+/nix/store/mfw77f008xy0zb7dqdyggw0xj2gd4jjv-fortune-mod-3.20.0/bin/fortune
+```
+
+Note that this is the same path used by both `nix build` and `nix shell`. Each specific package is uniquely identified by their [[store-path]]; changing any part of its [[drv|build recipe]] (including dependencies), changes that path. Hence, nix is reproducible.
+
 ## How is [[nixpkgs]] fetched
 
-The [[nixpkgs]] flake is defined in the GitHub repository: https://github.com/nixos/nixpkgs. This information comes from the [[registry]]:
+So far we have been retrieving and installing software from the [[nixpkgs]] flake, which is defined in the GitHub repository: https://github.com/nixos/nixpkgs. This information comes from the [[registry]]:
 
 
 ```text
@@ -86,10 +123,12 @@ $ nix registry list | grep nixpkgs
 global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable
 ```
 
+A registry is simply a mapping of flake alias to [[flake-url]].
+
 >[!tip] Adding to registry
 > You can add your own flakes to this [[registry|registry]] as well. See [the manual](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-add)
 
-We can find the Git revision of [[nixpkgs]] used by our [[registry|registry]] as follows:
+We can find the current Git revision of [[nixpkgs]] used by our [[registry|registry]] as follows:
 
 ```text
 ❯ nix flake metadata nixpkgs --json | nix run nixpkgs#jq -- -r .locked.rev
@@ -98,10 +137,10 @@ We can find the Git revision of [[nixpkgs]] used by our [[registry|registry]] as
 
 From here, you can see the revision [on GitHub](https://github.com/NixOS/nixpkgs/commit/317484b1ead87b9c1b8ac5261a8d2dd748a0492d).
 
-Notice that the registry specified only the branch (`nixpkgs-unstable`) from where the latest available revision is fetched. This repository is [cached locally and updated automatically](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description). 
+The discerning readers may have noticed the the registry specified *only* the branch (`nixpkgs-unstable`), but not the specific revision. Nix registry internally [caches flakes locally and updates them automatically](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description), thus the specific Git revision of [[nixpkgs]] used may change over time!
 
 > [!tip] Pinning nixpkgs
-> To avoid automatic update, you can [pin](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin) the registry entry. But in [[hm-tutorial|home-manager]], we will see a better way of doing it (through flake inputs).
+> To avoid the aforementioned automatic update, you can [pin](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin) the registry entry for [[nixpkgs]]. However, in [[hm-tutorial|home-manager]], we will see a better way of doing it (through flake inputs).
 
 ## Using software outside of [[nixpkgs]]
 
