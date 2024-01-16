@@ -97,7 +97,7 @@ $ which nvim
 
 ![[configuration-as-flake]]
 
-Let's store our whole configuration in a [[git]] repository.
+Let's [[configuration-as-flake|store our whole configuration]]# in a [[git]] repository.
 
 {#git}
 ## Store the configuration in Git
