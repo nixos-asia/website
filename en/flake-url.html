@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=5cb3faa8-95bb-45fb-ad07-4dc594b55d3f' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=b5fc4a97-8a24-40fa-8415-bafede128a2f' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1590,7 +1590,15 @@
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>You are not required to use a registry. Without a registry, getting a package off nixpkgs would instead involve its fully qualified <a href='flake-url' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>URL</a>:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>[!info] <code>nix run</code> <code>nix run</code> command will run the specified package from the flake. Here <code>nixpkgs</code> is the <a href='flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a>, followed by the letter <code>#</code>, which is followed by the package (<a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Derivation</a>) name <code>cowsay</code> that is outputted by that flake. See <a href='flake-url' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flake URL</a> for details on the syntax.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p><a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from <em>any</em> <a href='flakes' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake</a> by specifying its <a href='flake-url' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>flake URL</a> to the <code>nix ?</code> commands. For example, <a href='https://emanote.srid.ca/start/install' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which is used to build this very website) can be executed or installed directly off its flake <a href='https://github.com/srid/emanote' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>on GitHub</a>:</p></div>
     </div>
   
 </div>
