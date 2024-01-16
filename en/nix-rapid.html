@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=a8fb1568-5655-42a1-8e77-cd2ee85f403a' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=1d28a317-f53d-4f09-904f-d91f12a2df5e' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -188,10 +188,6 @@
   
     <style>
       /* For use in sidebar.tpl, as we cannot achieve this in tailwind itself! */
-      #sidebar:hover {
-        width: auto;
-      }
-
       /* md:min-w-48  */
       @media (min-width: 768px) {
         #sidebar {
@@ -555,7 +551,7 @@
     <span>
       
         
-          <a href='tutorial/nixos-install' title='View folgezettel children'>
+          <a href='nixos-install-flake' title='View folgezettel children'>
             
     
       <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 24 24' fill='currentColor'>
@@ -567,7 +563,7 @@
           
       
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with Flake configuration on Git' href='tutorial/nixos-install'>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
       Install NixOS with Flake configuration on Git
     </a>
     
@@ -985,6 +981,48 @@
 
 
   
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
+      Convert <code>configuration.nix</code> to be a flake
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
   
 
 <!-- Rendering of this tree -->
@@ -1103,48 +1141,6 @@
   -->
   
     
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-
-  
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
-      
-        
-          
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-        
-      
-    </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Convert configuration.nix to be a flake' href='en/configuration-as-flake'>
-      Convert <code>configuration.nix</code> to be a flake
-    </a>
-    
-      
-        
-    
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
   
 </div>
     
@@ -1481,7 +1477,7 @@
     <p class='mb-3'>
       The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
     </p>
-  <img class='inline mb-3' src='nix-rapid/rapid-nix.png' alt='/nix/store/5djgw4miww5a1nbx0qmw48a2x99g2ir8-global/nix-rapid/rapid-nix.png' style='width: inherit;' />
+  <img class='inline mb-3' src='nix-rapid/rapid-nix.png' alt='/nix/store/64ixcdd386kghbx18911rrrfpf2rmz0j-global/nix-rapid/rapid-nix.png' style='width: inherit;' />
     <p class='mb-3'>
       If you are already experienced in <a href='https://en.wikipedia.org/wiki/Purely_functional_programming' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>purely functional programming</a>, it is highly recommended to read <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a> to gain a foundational perspective into Nix being purely functional but in the context of <em>file system</em> (as opposed to values stored in memory).
     </p>
@@ -1991,7 +1987,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='en/configuration-as-flake'>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='configuration-as-flake'>
             Convert <code>configuration.nix</code> to be a flake
           </a>
           
@@ -2037,7 +2033,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.6.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.6.2'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

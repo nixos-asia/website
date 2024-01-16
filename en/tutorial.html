@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=a8fb1568-5655-42a1-8e77-cd2ee85f403a' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=1d28a317-f53d-4f09-904f-d91f12a2df5e' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -188,10 +188,6 @@
   
     <style>
       /* For use in sidebar.tpl, as we cannot achieve this in tailwind itself! */
-      #sidebar:hover {
-        width: auto;
-      }
-
       /* md:min-w-48  */
       @media (min-width: 768px) {
         #sidebar {
@@ -553,7 +549,7 @@
     <span>
       
         
-          <a href='tutorial/nixos-install' title='View folgezettel children'>
+          <a href='nixos-install-flake' title='View folgezettel children'>
             
     
       <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 24 24' fill='currentColor'>
@@ -565,7 +561,7 @@
           
       
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with Flake configuration on Git' href='tutorial/nixos-install'>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
       Install NixOS with Flake configuration on Git
     </a>
     
@@ -837,7 +833,7 @@
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <a href='tutorial/nixos-install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Install NixOS with Flake configuration on Git</a>
+          <a href='nixos-install-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>Install NixOS with Flake configuration on Git</a>
         </li>
       
         <li>
@@ -858,6 +854,146 @@
       
         <li>
           <a href='nixify-haskell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nixify Haskell projects</a>
+        </li>
+      
+    </ul>
+  <h2 id='scratch' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Scratch</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Nix series
+        </li>
+      
+        <li>
+          Ext nixpkgs using <code class='py-0.5 px-0.5 bg-gray-100'>nix *</code>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code>, <code class='py-0.5 px-0.5 bg-gray-100'>nix shell</code>, <code class='py-0.5 px-0.5 bg-gray-100'>nix profile install</code> (fn - hm)
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          eg: run redis (or lsd with yaml)
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          Rapid introduction to flakes
+        </li>
+      
+        <li>
+          evalModules
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Example 1: generate <a href='https://redis.io/docs/management/config-file/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>redis.conf</a> and returns drv with conf file only
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          consider cluster
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          Example 2: … returns shell script that runs redis with that conf file
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          add <code class='py-0.5 px-0.5 bg-gray-100'>package = pkgs.redis</code>; output would include writeShellApplication derivaiton
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          ultimately, people can just <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code> it.
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          flake-parts
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          System series
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          NixOS …
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          install
+        </li>
+      
+        <li>
+          basics:
+        </li>
+      
+        <li>
+          services:
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          home-manager …
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Basics: install, packages, dotfiles, ..
+        </li>
+      
+        <li>
+          Advanced: run services (ubuntu + macos)
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          try with our redis above
+        </li>
+      
+        <li>
+          show official redis module (if there’s any)
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          Dev series
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Haskell series
+        </li>
+      
+    </ul>
+  
         </li>
       
     </ul>
@@ -973,7 +1109,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.6.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.6.2'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
