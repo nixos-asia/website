@@ -66,11 +66,11 @@
             default = site;
           };
           apps.preview.program = pkgs.writeShellApplication {
-            name = "emanote-preview";
-            runtimeInputs = [ pkgs.nodePackages.http-server ];
+            name = "emanote-static-preview";
+            runtimeInputs = [ pkgs.static-web-server ];
             text = ''
               set -x
-              http-server ${self'.packages.default} "$@"
+              static-web-server -d ${self'.packages.default} "$@"
             '';
           };
           formatter = pkgs.nixpkgs-fmt;
