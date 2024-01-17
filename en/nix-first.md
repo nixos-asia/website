@@ -1,7 +1,11 @@
+---
+page:
+  image: nix-tutorial/nix-first.png
+---
 
 # First steps with Nix
 
-You have [[install|installed Nix]]. Now let's play with the `nix` command but without bothering to write any Nix expressions yet (we reserve that for the [[nix-rapid|next tutorial]]). In particular, we will learn how to use packages from the [[nixpkgs]] repository and elsewhere.
+You have [[install|installed Nix]]. Now let's play with the `nix` command but without bothering to write any Nix expressions yet (we reserve that for the [[nix-rapid|next tutorial]]). In particular, we will learn how to use packages from the [[nixpkgs|nixpkgs]] repository and elsewhere.
 
 ![[nix-first.png]]
 

@@ -1,3 +1,8 @@
+---
+page:
+  image: nix-tutorial/nix-rapid.png
+---
+
 # Rapid Introduction to Nix
 
 
