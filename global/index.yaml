@@ -5,6 +5,7 @@ page:
   siteTitle: NixOS Asia
   headHtml: |
     <snippet var="js.highlightjs" />
+  image: static/nixos-asia.svg
 
 template:
   theme: green
