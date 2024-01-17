@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=15df2a05-4204-4189-9a76-c870a2c7238f' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=d7f8cd95-45b3-4f15-96d2-d7a96bf838bb' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1534,11 +1534,19 @@
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Incidentally, we use the [tree](<a href='https://en.wikipedia.org/wiki/Tree_(command' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://en.wikipedia.org/wiki/Tree_(command</a>)) command, rather than <code>ls</code>, to look at the directory tree, using the package from <a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> of course (since it may not already be installed).</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>So far we have been retrieving and installing software from the <a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake, which is defined in the GitHub repository: <a href='https://github.com/nixos/nixpkgs' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/nixos/nixpkgs</a>. This information comes from the <a href='registry' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Flake registry</a>:</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>The discerning readers may have noticed that the registry specifies <em>only</em> the branch (<code>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>The <code>cowsay</code> <a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Derivation</a> produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that<sup>*</sup> you will see the contents of it:</p></div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>

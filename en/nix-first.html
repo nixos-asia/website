@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=15df2a05-4204-4189-9a76-c870a2c7238f' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=d7f8cd95-45b3-4f15-96d2-d7a96bf838bb' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1039,20 +1039,26 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
 /nix/store/8ij2wj5nh4faqwqjy1fqg20llawbi0d5-cowsay-3.7.0-man
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0</code></pre></div>
     <p class='mb-3'>
-      The <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that you will see the contents of it:
+      The <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that
+    <sup class='px-0.5'>
+      <a class='text-green-600 hover:underline' href='nix-first#fn1'>
+        1
+      </a>
+    </sup>
+   you will see the contents of it:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ lt /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
- n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
-├──  bin
-│   ├──  cowsay
-│   └──  cowthink ⇒ cowsay
-└──  share
-    └──  cowsay
-        ├──  cows
-        │   ├──  beavis.zen.cow
-        │   ├──  blowfish.cow
-        │   ├──  bong.cow
-        │   ├── ...</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+/nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+├── bin
+│   ├── cowsay
+│   └── cowthink -&gt; cowsay
+└── share
+    └── cowsay
+        ├── cows
+        │   ├── DragonAndCow.pm
+        │   ├── Example.pm
+        │   ├── Frogs.pm
+        │   ├── ...</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -1232,6 +1238,20 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
         </li>
       
     </ul>
+  
+    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
+      <header class='font-semibold'>Footnotes</header>
+      
+        <div id='fn1'>
+          <header class='italic'>
+            1.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            Incidentally, we use the [tree](<a href='https://en.wikipedia.org/wiki/Tree_(command' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://en.wikipedia.org/wiki/Tree_(command</a>)) command, rather than <code class='py-0.5 px-0.5 bg-gray-100'>ls</code>, to look at the directory tree, using the package from <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> of course (since it may not already be installed).
+          </div>
+        </div>
+      
+    </div>
   
 
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
