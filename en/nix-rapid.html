@@ -18,7 +18,7 @@
   </title>
   
     
-      <meta property='og:description' content='The goal of this mini-tutorial is to introduce you to [[nix]] as quickly as possible while also preparing the motivated learner to dive deeper into the whole Nix ecosystem. At the end of this introduction, you will be able to create a flake.nixflake.nix that builds a package and provides a developer environmentdeveloper environment shell.' />
+      <meta property='og:description' content='The goal of this mini-tutorial is to introduce you to [[nix]] the language, including [[flakes]], as quickly as possible while also preparing the motivated learner to dive deeper into the whole Nix ecosystem. At the end of this introduction, you will be able to create a flake.nixflake.nix that builds a package and provides a developer environmentdeveloper environment shell.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
@@ -40,7 +40,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=b5fc4a97-8a24-40fa-8415-bafede128a2f' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=bf509023-0e75-4059-8a39-751189e0d751' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1820,9 +1820,24 @@
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
+      The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> the language, including <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>, as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
     </p>
-  <img class='inline mb-3' src='nix-tutorial/nix-rapid.png' alt='/nix/store/ymij54prrlql2v2qy4qfdnz3ky29z71g-global/nix-tutorial/nix-rapid.png' style='width: inherit;' />
+  <img class='inline mb-3' src='nix-tutorial/nix-rapid.png' alt='/nix/store/ymij54prrlql2v2qy4qfdnz3ky29z71g-global/nix-tutorial/nix-rapid.png' style='width: inherit;' /><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+</path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       Purely functional
+    </div>
+  </div>
+  <div class='callout-content'>
+    
     <p class='mb-3'>
       If you are already experienced in <a href='https://en.wikipedia.org/wiki/Purely_functional_programming' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>purely functional programming</a>, it is highly recommended to read <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a> to gain a foundational perspective into Nix being purely functional but in the context of <em>file system</em> (as opposed to values stored in memory).
     </p>
@@ -1834,10 +1849,20 @@
     </p>
   
     </blockquote>
-  <h2 id='install' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Install</h2>
-    <p class='mb-3'>
-      Nix can be <a href='install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
-    </p>
+  
+  </div>
+</div><h2 id='pre-requisites' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Pre-requisites</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <strong>Install Nix</strong>: Nix can be <a href='install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
+        </li>
+      
+        <li>
+          <strong>Plan with Nix</strong>: To play with the nix command, see <a href='nix-first' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>First steps with Nix</a>
+        </li>
+      
+    </ul>
   <h2 id='attrset' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Attrset</h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
