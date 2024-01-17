@@ -35,21 +35,23 @@ $ nix build nixpkgs#cowsay --no-link --print-out-paths
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
 ```
 
-The `cowsay` [[drv]] produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that you will see the contents of it:
+The `cowsay` [[drv]] produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that[^tree] you will see the contents of it:
+
+[^tree]: Incidentally, we use the [tree](https://en.wikipedia.org/wiki/Tree_(command\)) command, rather than `ls`, to look at the directory tree, using the package from [[nixpkgs]] of course (since it may not already be installed).
 
 ```text
-$ lt /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
- n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
-├──  bin
-│   ├──  cowsay
-│   └──  cowthink ⇒ cowsay
-└──  share
-    └──  cowsay
-        ├──  cows
-        │   ├──  beavis.zen.cow
-        │   ├──  blowfish.cow
-        │   ├──  bong.cow
-        │   ├── ...
+$ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+/nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+├── bin
+│   ├── cowsay
+│   └── cowthink -> cowsay
+└── share
+    └── cowsay
+        ├── cows
+        │   ├── DragonAndCow.pm
+        │   ├── Example.pm
+        │   ├── Frogs.pm
+        │   ├── ...
 ```
 
 >[!info] Nix Store & Store Paths
