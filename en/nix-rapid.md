@@ -6,7 +6,7 @@ page:
 # Rapid Introduction to Nix
 
 
-The goal of this mini-tutorial is to introduce you to [[nix]] the language, including [[flakes]], as quickly as possible while also preparing the motivated learner to dive deeper into [the whole Nix ecosystem][zero-to-nix]. At the end of this introduction, you will be able to create a #[[flakes|flake.nix]] that builds a package and provides a [[dev|developer environment]] shell.
+The goal of this mini-tutorial is to introduce you to [[nix|Nix]] the language, including [[flakes|flakes]], as quickly as possible while also preparing the motivated learner to dive deeper into [the whole Nix ecosystem][zero-to-nix]. At the end of this introduction, you will be able to create a #[[flakes|flake.nix]] that builds a package and provides a [[dev|developer environment]] shell.
 
 ![[nix-rapid.png]]
 
