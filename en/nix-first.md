@@ -71,7 +71,7 @@ $ nix shell nixpkgs#cowsay nixpkgs#fortune
 ❯
 ```
 
-From here, you can verify that both the programs are indeed in `$PATH` as indicatex by the "bin" directory in their respective [[store-path|store paths]]:
+From here, you can verify that both the programs are indeed in `$PATH` as indicated by the "bin" directory in their respective [[store-path|store paths]]:
 
 ```text
 $ nix shell nixpkgs#cowsay nixpkgs#fortune 
