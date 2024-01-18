@@ -91,6 +91,12 @@ $ nix shell nixpkgs#cowsay nixpkgs#fortune
                 ||     ||
 ```
 
+>[!tip] One-off command
+> Instead of creating a shell environment, you can also run commands one-off using the `-c` option. The above session can equally be achieved using: 
+> ```text
+> nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'
+> ```
+
 
 ## Installing a package
 
