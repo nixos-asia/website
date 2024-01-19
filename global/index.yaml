@@ -3,6 +3,7 @@
 
 page:
   siteTitle: NixOS Asia
+  siteUrl: https://nixos.asia/en
   headHtml: |
     <snippet var="js.highlightjs" />
   image: static/nixos-asia.svg
