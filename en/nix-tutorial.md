@@ -6,7 +6,7 @@ order: -10
 
 ![[tutorial-philosophy]]
 
-- [ ] [[nix-first]]#
+- [x] [[nix-first]]#
 - [x] [[nix-rapid]]#
 - [ ] `evalModules`
 - [ ] `flake-parts`
