@@ -19,7 +19,7 @@ sidebar navigation.
 
 - Start from [[install|here]] if you are new to Nix. 
 - We have [[tutorial]]# and a [[blog]]#
-- Topical entry points: [[nix]]#, [[nixos]]#
+- Topical entry points: [[topics]]#
 - You can browse the rest of the content  in [the index](-/all).
 
 ## Community
