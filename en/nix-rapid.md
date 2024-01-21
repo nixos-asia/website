@@ -18,7 +18,7 @@ The goal of this mini-tutorial is to introduce you to [[nix|Nix]] the language, 
 ## Pre-requisites
 
 - **Install Nix**: Nix can be [[install|installed on Linux and macOS]]. If you are using [[nixos]], it already comes with Nix pre-installed.
-- **Play with Nix**: To play with the nix command, see [[nix-first]]
+- **Play with Nix**: Before writing Nix expressions, it is useful to get a feel for working with the `nix` command. See [[nix-first]]
 
 ## Attrset
 
