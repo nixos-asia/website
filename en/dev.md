@@ -7,6 +7,7 @@ While package management is the key purpose of #[[nix]], its [[drv|derivations]]
 ## Language support
 
 - [[haskell]]#
+- [[rust]]#
 
 ## Tools
 
