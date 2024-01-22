@@ -1,7 +1,8 @@
 # NixOS Asia
 
 > [!tip] Welcome to NixOS Asia
-> NixOS Asia is a community of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
+> NixOS Asia is a community[^1]{.text-xs} of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
+
 
 ## Explore this website
 
@@ -36,3 +37,9 @@ Also consider taking a look at our sister community, [Functional Programming Ind
 ## Events
 
 See [[event]].
+
+:::{.text-xs}
+---
+
+\[^1\]: We are emphatically unaffiliated with the NixOS Foundation or their core community.
+:::
