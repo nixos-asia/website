@@ -1,4 +1,7 @@
 
 # flake-parts
 
-A #[[modules]] for #[[flakes]]. See https://flake.parts/ & https://community.flake.parts/
+`flake-parts` brings the #[[modules|module system]] for #[[flakes|flakes]]. 
+
+- Official site: https://flake.parts/ 
+- Module documentation: https://community.flake.parts/
