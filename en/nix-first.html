@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0740b41a-f7bd-4fc9-907a-29377d1317a4' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=009e0e60-099b-4f98-94cf-109ae217deae' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -904,10 +904,30 @@
     <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
+
+
+
+
+
+
     <p class='mb-3'>
       You have <a href='install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code class='py-0.5 px-0.5 bg-gray-100'>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.
     </p>
-  <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/mdwk12rpzp6v22h1bllxq0fby7574zbi-global/nix-tutorial/nix-first.png' style='width: inherit;' /><h2 id='running-a-package' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Running a package</h2>
+  <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/mdwk12rpzp6v22h1bllxq0fby7574zbi-global/nix-tutorial/nix-first.png' style='width: inherit;' />
+    <h2 id='running-a-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Running a package
+  
+  <a href='nix-first#running-a-package'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       As of this writing, <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> has over 80,000 packages. You can search them <a href='https://search.nixos.org/packages' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a>. Search for “<code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code>” and <a href='https://search.nixos.org/packages?type=packages&amp;query=cowsay' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>you will find</a> that it is available in Nixpkgs. We can download and run the <a href='https://en.wikipedia.org/wiki/Cowsay' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>cowsay</a> package as follows:
     </p>
@@ -942,7 +962,21 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     </p>
   
   </div>
-</div><h2 id='looking-inside-a-package' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Looking inside a package</h2>
+</div>
+    <h2 id='looking-inside-a-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Looking inside a package
+  
+  <a href='nix-first#looking-inside-a-package'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       What is a Nix “package”? Technically, a Nix package is a special <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a> built using instructions from a <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a>, both of which reside in the <a href='store' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. To see what is contained by the <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> package, look inside its <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>. To get the store path for a package (here, <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code>), run <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> as follows:
     </p>
@@ -991,7 +1025,21 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     </p>
   
   </div>
-</div><h2 id='shell-environment' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Shell environment</h2>
+</div>
+    <h2 id='shell-environment' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Shell environment
+  
+  <a href='nix-first#shell-environment'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       One of the powers of Nix is that it enables us to create <em>isolated</em> <a href='shell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>shell</a> environments containing just the packages we need. For eg., here’s how we create a transient shell containing the “cowsay” and “<a href='https://en.wikipedia.org/wiki/Fortune_(Unix)' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>fortune</a>" packages:
     </p>
@@ -1035,7 +1083,21 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
   </div>
-</div><h2 id='installing-a-package' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Installing a package</h2><div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10' role='note'>
+</div>
+    <h2 id='installing-a-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Installing a package
+  
+  <a href='nix-first#installing-a-package'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  <div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -1079,7 +1141,21 @@ $ </code></pre></div>
     <p class='mb-3'>
       Note that this is the same path used by both <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> and <code class='py-0.5 px-0.5 bg-gray-100'>nix shell</code>. Each specific package is uniquely identified by their <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>; changing any part of its <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>build recipe</a> (including dependencies), changes that path. Hence, nix is reproducible.
     </p>
-  <h2 id='how-is--fetched' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>How is <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> fetched</h2>
+  
+    <h2 id='how-is--fetched' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  How is <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> fetched
+  
+  <a href='nix-first#how-is--fetched'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       So far we have been retrieving and installing software from the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake, which is defined in the GitHub repository: <a href='https://github.com/nixos/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/nixos/nixpkgs</a>. This information comes from the <a href='registry' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake registry</a>:
     </p>
@@ -1148,7 +1224,21 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
       You are not required to use a registry. Without a registry, getting a package off nixpkgs would instead involve its fully qualified <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>URL</a>:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
-...</code></pre></div><h2 id='using-software-outside-of-' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Using software outside of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a></h2>
+...</code></pre></div>
+    <h2 id='using-software-outside-of-' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Using software outside of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>
+  
+  <a href='nix-first#using-software-outside-of-'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from <em>any</em> <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a> by specifying its <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake URL</a> to the <code class='py-0.5 px-0.5 bg-gray-100'>nix ?</code> commands. For example, <a href='https://emanote.srid.ca/start/install' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which is used to build this very website) can be executed or installed directly off its flake <a href='https://github.com/srid/emanote' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>on GitHub</a>:
     </p>
@@ -1158,7 +1248,21 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
       You can of course also install it to your home directory:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix profile install github:srid/emanote
-...</code></pre></div><h2 id='whats-next' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>What’s next</h2>
+...</code></pre></div>
+    <h2 id='whats-next' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  What’s next
+  
+  <a href='nix-first#whats-next'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
@@ -1185,7 +1289,6 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
       
     </div>
   
-
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -1303,7 +1406,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.8.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.11.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

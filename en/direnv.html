@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0740b41a-f7bd-4fc9-907a-29377d1317a4' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=009e0e60-099b-4f98-94cf-109ae217deae' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1567,6 +1567,12 @@
     <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
+
+
+
+
+
+
     <p class='mb-3'>
       <code class='py-0.5 px-0.5 bg-gray-100'>direnv</code> (along with <a href='https://github.com/nix-community/nix-direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a>) allows one to persist
     <sup class='px-0.5'>
@@ -1598,7 +1604,21 @@
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>srid on nixos haskell-template on  master [!] via λ 9.2.6 via ❄️  impure (ghc-shell-for-haskell-template-0.1.0.0-0-env)
 ❯</code></pre></div>
   </div>
-</div><h2 id='setup' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Setup</h2><div class='flex items-center justify-center mb-8'><div xmlhtmlRaw><iframe width="560" height="315" src="https://www.youtube.com/embed/1joZLTgYLxY?si=ljZLcFAIhrJ7XawV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+    <h2 id='setup' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Setup
+  
+  <a href='direnv#setup'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  <div class='flex items-center justify-center mb-8'><div xmlhtmlRaw><iframe width="560" height="315" src="https://www.youtube.com/embed/1joZLTgYLxY?si=ljZLcFAIhrJ7XawV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div></div>
     <p class='mb-3'>
       If you use <a href='home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, both <code class='py-0.5 px-0.5 bg-gray-100'>nix-direnv</code> and <code class='py-0.5 px-0.5 bg-gray-100'>starship</code> can be installed using the following configuration:
@@ -1651,15 +1671,71 @@ programs.starship = {
     </div>
   
   </div>
-</div><h3 id='text-editor-configuration' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Text Editor configuration</h3><h4 id='vscode' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>VSCode</h4>
+</div>
+    <h3 id='text-editor-configuration' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Text Editor configuration
+  
+  <a href='direnv#text-editor-configuration'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <h4 id='vscode' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+      
+  VSCode
+  
+  <a href='direnv#vscode'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h4>
+  
     <p class='mb-3'>
       For VSCode, use <a href='https://marketplace.visualstudio.com/items?itemName=mkhl.direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Martin Kühl’s direnv extension</a>.
     </p>
-  <h4 id='doom-emacs' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Doom Emacs</h4>
+  
+    <h4 id='doom-emacs' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+      
+  Doom Emacs
+  
+  <a href='direnv#doom-emacs'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h4>
+  
     <p class='mb-3'>
       Doom Emacs has the <a href='https://github.com/doomemacs/doomemacs/tree/master/modules/tools/direnv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>:tools</code> <code class='py-0.5 px-0.5 bg-gray-100'>direnv</code> module</a> to automatically load the devshell environment when you open the project directory.
     </p>
-  <h2 id='add-a-envrc' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Add a <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code></h2>
+  
+    <h2 id='add-a-envrc' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Add a <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code>
+  
+  <a href='direnv#add-a-envrc'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       To enable direnv on Flake-based projects, add the following to your <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code>:
     </p>
@@ -1667,7 +1743,35 @@ programs.starship = {
     <p class='mb-3'>
       Now run <code class='py-0.5 px-0.5 bg-gray-100'>direnv allow</code> to authorize the current <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code> file. You can now <code class='py-0.5 px-0.5 bg-gray-100'>cd</code> into the project directory in a terminal and the devshell will be automatically activated.
     </p>
-  <h3 id='reload-automatically-when-some-files-change' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Reload automatically when some files change</h3><h4 id='---when-cabal-files-change' class='mt-6 mb-2 text-2xl font-bold text-gray-700'><a href='haskell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Haskell</a> - when <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> files change</h4>
+  
+    <h3 id='reload-automatically-when-some-files-change' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Reload automatically when some files change
+  
+  <a href='direnv#reload-automatically-when-some-files-change'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <h4 id='---when-cabal-files-change' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+      
+  <a href='haskell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Haskell</a> - when <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> files change
+  
+  <a href='direnv#---when-cabal-files-change'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h4>
+  
     <p class='mb-3'>
       Since both <a href='nixify-haskell-nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file changes. This can be achieved using the <code class='py-0.5 px-0.5 bg-gray-100'>nix_direnv_watch_file</code> function. Modify your <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code> to contain:
     </p>
@@ -1676,7 +1780,21 @@ use flake</code></pre></div>
     <p class='mb-3'>
       As a result of this whenever you change a <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file, direnv will reload the environment. If you are using VSCode, you will see a notification that the environment has changed, prompting you to restart it (<a href='https://github.com/nammayatri/nammayatri/tree/main/Backend#visual-studio-code' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>see example</a>).
     </p>
-  <h2 id='external-links' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>External Links</h2>
+  
+    <h2 id='external-links' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  External Links
+  
+  <a href='direnv#external-links'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
@@ -1708,7 +1826,6 @@ use flake</code></pre></div>
       
     </div>
   
-
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -1789,7 +1906,7 @@ use flake</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.8.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.11.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

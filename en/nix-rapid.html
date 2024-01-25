@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0740b41a-f7bd-4fc9-907a-29377d1317a4' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=009e0e60-099b-4f98-94cf-109ae217deae' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1865,6 +1865,12 @@
     <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
+
+
+
+
+
+
     <p class='mb-3'>
       The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> the language, including <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>, as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
     </p>
@@ -1897,7 +1903,21 @@
     </blockquote>
   
   </div>
-</div><h2 id='pre-requisites' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Pre-requisites</h2>
+</div>
+    <h2 id='pre-requisites' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Pre-requisites
+  
+  <a href='nix-rapid#pre-requisites'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
@@ -1909,7 +1929,21 @@
         </li>
       
     </ul>
-  <h2 id='attrset' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Attrset</h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  
+    <h2 id='attrset' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Attrset
+  
+  <a href='nix-rapid#attrset'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -1951,7 +1985,21 @@
     <p class='mb-3'>
       We have an outer attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>, whose value is another attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100'>bar</code> and a value of <code class='py-0.5 px-0.5 bg-gray-100'>1</code>.
     </p>
-  <h2 id='repl' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>repl</h2>
+  
+    <h2 id='repl' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  repl
+  
+  <a href='nix-rapid#repl'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       Nix expressions can be readily evaluated in the <a href='repl' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code>.
     </p>
@@ -1976,7 +2024,21 @@ nix-repl&gt; x.foo
 nix-repl&gt; x.foo.bar
 1
 
-nix-repl&gt;</code></pre></div><h2 id='flakes' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'><a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a></h2><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+nix-repl&gt;</code></pre></div>
+    <h2 id='flakes' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>
+  
+  <a href='nix-rapid#flakes'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -2028,11 +2090,39 @@ $</code></pre></div>
       We can use <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix eval</code></a> to evaluate any output. For example,
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix eval .#foo
-42</code></pre></div><h3 id='graph' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Graph</h3>
+42</code></pre></div>
+    <h3 id='graph' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Graph
+  
+  <a href='nix-rapid#graph'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.
     </p>
-  <h3 id='inputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Inputs</h3><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  
+    <h3 id='inputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Inputs
+  
+  <a href='nix-rapid#inputs'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -2121,7 +2211,21 @@ nix-repl&gt; legacyPackages.aarch64-darwin.cowsay
 
 nix-repl&gt;</code></pre></div>
   </div>
-</div><h3 id='predefined-outputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Predefined outputs</h3>
+</div>
+    <h3 id='predefined-outputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Predefined outputs
+  
+  <a href='nix-rapid#predefined-outputs'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       Nix commands treat <a href='https://nixos.wiki/wiki/Flakes#Output_schema' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>certain outputs as special</a>. These are:
     </p>
@@ -2129,7 +2233,21 @@ nix-repl&gt;</code></pre></div>
     <p class='mb-3'>
       All of these predefined outputs are further indexed by the “system” value.
     </p>
-  <h4 id='packages' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Packages</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  
+    <h4 id='packages' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+      
+  Packages
+  
+  <a href='nix-rapid#packages'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h4>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -2203,7 +2321,21 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <p class='mb-3'>
       If you run <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> without arguments, it will default to <code class='py-0.5 px-0.5 bg-gray-100'>.#default</code>.
     </p>
-  <h4 id='apps' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Apps</h4>
+  
+    <h4 id='apps' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+      
+  Apps
+  
+  <a href='nix-rapid#apps'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h4>
+  
     <p class='mb-3'>
       A flake app is similar to a flake package except it always refers to a runnable program. You can expose the cowsay executable from the cowsay package as the default flake app:
     </p>
@@ -2224,8 +2356,36 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <p class='mb-3'>
       Now, you can run <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code> to run the cowsay app, which is equivalent to doing <code class='py-0.5 px-0.5 bg-gray-100'>nix build .#cowsay && ./result/bin/cowsay</code> in the previous flake.
     </p>
-  <h4 id='demo' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Interlude: demo</h4><div xmlhtmlRaw><script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
-</div><h4 id='devshells' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>DevShells</h4><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  
+    <h4 id='demo' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+      
+  Interlude: demo
+  
+  <a href='nix-rapid#demo'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h4>
+  <div xmlhtmlRaw><script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
+</div>
+    <h4 id='devshells' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+      
+  DevShells
+  
+  <a href='nix-rapid#devshells'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h4>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -2306,11 +2466,39 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     <p class='mb-3'>
       Typing <code class='py-0.5 px-0.5 bg-gray-100'>Ctrl+D</code> or <code class='py-0.5 px-0.5 bg-gray-100'>exit</code> will exit the devshell.
     </p>
-  <h2 id='conclusion' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Conclusion</h2>
+  
+    <h2 id='conclusion' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Conclusion
+  
+  <a href='nix-rapid#conclusion'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <p class='mb-3'>
       This mini tutorial provided a rapid introduction to Nix flakes, enabling you to get started with writing simple flake for your projects. Consult the links above for more information. There is a lot more to Nix than the concepts presented here! You can also read <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix</a> for a highlevel introduction to all things Nix and flakes.
     </p>
-  <h2 id='see-also' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>See also</h2>
+  
+    <h2 id='see-also' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  See also
+  
+  <a href='nix-rapid#see-also'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
@@ -2323,7 +2511,6 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
       
     </ul>
   
-
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -2460,7 +2647,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.8.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.11.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

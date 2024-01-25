@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0740b41a-f7bd-4fc9-907a-29377d1317a4' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=009e0e60-099b-4f98-94cf-109ae217deae' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -2022,10 +2022,44 @@
     <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
+
+
+
+
+
+
     <p class='mb-3'>
       <a href='https://github.com/numtide/treefmt' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt</a> provides an interface to run multiple <a href='https://en.wikipedia.org/wiki/Prettyprint' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>code formatters</a> at once, so you don’t have to run them manually for each file type in your <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>development</a> project.
     </p>
-  <h2 id='writing-the-nix-to-configure-treefmt-in-your-project' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Writing the Nix to configure treefmt in your project</h2><h3 id='add-treefmt-and-flake-root-to-your-inputs' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Add treefmt and flake-root to your inputs</h3>
+  
+    <h2 id='writing-the-nix-to-configure-treefmt-in-your-project' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Writing the Nix to configure treefmt in your project
+  
+  <a href='treefmt#writing-the-nix-to-configure-treefmt-in-your-project'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <h3 id='add-treefmt-and-flake-root-to-your-inputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Add treefmt and flake-root to your inputs
+  
+  <a href='treefmt#add-treefmt-and-flake-root-to-your-inputs'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       The <a href='https://github.com/srid/flake-root' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>flake-root</code></a> <a href='flake-parts' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>.
     </p>
@@ -2033,13 +2067,41 @@
   # Inside `inputs`
   treefmt-nix.url = "github:numtide/treefmt-nix";
   flake-root.url = "github:srid/flake-root";
-}</code></pre></div><h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Import <code class='py-0.5 px-0.5 bg-gray-100'>flakeModule</code> output of treefmt and flake-root</h3><div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+}</code></pre></div>
+    <h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Import <code class='py-0.5 px-0.5 bg-gray-100'>flakeModule</code> output of treefmt and flake-root
+  
+  <a href='treefmt#import-flakemodule-output-of-treefmt-and-flake-root'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
   # Inside outputs' `flake-parts.lib.mkFlake` 
   imports = [
     inputs.treefmt-nix.flakeModule
     inputs.flake-root.flakeModule
   ];
-}</code></pre></div><h3 id='configure-your-formatter' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Configure your formatter</h3>
+}</code></pre></div>
+    <h3 id='configure-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Configure your formatter
+  
+  <a href='treefmt#configure-your-formatter'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       To actually enable the individual formatters you want to configure treefmt. The example configuration below only consists of formatters required by a haskell project using nix. Refer to <a href='https://numtide.github.io/treefmt/formatters/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt-doc</a> for more formatters.
     </p>
@@ -2058,7 +2120,21 @@
     # Suggests improvements for your code in .hs files
     programs.hlint.enable = false;
   };
-}</code></pre></div><h3 id='add-treefmt-to-your-devshell' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Add treefmt to your devShell</h3>
+}</code></pre></div>
+    <h3 id='add-treefmt-to-your-devshell' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Add treefmt to your devShell
+  
+  <a href='treefmt#add-treefmt-to-your-devshell'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       Finally, add the resulting treefmt wrapper (<code class='py-0.5 px-0.5 bg-gray-100'>build.wrapper</code>) to your devShell. We also add the individual formatters (<code class='py-0.5 px-0.5 bg-gray-100'>build.programs</code>) to the devShell, so that they can be used directly in text editors and IDEs.
     </p>
@@ -2069,16 +2145,72 @@
       treefmt = config.treefmt.build.wrapper;
     } // config.treefmt.build.programs;
   };
-}</code></pre></div><h3 id='flake-check' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Flake check</h3>
+}</code></pre></div>
+    <h3 id='flake-check' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Flake check
+  
+  <a href='treefmt#flake-check'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       The <code class='py-0.5 px-0.5 bg-gray-100'>treefmt-nix</code> flake module automatically adds a flake check that can be evaluated to make sure that the project is already autoformatted.
     </p>
-  <h2 id='tips' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Tips</h2><h3 id='exclude-folders' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Exclude folders</h3>
+  
+    <h2 id='tips' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Tips
+  
+  <a href='treefmt#tips'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <h3 id='exclude-folders' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Exclude folders
+  
+  <a href='treefmt#exclude-folders'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       If there are folders where you wouldn’t want to run the formatter on, use the following:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
-  settings.formatter.&lt;formatter-name&gt;.excludes = [ "./foo/*" ];</code></pre></div><h3 id='use-a-different-package-for-formatter' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Use a different package for formatter</h3>
+  settings.formatter.&lt;formatter-name&gt;.excludes = [ "./foo/*" ];</code></pre></div>
+    <h3 id='use-a-different-package-for-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Use a different package for formatter
+  
+  <a href='treefmt#use-a-different-package-for-formatter'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       The package shipped with the current <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> might not be the desired one, follow the snippet below to override the package (assuming <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-21_11</code> is present in your flake’s inputs).
     </p>
@@ -2087,7 +2219,21 @@
     <p class='mb-3'>
       The same can be applied to other formatters.
     </p>
-  <h3 id='pass-additional-parameters-to-your-formatter' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Pass additional parameters to your formatter</h3>
+  
+    <h3 id='pass-additional-parameters-to-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Pass additional parameters to your formatter
+  
+  <a href='treefmt#pass-additional-parameters-to-your-formatter'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
     <p class='mb-3'>
       You might want to change a certain behaviour of your formatter by overriding by passing the input to the executable. The following example shows how to pass <code class='py-0.5 px-0.5 bg-gray-100'>ghc-opt</code> to ormolu:
     </p>
@@ -2101,7 +2247,21 @@
     <p class='mb-3'>
       Ormolu requires this <code class='py-0.5 px-0.5 bg-gray-100'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-0.5 px-0.5 bg-gray-100'>ormolu --manual-exts</code>.
     </p>
-  <h2 id='example' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Example</h2>
+  
+    <h2 id='example' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Example
+  
+  <a href='treefmt#example'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
@@ -2109,7 +2269,21 @@
         </li>
       
     </ul>
-  <h2 id='upcoming' class='mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Upcoming</h2>
+  
+    <h2 id='upcoming' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Upcoming
+  
+  <a href='treefmt#upcoming'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
@@ -2118,7 +2292,6 @@
       
     </ul>
   
-
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -2177,7 +2350,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.8.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.11.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
