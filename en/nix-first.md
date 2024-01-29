@@ -9,6 +9,7 @@ You have [[install|installed Nix]]. Now let's play with the `nix` command but wi
 
 ![[nix-first.png]]
 
+{#run}
 ## Running a package
 
 As of this writing, [[nixpkgs]] has over 80,000 packages. You can search them [here](https://search.nixos.org/packages). Search for "`cowsay`" and [you will find](https://search.nixos.org/packages?type=packages&query=cowsay) that it is available in Nixpkgs. We can download and run the [cowsay](https://en.wikipedia.org/wiki/Cowsay) package as follows:
@@ -29,6 +30,7 @@ $
 >[!info] `nix run`
 > `nix run` command will run the specified package from the flake. Here `nixpkgs` is the [[flakes|flake]], followed by the letter `#`, which is followed by the package ([[drv]]) name `cowsay` that is outputted by that flake. See [[flake-url]] for details on the syntax.
 
+{#inside-package}
 ## Looking inside a package
 
 What is a Nix "package"? Technically, a Nix package is a special [[store-path]] built using instructions from a [[drv]], both of which reside in the [[store]]. To see what is contained by the `cowsay` package, look inside its [[store-path]]. To get the store path for a package (here, `cowsay`), run `nix build` as follows:
@@ -61,7 +63,7 @@ $ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
 >[!info] Nix Store & Store Paths
 > `/nix/store` is a special directory representing the [[store]]. The paths inside `/nix/store` are known as [[store-path]]. Nix fundamentally is, in large part, about manipulating these store paths in a *pure* and *reproducible* fashion; [[drv]] are "recipes" that does this manipulation, and they too live in the [[store]].
 
-
+{#shell}
 ## Shell environment
 
 One of the powers of Nix is that it enables us to create *isolated* [[shell|shell]] environments containing just the packages we need. For eg., here's how we create a transient shell containing the "cowsay" and "[fortune](https://en.wikipedia.org/wiki/Fortune_(Unix))" packages:
@@ -97,7 +99,7 @@ $ nix shell nixpkgs#cowsay nixpkgs#fortune
 > nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'
 > ```
 
-
+{#install}
 ## Installing a package
 
 >[!warning] Declarative package management
@@ -125,6 +127,7 @@ $ readlink $(which fortune)
 
 Note that this is the same path used by both `nix build` and `nix shell`. Each specific package is uniquely identified by their [[store-path]]; changing any part of its [[drv|build recipe]] (including dependencies), changes that path. Hence, nix is reproducible.
 
+{#nixpkgs-pin}
 ## How is [[nixpkgs]] fetched
 
 So far we have been retrieving and installing software from the [[nixpkgs]] flake, which is defined in the GitHub repository: https://github.com/nixos/nixpkgs. This information comes from the [[registry]]:
@@ -161,6 +164,7 @@ $ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
 ...
 ```
 
+{#external-software}
 ## Using software outside of [[nixpkgs]]
 
 [[nixpkgs]] is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from *any* [[flakes|flake]] by specifying its [[flake-url|flake URL]] to the `nix ?` commands. For example, [Emanote](https://emanote.srid.ca/start/install) (which is used to build this very website) can be executed or installed directly off its flake [on GitHub](https://github.com/srid/emanote):

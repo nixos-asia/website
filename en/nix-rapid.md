@@ -15,6 +15,7 @@ The goal of this mini-tutorial is to introduce you to [[nix|Nix]] the language, 
 > 
 > > [..] we can treat the file system in an operating system like memory in a running program, and equate package management to memory management
 
+{#pre}
 ## Pre-requisites
 
 - **Install Nix**: Nix can be [[install|installed on Linux and macOS]]. If you are using [[nixos]], it already comes with Nix pre-installed.

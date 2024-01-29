@@ -120,6 +120,7 @@ Notice how we used `callCabal2nix` to build a new Haskell package from the sourc
 
 
 
+{#together}
 ### Putting It All Together
 <script async id="asciicast-591422" src="https://asciinema.org/a/591422.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
 
