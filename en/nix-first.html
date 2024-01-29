@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=cec68c92-fb55-4704-939a-f42b61ebb6e5' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=0b52ec8c-28b0-48e2-a4cb-627068187c65' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -914,11 +914,11 @@
       You have <a href='install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code class='py-0.5 px-0.5 bg-gray-100'>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.
     </p>
   <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/mdwk12rpzp6v22h1bllxq0fby7574zbi-global/nix-tutorial/nix-first.png' style='width: inherit;' />
-    <h2 id='running-a-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='run' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
       
   Running a package
   
-  <a href='nix-first#running-a-package'>
+  <a href='nix-first#run'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -963,11 +963,11 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   
   </div>
 </div>
-    <h2 id='looking-inside-a-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='inside-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
       
   Looking inside a package
   
-  <a href='nix-first#looking-inside-a-package'>
+  <a href='nix-first#inside-package'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1026,11 +1026,11 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   
   </div>
 </div>
-    <h2 id='shell-environment' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='shell' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
       
   Shell environment
   
-  <a href='nix-first#shell-environment'>
+  <a href='nix-first#shell'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1084,11 +1084,11 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
   </div>
 </div>
-    <h2 id='installing-a-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
       
   Installing a package
   
-  <a href='nix-first#installing-a-package'>
+  <a href='nix-first#install'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1142,11 +1142,11 @@ $ </code></pre></div>
       Note that this is the same path used by both <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> and <code class='py-0.5 px-0.5 bg-gray-100'>nix shell</code>. Each specific package is uniquely identified by their <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>; changing any part of its <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>build recipe</a> (including dependencies), changes that path. Hence, nix is reproducible.
     </p>
   
-    <h2 id='how-is--fetched' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='nixpkgs-pin' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
       
   How is <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> fetched
   
-  <a href='nix-first#how-is--fetched'>
+  <a href='nix-first#nixpkgs-pin'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1225,11 +1225,11 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
 ...</code></pre></div>
-    <h2 id='using-software-outside-of-' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='external-software' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
       
   Using software outside of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>
   
-  <a href='nix-first#using-software-outside-of-'>
+  <a href='nix-first#external-software'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
