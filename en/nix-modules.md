@@ -12,62 +12,63 @@ Consider the following Nix code, defined in a [[flakes|flake]]:
 
 ![[nix-modules/1/flake.nix]]
 
-This is a simple flake that exposes a package that can be `nix run`ed to list the contents of the root directory. Now let's say we want to create many such packages, each with a slight difference. 
+This is a simple flake that exposes a package (a [[writeShellApplication]] [[drv]] wrapping [lsd](https://github.com/lsd-rs/lsd)), that can be [[nix-first|`nix run`ed]] to list the contents of the root directory. 
+
+```sh
+❯ nix run
+drwxrwxr-x root admin 2.5 KB Tue Jan 30 15:19:06 2024  Applications
+drwxr-xr-x root wheel 1.2 KB Sat Nov 18 23:43:59 2023  bin
+dr-xr-xr-x root wheel 5.1 KB Wed Jan 17 09:21:57 2024  dev
+lrwxr-xr-x root wheel  11 B  Sat Nov 18 23:43:59 2023  etc ⇒ private/etc
+lrwxr-xr-x root wheel  25 B  Wed Jan 17 09:22:56 2024  home ⇒ /System/Volumes/Data/home
+drwxr-xr-x root wheel 2.2 KB Mon Dec  4 02:08:02 2023  Library
+drwxr-xr-x root wheel 224 B  Sat Jul 22 20:09:12 2023  nix
+...
+```
+
+This program is hardcoded to do a certain things: it can list the contents of the `/` directory. Now let's say we want to customize its behaviour but without having to modify the derivation itself.
 
 For example, 
-- we want to create a package that when run will *list a different directory*. 
-- Or another package that will *show a tree view rather than a linear list*. 
+- we may want it to *list a different directory*. 
+- or, *show a tree view rather than a linear list*. 
 
-We can refactor our Nix expression to be a function that takes arguments for these variations:
+To do this, we can first refactor our Nix expression to be a *function* that takes arguments for these variations:
 
 ![[nix-modules/2/flake.nix]]
 
+Now we can try out each of these variations:
+
+```sh
+❯ nix run .#home
+ code      Documents   Keybase   Movies     org ...
+
+❯ nix run .#downloads
+ Downloads
+├──  '$RECYCLE.BIN'
+│   └──  desktop.ini
+├──  2303.18223.pdf
+├──  4.jpg
+├──  '[ORIGINAL] PKD MASTERY GUIDE BOOK.pdf'
+├──  'ACTUAL FREEDOM'
+│   ├──  'ACTUAL FREEDOM (1).txt'
+│   └──  "ACTUAL FREEDOM (Richard's Words Only).txt"
+...
+```
+
 The `lsdFor` returns a `lsd` wrapper package that behaves in accordance with the arguments we pass to it. The flake outputs three packages, including one for listing the user's home directory as well as their "Downloads" folder as a tree view.
 
-Our flake is simple enough that it strictly doesn't require further refactoring. But on larger functions, having functions peppered throughout the project can be rather difficult to entangle. To this end, we'll see how to refactor the above to use the module system, and in the process we'll add more configurability to our `lsd` wrapper.
+>[!tip] Why introduce module system?
+> Our above flake is simple enough that it strictly doesn't require further refactoring. However, in larger flakes, having functions peppered throughout the project can be rather difficult to entangle. To this end, we'll see how to refactor the above to use the module system, and in the process we'll add more configurability to our `lsd` wrapper.
 
 ## Introducing the module system
 
-A Nix module is a specification of various "options". When the user "import"s this module, they can specify values for these options. The module implementation (ie., the "config" attribute") will then use these values to produce the final expression to substitute in call site where the module gets imported. This is a mouthful, so let's get down the concrete details. To port our example, we need to define two options: `dir`, and `tree`. Moreover, we also need an attrset option that will allow us to specify the list of packages to put (`default`, `home`, `downloads`).
+A Nix *module* is a specification of various "options". When the user `import`s this module, they can assign these options. The module implementation (ie., the `config` attribute) will then use these values to produce the final expression to substitute in call site where the module gets imported. 
+
+This is a mouthful, so let's get down to the concrete details. To port our example, we need to define two options: `dir`, and `tree`. We will as well add a third option that is not user-setable but will be used set the resulting package.
 
 Here's our lsd module, defined in `lsd.nix` alongside the flake:
 
-```nix
-# lsd.nix
-{ pkgs, lib, config, ... }:
-{
-  # The interface
-  options = {
-    lsd = lib.mkOption {
-      type = lib.types.submodule {
-        dir = lib.mkOption {
-          type = lib.types.str;
-          default = "/";
-          description = "The directory to list";
-        };
-        tree = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Whether to show a tree view";
-        };
-      };
-    };
-  };
-
-  # The implementation
-  config = {
-    packages.${pkgs.system} = lib.mapAttrs (name: cfg: 
-      pkgs.writeShellApplication {
-        name = "list-contents-${name}";
-        runtimeInputs = [ pkgs.lsd ];
-        text = ''
-          lsd ${if cfg.tree then "--tree" else ""} "${cfg.dir}"
-        '';
-      }
-    ) config.lsd;
-  };
-}
-```
+![[nix-modules/3/lsd.nix]]
 
 Let's use this from the [[repl]]:
 
@@ -78,20 +79,16 @@ Welcome to Nix 2.19.2. Type :? for help.
 nix-repl> :lf nixpkgs
 Added 15 variables.
 
-nix-repl> pkgs = legacyPackages.aarch64-darwin
+nix-repl> pkgs = legacyPackages.${builtins.currentSystem}
 
-nix-repl> lib = pkgs.libpkgs
+nix-repl> lib = pkgs.lib
 
-nix-repl> res = lib.evalModules { modules = [ ./lsd.nix { lsd.home.dir = "$HOME"; } ]; specialArgs = { inherit pkgs; }; }
+nix-repl> res = lib.evalModules { modules = [ ./lsd.nix { lsd.dir = "$HOME"; } ]; specialArgs = { inherit pkgs; }; }
 
-nix-repl> res.config.packages
-{ home = «derivation /nix/store/qaq05x83k92gh34a458ripv5hjs5wimk-list-contents-home.drv»; }
+nix-repl> res.config.lsd.package
+«derivation /nix/store/my26y1wp6801sslfvfzf21q41fzh8bch-list-contents.drv»
 
-nix-repl> res.config.packages.home
-«derivation /nix/store/qaq05x83k92gh34a458ripv5hjs5wimk-list-contents-home.drv»
-
-nix-repl> :b res.config.packages.home
-
+nix-repl> :b res.config.lsd.package
 This derivation produced the following outputs:
-  out -> /nix/store/acpkhiv6qsblpdkgqfjjgd46lh6cjw23-list-contents-home
+  out -> /nix/store/m8phgz5ch7whqbs5pk991pc0cfczsghk-list-contents
 ```
