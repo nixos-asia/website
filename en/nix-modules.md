@@ -100,9 +100,20 @@ Using `evalModules`, as we saw in the repl session, we can refactor our previous
 >[!tip] Hmm!
 > You may notice that there's not much difference. If anything our new flake is *slightly* more complex, due to use of `evalModules`. The simplicity of the module system will become evident as you write more complex flakes, or if you want to share your modules or override them.
 
-### Importing modules
+## Importing modules
 
 Let's do something more interesting in the above flake. We'll create a "common settings" module, and then use that across the packages using the `imports` attribute. `evalModules` implements a type merge system that knows how to merge same attributes from multiple modules.
 
 ![[nix-modules/4/flake.nix]]
+
+Compared to the 3rd flake, we have:
+
+- In [[nix-modules/4/lsd.nix]]: a new option `long` to specify `-l` to lsd.
+- In [[nix-modules/4/flake.nix]]: 
+  - a new module `common` enabling the `long` option.
+  - all packages now `imports` this common module, to derive the `long` option.
+
+Now when you `nix run` these programs you will get similar output to the previous flake but with a long listing instead.
+
+## Sharing modules across flakes
 
