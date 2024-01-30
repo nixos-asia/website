@@ -1,4 +1,5 @@
 ---
+order: 1
 page:
   image: nix-tutorial/nix-first.png
 ---

@@ -1,4 +1,5 @@
 ---
+order: 2
 page:
   image: nix-tutorial/nix-rapid.png
 ---
