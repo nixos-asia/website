@@ -1,11 +1,11 @@
-{ 
+{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
-  outputs = { self, nixpkgs }: 
+  outputs = { self, nixpkgs }:
     let
       # TODO: Change this to x86_64-linux if you are on Linux
-      system = "aarch64-darwin"; 
+      system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
       lsdFor = { dir, tree ? false }: pkgs.writeShellApplication {
         name = "list-contents";
@@ -14,7 +14,8 @@
           lsd ${if tree then "--tree" else ""} "${dir}"
         '';
       };
-    in {
+    in
+    {
       packages.${system} = {
         default = lsdFor { dir = "/"; };
         home = lsdFor { dir = "$HOME"; };

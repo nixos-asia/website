@@ -92,3 +92,17 @@ nix-repl> :b res.config.lsd.package
 This derivation produced the following outputs:
   out -> /nix/store/m8phgz5ch7whqbs5pk991pc0cfczsghk-list-contents
 ```
+
+Using `evalModules`, as we saw in the repl session, we can refactor our previous flake:
+
+![[nix-modules/3/flake.nix]]
+
+>[!tip] Hmm!
+> You may notice that there's not much difference. If anything our new flake is *slightly* more complex, due to use of `evalModules`. The simplicity of the module system will become evident as you write more complex flakes, or if you want to share your modules or override them.
+
+### Importing modules
+
+Let's do something more interesting in the above flake. We'll create a "common settings" module, and then use that across the packages using the `imports` attribute. `evalModules` implements a type merge system that knows how to merge same attributes from multiple modules.
+
+![[nix-modules/4/flake.nix]]
+
