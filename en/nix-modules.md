@@ -60,6 +60,7 @@ The `lsdFor` returns a `lsd` wrapper package that behaves in accordance with the
 >[!tip] Why introduce module system?
 > Our above flake is simple enough that it strictly doesn't require further refactoring. However, in larger flakes, having functions peppered throughout the project can be rather difficult to entangle. To this end, we'll see how to refactor the above to use the module system, and in the process we'll add more configurability to our `lsd` wrapper.
 
+{#introduce}
 ## Introducing the module system
 
 A Nix *module* is a specification of various "options". When the user `import`s this module, they can assign these options. The module implementation (ie., the `config` attribute) will then use these values to produce the final expression to substitute in call site where the module gets imported. 
@@ -100,6 +101,7 @@ Using `evalModules`, as we saw in the repl session, we can refactor our previous
 >[!tip] Hmm!
 > You may notice that there's not much difference. If anything our new flake is *slightly* more complex, due to use of `evalModules`. The simplicity of the module system will become evident as you write more complex flakes, or if you want to share your modules or override them.
 
+{#imports}
 ## Importing modules
 
 Let's do something more interesting in the above flake. We'll create a "common settings" module, and then use that across the packages using the `imports` attribute. `evalModules` implements a type merge system that knows how to merge same attributes from multiple modules.
@@ -115,5 +117,6 @@ Compared to the 3rd flake, we have:
 
 Now when you `nix run` these programs you will get similar output to the previous flake but with a long listing instead.
 
+{#share}
 ## Sharing modules across flakes
 
