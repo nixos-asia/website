@@ -73,6 +73,7 @@
               static-web-server -d ${self'.packages.default} "$@"
             '';
           };
+          apps.default.program = self'.apps.en.program; # Alias to English site
           formatter = pkgs.nixpkgs-fmt;
         };
     };

@@ -5,7 +5,7 @@ This website is built using [Emanote](https://emanote.srid.ca/).
 To run the English site locally with live preview,
 
 ```sh
-nix run .#en
+nix run .#en  # Or just: nix run
 ```
 
 ## Goals
