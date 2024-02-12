@@ -272,7 +272,7 @@ As an example, we will update our `flake.nix` to provide a devshell that contain
           let 
             pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
           in pkgs.mkShell {
-            nativeBuildInputs = [
+            packages = [
               pkgs.jq
             ];
           };
