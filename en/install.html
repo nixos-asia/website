@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=de781aa9-c753-4df4-ab72-1273183511da' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=82a1a361-5aeb-4815-993b-f153528d19cd' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1417,7 +1417,7 @@
     <p class='mb-3'>
       After installing Nix, open a new terminal and run the <a href='https://github.com/juspay/nix-browser/tree/main/crates/nix_health' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix Health</a> checks,
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nix run nixpkgs#nix-health</code></pre></div>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nix --accept-flake-config run github:juspay/nix-browser#nix-health</code></pre></div>
     <p class='mb-3'>
       Expect to see all results in either green (or yellow).
     </p>
