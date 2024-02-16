@@ -6,6 +6,11 @@ order: 3
 
 Learning to work with the [[modules|module system]] in [[nixpkgs|nixpkgs]] is a big stepping stone to writing easy to maintain and shareable Nix code. We will focus on that in this tutorial -- by understanding how to use `evalModules` from [[nixpkgs|nixpkgs]] to define and use our own modules. The next tutorial in this series will talk about how to do that using `flake-parts` for writing [[flakes|flakes]] and sharing the modules with others flakes. 
 
+>[!tip] Everything about the module system
+> This tutorial introduces the reader to the Nix module system. To learn more about the module system, we recommend [this video from Tweag](https://www.youtube.com/watch?v=N7hFP_40DJo) as well the article "[Module system deep dive][doc]" from nix.dev.
+
+[doc]: https://nix.dev/tutorials/module-system/module-system.html
+
 ## A simple example
 
 Consider the following Nix code, defined in a [[flakes|flake]]:
@@ -26,13 +31,13 @@ drwxr-xr-x root wheel 224 B  Sat Jul 22 20:09:12 2023  nix
 ...
 ```
 
-This program is hardcoded to do a certain things: it can list the contents of the `/` directory. Now let's say we want to customize its behaviour but without having to modify the derivation itself.
+This program is hardcoded to do a certain thing: it can list the contents of the `/` directory. Now let's say we want to customize its behaviour but without having to modify the derivation itself.
 
-For example, 
-- we may want it to *list a different directory*. 
+In particular, we want our program to:
+- *list a different directory*. 
 - or, *show a tree view rather than a linear list*. 
 
-To do this, we can first refactor our Nix expression to be a *function* that takes arguments for these variations:
+Normally we can achieve this by refactoring our Nix expression to be a *function* (see `lsdFor` ⤵️) that takes arguments for these variations (`dir` and `tree` ⤵️), producing the appropriate [[drv|derivation]] as a result:
 
 ![[nix-modules/2/flake.nix]]
 
@@ -55,7 +60,7 @@ Now we can try out each of these variations:
 ...
 ```
 
-The `lsdFor` returns a `lsd` wrapper package that behaves in accordance with the arguments we pass to it. The flake outputs three packages, including one for listing the user's home directory as well as their "Downloads" folder as a tree view.
+The `lsdFor` function returns a `lsd` wrapper package that behaves in accordance with the arguments we pass to it. The flake outputs three packages, including one for listing the user's home directory as well as their "Downloads" folder as a tree view.
 
 >[!tip] Why introduce module system?
 > Our above flake is simple enough that it strictly doesn't require further refactoring. However, in larger flakes, having functions peppered throughout the project can be rather difficult to entangle. To this end, we'll see how to refactor the above to use the module system, and in the process we'll add more configurability to our `lsd` wrapper.
@@ -63,15 +68,18 @@ The `lsdFor` returns a `lsd` wrapper package that behaves in accordance with the
 {#introduce}
 ## Introducing the module system
 
-A Nix *module* is a specification of various "options". When the user `import`s this module, they can assign these options. The module implementation (ie., the `config` attribute) will then use these values to produce the final expression to substitute in call site where the module gets imported. 
+A Nix *module* is a specification of various "options". When the user `import`s this module, they can assign these options. The module implementation (ie., the `config` attribute) will then use these values to produce the final expression to substitute in call site where the module gets imported. Modules can import each other in nested fashion; and option types can have certain merge semantics allowing you to define the same option across multiple modules.
 
-This is a mouthful, so let's get down to the concrete details. To port our example, we need to define two options: `dir`, and `tree`. We will as well add a third option that is not user-setable but will be used set the resulting package.
+This is a mouthful, so let's get down to the concrete details. To port our flake above, we need to define two options: `dir`, and `tree`. We will as well add a third option that is not user-setable but will be used set the resulting package.
 
 Here's our lsd module, defined in `lsd.nix` alongside the flake:
 
 ![[nix-modules/3/lsd.nix]]
 
-Let's use this from the [[repl]]:
+>[!info] Follow the comments
+> We recommend that you follow the comments in the above Nix file to understand its structure. As always, consult [Module system deep dive][doc] to learn of all the details.
+
+Let's evaluate it from the [[repl]]:
 
 ```sh
 ❯ nix repl
