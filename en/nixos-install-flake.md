@@ -12,8 +12,8 @@ This tutorial will walk you through the steps necessary to install [[nixos|NixOS
 
 ![[nixos-install-flake.png]]
 
-{#install}
-## Install NixOS
+{#prepare}
+## Prepare to install NixOS
 
 - Download the latest NixOS ISO from [here](https://nixos.org/download#download-nixos). Choose the GNOME (or Plasma) graphical ISO image for the appropriate CPU architecture. 
 - Create a bootable USB flash drive ([instructions here](https://nixos.org/manual/nixos/stable/index.html#sec-booting-from-usb)) and boot the computer from it.
