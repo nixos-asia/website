@@ -4,14 +4,14 @@ order: 2
 
 # Install NixOS and partition the disk with `disko`
 
-This tutorial adds another layer of reproducibility to the [[nixos-install-flake]] by writing your partitioning scheme for #[[nixos]] in #[[nix]].
+This tutorial adds another layer of reproducibility to [[nixos-install-flake|our first NixOS installation tutorial]] by defining the disk partitioning scheme in [[nixos|NixOS]] configuration itself, using the declarative disk partitioning tool [disko](https://github.com/nix-community/disko).
 
 {#prepare}
 ## Prepare to install NixOS
 
 
 >[!note] Minimal ISO image
-> This tutorial doesn't use a graphical installer. Instead, it uses the minimal ISO image. This is primarily because we don't want the installer to partion the disk for us. We will use [disko](https://github.com/nix-community/disko) to do that.
+> This tutorial doesn't use a [[nixos-install-flake|graphical installer]]. Instead, it uses the minimal ISO image. This is primarily because we don't want the installer to partion the disk for us. We will use [disko](https://github.com/nix-community/disko) to do that.
 
 - Download the latest NixOS ISO from [here](https://nixos.org/download#download-nixos). Choose the "Minimal ISO image" for your architecture.
 - Create a bootable USB flash drive ([instructions here](https://nixos.org/manual/nixos/stable/index.html#sec-booting-from-usb)) and boot the computer from it.
@@ -27,6 +27,7 @@ NixOS will boot into the USB in CLI mode.
 
 The [disko quickstart guide](https://github.com/nix-community/disko/blob/master/docs/quickstart.md) does an excellent job of explaining it. We will follow the same steps and include screenshots wherever necessary. Additionally, in the last step we will use flakes to manage the configuration.
 
+{#disk-config}
 ### Choosing the disk configuration
 
 Disko provides a few examples to choose [from](https://github.com/nix-community/disko/tree/master/example). We will use the [hybrid](https://github.com/nix-community/disko/blob/master/example/hybrid.nix) example as it will work for both BIOS and UEFI systems.
@@ -37,16 +38,17 @@ Copy the disk configuration on to the USB flash drive.
 curl https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid.nix -o /tmp/disko-config.nix
 ```
 
+{#disk-config-edit}
 ### Modify the disk configuration
 
-We need to find the device name of the disk we want to install NixOS on. We can use `lsblk` to find it.
+We need to find the device name of the disk we want to install [[nixos]] on. We can use `lsblk` to find it.
 
 
 :::{.center}
 ![[nixos-lsblk.jpeg]]
 :::
 
-In this case, the device name is `vda`. We will use this to modify `disko-config.nix` we downloaded earlier.
+In this case, the device name is `vda`. The device file is located at `/dev/vda`. We will use this to modify `disko-config.nix` we downloaded earlier.
 
 :::{.center}
 ![[nixos-disko-config.jpeg]]
@@ -105,7 +107,7 @@ Add the `disko` nixosModule:
     # ...
     modules = [
       ./configuration.nix
-      disko.nixosModules.disko
+      inputs.disko.nixosModules.disko
     ];
   };
 }
@@ -143,7 +145,7 @@ Add the disk configuration and use GRUB:
 >[!info]
 > The boot loader configuration above is compatible with both BIOS and UEFI systems. Additionally, BIOS also requires [boot.loader.grub.device](https://search.nixos.org/options?channel=23.11&show=boot.loader.grub.device&from=0&size=50&sort=relevance&type=packages&query=boot.loader.grub.device) to be set which is done by `disko`'s `nixosModule`.
 
-Verify `fileSystems` set by `disko` in `nix repl`:
+Verify `fileSystems` set by `disko` in `nix --experimental-features "nix-command flakes" repl`:
 :::{.center}
 ![[nixos-disko-filesystems.jpeg]]
 :::
