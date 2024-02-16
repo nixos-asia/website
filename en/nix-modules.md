@@ -18,6 +18,9 @@ Consider the following Nix code, defined in a [[flakes|flake]]:
 [[nix-modules/1/flake.nix]]
 ![[nix-modules/1/flake.nix]]
 
+>[!info] Source code for this tutorial
+> All source code for the Nix in this tutorial is available [here](https://github.com/nixos-asia/website/tree/master/global/nix-modules).
+
 This is a simple flake that exposes a package (a [[writeShellApplication]] [[drv]] wrapping [lsd](https://github.com/lsd-rs/lsd)), that can be [[nix-first|`nix run`ed]] to list the contents of the root directory. 
 
 ```sh
@@ -133,3 +136,17 @@ Now when you `nix run` these programs you will get similar output to the previou
 {#share}
 ## Sharing modules across flakes
 
+We will create a 5th flake that re-uses module from the 4th flake above. This is a contrived example, but it demonstrates how you can share modules across flakes.
+
+[[nix-modules/5/flake.nix]]
+![[nix-modules/5/flake.nix]]
+
+Note that,
+
+- [[nix-modules/4/flake.nix]] outputs the `common` attribute. Its file paths, like [[nix-modules/4/lsd.nix]] can also be accessed by treating that flake input as a path.
+- In [[nix-modules/5/flake.nix]], we access these two modules -- `common` and `lsd.nix` for re-use, thus relieving our 5th flake of having to define `lsd.nix` and the `common` module.
+
+{#end}
+## Where to go from here?
+
+You have just completed reading a quick introduction to the module system, in particular how to define, use and share them in [[flakes]]. To learn more about the module system, we recommend [this video from Tweag](https://www.youtube.com/watch?v=N7hFP_40DJo) as well the article "[Module system deep dive][doc]" from nix.dev.

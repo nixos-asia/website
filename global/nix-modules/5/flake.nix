@@ -1,8 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # ⤵️ flake4 is specified as input
+    flake4.url = "path:../4";
   };
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs, flake4 }:
     let
       # TODO: Change this to x86_64-linux if you are on Linux
       system = "aarch64-darwin";
@@ -12,36 +14,26 @@
         let
           result = lib.evalModules {
             modules = [
-              ./lsd.nix
+              # ⤵️ We import flake4's module directly here, by file path.
+              (flake4 + /lsd.nix)
+              # ⤵️ We can also reference the module directly.
+              flake4.common
               settings
             ];
             specialArgs = { inherit pkgs; };
           };
         in
         result.config.lsd.package;
-      # ⤵️ A common module for re-use in other modules (see below)
-      common = {
-        lsd = {
-          long = lib.mkDefault true;
-        };
-      };
     in
     {
-      inherit common; # For use in 5/flake.nix
       packages.${system} = {
         default = lsdFor {
-          # ⤵️ Here, we import the common module
-          imports = [ common ];
           lsd.dir = "/";
         };
         home = lsdFor {
-          # ⤵️ Here, we import the common module
-          imports = [ common ];
           lsd.dir = "$HOME";
         };
         downloads = lsdFor {
-          # ⤵️ Here, we import the common module
-          imports = [ common ];
           lsd = {
             dir = "$HOME/Downloads";
             tree = true;
