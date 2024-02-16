@@ -12,9 +12,12 @@
         let
           result = lib.evalModules {
             modules = [
+              # Note that 'settings' is no different to the lsd.nix module.
               ./lsd.nix
               settings
             ];
+            # Arguments passed here become automatically available to all
+            # modules.
             specialArgs = { inherit pkgs; };
           };
         in

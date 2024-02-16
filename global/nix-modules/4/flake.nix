@@ -19,6 +19,7 @@
           };
         in
         result.config.lsd.package;
+      # ⤵️ A common module for re-use in other modules (see below)
       common = {
         lsd = {
           long = lib.mkDefault true;
@@ -28,14 +29,17 @@
     {
       packages.${system} = {
         default = lsdFor {
+          # ⤵️ Here, we import the common module
           imports = [ common ];
           lsd.dir = "/";
         };
         home = lsdFor {
+          # ⤵️ Here, we import the common module
           imports = [ common ];
           lsd.dir = "$HOME";
         };
         downloads = lsdFor {
+          # ⤵️ Here, we import the common module
           imports = [ common ];
           lsd = {
             dir = "$HOME/Downloads";
