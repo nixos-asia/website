@@ -164,7 +164,7 @@ nix --experimental-features "nix-command flakes" repl
 ## Install NixOS
 
 ```bash
-sudo nixos-install --root /mnt --flake '.#nixos'
+sudo nixos-install --root /mnt --flake '/mnt/etc/nixos#nixos'
 sudo reboot
 ```
 
