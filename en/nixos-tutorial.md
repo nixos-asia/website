@@ -6,6 +6,8 @@ order: -7
 
 ![[tutorial-philosophy]]
 
-- [x] [[nixos-install-flake]]#
+- [ ] Installation
+    - [x] [[nixos-install-flake]]#
+    - [x] [[nixos-install-disko]]#
 - [ ] Basics
 - [ ] Services

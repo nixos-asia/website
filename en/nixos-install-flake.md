@@ -1,4 +1,5 @@
 ---
+order: 1
 page:
   image: nixos-install-flake/nixos-install-flake.png
 ---
