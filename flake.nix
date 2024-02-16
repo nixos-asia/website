@@ -1,7 +1,7 @@
 {
   nixConfig = {
-    extra-substituters = "https://srid.cachix.org";
-    extra-trusted-public-keys = "srid.cachix.org-1:3clnql5gjbJNEvhA/WQp7nrZlBptwpXnUk6JAv8aB2M=";
+    extra-substituters = "https://cache.garnix.io";
+    extra-trusted-public-keys = "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=";
   };
 
   inputs = {
@@ -14,31 +14,67 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = nixpkgs.lib.systems.flakeExposed;
       imports = [ inputs.emanote.flakeModule ];
-      perSystem = { self', pkgs, system, ... }: {
-        emanote = {
-          # By default, the 'emanote' flake input is used.
-          # package = inputs.emanote.packages.${system}.default;
-          sites."default" = {
-            layers = [ ./. ];
-            layersString = [ "." ];
-            port = 7788;
-            prettyUrls = true;
+      perSystem = { self', pkgs, lib, system, ... }:
+        let
+          langs = {
+            en = { path = ./en; port = 7788; };
+            fr = { path = ./fr; port = 7789; };
           };
+        in
+        {
+          emanote = {
+            sites = lib.mapAttrs
+              (name: lang: {
+                inherit (lang) port;
+                layers = [ lang.path ./global ];
+                layersString = [ name "global" ];
+                prettyUrls = true;
+                baseUrl = "/${name}/";
+                basePath = name;
+              })
+              langs;
+          };
+          devShells.default = pkgs.mkShell {
+            buildInputs = [
+              pkgs.nixpkgs-fmt
+            ];
+          };
+          packages = rec {
+            indexPage = pkgs.writeTextDir
+              "index.html"
+              ''
+                <html>
+                  <head>
+                    <meta charset="utf-8" />
+                    <title>Welcome to NixOS Asia</title>
+                    <!-- meta http-equiv="refresh" content="0; URL=/en" /-->
+                  </head>
+                  <body>
+                    <!--  TODO: Lang selector? -->
+                    <div style="margin-top: 2em; text-align: center; font-size: 2em;">
+                      <a href="/en">English</a> | <a href="/fr">Français</a>
+                    </div>
+                  </body>
+                </html>
+              '';
+            site = pkgs.symlinkJoin {
+              name = "nixos-asia-site";
+              paths = [ indexPage ] ++ lib.mapAttrsToList
+                (name: _: self'.packages.${name})
+                langs;
+            };
+            default = site;
+          };
+          apps.preview.program = pkgs.writeShellApplication {
+            name = "emanote-static-preview";
+            runtimeInputs = [ pkgs.static-web-server ];
+            text = ''
+              set -x
+              static-web-server -d ${self'.packages.default} "$@"
+            '';
+          };
+          apps.default.program = self'.apps.en.program; # Alias to English site
+          formatter = pkgs.nixpkgs-fmt;
         };
-        devShells.default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.nixpkgs-fmt
-          ];
-        };
-        apps.preview.program = pkgs.writeShellApplication {
-          name = "emanote-preview";
-          runtimeInputs = [ pkgs.nodePackages.http-server ];
-          text = ''
-            set -x
-            http-server ${self'.packages.default} "$@"
-          '';
-        };
-        formatter = pkgs.nixpkgs-fmt;
-      };
     };
 }

@@ -1,22 +1,26 @@
 ---
-date: 2023-03-01
-author: srid
+order: 2
+page:
+  image: nix-tutorial/nix-rapid.png
 ---
 
 # Rapid Introduction to Nix
 
 
-The goal of this mini-tutorial is to introduce you to #[[nix]] as quickly as possible while also preparing the motivated learner to dive deeper into [the whole Nix ecosystem][zero-to-nix]. At the end of this introduction, you will be able to create a #[[flakes|flake]] for building a package and providing a developer environment shell.
+The goal of this mini-tutorial is to introduce you to [[nix|Nix]] the language, including [[flakes|flakes]], as quickly as possible while also preparing the motivated learner to dive deeper into [the whole Nix ecosystem][zero-to-nix]. At the end of this introduction, you will be able to create a #[[flakes|flake.nix]] that builds a package and provides a [[dev|developer environment]] shell.
 
-![[rapid-nix.png]]
+![[nix-rapid.png]]
 
-If you are already experienced in [purely functional programming](https://en.wikipedia.org/wiki/Purely_functional_programming), it is highly recommended to read [Nix - taming Unix with functional programming](https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/) to gain a foundational perspective into Nix being purely functional but in the context of *file system* (as opposed to values stored in memory).
+>[!tip] Purely functional
+> If you are already experienced in [purely functional programming](https://en.wikipedia.org/wiki/Purely_functional_programming), it is highly recommended to read [Nix - taming Unix with functional programming](https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/) to gain a foundational perspective into Nix being purely functional but in the context of *file system* (as opposed to values stored in memory).
+> 
+> > [..] we can treat the file system in an operating system like memory in a running program, and equate package management to memory management
 
-> Dolstra proposed that we can treat the file system in an operating system like memory in a running program, and equate package management to memory management
+{#pre}
+## Pre-requisites
 
-## Install
-
-Nix can be [[install|installed on Linux and macOS]]. If you are using [[nixos]], it already comes with Nix pre-installed.
+- **Install Nix**: Nix can be [[install|installed on Linux and macOS]]. If you are using [[nixos]], it already comes with Nix pre-installed.
+- **Play with Nix**: Before writing Nix expressions, it is useful to get a feel for working with the `nix` command. See [[nix-first]]
 
 ## Attrset
 
@@ -109,7 +113,7 @@ A flake can refer to other flakes in its inputs. Phrased differently, a flake's 
 ### Inputs
 
 > [!info] To learn more
-> - [URL-like syntax][flake-url] used by the `url` attribute
+> - [[flake-url|URL-like syntax]] used by the `url` attribute
 
 Let's do something more interesting with our `flake.nix` by adding the [[nixpkgs]] input:
 
@@ -125,6 +129,9 @@ Let's do something more interesting with our `flake.nix` by adding the [[nixpkgs
   };
 }
 ```
+
+>[!note] About `nixpkgs-unstable`
+> The `nixpkgs-unstable` branch is frequently updated, hence its name, but this doesn't imply instability or unsuitability for use.
 
 The [[nixpkgs]] flake has an output called `legacyPackages`, which is indexed by the platform (called "system" in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key `foo`. 
 
@@ -144,14 +151,14 @@ The [[nixpkgs]] flake has an output called `legacyPackages`, which is indexed by
 
 ### Predefined outputs
 
-Nix commands treat certain outputs as special. These are:
+Nix commands treat [certain outputs as special](https://nixos.wiki/wiki/Flakes#Output_schema). These are:
 
-| Output      | Nix command       | Description                     |
-| ----------- | ----------------- | ------------------------------- |
-| `packages`  | `nix build`       | [[drv]] output                  |
-| `devShells` | `nix develop`     | [Development](../dev.md) shells |
-| `apps`      | `nix run`         | Runnable applications           |
-| `checks`    | `nix flake check` | Tests and checks                |
+| Output      | Nix command       | Description                  |
+| ----------- | ----------------- | ---------------------------- |
+| `packages`  | `nix build`       | [[drv]] output               |
+| `devShells` | `nix develop`     | [Development](dev.md) shells |
+| `apps`      | `nix run`         | Runnable applications        |
+| `checks`    | `nix flake check` | Tests and checks             |
 
 All of these predefined outputs are further indexed by the "system" value. 
 
@@ -196,7 +203,7 @@ The `packages` output is recognized by `nix build`.
 $ nix build .#cowsay
 ```
 
-The [`nix build`][nix-build] command takes as argument a value of the form `<flake-url>#<package-name>`. By default, `.` (which is a [flake URL][flake-url]) refers to the current flake. Thus, `nix build .#cowsay` will build the `cowsay` package from the current flake under the current system. `nix build` produces a `./result` symlink that points to the Nix store path containing the package:
+The [`nix build`][nix-build] command takes as argument a value of the form `<flake-url>#<package-name>`. By default, `.` (which is a [[flake-url|flake URL]]) refers to the current flake. Thus, `nix build .#cowsay` will build the `cowsay` package from the current flake under the current system. `nix build` produces a `./result` symlink that points to the Nix store path containing the package:
 
 ```sh
 $ ./result/bin/cowsay hello
@@ -212,13 +219,41 @@ $ ./result/bin/cowsay hello
 
 If you run `nix build` without arguments, it will default to `.#default`.
 
+#### Apps
+
+A flake app is similar to a flake package except it always refers to a runnable program. You can expose the cowsay executable from the cowsay package as the default flake app:
+
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+
+  outputs = inputs: {
+    apps.x86_64-linux = {
+      default = {
+        type= "app";
+        program = "${inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay}/bin/cowsay";
+      } ;
+    };
+  };
+}
+```
+
+Now, you can run `nix run` to run the cowsay app, which is equivalent to doing `nix build .#cowsay && ./result/bin/cowsay` in the previous flake.
+
+{#demo}
+#### Interlude: demo
+
+<script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
+
 #### DevShells
 
 > [!info] To learn more
 > - [Official Nix manual][mkShell]
 > - [NixOS Wiki](https://nixos.wiki/wiki/Development_environment_with_nix-shell)
 
-Like `packages`, another predefined flake output is `devShells` - which is used to provide a [[dev|development]] shell aka. a nix shell or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called [`mkShell`][mkShell] that can be used to create devshells.
+Like `packages`, another predefined flake output is `devShells` - which is used to provide a [[dev|development]] shell aka. a nix [[shell|shell]] or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called [`mkShell`][mkShell] that can be used to create devshells.
 
 As an example, we will update our `flake.nix` to provide a devshell that contains the [jq](https://github.com/stedolan/jq) tool.
 
@@ -237,7 +272,7 @@ As an example, we will update our `flake.nix` to provide a devshell that contain
           let 
             pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
           in pkgs.mkShell {
-            nativeBuildInputs = [
+            packages = [
               pkgs.jq
             ];
           };
@@ -285,7 +320,6 @@ This mini tutorial provided a rapid introduction to Nix flakes, enabling you to 
 [nix-flake-show]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html
 [nix-eval]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html
 [nix-function]: https://nixos.org/manual/nix/stable/language/constructs.html#functions
-[flake-url]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#url-like-syntax
 [mkShell]: https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell
 [exa]: https://github.com/ogham/exa
 [nix-build]: https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html

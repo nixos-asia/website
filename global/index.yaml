@@ -3,21 +3,18 @@
 
 page:
   siteTitle: NixOS Asia
+  siteUrl: https://nixos.asia/en
   headHtml: |
     <snippet var="js.highlightjs" />
+  image: static/nixos-asia.svg
 
 template:
   theme: green
   iconUrl: static/nixos-asia.svg
 
-  # You can add your own variables here, like editBaseUrl.
-  # See after-note.tpl to see where editBaseUrl gets used.
-  editBaseUrl: https://github.com/nixos-asia/website/edit/master
-
   uptree:
     enable: false
 
-  # If you are hosting on GitLab Pages, you may want to remove this.
   urlStrategy: pretty
 
 feed:

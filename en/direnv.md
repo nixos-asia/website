@@ -1,11 +1,11 @@
 # `direnv`: manage dev environments
 
-`direnv` (along with [nix-direnv]) allows one to persist[^gc] nix #[[dev|devshell]] environments and share them seamlessly with text editors and IDEs. It obviates having to run `nix develop` manually every time you open a new terminal. The moment you `cd` into your project directory, the devshell is automatically activated, thanks to `direnv`. 
+`direnv` (along with [nix-direnv]) allows one to persist[^gc] nix #[[dev|development]] [[shell|shell]] environments and share them seamlessly with text editors and IDEs. It obviates having to run `nix develop` manually every time you open a new terminal. The moment you `cd` into your project directory, the devshell is automatically activated, thanks to `direnv`. 
 
 [^gc]: [nix-direnv] prevents garbage collection of the devshell, so you do not have to re-download things again. direnv also enables activating the devshell in your current shell, without needing to use a customized bash.
 
 >[!tip] Starship
-> It is recommended to use [**starship**](https://starship.rs/) along with nix-direnv, because it gives a visual indication of the current environment. For example, if you are in a `nix develop` shell, your terminal prompt automatically changes to something like this:
+> It is recommended to use [**starship**](https://starship.rs/) along with nix-direnv, because it gives a visual indication of the current environment. For example, if you are in a [[shell]], your terminal prompt automatically changes to something like this:
 >
 > ```sh
 > srid on nixos haskell-template on  master [!] via λ 9.2.6 via ❄️  impure (ghc-shell-for-haskell-template-0.1.0.0-0-env)
@@ -63,7 +63,7 @@ Now run `direnv allow` to authorize the current `.envrc` file. You can now `cd` 
 
 #### [[haskell]] - when `.cabal` files change
 
-Since both [nixpkgs](https://community.flake.parts/haskell-flake/nixpkgs-haskell) and [haskell-flake](https://community.flake.parts/haskell-flake) use Nix expressions that read the `.cabal` file to get dependency information, you will want the devshell be recreated every time a `.cabal` file changes. This can be achieved using the `nix_direnv_watch_file` function. Modify your `.envrc` to contain:
+Since both [[nixify-haskell-nixpkgs|nixpkgs]] and [haskell-flake](https://community.flake.parts/haskell-flake) use Nix expressions that read the `.cabal` file to get dependency information, you will want the devshell be recreated every time a `.cabal` file changes. This can be achieved using the `nix_direnv_watch_file` function. Modify your `.envrc` to contain:
 
 ```text title=".envrc"
 nix_direnv_watch_file *.cabal

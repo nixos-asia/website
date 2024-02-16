@@ -1,13 +1,13 @@
 ---
+order: 15
 feed:
-  enable: true
+  enable: false
   title: NixOS Asia Blog
 ---
 
 # Blog
 
-Recent posts:
+>[!warning] WIP
+> We don't have any posts yet. Checkout our [[tutorial]] in the meanwhile.
 
-```query {.timeline}
-children:.
-```
+An RSS feed will be made available soon (cf. [this bug](https://github.com/srid/emanote/issues/490)).

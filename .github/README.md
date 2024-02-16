@@ -2,10 +2,10 @@
 
 This website is built using [Emanote](https://emanote.srid.ca/).
 
-To run it locally with live preview,
+To run the English site locally with live preview,
 
 ```sh
-nix run
+nix run .#en  # Or just: nix run
 ```
 
 ## Goals
@@ -23,7 +23,21 @@ Contents are stored in Markdown and can be edited using your favourite [text edi
 
 ### PR guidelines
 
-To assist the reviewer, use `nix run github:nixos-asia/website/branch#preview -- -o /en/whatever` in the PR description to provide a handy command for previewing the changes in the PR. See example: https://github.com/nixos-asia/website/pull/12
+To assist the reviewer, use `nix run github:nixos-asia/website/branch#preview` in the PR description to provide a handy command for previewing the changes in the PR. See example: https://github.com/nixos-asia/website/pull/12
+
+
+### Content organization
+
+This site is made of multiple Emanote layers:
+
+- `./global`: Static files and HTML temlpates (common to all languages)
+    - If a note uses images, you should put them here.
+- Language-specific content:
+    - `./en`: English content
+    - `./fr`: French content[^fr]
+
+[^fr]: This is just a placeholder. See https://github.com/nixos-asia/website/issues/18
+
 
 ## Discussion
 

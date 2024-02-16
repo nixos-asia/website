@@ -1,0 +1,9 @@
+template:
+  sidebar:
+    enable: false
+  uptree:
+    enable: true
+  breadcrumbs:
+    enable: true
+  base:
+    containerClass: container mx-auto max-w-prose
