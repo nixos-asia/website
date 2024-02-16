@@ -1,6 +1,6 @@
 # Install NixOS and partition the disk with `disko`
 
-This tutorial adds another layer of reproducibility to the [[nixos-install]] by writing your partitioning scheme for #[[nixos]] in #[[nix]].
+This tutorial adds another layer of reproducibility to the [[nixos-install-flake]] by writing your partitioning scheme for #[[nixos]] in #[[nix]].
 
 {#prepare}
 ## Prepare to install NixOS
