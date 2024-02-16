@@ -145,7 +145,16 @@ Add the disk configuration and use GRUB:
 >[!info]
 > The boot loader configuration above is compatible with both BIOS and UEFI systems. Additionally, BIOS also requires [boot.loader.grub.device](https://search.nixos.org/options?channel=23.11&show=boot.loader.grub.device&from=0&size=50&sort=relevance&type=packages&query=boot.loader.grub.device) to be set which is done by `disko`'s `nixosModule`.
 
-Verify `fileSystems` set by `disko` in `nix --experimental-features "nix-command flakes" repl`:
+Use [[repl]] to check that our configuration is correct, in particular the `fileSystems` set by `disko`:
+
+```sh
+# First, create a flake.lock
+sudo nix --experimental-features "nix-command flakes" flake lock
+
+# Start repl
+nix --experimental-features "nix-command flakes" repl
+```
+
 :::{.center}
 ![[nixos-disko-filesystems.jpeg]]
 :::
