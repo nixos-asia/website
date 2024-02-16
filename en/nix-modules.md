@@ -2,7 +2,7 @@
 order: 3
 ---
 
-# Understanding Nix modules
+# Introduction to Nix modules
 
 Learning to work with the [[modules|module system]] in [[nixpkgs|nixpkgs]] is a big stepping stone to writing easy to maintain and shareable Nix code. We will focus on that in this tutorial -- by understanding how to use `evalModules` from [[nixpkgs|nixpkgs]] to define and use our own modules. The next tutorial in this series will talk about how to do that using `flake-parts` for writing [[flakes|flakes]] and sharing the modules with others flakes. 
 
