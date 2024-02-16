@@ -15,6 +15,7 @@ Learning to work with the [[modules|module system]] in [[nixpkgs|nixpkgs]] is a 
 
 Consider the following Nix code, defined in a [[flakes|flake]]:
 
+[[nix-modules/1/flake.nix]]
 ![[nix-modules/1/flake.nix]]
 
 This is a simple flake that exposes a package (a [[writeShellApplication]] [[drv]] wrapping [lsd](https://github.com/lsd-rs/lsd)), that can be [[nix-first|`nix run`ed]] to list the contents of the root directory. 
@@ -39,6 +40,7 @@ In particular, we want our program to:
 
 Normally we can achieve this by refactoring our Nix expression to be a *function* (see `lsdFor` ⤵️) that takes arguments for these variations (`dir` and `tree` ⤵️), producing the appropriate [[drv|derivation]] as a result:
 
+[[nix-modules/2/flake.nix]]
 ![[nix-modules/2/flake.nix]]
 
 Now we can try out each of these variations:
@@ -74,6 +76,7 @@ This is a mouthful, so let's get down to the concrete details. To port our flake
 
 Here's our lsd module, defined in `lsd.nix` alongside the flake:
 
+[[nix-modules/3/lsd.nix]]
 ![[nix-modules/3/lsd.nix]]
 
 >[!info] Follow the comments
@@ -104,6 +107,7 @@ This derivation produced the following outputs:
 
 Using `evalModules`, as we saw in the repl session, we can refactor our previous flake:
 
+[[nix-modules/3/flake.nix]]
 ![[nix-modules/3/flake.nix]]
 
 >[!tip] Hmm!
@@ -114,6 +118,7 @@ Using `evalModules`, as we saw in the repl session, we can refactor our previous
 
 Let's do something more interesting in the above flake. We'll create a "common settings" module, and then use that across the packages using the `imports` attribute. `evalModules` implements a type merge system that knows how to merge same attributes from multiple modules.
 
+[[nix-modules/4/flake.nix]]
 ![[nix-modules/4/flake.nix]]
 
 Compared to the 3rd flake, we have:
