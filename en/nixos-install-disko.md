@@ -1,5 +1,7 @@
 ---
 order: 2
+page:
+  image: nixos-install-disko/nixos-disko-config.jpeg
 ---
 
 # Install NixOS with `disko` disk partitioning
