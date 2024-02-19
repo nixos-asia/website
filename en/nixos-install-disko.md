@@ -2,7 +2,7 @@
 order: 2
 ---
 
-# Install NixOS and partition the disk with `disko`
+# Install NixOS with `disko` disk partitioning
 
 In this second tutorial, we will walk you through the process of installing [[nixos|NixOS]]. Unlike [[nixos-install-flake|the first installation tutorial]], we will use the command line to install NixOS manually, except for using [disko] to specify disk partitions declaratively in [[nix|Nix]] itself. This is the first steps toward our [[nixos-install-oneclick|next tutorial]], where we will automate the entire installation process.
 
