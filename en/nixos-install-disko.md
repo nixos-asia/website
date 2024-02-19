@@ -4,7 +4,7 @@ order: 2
 
 # Install NixOS with `disko` disk partitioning
 
-In this second tutorial, we will walk you through the process of installing [[nixos|NixOS]]. Unlike [[nixos-install-flake|the first installation tutorial]], we will use the command line to install NixOS manually, except for using [disko] to specify disk partitions declaratively in [[nix|Nix]] itself. This is the first steps toward our [[nixos-install-oneclick|next tutorial]], where we will automate the entire installation process.
+In this second tutorial, we will walk you through the process of installing [[nixos|NixOS]]. Unlike [[nixos-install-flake|the first installation tutorial]], we will use the command line to install NixOS manually, except for using [disko] to specify disk partitions declaratively in [[nix|Nix]] itself. This is the first step toward our [[nixos-install-oneclick|next tutorial]], where we will automate the entire installation process.
 
 
 [disko]: https://github.com/nix-community/disko
@@ -35,7 +35,7 @@ Before installing NixOS, let's define our partition layout in Nix. We will follo
 
 Instead of creating our partition layout from scratch, we can choose one of the examples Disko itself provides (see [here](https://github.com/nix-community/disko/tree/master/example)). We will use the [hybrid](https://github.com/nix-community/disko/blob/master/example/hybrid.nix) example as it will work for both BIOS and UEFI systems.
 
-Retrieve the disk configuration to a temporary location, calling it `disko-config.nix`:
+Retrieve the disk configuration to a temporary location, calling it `disko-config.nix` (we will use it latter):
 
 ```bash
 curl https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid.nix -o /tmp/disko-config.nix
@@ -44,7 +44,7 @@ curl https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid
 {#disk-config-edit}
 ### Modify the disk configuration
 
-The downloaded expression uses a hardcoded disk device. So, we need to find the device name of the disk we want to install [[nixos]] on. We can use `lsblk` to find it.
+The above downloaded Nix file uses a hardcoded disk device. So, we need to replace it with the device name of the disk we want to install [[nixos]] on. We can use `lsblk` to find it.
 
 
 :::{.center}
@@ -59,7 +59,7 @@ In this case, the device name is `vda`. The device file is located at `/dev/vda`
 
 ### Run the partitioning script
 
-The disko flake provides an app that will take our partitioning scheme defined in Nix above, partition the specified disk device and mount it at `/mnt`. This is what we need to happen prior to installing NixOS. Let's do that now:
+The disko flake provides an app that will take our partitioning scheme defined in Nix file above, partition the specified disk device and mount it at `/mnt`. We want this to happen prior to installing NixOS. Let's do that now:
 
 ```bash
 sudo nix \
@@ -90,7 +90,7 @@ sudo nixos-generate-config --no-filesystems --root /mnt
 {#flakeify}
 ## Flakeify the configuration
 
-Before we can utilize the `disko` nixosModule, we need to convert our configuration to a flake. This is a simple process of adding a `flake.nix` file in `/mnt/etc/nixos`:
+Before we can utilize `disko` in our generated configuration, we will [[configuration-as-flake|convert our configuration to a flake]]. This is a simple process of adding a `flake.nix` file in `/mnt/etc/nixos`:
 
 ```bash
 # /mnt/etc/nixos/flake.nix
@@ -113,7 +113,7 @@ Before we can utilize the `disko` nixosModule, we need to convert our configurat
 ```
 
 > [!note] Make sure to change a couple of things in the above snippet:
-> - Replace `nixos-23.11` with the version from [`system.stateVersion`](https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion) in your `/etc/nixos/configuration.nix`. If you wish to upgrade right away, you can also use latter versions, or use `nixos-unstable` for the bleeding edge.
+> - Replace `nixos-23.11` with the version from [`system.stateVersion`](https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion) in your `/mnt/etc/nixos/configuration.nix`. If you wish to upgrade right away, you can also use latter versions, or use `nixos-unstable` for the bleeding edge.
 > - `x86_64-linux` should be `aarch64-linux` if you are on ARM
 
 For details, see [[configuration-as-flake]].
@@ -198,7 +198,7 @@ nix --experimental-features "nix-command flakes" repl
 ![[nixos-disko-filesystems.jpeg]]
 :::
 
-If you see something similar to the above, everything's good and ready to perform the actual installation.
+If you see something similar to the above, everything's good and we are ready to perform the actual installation.
 
 {#install}
 ## Install NixOS
@@ -232,4 +232,4 @@ This tutorial focused mostly on [disko], but left some of the things covered in 
 {#end}
 ## Recap & next steps
 
-You now have a reproducible disk partitioning scheme. This does come with a cost of few extra manual steps but you can automate them with a script. Which is what we will do in [[nixos-install-oneclick|the next tutorial]]. We will use [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) to automate the steps above and eliminate the need for a USB flash drive (assuming you have a working Linux system or are booted into a rescue image).
+You now have a reproducible disk partitioning scheme. This does come at the cost of a few extra manual steps, but you can automate them with a script. Which is what we will do in [[nixos-install-oneclick|the next tutorial]]. We will use [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) to automate the steps above and eliminate the need for a USB flash drive (assuming you have a working Linux system or are booted into a rescue image).
