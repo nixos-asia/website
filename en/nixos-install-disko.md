@@ -228,7 +228,7 @@ This tutorial focused mostly on [disko], but left some of the things covered in 
 ## Video walkthrough
 
 :::{class="flex items-center justify-center mb-8"}
-<blockquote class="twitter-tweet" data-media-max-width="560" data-lang="en"><p lang="en" dir="ltr">Now trying original video<a href="https://twitter.com/shivaraj_bh_?ref_src=twsrc%5Etfw">@shivaraj_bh_</a> <a href="https://t.co/GYDShH6wkO">pic.twitter.com/GYDShH6wkO</a></p>&mdash; Sridhar Ratnakumar (@sridca) <a href="https://twitter.com/sridca/status/1759588789603754040?ref_src=twsrc%5Etfw">February 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Video demo of the install ⤵️ <a href="https://t.co/KJLntZ6CrY">pic.twitter.com/KJLntZ6CrY</a></p>&mdash; Sridhar Ratnakumar (@sridca) <a href="https://twitter.com/sridca/status/1759599633397920219?ref_src=twsrc%5Etfw">February 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 :::
 
 {#end}
