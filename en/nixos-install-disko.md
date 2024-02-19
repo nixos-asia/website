@@ -165,6 +165,7 @@ nix --experimental-features "nix-command flakes" repl
 
 ```bash
 sudo nixos-install --root /mnt --flake '/mnt/etc/nixos#nixos'
+# NOTE: You will be prompted to set the root password at this point.
 sudo reboot
 ```
 
