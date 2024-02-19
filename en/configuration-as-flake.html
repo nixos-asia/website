@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=f0859c42-6736-4d0e-a61b-776aa76e28f8' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=af6b5534-3372-4e8e-9754-720ec8c8d072' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -618,6 +618,90 @@
   
 </div>
     
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
+      Install NixOS with <code>disko</code> disk partitioning
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
+      Install NixOS directly from a remote flake
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
   
 </div>
     
@@ -1882,6 +1966,90 @@
   
 </div>
     
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
+      Install NixOS with <code>disko</code> disk partitioning
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
+      Install NixOS directly from a remote flake
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+    
   
 </div>
     
@@ -2014,7 +2182,7 @@
     # upgrade.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
   };
-  outputs = { self, nixpkgs }: {
+  outputs = inputs@{ self, nixpkgs, ... }: {
     # NOTE: 'nixos' is the default hostname set by the installer
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       # NOTE: Change this to aarch64-linux if you are on ARM
@@ -2161,7 +2329,7 @@ $ sudo nixos-rebuild switch --flake .</code></pre></div>
     <p class='mb-3'>
       If everything went well, you should see something like this:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-rebuild-switch-flake.png' alt='/nix/store/mdwk12rpzp6v22h1bllxq0fby7574zbi-global/nixos-install-flake/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-rebuild-switch-flake.png' alt='/nix/store/2n2rylfdrsizcws76n74m0q776d1hbnn-global/nixos-install-flake/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
     <p class='mb-3'>
       Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible!
     </p>
@@ -2198,6 +2366,29 @@ $ sudo nixos-rebuild switch --flake .</code></pre></div>
   <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
     <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
     <ul class='space-y-1'>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nixos-install-disko'>
+            Install NixOS with <code>disko</code> disk partitioning
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Before we can utilize <code>disko</code> in our generated configuration, we will <a href='configuration-as-flake' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>convert our configuration to a flake</a>. This is a simple process of adding a <code>flake.nix</code> file in <code>/mnt/etc/nixos</code>:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>For details, see <a href='configuration-as-flake' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Convert <code>configuration.nix</code> to be a flake</a>.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><a href='configuration-as-flake#homedir' class='text-gray-600 font-bold hover:bg-gray-50'>Move configuration to home dir</a></div>
+    </div>
+  
+</div>
+          
+        </li>
       
         <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nixos-install-flake'>
