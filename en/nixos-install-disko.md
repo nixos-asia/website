@@ -4,7 +4,7 @@ order: 2
 
 # Install NixOS and partition the disk with `disko`
 
-In this tutorial, we will walk you through the process of installing [[nixos|NixOS]]. Unlike [[nixos-install-flake|the first installation tutorial]], we will use the command line to install NixOS manually, except for using [disko] to specify disk partitions declaratively in [[nix|Nix]] itself. 
+In this second tutorial, we will walk you through the process of installing [[nixos|NixOS]]. Unlike [[nixos-install-flake|the first installation tutorial]], we will use the command line to install NixOS manually, except for using [disko] to specify disk partitions declaratively in [[nix|Nix]] itself. This is the first steps toward our [[nixos-install-oneclick|next tutorial]], where we will automate the entire installation process.
 
 
 [disko]: https://github.com/nix-community/disko
@@ -232,4 +232,4 @@ This tutorial focused mostly on [disko], but left some of the things covered in 
 {#end}
 ## Recap & next steps
 
-You now have a reproducible disk partitioning scheme. This does come with a cost of few extra manual steps but you can automate them with a script. Which is what we will do in the next tutorial. We will use [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) to automate the steps above and eliminate the need for a USB flash drive (assuming you have a working Linux system or are booted into a rescue image).
+You now have a reproducible disk partitioning scheme. This does come with a cost of few extra manual steps but you can automate them with a script. Which is what we will do in [[nixos-install-oneclick|the next tutorial]]. We will use [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) to automate the steps above and eliminate the need for a USB flash drive (assuming you have a working Linux system or are booted into a rescue image).

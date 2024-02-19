@@ -14,6 +14,6 @@ order: -7
   | --- | --- |
   | [x] [[nixos-install-flake]]# | Install NixOS the easy way, using graphical installer |
   | [x] [[nixos-install-disko]]# | Same as above, but automate disk partitioning using disko |
-  | [ ] Install directly from remote flake | .. |
+  | [ ] [[nixos-install-oneclick]]# | Automated install directly from a remote flake |
 - [ ] Basics
 - [ ] Services
