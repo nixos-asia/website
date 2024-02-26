@@ -9,31 +9,19 @@
       # TODO: Change this to x86_64-linux if you are on Linux
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
-      lib = pkgs.lib;
-      lsdFor = settings:
-        let
-          result = lib.evalModules {
-            modules = [
-              # ⤵️ We import flake4's module directly here, by file path.
-              (flake4 + /lsd.nix)
-              # ⤵️ We can also reference the module directly.
-              flake4.common
-              settings
-            ];
-            specialArgs = { inherit pkgs; };
-          };
-        in
-        result.config.lsd.package;
+      # ⤵️ We import the library from 4/flake.nix
+      lsdLib = flake4.mkLib pkgs;
     in
     {
       packages.${system} = {
-        default = lsdFor {
+        default = lsdLib.lsdFor {
+          imports = [ lsdLib.common ];
           lsd.dir = "/";
         };
-        home = lsdFor {
+        home = lsdLib.lsdFor {
           lsd.dir = "$HOME";
         };
-        downloads = lsdFor {
+        downloads = lsdLib.lsdFor {
           lsd = {
             dir = "$HOME/Downloads";
             tree = true;

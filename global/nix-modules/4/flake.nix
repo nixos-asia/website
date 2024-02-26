@@ -7,27 +7,31 @@
       # TODO: Change this to x86_64-linux if you are on Linux
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
-      lib = pkgs.lib;
-      lsdFor = settings:
-        let
-          result = lib.evalModules {
-            modules = [
-              ./lsd.nix
-              settings
-            ];
-            specialArgs = { inherit pkgs; };
+      mkLib = pkgs: {
+        lsdFor = settings:
+          let
+            result = pkgs.lib.evalModules {
+              modules = [
+                ./lsd.nix
+                settings
+              ];
+              specialArgs = { inherit pkgs; };
+            };
+          in
+          result.config.lsd.package;
+        # ⤵️ A common module for re-use in other modules (see below)
+        common = {
+          lsd = {
+            long = pkgs.lib.mkDefault true;
           };
-        in
-        result.config.lsd.package;
-      # ⤵️ A common module for re-use in other modules (see below)
-      common = {
-        lsd = {
-          long = lib.mkDefault true;
         };
       };
+      inherit (mkLib pkgs) lsdFor common;
     in
     {
-      inherit common; # For use in 5/flake.nix
+      # Let's export some things for use in 5/flake.nix
+      inherit mkLib;
+
       packages.${system} = {
         default = lsdFor {
           # ⤵️ Here, we import the common module
