@@ -1,27 +1,34 @@
+<!DOCTYPE html>
 <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<html lang='fr'>
+
+
+
+<!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<html lang='en'>
 
 <head>
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Index – NixOS Asie
+    Replace homebrew with Nix on macOS – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='[!warning] La version française n’est pas encore écrite. Si vous souhaitez aider, voyez ici.' />
-      <meta property='og:site_name' content='NixOS Asie' />
-      <meta property='og:image' content='static/nixos-asia.svg' />
+      <meta property='og:description' content='Sridhar Ratnakumar will demonstrate using Nix to declaratively manage your dotfiles, programs and services using home-manager, thus replacing the likes of legacy software like homebrew. The goal is to create an one-click environment to setup an user environment on any system, be it a Macbook or a Linux machine.' />
+      <meta property='og:site_name' content='NixOS Asia' />
+      <meta property='og:image' content='https://nixos.asia/en/event/nix-dev-home/screenshot.png' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Index' />
+      <meta property='og:title' content='Replace homebrew with Nix on macOS' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
     
     
-      <base href='/fr/' />
+      <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
     <!-- highlight.js -->
@@ -35,8 +42,8 @@
 
 
   
-  <emaNoteFeedUrl></emaNoteFeedUrl>
-  <link href='tailwind.css?instanceId=a1806b86-5a32-439e-b0ae-31b70dd45a25' rel='stylesheet' type='text/css' />
+  
+  <link href='tailwind.css?instanceId=1b2148a7-e311-46c1-8fd8-35845eb3c0de' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -181,7 +188,28 @@
 </style>
 
 
-  <head-main></head-main>
+  
+    <style>
+      /* For use in sidebar.tpl, as we cannot achieve this in tailwind itself! */
+      /* md:min-w-48  */
+      @media (min-width: 768px) {
+        #sidebar {
+          min-width: 12rem;
+        }
+      }
+
+      /* xl:min-w-64  */
+      @media (min-width: 1280px) {
+        #sidebar {
+          min-width: 16rem;
+        }
+      }
+    </style>
+
+    
+      <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+    
+  
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->
 <style>
@@ -199,7 +227,7 @@
 <script src='_emanote-static/stork/stork.js'></script>
 
   
-    <script id='emanote-stork' data-emanote-base-url='/fr/'>
+    <script id='emanote-stork' data-emanote-base-url='/en/'>
       window.emanote = {};
       window.emanote.stork = {
         searchShown: false,
@@ -291,19 +319,195 @@
 
 <body class='bg-gray-400 overflow-y-scroll'>
   
-    <div class='container mx-auto '>
-      <main class='flex-col items-center justify-center mx-2'>
-        <h1 class='pb-2 mt-2 mb-2 text-6xl text-center'>
-          Index
-        </h1>
-        <div class='pb-2 mx-auto my-4 lg:max-w-screen-md '>
+    <div class='container mx-auto max-w-prose mt-2 md:mt-4  '>
+      
+        <!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+  <ul class='root'>
+    <li>
+      
+        <ul>
           
-    <div class='pt-1 pb-2 pl-4 bg-gray-200'>
+            <li>
+
+  <a href='event'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Events
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href=''>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      NixOS Asia
+    </div>
+  </a>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+        </ul>
+      
+    </li>
+  </ul>
+</nav>
+      
+
+      
+        <nav id='breadcrumbs' class='w-full text-gray-700 md:hidden'>
+  <div class='flex justify-left'>
+    <div class='w-full px-2 py-2 bg-gray-50'>
+      <ul class='flex flex-wrap text-lg'>
+        <li class='inline-flex items-center'>
+          
+            
+              <img style='width: 1rem;' src='static/nixos-asia.svg' />
+            
+          
+        </li>
+        
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href=''>
+                NixOS Asia
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href='event'>
+                Events
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+        
+      </ul>
+    </div>
+    <button class='inline px-2 py-1 bg-gray-50 outline-none cursor-pointer focus:outline-none' title='Search (Ctrl+K)' type='button' onclick='window.emanote.stork.toggleSearch()'>
+      <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
+ fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
+  <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+</svg>
+    </button>
+    <button class='inline px-2 py-1 text-white bg-green-600 outline-none cursor-pointer focus:outline-none' title='Toggle sidebar' type='button' onclick="toggleHidden('sidebar')">
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'></path>
+      </svg>
+    </button>
+    <script>
+      function toggleHidden(elemId) {
+        document.getElementById(elemId).classList.toggle("hidden");
+      }
+    </script>
+  </div>
+</nav>
+      
+
+      
+        <div id='container' class='relative md:shadow-2xl md:mb-8'>
+          
+  <div class='absolute -top-6 right-1 md:right-0 flex flex-row items-center justify-center'>
+    <a title='Search (Ctrl+K)' class='cursor-pointer' onclick='window.emanote.stork.toggleSearch()'>
+      <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
+ fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
+  <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+</svg>
+    </a>
+  </div>
+
+          <!-- Main body column -->
+          <div class='flex-1 w-full overflow-x-auto bg-white'>
+  <main class='px-4 py-4'>
+    <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
+  <a class='z-40 tracking-tighter '>
+    Replace homebrew with Nix on macOS
+  </a>
+</h1>
+    <article class='overflow-auto'>
+  <!-- What goes in this file will appear on top of note body-->
+  
+
+
+
+
+
+<div class='flex justify-center items-center mx-auto'><table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>When</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Where</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>TBD</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Online Meetup</td></tr></tbody></table></div>
+    <p class='mb-3'>
+      <a href='https://x.com/sridca' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Sridhar Ratnakumar</a> will demonstrate using <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> to declaratively manage your dotfiles, programs and services using <a href='home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, thus replacing the likes of legacy software like homebrew. The goal is to create an <strong>one-click environment</strong> to setup an user environment on any system, be it a Macbook or a Linux machine.
+    </p>
+  
+    <p class='mb-3'>
+      Among the various examples, we will showcase how to configure Neovim declaratively in Nix, and have it work across platforms. In addition, we will show how to use <a href='direnv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>direnv</a> to develop projects uniformly across different machines.
+    </p>
+  
+    <p class='mb-3'>
+      RSVP links:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          TBD
+        </li>
+      
+    </ul>
+  <img class='inline mb-3' src='event/nix-dev-home/screenshot.png' alt='/nix/store/bbk08xfm125nj837kbbd4ij48wkpmxhh-global/event/nix-dev-home/screenshot.png' style='width: inherit;' />
+  <!-- Disabled until we can limit this template to a subset of notes (blog posts):
+     https://github.com/nixos-asia/website/issues/9
+
+<aside class="flex items-center justify-center mt-2">
+  <ema:metadata>
+    <span id="yamlauthor" class="mb-4 text-right text-gray-600">
+      Written by
+      <value var="author" />
+    </span>
+  </ema:metadata>
+  <script>if (yamlauthor.innerText.includes('error')) yamlauthor.innerText = ''</script>
+</aside>
+--><div class='flex items-center justify-center mt-2'>
+  <div class='flex items-center justify-center mt-2'>
+    
+      
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/event/nix-dev-home.md'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
+          </svg>
+        </a>
+      
+    
+  </div>
+</div>
+</article>
+    <div class='flex flex-col lg:flex-row lg:space-x-2'>
+      
       
     </div>
-  
+    
+  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
+    
+  </section>
+
+    <!-- What goes in this file will at the very end of the main div -->
+  </main>
+</div>
         </div>
-      </main>
+      
+
       <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
   
   <div>
