@@ -1,7 +1,8 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # ⤵️ flake4 is specified as input
+    # ⤵️ 4/flake.nix is specified as input here, to allow us to reuse its
+    # outputs.
     flake4.url = "path:../4";
   };
   outputs = { self, nixpkgs, flake4 }:
@@ -14,6 +15,7 @@
     in
     {
       packages.${system} = {
+        # ⤵️ And use it here.
         default = lsdLib.lsdFor {
           imports = [ lsdLib.common ];
           lsd.dir = "/";

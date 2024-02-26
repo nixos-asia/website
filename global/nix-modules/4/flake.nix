@@ -29,7 +29,7 @@
       inherit (mkLib pkgs) lsdFor common;
     in
     {
-      # Let's export some things for use in 5/flake.nix
+      # ⤵️ Let's export some things for use in 5/flake.nix
       inherit mkLib;
 
       packages.${system} = {

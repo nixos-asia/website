@@ -80,7 +80,7 @@ Modules can import each other in nested fashion; and option types can have certa
 
 This is a mouthful, so let's get down to the concrete details. To port our flake above, we need to define two options: `dir`, and `tree`. We will as well add a third option that is not user-setable but will be used set the resulting package.
 
-Here's our lsd module, defined in `lsd.nix` alongside the flake:
+Here's our lsd module, defined in `lsd.nix` alongside the flake. Follow along the code comments:
 
 [[nix-modules/3/lsd.nix]]
 ![[nix-modules/3/lsd.nix]]
@@ -133,6 +133,7 @@ Compared to the 3rd flake, we have:
 - In [[nix-modules/4/flake.nix]]: 
   - a new module `common` enabling the `long` option.
   - all packages now `imports` this common module, to derive the `long` option.
+  - a `mkLib` functions that we will export for reuse from another flake (see below)
 
 Now when you `nix run` these programs you will get similar output to the previous flake but with a long listing instead.
 
@@ -146,8 +147,8 @@ We will create a 5th flake that re-uses module from the 4th flake above. This is
 
 Note that,
 
-- [[nix-modules/4/flake.nix]] outputs the `common` attribute. Its file paths, like [[nix-modules/4/lsd.nix]] can also be accessed by treating that flake input as a path.
-- In [[nix-modules/5/flake.nix]], we access these two modules -- `common` and `lsd.nix` for re-use, thus relieving our 5th flake of having to define `lsd.nix` and the `common` module.
+- [[nix-modules/4/flake.nix]] outputs a `mkLib` function that gives us the `common` module along with the `lsdFor` function.
+- In [[nix-modules/5/flake.nix]], we access these for re-use, thus relieving our 5th flake of having to define `lsd.nix` and the `common` module.
 
 {#end}
 ## Where to go from here?
