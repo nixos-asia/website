@@ -76,5 +76,12 @@
           apps.default.program = self'.apps.en.program; # Alias to English site
           formatter = pkgs.nixpkgs-fmt;
         };
+      flake.nixci.default = {
+        nix-modules-1.dir = ./global/nix-modules/1;
+        nix-modules-2.dir = ./global/nix-modules/2;
+        nix-modules-3.dir = ./global/nix-modules/3;
+        nix-modules-4.dir = ./global/nix-modules/4;
+        nix-modules-5.dir = ./global/nix-modules/5;
+      };
     };
 }
