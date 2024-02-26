@@ -1,6 +1,8 @@
 ---
 date: 2023-01-23
 author: srid
+page:
+  image: event/srid-nix-dev/vscode-haskell-template.png
 ---
 
 # Getting Started with Nix for Haskell & Rust

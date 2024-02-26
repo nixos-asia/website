@@ -14,6 +14,7 @@ order: -100
 - [[hm-tutorial]]#
 - [[dev]] tutorial series
   - [[nixify-haskell]]
+- [ ] CI/CD tutorial series
 
 
 

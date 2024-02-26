@@ -227,9 +227,9 @@ This tutorial focused mostly on [disko], but left some of the things covered in 
 {#video}
 ## Video walkthrough
 
-:::{class="flex items-center justify-center mb-8"}
-<iframe width="878" height="494" src="https://www.youtube.com/embed/H3NPVazMXOE" title="nixos install with disko" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-:::
+<center>
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Video demo of the install ⤵️ <a href="https://t.co/KJLntZ6CrY">pic.twitter.com/KJLntZ6CrY</a></p>&mdash; Sridhar Ratnakumar (@sridca) <a href="https://twitter.com/sridca/status/1759599633397920219?ref_src=twsrc%5Etfw">February 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
 
 {#end}
 ## Recap & next steps

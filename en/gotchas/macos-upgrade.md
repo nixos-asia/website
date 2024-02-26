@@ -5,7 +5,7 @@ Upgrading #[[macos]] is known to break [[nix]]. When this happens, just uninstal
 
 1. Uninstall Nix
     - Run `/nix/nix-installer uninstall`
-    - If that path above does not exist, [follow these instructions](https://nixos.org/manual/nix/stable/installation/uninstall.html#macos) to manually unintall Nix.
+    - If that path above does not exist, [follow these instructions](https://nixos.org/manual/nix/stable/installation/uninstall.html#macos) to manually uninstall Nix.
 1. Reboot your Mac
 1. [[install]]
 
