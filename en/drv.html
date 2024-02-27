@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=bcab3623-dd34-49d9-a0e4-cccd9c8067f6' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=87027b31-ceb4-4674-a72c-5b9f1b5934f1' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1493,6 +1493,25 @@
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>The directory used by <a href='nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Nix</a> to store <a href='store-path' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkBranch'>store paths</a> (including <a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>derivations</a>).</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nix-modules'>
+            Introduction to module system
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Normally we can achieve this by refactoring our Nix expression to be a <em>function</em> (see <code>lsdFor</code> ⤵️) that takes arguments for these variations (<code>dir</code> and <code>tree</code> ⤵️), producing the appropriate <a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>derivation</a> as a result:</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>This is a simple flake that exposes a package (a <a href='writeShellApplication' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'><code>writeShellApplication</code></a> <a href='drv' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Derivation</a> wrapping <a href='https://github.com/lsd-rs/lsd' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>lsd</a>), that can be <a href='nix-first' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>`nix run`ed</a> to list the contents of the root directory.</p></div>
     </div>
   
 </div>
