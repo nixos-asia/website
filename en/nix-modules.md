@@ -66,7 +66,7 @@ Now we can try out each of these variations:
 
 The `lsdFor` function returns a `lsd` wrapper package that behaves in accordance with the arguments we pass to it. The flake outputs three packages, including one for listing the user's home directory as well as their "Downloads" folder as a tree view.
 
->[!tip] Why introduce module system?
+>[!tip] Case for the `lsd` module
 > Our above flake is simple enough that it strictly doesn't require further refactoring. However, in larger flakes, having functions peppered throughout the project can be rather difficult to entangle; besides, we want to modular overrides and type checking, along with documentation. To this end, we'll see how to refactor the above to use the module system, and in the process we'll add more configurability to our `lsd` wrapper.
 
 {#introduce}
@@ -87,6 +87,14 @@ Here's our lsd module, defined in `lsd.nix` alongside the flake. Follow along th
 
 >[!info] Follow the comments
 > We recommend that you follow the comments in the above Nix file to understand its structure. As always, consult [Module system deep dive][doc] to learn of all the details.
+
+Note:
+
+- `mkOption` is used create the option *types*
+- Types used here: *str*, *bool*, *package* and *submodule*
+  - A "submodule" is a nested module, with its own options/ imports and config.
+- `config` gives the implementation when the user sets the options.
+  - In our case, we 'output' the result in the `package` option (which cannot be set by the user, due to `readOnly = true`).
 
 Let's evaluate it from the [[repl]]:
 
@@ -150,9 +158,11 @@ Note that,
 - [[nix-modules/4/flake.nix]] outputs a `mkLib` function that gives us the `common` module along with the `lsdFor` function.
 - In [[nix-modules/5/flake.nix]], we access these for re-use, thus relieving our 5th flake of having to define `lsd.nix` and the `common` module.
 
+Our 5th flake is fairly simple, due to hiding all the implementation in an external flake (4th flake). The 5th flake contains only the "what" and not the "how" of our `lsd` packages; it tells us what to configure, hiding the implementation in an input flake (4th flake).
+
 {#end}
 ## Where to go from here?
 
-You have just completed reading a quick introduction to the module system, in particular how to define, use and share them in [[flakes]]. To learn more about the module system, we recommend [this video from Tweag](https://www.youtube.com/watch?v=N7hFP_40DJo) as well the article "[Module system deep dive][doc]" from nix.dev.
+You have just read a quick introduction to the module system, in particular how to define, use and share them in [[flakes]]. To learn more about the module system, we recommend [this video from Tweag](https://www.youtube.com/watch?v=N7hFP_40DJo) as well the article "[Module system deep dive][doc]" from nix.dev. Look out for the next tutorial in this series, where we will talk about [[flake-parts]].
 
 [lsd]: https://github.com/lsd-rs/lsd
