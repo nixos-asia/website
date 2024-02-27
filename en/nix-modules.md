@@ -1,14 +1,14 @@
 ---
 order: 3
 page:
-  image: nix-tutorial/nix-modules.webp
+  image: nix-tutorial/nix-modules.png
 ---
 
 # Introduction to module system
 
 Using the [[modules|module system]] is a key stepping stone to writing maintainable and shareable [[nix|Nix]] code. In this tutorial, we'll write a configuration system for the simple [lsd] command, thus *introducing* the reader to the Nix [[modules|module system]], so that they benefit from features such as configuration type checking, option documentation, and modularity. To learn more about the module system, we recommend [this video from Tweag](https://www.youtube.com/watch?v=N7hFP_40DJo) as well the article "[Module system deep dive][doc]" from nix.dev.
 
-![[nix-tutorial/nix-modules.webp]]
+![[nix-tutorial/nix-modules.png]]
 
 We shall begin by understanding the low-levels: how to use `evalModules` from [[nixpkgs|nixpkgs]] to define and use our own modules from scratch, using the aforementioned `lsd` use-case. The next tutorial in this series will go one high-level up and talk about how to work with modules across [[flakes|flakes]], using [[flake-parts]].
 
