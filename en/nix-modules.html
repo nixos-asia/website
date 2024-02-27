@@ -20,7 +20,7 @@
     
       <meta property='og:description' content='Using the module system is a key stepping stone to writing maintainable and shareable Nix code. In this tutorial, we’ll write a configuration system for the simple lsd command, thus introducing the reader to the Nix module system, so that they benefit from features such as configuration type checking, option documentation, and modularity. To learn more about the module system, we recommend this video from Tweag as well the article Module system deep dive from nix.dev.' />
       <meta property='og:site_name' content='NixOS Asia' />
-      <meta property='og:image' content='https://nixos.asia/en/nix-tutorial/nix-modules.webp' />
+      <meta property='og:image' content='https://nixos.asia/en/nix-tutorial/nix-modules.png' />
       <meta property='og:type' content='website' />
       <meta property='og:title' content='Introduction to module system' />
       
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0c358413-c943-4fd2-bc30-77ad8dba90d4' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6dd2b5ba-8d38-4067-917a-74cd942b1f01' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -955,7 +955,7 @@
     <p class='mb-3'>
       Using the <a href='modules' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>module system</a> is a key stepping stone to writing maintainable and shareable <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> code. In this tutorial, we’ll write a configuration system for the simple <a href='https://github.com/lsd-rs/lsd' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>lsd</a> command, thus <em>introducing</em> the reader to the Nix <a href='modules' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>module system</a>, so that they benefit from features such as configuration type checking, option documentation, and modularity. To learn more about the module system, we recommend <a href='https://www.youtube.com/watch?v=N7hFP_40DJo' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>this video from Tweag</a> as well the article “<a href='https://nix.dev/tutorials/module-system/module-system.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Module system deep dive</a>” from nix.dev.
     </p>
-  <img class='inline mb-3' src='nix-tutorial/nix-modules.webp' alt='/nix/store/nzbhj02swlcmgkdgzsgi2dhwv0dzsy94-global/nix-tutorial/nix-modules.webp' style='width: inherit;' />
+  <img class='inline mb-3' src='nix-tutorial/nix-modules.png' alt='/nix/store/rqgy9d7lkmvidlzccajwa13h5vinp37g-global/nix-tutorial/nix-modules.png' style='width: inherit;' />
     <p class='mb-3'>
       We shall begin by understanding the low-levels: how to use <code class='py-0.5 px-0.5 bg-gray-100'>evalModules</code> from <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> to define and use our own modules from scratch, using the aforementioned <code class='py-0.5 px-0.5 bg-gray-100'>lsd</code> use-case. The next tutorial in this series will go one high-level up and talk about how to work with modules across <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>, using <a href='flake-parts' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
     </p>
