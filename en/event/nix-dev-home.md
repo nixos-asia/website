@@ -5,7 +5,7 @@ page:
   image: event/nix-dev-home/screenshot.png
 ---
 
-# Replace homebrew with Nix on macOS
+# Using `home-manager` to manage dotfiles, packages, services
 
 :::{.center}
 | When                                                  | Where                                             |
@@ -13,7 +13,7 @@ page:
 | TBD | Online Meetup |
 :::
 
-[Sridhar Ratnakumar][srid] will demonstrate using [[nix|Nix]] to declaratively manage your dotfiles, programs and services using [[home-manager|home-manager]], thus replacing the likes of legacy software like homebrew. The goal is to create an **one-click environment** to setup an user environment on any system, be it a Macbook or a Linux machine.
+[Sridhar Ratnakumar][srid] will demonstrate using [[nix|Nix]] to declaratively manage your **dotfiles, programs and services** using [[home-manager|home-manager]], thus replacing the likes of legacy software like homebrew. The goal is to create an **one-click environment** to setup an user environment on any system, be it a Macbook or a Linux machine.
 
 Among the various examples, we will showcase how to configure Neovim declaratively in Nix, and have it work across platforms. In addition, we will show how to use [[direnv|direnv]] to develop projects uniformly across different machines.
 
