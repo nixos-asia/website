@@ -28,6 +28,8 @@ Running services in NixOS is a breeze. For example, [running a PostgreSQL Databa
 
 This starts the database natively, without the need for a container. This is great, only if we could extend this to run on macOS and other Linux distributions. Also, the configuration above is system-wide, and we are looking for a way to run services on a per-project basis.
 
+{#nixos-like-services}
+
 ## NixOS-like services
 
 We need the same simplicity and also:
