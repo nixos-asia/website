@@ -89,7 +89,9 @@ Redis and its clustered version are pretty straightforward:
 }
 ```
 
-## Conclusion
+{#cool-things}
+
+## Cool things
 
 By not depending on docker anymore, we can now run the entire NY backend with one command and its all defined in a [single place](https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/nix/services/nammayatri.nix). 
 
