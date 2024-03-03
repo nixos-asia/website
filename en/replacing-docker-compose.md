@@ -32,15 +32,14 @@ This starts the database natively, without the need for a container. This is gre
 
 ## NixOS-like services
 
-We need the same simplicity and also:
+That's a relief, we are now closer to our goal. We now know what we want, and there are a few more things that needs to be added to the list:
 
-- Support for macOS and other Linux distributions
-- Allow for running multiple instances of the same service (for use-case, see: [PostgreSQL in Nammayatri](#postgresql))
-- Project-specific data directories (services data of two different projects are mutually exclusive)
+- Allow for running multiple instances of the same service (NY uses multiple instances of PostgreSQL and Redis).
+- Along with services being project specific, their data should also be project specific.
 
-To address the above points, we came up with [services-flake](https://community.flake.parts/services-flake).
+These were the exact problems [services-flake](https://community.flake.parts/services-flake) was designed to solve. Along with running services natively, it also [integrates with your project's `flake.nix`](https://community.flake.parts/services-flake/start).
 
->[!info] How are processes managed?
+>[!info] How are processes managed in services-flake?
 > In NixOS they are managed by [systemd](https://en.wikipedia.org/wiki/Systemd). In services-flake, we use [process-compose](https://github.com/F1bonacc1/process-compose) whose configuration is managed by [process-compose-flake](https://community.flake.parts/process-compose-flake).
 
 ## Real-world example
