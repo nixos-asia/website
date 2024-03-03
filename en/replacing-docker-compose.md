@@ -52,6 +52,8 @@ Now that we have all the answers. It's time to replace [docker-compose in NY](ht
 ![[ny-services-flake.png]]
 :::
 
+{#postgresql}
+
 ### PostgreSQL
 
 NY uses about 3 instances of postgresql databases.
@@ -73,6 +75,8 @@ The other two instances are used by the [postgres-with-replica module](https://g
   services.postgres-with-replica.enable = true;
 }
 ```
+
+{#redis}
 
 ### Redis
 
