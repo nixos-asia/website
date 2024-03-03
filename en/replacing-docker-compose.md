@@ -42,9 +42,11 @@ These were the exact problems [services-flake](https://community.flake.parts/ser
 >[!info] How are processes managed in services-flake?
 > In NixOS they are managed by [systemd](https://en.wikipedia.org/wiki/Systemd). In services-flake, we use [process-compose](https://github.com/F1bonacc1/process-compose) whose configuration is managed by [process-compose-flake](https://community.flake.parts/process-compose-flake).
 
-## Real-world example
+{#let-s-get-started}
 
-Now that we have a way to run services natively, and also across platforms. It's time to replace [docker-compose services in Nammayatri (NY)](https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix) with services-flake. We will only look at a few services to keep it simple, for more details, see [PR](https://github.com/nammayatri/nammayatri/pull/3718).
+## Let's get started
+
+Now that we have all the answers. It's time to replace [docker-compose in NY](https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix) with services-flake. We will only look at a few services to keep it simple, for more details, see [PR](https://github.com/nammayatri/nammayatri/pull/3718).
 
 :::{.center}
 ![[ny-services-flake.png]]
