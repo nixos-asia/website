@@ -1,6 +1,8 @@
 # Replacing docker-compose with Nix for development
 
-The reason to replace docker-compose with Nix is two fold. First, there is an [additional setup step](https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools) apart from running `nix develop`. Second, docker containers in macOS[^native-macos] are run on a VM, which can be a resource hog.
+Ever since I first started using [[nix]], I have enjoyed the [[why-dev|simplicity of setup]]: `nix develop`, make the code change and see it work. That's all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then a quick search will tell you that [docker](https://www.docker.com/) is the way to go. You include it, [add one more step](https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools) in the setup guide, increasing the barrier to entry for new contributors. Not to forget, eating up all my system resources on my not so powerful, company provided, macOS[^native-macos].
+
+This, along with the fact that we can provide one command to do a lot of **cool things** (which you will see, as you continue to read), made us want to replace docker-compose with Nix in [Nammayatri](https://github.com/nammayatri/nammayatri) (to keep it simple, I will refer to it as NY from now on).
 
 [^native-macos]: There is an [initiative to run containers natively on macOS](https://github.com/macOScontainers/homebrew-formula), but it is still in alpha and [requires a lot of additional steps](https://github.com/macOScontainers/homebrew-formula?tab=readme-ov-file#installation) to setup. One such step is [disabling SIP](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection#3599244), which a lot of company monitored devices might not be allowed to do. 😕
 
