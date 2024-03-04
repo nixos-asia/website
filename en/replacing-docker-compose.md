@@ -4,6 +4,9 @@ Ever since I first started using [[nix]], I have enjoyed the [[why-dev|simplicit
 
 This, along with the fact that we can provide one command to do a lot of **cool things** (which you will see, as you continue to read), made us want to replace [docker-compose](https://docs.docker.com/compose/) with Nix in [Nammayatri](https://github.com/nammayatri/nammayatri) (to keep it simple, I will refer to it as NY from now on).
 
+> [!note] Nammayatri
+> [NY](https://nammayatri.in) is an open-source auto rickshaw booking platform, based in India.
+
 [^native-macos]: There is an [initiative to run containers natively on macOS](https://github.com/macOScontainers/homebrew-formula), but it is still in alpha and [requires a lot of additional steps](https://github.com/macOScontainers/homebrew-formula?tab=readme-ov-file#installation) to setup. One such step is [disabling SIP](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection#3599244), which a lot of company monitored devices might not be allowed to do. 😕
 
 {#what-does-it-take}
