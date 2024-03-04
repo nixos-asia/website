@@ -98,14 +98,18 @@ NY uses [Redis](https://redis.io/) as a cache and clustered version of it as a K
 
 By not depending on docker anymore, we can now run the entire NY backend with one command and its all defined in a [single place](https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/nix/services/nammayatri.nix). 
 
-That is not all, we can also reuse this to do much more, like defining [loadtest](https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/load-test/default.nix) config and run it in CI/local, again, with one command.
+That is not all, we can also share NY backend module to do much more, like defining [load-test](https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/load-test/default.nix) config and run it in CI/local, again, with one command. Here, we take the module to run entire NY stack, and then extend it to add a bunch of load-test processes, before bringing the whole thing to an end (as the load-test ends).
 
 This is how running them looks like:
 
 ```sh
-# Run loadtest
+# Run load-test
 nix run github:nammayatri/nammayatri#load-test-dev
 
 # Run the entire backend
 nix run github:nammayatri/nammayatri#run-mobility-stack-nix
 ```
+
+## Up next
+
+Sharing services-flake modules deserves a separate post, so we will talk more about this in the next post.
