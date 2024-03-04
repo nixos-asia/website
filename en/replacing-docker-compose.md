@@ -80,7 +80,7 @@ The other two instances are used by the [postgres-with-replica module](https://g
 
 ### Redis
 
-Redis and its clustered version are pretty straightforward:
+NY uses [Redis](https://redis.io/) as a cache and clustered version of it as a Key-Value database. Redis service comprises of a single node, while the clustered version has 6 nodes (3 master and 3 replica). Adding them to the project is as simple as:
 
 ```nix
 {
