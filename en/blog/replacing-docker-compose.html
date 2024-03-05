@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=e3a338de-e6c9-4e1f-9324-9a87ef605770' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=9ae3ecd9-185a-41b4-9a7a-1b3f43824ff9' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -551,9 +551,7 @@
   </a>
 </h1>
     
-      <div class='grid gap-4 md:grid-cols-8'>
-        <div class='md:col-span-6'>
-          <article class='overflow-auto'>
+      <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
 
@@ -860,161 +858,7 @@ nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
   </div>
 </div>
 </article>
-        </div>
-        <div class='md:col-span-2 border-l'>
-          <nav id='toc' class='hidden leading-relaxed md:block md:sticky md:top-0 md:max-h-screen md:overflow-y-auto'>
-  <div class='text-gray-600 text-sm -mt-2'>
     
-        <ul class='ml-2'>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='What does it take?'>
-              <a href='blog/replacing-docker-compose#what-does-it-take' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                What does it take?
-              </a>
-              
-        <ul class='ml-2'>
-          
-        </ul>
-      
-            </li>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='NixOS services'>
-              <a href='blog/replacing-docker-compose#nixos-services' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                NixOS services
-              </a>
-              
-        <ul class='ml-2'>
-          
-        </ul>
-      
-            </li>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='NixOS-like services'>
-              <a href='blog/replacing-docker-compose#nixos-like-services' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                NixOS-like services
-              </a>
-              
-        <ul class='ml-2'>
-          
-        </ul>
-      
-            </li>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='Let’s get started'>
-              <a href='blog/replacing-docker-compose#let-s-get-started' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                Let’s get started
-              </a>
-              
-        <ul class='ml-2'>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='PostgreSQL'>
-              <a href='blog/replacing-docker-compose#postgresql' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                PostgreSQL
-              </a>
-              
-        <ul class='ml-2'>
-          
-        </ul>
-      
-            </li>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='Redis'>
-              <a href='blog/replacing-docker-compose#redis' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                Redis
-              </a>
-              
-        <ul class='ml-2'>
-          
-        </ul>
-      
-            </li>
-          
-        </ul>
-      
-            </li>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='Cool things'>
-              <a href='blog/replacing-docker-compose#cool-things' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                Cool things
-              </a>
-              
-        <ul class='ml-2'>
-          
-        </ul>
-      
-            </li>
-          
-            <li class='whitespace-nowrap truncate mt-2' title='Up next'>
-              <a href='blog/replacing-docker-compose#up-next' class='--ema-toc bg-green-200 rounded-md p-0.5'>
-                Up next
-              </a>
-              
-        <ul class='ml-2'>
-          
-        </ul>
-      
-            </li>
-          
-        </ul>
-      
-  </div>
-  <script>
-    // Highlight the TOC, based from https://stackoverflow.com/a/75346369
-    // TODO: We should get rid of JavaScript! See https://github.com/srid/emanote/issues/520
-    function highlightTOC() {
-      // Grab the toc links
-      const links = document.querySelectorAll("ul > li > a.--ema-toc");
-
-      // Find the matching anchors in the document body
-      const sections = [];
-      links.forEach((link) => {
-        let found = {};
-        for (section of document.querySelectorAll("a.--ema-anchor")) {
-          if (link.href == section.href) {
-            found = section;
-            break;
-          }
-        }
-        sections.push(found);
-      });
-
-      // Current toc link is marked with the following class
-      const mark = "toc-item-active";
-
-      // Set window scroll handler to update the toc mark.
-      window.onscroll = () => {
-        // Remove previous mark
-        links.forEach((link) => {
-          link.classList.remove(mark);
-        });
-
-        // Mark the link of the section that is in view, starting from the end
-        let marked = false;
-        for (var i = sections.length - 1; i >= 0; i--) {
-          if (window.scrollY > sections[i].offsetTop - 80) {
-            links[i].classList.add(mark);
-            marked = true;
-            break;
-          }
-        }
-
-        // Special case for the first and last section which might not reach the top
-        if (!marked && window.scrollY > 0) {
-          let i = 0;
-          if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
-            // We are at the bottom
-            i = links.length - 1
-          }
-          links[i].classList.add(mark);
-        }
-      };
-    }
-    highlightTOC();
-  </script>
-</nav>
-        </div>
-      </div>
-      
     <div class='flex flex-col lg:flex-row lg:space-x-2'>
       
       
