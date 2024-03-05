@@ -7,4 +7,6 @@ feed:
 
 # Blog
 
-- [[replacing-docker-compose]]#
+```query {.timeline}
+path:./*
+```

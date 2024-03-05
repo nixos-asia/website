@@ -1,6 +1,6 @@
 ---
 author: shivaraj
-tags: [blog]
+date: 2023-03-05
 page:
   image: replacing-docker-compose/ny-services-flake.png
 ---
