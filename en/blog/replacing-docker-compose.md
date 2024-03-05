@@ -7,7 +7,7 @@ page:
 
 # Replacing docker-compose with Nix for development
 
-Ever since I first started using [[nix]], I have enjoyed the [[why-dev|simplicity of setup]]: `nix develop`, make the code change and see it work. That's all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then a quick search will tell you that [docker](https://www.docker.com/) is the way to go. You include it, [add one more step](https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools) in the setup guide, increasing the barrier to entry for new contributors. Not to forget, eating up all my system resources on my not so powerful, company provided, macOS[^native-macos].
+Ever since I first started using [[nix|Nix]] for #[[dev|development]], I have enjoyed the [[why-dev|simplicity of setup]]: `nix develop`, make the code change and see it work. That's all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then a quick search will tell you that [docker](https://www.docker.com/) is the way to go. You include it, [add one more step](https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools) in the setup guide, increasing the barrier to entry for new contributors. Not to forget, eating up all my system resources on my not so powerful, company provided, macOS[^native-macos].
 
 This, along with the fact that we can provide one command to do a lot of **cool things** (which you will see, as you continue to read), made us want to replace [docker-compose](https://docs.docker.com/compose/) with Nix in [Nammayatri](https://github.com/nammayatri/nammayatri) (to keep it simple, I will refer to it as NY from now on).
 
@@ -47,7 +47,7 @@ That's a relief, we are now closer to our goal. We now know what we want, and th
 - Allow for running multiple instances of the same service (NY uses multiple instances of PostgreSQL and Redis).
 - Along with services being project specific, their data should also be project specific.
 
-These were the exact problems [services-flake](https://community.flake.parts/services-flake) was designed to solve. Along with running services natively, it also [integrates with your project's `flake.nix`](https://community.flake.parts/services-flake/start).
+These were the exact problems [services-flake](https://community.flake.parts/services-flake) (a [[flake-parts]] module) was designed to solve. Along with running services natively, it also [integrates with your project's `flake.nix`](https://community.flake.parts/services-flake/start).
 
 >[!info] How are processes managed in services-flake?
 > In NixOS they are managed by [systemd](https://en.wikipedia.org/wiki/Systemd). In services-flake, we use [process-compose](https://github.com/F1bonacc1/process-compose) whose configuration is managed by [process-compose-flake](https://community.flake.parts/process-compose-flake).
