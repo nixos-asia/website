@@ -47,7 +47,7 @@ That's a relief, we are now closer to our goal. We now know what we want, and th
 - Allow for running multiple instances of the same service (NY uses multiple instances of PostgreSQL and Redis).
 - Along with services being project specific, their data should also be project specific.
 
-These were the exact problems [services-flake](https://community.flake.parts/services-flake) (a [[flake-parts]] module) was designed to solve. Along with running services natively, it also [integrates with your project's `flake.nix`](https://community.flake.parts/services-flake/start).
+These were the exact problems #[[services-flake]] was designed to solve. Along with running services natively, it also [integrates with your project's `flake.nix`](https://community.flake.parts/services-flake/start).
 
 >[!info] How are processes managed in services-flake?
 > In NixOS they are managed by [systemd](https://en.wikipedia.org/wiki/Systemd). In services-flake, we use [process-compose](https://github.com/F1bonacc1/process-compose) whose configuration is managed by [process-compose-flake](https://community.flake.parts/process-compose-flake).
@@ -56,7 +56,7 @@ These were the exact problems [services-flake](https://community.flake.parts/ser
 
 ## Let's get started
 
-Now that we have all the answers. It's time to replace [docker-compose in NY](https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix) with services-flake. We will only look at a few services to keep it simple, for more details, see [PR](https://github.com/nammayatri/nammayatri/pull/3718).
+Now that we have all the answers. It's time to replace [docker-compose in NY](https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix) with [[services-flake]]. We will only look at a few services to keep it simple, for more details, see [PR](https://github.com/nammayatri/nammayatri/pull/3718).
 
 :::{.center}
 ![[ny-services-flake.png]]
@@ -119,4 +119,4 @@ nix run github:nammayatri/nammayatri#run-mobility-stack-nix
 
 ## Up next
 
-Sharing services-flake modules deserves a separate post, so we will talk more about this in the next post.
+Sharing [[services-flake]] modules deserves a separate post, so we will talk more about this in the next post.
