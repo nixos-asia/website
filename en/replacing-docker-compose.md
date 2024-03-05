@@ -1,3 +1,8 @@
+---
+page:
+  image: replacing-docker-compose/ny-services-flake.png
+---
+
 # Replacing docker-compose with Nix for development
 
 Ever since I first started using [[nix]], I have enjoyed the [[why-dev|simplicity of setup]]: `nix develop`, make the code change and see it work. That's all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then a quick search will tell you that [docker](https://www.docker.com/) is the way to go. You include it, [add one more step](https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools) in the setup guide, increasing the barrier to entry for new contributors. Not to forget, eating up all my system resources on my not so powerful, company provided, macOS[^native-macos].
