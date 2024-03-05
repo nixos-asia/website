@@ -1,4 +1,6 @@
 ---
+author: shivaraj
+tags: [blog]
 page:
   image: replacing-docker-compose/ny-services-flake.png
 ---
