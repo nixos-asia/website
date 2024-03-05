@@ -1,6 +1,8 @@
 template:
   sidebar:
     enable: false
+  toc:
+    enable: false
   uptree:
     enable: true
   breadcrumbs:
