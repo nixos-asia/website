@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+
+
+
+<!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>
+    Replacing docker-compose with Nix for development – NixOS Asia
+  </title>
+  
+    
+      <meta property='og:description' content='Ever since I first started using Nix for development, I have enjoyed the simplicity of setup: nix develop, make the code change and see it work. That’s all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then a quick search will tell you that docker is the way to go. You include it, add one more step in the setup guide, increasing the barrier to entry for new contributors. Not to forget, eating up all my system resources on my not so powerful, company provided, macOSThere is an initiative to run containers natively on macOS, but it is still in alpha and requires a lot of additional steps to setup. One such step is disabling SIP, which a lot of company monitored devices might not be allowed to do. 😕.' />
+      <meta property='og:site_name' content='NixOS Asia' />
+      <meta property='og:image' content='https://nixos.asia/en/replacing-docker-compose/ny-services-flake.png' />
+      <meta property='og:type' content='website' />
+      <meta property='og:title' content='Replacing docker-compose with Nix for development' />
+      
+        <meta name='twitter:card' content='summary_large_image' />
+      
+    
+    
+      <base href='/en/' />
+      <link href='static/nixos-asia.svg' rel='icon' />
+    
+    <!-- highlight.js -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
+<!-- Include languages that Emanote itself uses -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
+<script>hljs.highlightAll();</script>
+
+
+
+  
+  
+  <link href='tailwind.css?instanceId=e101b4da-36bf-4d65-9913-5e4a2114f51e' rel='stylesheet' type='text/css' />
+
+  <style>
+    /* Heist error element */
+    strong.error {
+      color: lightcoral;
+      font-size: 90%;
+      font-family: monospace;
+    }
+
+    /* Callouts */
+    div.callout {
+      background-color: #f5f5f5;
+      padding: 1em 1em 0.5em;
+      border-radius: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    .callout[data-callout="note"] {
+      --callout-color: 8, 109, 221;
+    }
+
+    .callout[data-callout="info"] {
+      --callout-color: 8, 109, 221;
+    }
+
+    .callout[data-callout="tip"] {
+      --callout-color: 8, 191, 188;
+    }
+
+    .callout[data-callout="warning"] {
+      --callout-color: 236, 117, 0;
+    }
+
+    .callout[data-callout="failure"] {
+      --callout-color: 233, 49, 71;
+    }
+
+    div.callout {
+      background-color: rgba(var(--callout-color), 0.1);
+    }
+
+    .callout .callout-title {
+      color: rgb(var(--callout-color));
+    }
+
+    div.callout-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+      font-variation-settings: 'wght' 600;
+    }
+
+    div.callout-title div.callout-title-inner {
+      margin-left: 0.5em;
+    }
+
+    /* External link icon */
+    a[data-linkicon=""]::after {
+      content: ""
+    }
+
+    a[data-linkicon=none]::after {
+      content: ""
+    }
+
+    a[data-linkicon="external"]::after {
+      content: url('data:image/svg+xml,\
+      <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
+        <g style="stroke:gray;stroke-width:1"> \
+          <line x1="5" y1="5" x2="5" y2="14" /> \
+          <line x1="14" y1="9" x2="14" y2="14" /> \
+          <line x1="5" y1="14" x2="14" y2="14" /> \
+          <line x1="5" y1="5" x2="9" y2="5"  /> \
+          <line x1="10" y1="2" x2="17" y2="2"  /> \
+          <line x1="17" y1="2" x2="17" y2="9" /> \
+          <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
+        </g> \
+      </svg>');
+    }
+
+    a[data-linkicon="external"][href^="mailto:"]::after {
+      content: url('data:image/svg+xml,\
+        <svg \
+          xmlns="http://www.w3.org/2000/svg" \
+          height="0.7em" \
+          fill="none" \
+          viewBox="0 0 24 24" \
+          stroke="gray" \
+          stroke-width="2"> \
+          <path \
+            stroke-linecap="round" \
+            stroke-linejoin="round" \
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
+        </svg>');
+    }
+  </style>
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
+
+<style>
+  @font-face {
+    font-family: 'WorkSans';
+    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf */
+    src: url(_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf) format("truetype");
+    font-display: swap;
+  }
+
+  body {
+    font-family: 'WorkSans', sans-serif;
+    font-variation-settings: 'wght' 350;
+  }
+
+  a.mavenLinkBold {
+    font-variation-settings: 'wght' 400;
+  }
+
+  strong {
+    font-variation-settings: 'wght' 500;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  header,
+  .header-font {
+    font-family: 'WorkSans', sans-serif;
+  }
+
+  h1 {
+    font-variation-settings: 'wght' 500;
+  }
+
+  h2 {
+    font-variation-settings: 'wght' 400;
+  }
+
+  h3 {
+    font-variation-settings: 'wght' 300;
+  }
+</style>
+
+
+  
+    <style>
+      /* For use in sidebar.tpl, as we cannot achieve this in tailwind itself! */
+      /* md:min-w-48  */
+      @media (min-width: 768px) {
+        #sidebar {
+          min-width: 12rem;
+        }
+      }
+
+      /* xl:min-w-64  */
+      @media (min-width: 1280px) {
+        #sidebar {
+          min-width: 16rem;
+        }
+      }
+    </style>
+
+    
+      <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+    
+  
+  <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
+<!-- Custom Stork-search styling for Emanote -->
+<style>
+  #stork-search-container {
+    z-index: 1000;
+    background-color: rgb(15 23 42/.8);
+  }
+
+  .stork-overflow-hidden-important {
+    overflow: hidden !important;
+  }
+</style>
+
+
+<script src='_emanote-static/stork/stork.js'></script>
+
+  
+    <script id='emanote-stork' data-emanote-base-url='/en/'>
+      window.emanote = {};
+      window.emanote.stork = {
+        searchShown: false,
+        indexIsStale: false,
+        toggleSearch: function () {
+          window.emanote.stork.refreshIndex();
+          document.getElementById('stork-search-container').classList.toggle('hidden');
+          window.emanote.stork.searchShown = document.body.classList.toggle('stork-overflow-hidden-important');
+          if (window.emanote.stork.searchShown) {
+            document.getElementById('stork-search-input').focus();
+          }
+        },
+        clearSearch: function () {
+          document.getElementById('stork-search-container').classList.add('hidden');
+          document.body.classList.remove('stork-overflow-hidden-important');
+          window.emanote.stork.searchShown = false;
+        },
+
+        getBaseUrl: function () {
+          const baseUrl = document.getElementById("emanote-stork").getAttribute('data-emanote-base-url') || '/';
+          return baseUrl;
+        },
+
+        registerIndex: function (options) {
+          const indexName = 'emanote-search'; // used to match input[data-stork] attribute value
+          const indexUrl = window.emanote.stork.getBaseUrl() + '-/stork.st';
+          stork.register(
+            indexName,
+            indexUrl,
+            options);
+        },
+
+        init: function () {
+          if (document.readyState !== 'complete') {
+            window.addEventListener('load', function () {
+              stork.initialize(window.emanote.stork.getBaseUrl() + '_emanote-static/stork/stork.wasm');
+              window.emanote.stork.registerIndex();
+            });
+
+            document.addEventListener('keydown', event => {
+              if (window.emanote.stork.searchShown && event.key === 'Escape') {
+                window.emanote.stork.clearSearch();
+                event.preventDefault();
+              } else if ((event.key == 'k' || event.key == 'K') && (event.ctrlKey || event.metaKey)) {
+                window.emanote.stork.toggleSearch();
+                event.preventDefault();
+              }
+            });
+          } else {
+            // This section is called during Ema's hot reload.
+            // 
+            // Mark the current index as stale, and refresh it *only when* the
+            // user actually invokes search.
+            // 
+            // We do not refresh the index *right away*, as that will cause
+            // memory leaks in the browser. See
+            // https://github.com/srid/emanote/issues/411#issuecomment-1402056235
+            console.log("stork: Marking index as stale");
+            window.emanote.stork.markIndexAsStale();
+          }
+        },
+
+        markIndexAsStale: function () {
+          window.emanote.stork.indexIsStale = true;
+        },
+
+        refreshIndex: function () {
+          if (window.emanote.stork.indexIsStale) {
+            console.log("stork: Reloading index");
+            window.emanote.stork.indexIsStale = false;
+            // NOTE: This will leak memory. See the comment above.
+            window.emanote.stork.registerIndex({ forceOverwrite: true });
+          }
+        }
+
+      };
+
+      window.emanote.stork.init();
+    </script>
+  
+
+</head>
+
+<!-- DoNotFormat -->
+
+
+
+<!-- DoNotFormat -->
+
+<body class='bg-gray-400 overflow-y-scroll'>
+  
+    <div class='container mx-auto max-w-7xl mt-2 md:mt-4  '>
+      
+        <!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+  <ul class='root'>
+    <li>
+      
+        <ul>
+          
+            <li>
+
+  <a href='dev'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Nix for Development
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='nix'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Nix
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='topics'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Topics
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href=''>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      NixOS Asia
+    </div>
+  </a>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <a href='services-flake'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      services-flake
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='flake-parts'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      flake-parts
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='flakes'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Flakes
+    </div>
+  </a>
+
+  
+</li>
+      
+        <li>
+
+  <a href='modules'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Module System
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='nixpkgs'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      nixpkgs
+    </div>
+  </a>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <a href='blog'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Blog
+    </div>
+  </a>
+
+  
+</li>
+          
+        </ul>
+      
+    </li>
+  </ul>
+</nav>
+      
+
+      
+        <nav id='breadcrumbs' class='w-full text-gray-700 md:hidden'>
+  <div class='flex justify-left'>
+    <div class='w-full px-2 py-2 bg-gray-50'>
+      <ul class='flex flex-wrap text-lg'>
+        <li class='inline-flex items-center'>
+          
+            
+              <img style='width: 1rem;' src='static/nixos-asia.svg' />
+            
+          
+        </li>
+        
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href=''>
+                NixOS Asia
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href='blog'>
+                Blog
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+        
+      </ul>
+    </div>
+    <button class='inline px-2 py-1 bg-gray-50 outline-none cursor-pointer focus:outline-none' title='Search (Ctrl+K)' type='button' onclick='window.emanote.stork.toggleSearch()'>
+      <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
+ fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
+  <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+</svg>
+    </button>
+    <button class='inline px-2 py-1 text-white bg-green-600 outline-none cursor-pointer focus:outline-none' title='Toggle sidebar' type='button' onclick="toggleHidden('sidebar')">
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'></path>
+      </svg>
+    </button>
+    <script>
+      function toggleHidden(elemId) {
+        document.getElementById(elemId).classList.toggle("hidden");
+      }
+    </script>
+  </div>
+</nav>
+      
+
+      
+        <div id='container' class='relative md:shadow-2xl md:mb-8'>
+          
+  <div class='absolute -top-6 right-1 md:right-0 flex flex-row items-center justify-center'>
+    <a title='Search (Ctrl+K)' class='cursor-pointer' onclick='window.emanote.stork.toggleSearch()'>
+      <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
+ fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
+  <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+</svg>
+    </a>
+  </div>
+
+          <!-- Main body column -->
+          <div class='flex-1 w-full overflow-x-auto bg-white'>
+  <main class='px-4 py-4'>
+    <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
+  <a class='z-40 tracking-tighter '>
+    Replacing docker-compose with Nix for development
+  </a>
+</h1>
+    <article class='overflow-auto'>
+  <!-- What goes in this file will appear on top of note body-->
+  
+
+
+
+
+
+
+    <p class='mb-3'>
+      Ever since I first started using <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> for <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>development</a>, I have enjoyed the <a href='why-dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>simplicity of setup</a>: <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code>, make the code change and see it work. That’s all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then a quick search will tell you that <a href='https://www.docker.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>docker</a> is the way to go. You include it, <a href='https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>add one more step</a> in the setup guide, increasing the barrier to entry for new contributors. Not to forget, eating up all my system resources on my not so powerful, company provided, macOS
+    <sup class='px-0.5'>
+      <a class='text-green-600 hover:underline' href='blog/replacing-docker-compose#fn1'>
+        1
+      </a>
+    </sup>
+  .
+    </p>
+  
+    <p class='mb-3'>
+      This, along with the fact that we can provide one command to do a lot of <strong>cool things</strong> (which you will see, as you continue to read), made us want to replace <a href='https://docs.docker.com/compose/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>docker-compose</a> with Nix in <a href='https://github.com/nammayatri/nammayatri' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nammayatri</a> (to keep it simple, I will refer to it as NY from now on).
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <line x1='18' y1='2' x2='22' y2='6'></line>
+<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       Nammayatri
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      <a href='https://nammayatri.in' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>NY</a> is an open-source auto rickshaw booking platform, based in India.
+    </p>
+  
+  </div>
+</div>
+    <h2 id='what-does-it-take' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  What does it take?
+  
+  <a href='blog/replacing-docker-compose#what-does-it-take'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      Turns out, there is not a lot of things that we need to do: we need to be able to run services natively, across platforms (so that my macOS doesn’t drain its battery running a database), and integrate with the existing <a href='https://github.com/nammayatri/nammayatri/blob/main/flake.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>flake.nix</a> (to avoid an extra step in the setup guide).
+    </p>
+  
+    <p class='mb-3'>
+      Lucky for us, NixOS already has a clean way to run services natively. We can use that as inspiration and build on top it.
+    </p>
+  
+    <h2 id='nixos-services' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  NixOS services
+  
+  <a href='blog/replacing-docker-compose#nixos-services'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      Running services in NixOS is a breeze. For example, <a href='https://nixos.wiki/wiki/PostgreSQL' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>running a PostgreSQL Database</a> is as simple as adding one line to your configuration:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  services.postgresql.enable = true;
+}</code></pre></div>
+    <p class='mb-3'>
+      This starts the database natively, without the need for a container. This is great, only if we could extend this to run on macOS and other Linux distributions. Also, the configuration above is system-wide, and we are looking for a way to run services on a per-project basis.
+    </p>
+  
+    <h2 id='nixos-like-services' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  NixOS-like services
+  
+  <a href='blog/replacing-docker-compose#nixos-like-services'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      That’s a relief, we are now closer to our goal. We now know what we want, and there are a few more things that needs to be added to the list:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Allow for running multiple instances of the same service (NY uses multiple instances of PostgreSQL and Redis).
+        </li>
+      
+        <li>
+          Along with services being project specific, their data should also be project specific.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      These were the exact problems <a href='services-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>services-flake</a> was designed to solve. Along with running services natively, it also <a href='https://community.flake.parts/services-flake/start' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>integrates with your project’s <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code></a>.
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <circle cx='12' cy='12' r='10'></circle>
+<line x1='12' y1='16' x2='12' y2='12'></line>
+<line x1='12' y1='8' x2='12.01' y2='8'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       How are processes managed in services-flake?
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      In NixOS they are managed by <a href='https://en.wikipedia.org/wiki/Systemd' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>systemd</a>. In services-flake, we use <a href='https://github.com/F1bonacc1/process-compose' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>process-compose</a> whose configuration is managed by <a href='https://community.flake.parts/process-compose-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>process-compose-flake</a>.
+    </p>
+  
+  </div>
+</div>
+    <h2 id='let-s-get-started' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Let’s get started
+  
+  <a href='blog/replacing-docker-compose#let-s-get-started'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      Now that we have all the answers. It’s time to replace <a href='https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>docker-compose in NY</a> with <a href='services-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>services-flake</a>. We will only look at a few services to keep it simple, for more details, see <a href='https://github.com/nammayatri/nammayatri/pull/3718' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>PR</a>.
+    </p>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='blog/replacing-docker-compose/ny-services-flake.png' alt='/nix/store/n968cdjj9v05aq550001jsfpb7ni997l-global/blog/replacing-docker-compose/ny-services-flake.png' style='width: inherit;' /></div>
+    <h3 id='postgresql' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  PostgreSQL
+  
+  <a href='blog/replacing-docker-compose#postgresql'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <p class='mb-3'>
+      NY uses about 3 instances of postgresql databases.
+    </p>
+  
+    <p class='mb-3'>
+      One of them is <a href='https://github.com/nammayatri/passetto/blob/nixify/process-compose.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>exported by passetto</a> (passetto is a haskell application that encrypts data before storing in postgres), and using it looks like:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  services.passetto.enable = true;
+}</code></pre></div>
+    <p class='mb-3'>
+      By using <a href='modules' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>module system</a>, we can hide the implementation details and only expose the <code class='py-0.5 px-0.5 bg-gray-100'>passetto</code> service to the user, and use it as above.
+    </p>
+  
+    <p class='mb-3'>
+      The other two instances are used by the <a href='https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/nix/services/postgres-with-replica.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>postgres-with-replica module</a>. This module starts two services (<code class='py-0.5 px-0.5 bg-gray-100'>primary</code> and <code class='py-0.5 px-0.5 bg-gray-100'>replica</code> database) and a <a href='https://www.postgresql.org/docs/current/app-pgbasebackup.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>pg-basebackup</a> process (to sync <code class='py-0.5 px-0.5 bg-gray-100'>replica</code> with <code class='py-0.5 px-0.5 bg-gray-100'>primary</code> during init). For the user it is:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  services.postgres-with-replica.enable = true;
+}</code></pre></div>
+    <h3 id='redis' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Redis
+  
+  <a href='blog/replacing-docker-compose#redis'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <p class='mb-3'>
+      NY uses <a href='https://redis.io/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Redis</a> as a cache and clustered version of it as a Key-Value database. Redis service comprises of a single node, while the clustered version has 6 nodes (3 master and 3 replica). Adding them to the project is as simple as:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  services.redis.enable = true;
+  services.redis-cluster.enable = true;
+}</code></pre></div>
+    <h2 id='cool-things' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Cool things
+  
+  <a href='blog/replacing-docker-compose#cool-things'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      By not depending on docker anymore, we can now run the entire NY backend with one command and its all defined in a <a href='https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/nix/services/nammayatri.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>single place</a>.
+    </p>
+  
+    <p class='mb-3'>
+      That is not all, we can also share NY backend module to do much more, like defining <a href='https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/load-test/default.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>load-test</a> config and run it in CI/local, again, with one command. Here, we take the module to run entire NY stack, and then extend it to add a bunch of load-test processes, before bringing the whole thing to an end (as the load-test ends).
+    </p>
+  
+    <p class='mb-3'>
+      This is how running them looks like:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># Run load-test
+nix run github:nammayatri/nammayatri#load-test-dev
+
+# Run the entire backend
+nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
+    <h2 id='up-next' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+      
+  Up next
+  
+  <a href='blog/replacing-docker-compose#up-next'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      Sharing <a href='services-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>services-flake</a> modules deserves a separate post, so we will talk more about this in the next post.
+    </p>
+  
+    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
+      <header class='font-semibold'>Footnotes</header>
+      
+        <div id='fn1'>
+          <header class='italic'>
+            1.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            There is an <a href='https://github.com/macOScontainers/homebrew-formula' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>initiative to run containers natively on macOS</a>, but it is still in alpha and <a href='https://github.com/macOScontainers/homebrew-formula?tab=readme-ov-file#installation' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>requires a lot of additional steps</a> to setup. One such step is <a href='https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection#3599244' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>disabling SIP</a>, which a lot of company monitored devices might not be allowed to do. 😕
+          </div>
+        </div>
+      
+    </div>
+  
+  <!-- Disabled until we can limit this template to a subset of notes (blog posts):
+     https://github.com/nixos-asia/website/issues/9
+
+<aside class="flex items-center justify-center mt-2">
+  <ema:metadata>
+    <span id="yamlauthor" class="mb-4 text-right text-gray-600">
+      Written by
+      <value var="author" />
+    </span>
+  </ema:metadata>
+  <script>if (yamlauthor.innerText.includes('error')) yamlauthor.innerText = ''</script>
+</aside>
+--><div class='flex items-center justify-center mt-2'>
+  <div class='flex items-center justify-center mt-2'>
+    
+      
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/blog/replacing-docker-compose.md'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
+          </svg>
+        </a>
+      
+    
+  </div>
+</div>
+</article>
+    <div class='flex flex-col lg:flex-row lg:space-x-2'>
+      
+      
+    </div>
+    
+  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
+    
+  </section>
+
+    <!-- What goes in this file will at the very end of the main div -->
+  </main>
+</div>
+        </div>
+      
+
+      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+  
+  <div>
+    <a href='' title='Go to Home page'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/all' title='View Index'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.13.0'>
+      <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
+    </a>
+  </div>
+  <div>
+    <a href='-/tags' title='View tags'>
+      <svg class='w-6 h-6 hover:text-green-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/tasks' title='View tasks'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+    </div>
+  
+  <div id='stork-search-container' class='hidden fixed w-screen h-screen inset-0 backdrop-filter backdrop-blur-sm'>
+  <div class='fixed w-screen h-screen inset-0' onclick='window.emanote.stork.toggleSearch()'></div>
+
+  <div class='container mx-auto p-10 mt-10'>
+    <div class='stork-wrapper-flat container mx-auto'>
+      <input id='stork-search-input' data-stork='emanote-search' class='stork-input' placeholder='Search (Ctrl+K) ...' />
+      <div data-stork='emanote-search-output' class='stork-output'></div>
+    </div>
+  </div>
+</div>
+  
+    
+  
+</body>
+
+</html>

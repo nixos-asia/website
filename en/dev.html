@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=58fb17af-de4f-4529-9727-5b57cd35ce47' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=e101b4da-36bf-4d65-9913-5e4a2114f51e' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -486,8 +486,8 @@
           
       
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Events' href='event'>
-      Events
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='event' href='event'>
+      event
     </a>
     
       
@@ -707,6 +707,48 @@
     TODO: Use <details> to toggle visibility?
   -->
   
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+      Replacing docker-compose with Nix for development
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
     
       <!-- Variable bindings for this tree-->
 
@@ -1520,7 +1562,7 @@
 
 
   
-
+  
 
 <!-- Rendering of this tree -->
 <div class='pl-2'>
@@ -1529,15 +1571,16 @@
     <span>
       
         
-          
+          <a href='blog' title='View folgezettel children'>
+            
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 24 24' fill='currentColor'>
+        <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z' clip-rule='evenodd'></path>
       </svg>
     
   
-        
+          </a>
+          
       
     </span>
     <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Blog' href='blog'>
@@ -1545,7 +1588,10 @@
     </a>
     
       
-        
+        <span class='text-gray-300' title='1 children inside'>
+          1
+        </span>
+      
     
   </div>
 
@@ -1717,6 +1763,21 @@
     <ul class='space-y-1'>
       
         <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='services-flake'>
+            services-flake
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p><a href='https://community.flake.parts/services-flake' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>services-flake</a> provides declarative, composable, and reproducible services for <a href='dev' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix development environment</a>, and is based on <a href='flake-parts' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>flake-parts</a>. Enabling users to have <a href='nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>NixOS</a>-like service on <a href='macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>MacOS</a> and Linux.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
           <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='direnv'>
             <code>direnv</code>: manage dev environments
           </a>
@@ -1770,6 +1831,21 @@
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>There are several ways to provide packaging and <a href='dev' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>development enviornment</a> for Rust projects.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='blog/replacing-docker-compose'>
+            Replacing docker-compose with Nix for development
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Ever since I first started using <a href='nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix</a> for <a href='dev' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>development</a>, I have enjoyed the <a href='why-dev' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>simplicity of setup</a>: <code>nix develop</code>, make the code change and see it work. That’s all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then a quick search will tell you that <a href='https://www.docker.com/' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>docker</a> is the way to go. You include it, <a href='https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools' class='text-gray-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>add one more step</a> in the setup guide, increasing the barrier to entry for new contributors. Not to forget, eating up all my system resources on my not so powerful, company provided, macOS<sup>*</sup>.</p></div>
     </div>
   
 </div>
