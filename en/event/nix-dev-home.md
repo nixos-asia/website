@@ -21,6 +21,10 @@ RSVP links:
 
 - [Functional Programming India][hasgeek]
 
+See also:
+
+- [Juspay's home-manager template](https://github.com/juspay/nix-dev-home)
+
 ![[nix-dev-home/screenshot.png]]
 
 [srid]: https://x.com/sridca
