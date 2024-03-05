@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=24fed1ad-a9f8-4783-a547-d05df93be3ca' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=e3a338de-e6c9-4e1f-9324-9a87ef605770' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -98,6 +98,10 @@
 
     div.callout-title div.callout-title-inner {
       margin-left: 0.5em;
+    }
+
+    a.--ema-toc:not(.toc-item-active) {
+      background-color: #ffffff !important;
     }
 
     /* External link icon */
@@ -1321,14 +1325,17 @@
   </div>
 </nav>
           <!-- Main body column -->
-          <div class='flex-1 w-full overflow-x-auto bg-white'>
+          <div class='flex-1 w-full bg-white'>
   <main class='px-4 py-4'>
     <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
     Install NixOS with Flake configuration on Git
   </a>
 </h1>
-    <article class='overflow-auto'>
+    
+      <div class='grid gap-4 md:grid-cols-8'>
+        <div class='md:col-span-6'>
+          <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
 
@@ -1363,11 +1370,11 @@
   
   </div>
 </div><img class='inline mb-3' src='nixos-install-flake/nixos-install-flake.png' alt='/nix/store/n968cdjj9v05aq550001jsfpb7ni997l-global/nixos-install-flake/nixos-install-flake.png' style='width: inherit;' />
-    <h2 id='prepare' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='prepare' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Prepare to install NixOS
   
-  <a href='nixos-install-flake#prepare'>
+  <a href='nixos-install-flake#prepare' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1409,11 +1416,11 @@
       
     </ul>
   
-    <h2 id='edit' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='edit' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Your first <code class='py-0.5 px-0.5 bg-gray-100'>configuration.nix</code> change
   
-  <a href='nixos-install-flake#edit'>
+  <a href='nixos-install-flake#edit' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1544,11 +1551,11 @@
   
   </div>
 </div>
-    <h2 id='flakeify' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='flakeify' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Flakeify
   
-  <a href='nixos-install-flake#flakeify'>
+  <a href='nixos-install-flake#flakeify' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1664,11 +1671,11 @@ error:
   
   </div>
 </div>
-    <h2 id='homedir' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='homedir' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Move configuration to user directory
   
-  <a href='configuration-as-flake#homedir'>
+  <a href='configuration-as-flake#homedir' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1744,11 +1751,11 @@ $ sudo nixos-rebuild switch --flake .</code></pre></div>
       Let’s <a href='configuration-as-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>store our whole configuration</a> in a <a href='git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a> repository.
     </p>
   
-    <h2 id='git' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='git' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Store the configuration in Git
   
-  <a href='nixos-install-flake#git'>
+  <a href='nixos-install-flake#git' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1815,11 +1822,11 @@ $ git init && git add . && git commit -m init</code></pre></div>
   
   </div>
 </div>
-    <h2 id='enable-flakes' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='enable-flakes' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Enable flakes
   
-  <a href='nixos-install-flake#enable-flakes'>
+  <a href='nixos-install-flake#enable-flakes' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1881,11 +1888,11 @@ warning: Git tree '/home/srid/nixos-config' is dirty
 git+file:///home/srid/nixos-config
 └───nixosConfigurations
     └───nixos: NixOS configuration</code></pre></div>
-    <h2 id='recap' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='recap' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Recap
   
-  <a href='nixos-install-flake#recap'>
+  <a href='nixos-install-flake#recap' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1899,11 +1906,11 @@ git+file:///home/srid/nixos-config
       You have successfully installed NixOS. The entire system configuration is also stored in a Git repo, and can be reproduced at will during either a reinstallation or a new machine purchase. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a> permanently, which means you can now use all the modern <code class='py-0.5 px-0.5 bg-gray-100'>nix</code> commands, such as running a package directly from <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> (same version pinned in <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file):
     </p>
   <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-pony.png' alt='/nix/store/n968cdjj9v05aq550001jsfpb7ni997l-global/nixos-install-flake/nixos-pony.png' style='width: inherit;' /></div>
-    <h2 id='end' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl border-b-2'>
+    <h2 id='end' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Up Next
   
-  <a href='nixos-install-flake#end'>
+  <a href='nixos-install-flake#end' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1943,6 +1950,150 @@ git+file:///home/srid/nixos-config
   </div>
 </div>
 </article>
+        </div>
+        <div class='md:col-span-2 border-l'>
+          <nav id='toc' class='hidden leading-relaxed md:block md:sticky md:top-0 md:max-h-screen md:overflow-y-auto'>
+  <div class='text-gray-600 text-sm -mt-2'>
+    
+        <ul class='ml-2'>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Prepare to install NixOS'>
+              <a href='nixos-install-flake#prepare' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Prepare to install NixOS
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Your first configuration.nix change'>
+              <a href='nixos-install-flake#edit' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Your first configuration.nix change
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Flakeify'>
+              <a href='nixos-install-flake#flakeify' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Flakeify
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Store the configuration in Git'>
+              <a href='nixos-install-flake#git' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Store the configuration in Git
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Enable flakes'>
+              <a href='nixos-install-flake#enable-flakes' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Enable flakes
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Recap'>
+              <a href='nixos-install-flake#recap' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Recap
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Up Next'>
+              <a href='nixos-install-flake#end' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Up Next
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+        </ul>
+      
+  </div>
+  <script>
+    // Highlight the TOC, based from https://stackoverflow.com/a/75346369
+    // TODO: We should get rid of JavaScript! See https://github.com/srid/emanote/issues/520
+    function highlightTOC() {
+      // Grab the toc links
+      const links = document.querySelectorAll("ul > li > a.--ema-toc");
+
+      // Find the matching anchors in the document body
+      const sections = [];
+      links.forEach((link) => {
+        let found = {};
+        for (section of document.querySelectorAll("a.--ema-anchor")) {
+          if (link.href == section.href) {
+            found = section;
+            break;
+          }
+        }
+        sections.push(found);
+      });
+
+      // Current toc link is marked with the following class
+      const mark = "toc-item-active";
+
+      // Set window scroll handler to update the toc mark.
+      window.onscroll = () => {
+        // Remove previous mark
+        links.forEach((link) => {
+          link.classList.remove(mark);
+        });
+
+        // Mark the link of the section that is in view, starting from the end
+        let marked = false;
+        for (var i = sections.length - 1; i >= 0; i--) {
+          if (window.scrollY > sections[i].offsetTop - 80) {
+            links[i].classList.add(mark);
+            marked = true;
+            break;
+          }
+        }
+
+        // Special case for the first and last section which might not reach the top
+        if (!marked && window.scrollY > 0) {
+          let i = 0;
+          if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+            // We are at the bottom
+            i = links.length - 1
+          }
+          links[i].classList.add(mark);
+        }
+      };
+    }
+    highlightTOC();
+  </script>
+</nav>
+        </div>
+      </div>
+      
     <div class='flex flex-col lg:flex-row lg:space-x-2'>
       
       
@@ -2017,7 +2168,6 @@ git+file:///home/srid/nixos-config
 </div>
         </div>
         
-
       <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
   
   <div>
@@ -2035,7 +2185,7 @@ git+file:///home/srid/nixos-config
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.13.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.14.1'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
