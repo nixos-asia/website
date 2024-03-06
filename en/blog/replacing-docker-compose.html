@@ -20,7 +20,7 @@
     
       <meta property='og:description' content='Ever since I first started using Nix for development, I have enjoyed the simplicity of setup: nix develop, make the code change and see it work. That’s all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then, a quick search will tell you that docker is the way to go. You include it, add one more step in the setup guide, increasing the barrier to entry for new contributors. Not to mention, eating up all the system resourcesThe high resource consumption is due to docker running the containers on a VM, there is an initiative to run containers natively on macOS, but it is still in alpha and requires a lot of additional steps to setup. One such step is disabling SIP, which a lot of company monitored devices might not be allowed to do. on my not so powerful, company-provided MacBook.' />
       <meta property='og:site_name' content='NixOS Asia' />
-      <meta property='og:image' content='https://nixos.asia/en/blog/replacing-docker-compose/ny-services-flake.png' />
+      <meta property='og:image' content='https://nixos.asia/en/blog/replacing-docker-compose/docker-to-nix.png' />
       <meta property='og:type' content='website' />
       <meta property='og:title' content='Replacing docker-compose with Nix for development' />
       
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=052d6444-1e8c-4c60-b939-ce350b4e4776' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=a60b97d3-5255-40e2-8f59-f74132789354' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -594,7 +594,7 @@
     </p>
   
   </div>
-</div>
+</div><img class='inline mb-3' src='blog/replacing-docker-compose/docker-to-nix.png' alt='/nix/store/fzaz2ji70dvr2n7ph6sbh4b3vg4fcyx8-global/blog/replacing-docker-compose/docker-to-nix.png' style='width: inherit;' />
     <h2 id='what-does-it-take' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   What does it take?
@@ -726,7 +726,7 @@
     <p class='mb-3'>
       Now that we have all the answers, it’s time to replace <a href='https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>docker-compose in NY</a> with <a href='services-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>services-flake</a>. We will only focus on a few services to keep it simple; for more details, refer to the <a href='https://github.com/nammayatri/nammayatri/pull/3718' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>PR</a>.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='blog/replacing-docker-compose/ny-services-flake.png' alt='/nix/store/n968cdjj9v05aq550001jsfpb7ni997l-global/blog/replacing-docker-compose/ny-services-flake.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='blog/replacing-docker-compose/ny-services-flake.png' alt='/nix/store/fzaz2ji70dvr2n7ph6sbh4b3vg4fcyx8-global/blog/replacing-docker-compose/ny-services-flake.png' style='width: inherit;' /></div>
     <h3 id='postgresql' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   PostgreSQL
