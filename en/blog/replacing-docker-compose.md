@@ -49,8 +49,15 @@ In the last section, we saw how easy it is to run services in NixOS. We are look
 
 These were the exact problems #[[services-flake]] was designed to solve. Along with running services natively, it also [integrates with your project's `flake.nix`](https://community.flake.parts/services-flake/start).
 
->[!info] How are processes managed in services-flake?
-> In NixOS they are managed by [systemd](https://en.wikipedia.org/wiki/Systemd). In services-flake, we use [process-compose](https://github.com/F1bonacc1/process-compose) whose configuration is managed by [process-compose-flake](https://community.flake.parts/process-compose-flake).
+{#services-flake}
+
+## services-flake
+
+How does [[services-flake]] solve them?
+
+- It uses [[flake-parts]] for the [[modules|module system]] (that's the simplicity aspect), and [[process-compose-flake]] for managing services, along with providing a TUI app to monitor them.
+- For running multiple instances, services-flake exports a [library function](https://github.com/juspay/services-flake/blob/e0a1074f8adb68c06b847d34b260454a18c0697c/nix/lib.nix#L7-L33).
+- The data of each service is by default stored under `./data/<service-name>`, where `./` refers to the path where the process-compose app exported by the project [[flakes|flake]] is run (usually in the project root).
 
 {#let-s-get-started}
 
