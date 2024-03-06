@@ -2,7 +2,7 @@
 author: shivaraj
 date: 2023-03-05
 page:
-  image: blog/replacing-docker-compose/ny-services-flake.png
+  image: blog/replacing-docker-compose/docker-to-nix.png
 ---
 
 # Replacing docker-compose with Nix for development
@@ -13,6 +13,8 @@ This, along with the fact that we can provide one command to do more than just r
 
 > [!note] Nammayatri
 > [NY](https://nammayatri.in) is an open-source auto rickshaw booking platform, based in India.
+
+![[docker-to-nix.png]]
 
 [^native-macos]: The high resource consumption is due to docker running the containers on a VM, there is an [initiative to run containers natively on macOS](https://github.com/macOScontainers/homebrew-formula), but it is still in alpha and [requires a lot of additional steps](https://github.com/macOScontainers/homebrew-formula?tab=readme-ov-file#installation) to setup. One such step is [disabling SIP](https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection#3599244), which a lot of company monitored devices might not be allowed to do.
 
