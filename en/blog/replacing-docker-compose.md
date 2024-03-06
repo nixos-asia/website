@@ -36,16 +36,16 @@ Running services in NixOS is a breeze. For example, [running a PostgreSQL Databa
 }
 ```
 
-This starts the database natively, without the need for a container. This is great, only if we could extend this to run on macOS and other Linux distributions. Also, the configuration above is system-wide, and we are looking for a way to run services on a per-project basis.
+This starts the database natively, with a global data directory, without the need for a container. This is great, what we need is the same simplicity, with project specific data directory, but for macOS and other Linux distributions.
 
 {#nixos-like-services}
 
-## NixOS-like services
+## cross-platform nixos-like services
 
-That's a relief, we are now closer to our goal. We now know what we want, and there are a few more things that needs to be added to the list:
+In the last section, we saw how easy it is to run services in NixOS. We are looking for something similar for our development environment and that runs across platforms. Additionally, the solution should also:
 
 - Allow for running multiple instances of the same service (NY uses multiple instances of PostgreSQL and Redis).
-- Along with services being project specific, their data should also be project specific.
+- Services and their data should be project specific.
 
 These were the exact problems #[[services-flake]] was designed to solve. Along with running services natively, it also [integrates with your project's `flake.nix`](https://community.flake.parts/services-flake/start).
 
