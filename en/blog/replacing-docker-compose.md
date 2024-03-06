@@ -20,7 +20,7 @@ This, along with the fact that we can provide one command to do more than just r
 
 ## What does it take?
 
-Turns out, there is not a lot of things that we need to do: we need to be able to run services natively, across platforms (so that my macOS doesn't drain its battery running a database), and integrate with the existing [flake.nix](https://github.com/nammayatri/nammayatri/blob/main/flake.nix) (to avoid an extra step in the setup guide).
+Turns out, there is not a lot of things that we need to do: we need to be able to run services natively, across platforms (so that my MacBook doesn't drain its battery running a database), and integrate with the existing [flake.nix](https://github.com/nammayatri/nammayatri/blob/main/flake.nix) (to avoid an extra step in the setup guide).
 
 If you've ever used [[nixos|NixOS]] before, you might be familiar with the way services are managed. Let's take a quick look at an example to understand if that will help us arrive at a solution for our problem.
 
