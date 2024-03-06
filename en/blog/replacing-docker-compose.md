@@ -22,7 +22,7 @@ This, along with the fact that we can provide one command to do a lot of **cool 
 
 Turns out, there is not a lot of things that we need to do: we need to be able to run services natively, across platforms (so that my macOS doesn't drain its battery running a database), and integrate with the existing [flake.nix](https://github.com/nammayatri/nammayatri/blob/main/flake.nix) (to avoid an extra step in the setup guide).
 
-Lucky for us, NixOS already has a clean way to run services natively. We can use that as inspiration and build on top it.
+If you have ever used [[nixos|NixOS]] before, you might be familiar with the way services are managed. Let's take a quick look at an example to understand if that will help us arrive at a solution for our problem.
 
 {#nixos-services}
 
