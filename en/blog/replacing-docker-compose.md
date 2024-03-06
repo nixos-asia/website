@@ -2,7 +2,7 @@
 author: shivaraj
 date: 2023-03-05
 page:
-  image: replacing-docker-compose/ny-services-flake.png
+  image: blog/replacing-docker-compose/ny-services-flake.png
 ---
 
 # Replacing docker-compose with Nix for development
