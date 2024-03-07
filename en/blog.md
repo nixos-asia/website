@@ -1,5 +1,5 @@
 ---
-order: 15
+order: -50
 feed:
   enable: true
   title: NixOS Asia Blog
