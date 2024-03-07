@@ -30,7 +30,7 @@ If you've ever used [[nixos|NixOS]] before, you might be familiar with the way s
 
 ## NixOS services
 
-Running services in NixOS is a breeze. For example, [running a PostgreSQL Database](https://nixos.wiki/wiki/PostgreSQL) is as simple as adding one line to your configuration:
+Running services in [[nixos|NixOS]] is a breeze. For example, [running a PostgreSQL Database](https://nixos.wiki/wiki/PostgreSQL) is as simple as adding one line to your configuration:
 
 ```nix
 {
@@ -42,9 +42,9 @@ This starts the database natively, with a global data directory, without the nee
 
 {#nixos-like-services}
 
-## cross-platform nixos-like services
+## Cross-platform NixOS-like services
 
-In the last section, we saw how easy it is to run services in NixOS. We are looking for something similar for our development environment that runs across platforms. Additionally, the solution should:
+In the last section, we saw how easy it is to run services in [[nixos|NixOS]]. We are looking for something similar for our development environment that runs across platforms. Additionally, the solution should:
 
 - Allow for running multiple instances of the same service (NY uses multiple instances of PostgreSQL and Redis).
 - Ensure that services and their data are project-specific.
