@@ -61,7 +61,7 @@ How does [[services-flake]] solve them?
 - To address the need for running multiple instances, services-flake exports a [`multiService` library function](https://github.com/juspay/services-flake/blob/e0a1074f8adb68c06b847d34b260454a18c0697c/nix/lib.nix#L7-L33).
 - By default, the data of each service is stored under `./data/<service-name>`, where `./` refers to the path where the process-compose app, exported by the project [[flakes|flake]] is run (usually in the project root).
 
-{#let-s-get-started}
+{#start}
 
 ## Let's get started
 
@@ -126,6 +126,7 @@ nix run github:nammayatri/nammayatri#load-test-dev
 nix run github:nammayatri/nammayatri#run-mobility-stack-nix
 ```
 
+{#next}
 ## Up next
 
 Sharing [[services-flake]] modules deserves a separate post, so we will delve into this topic more in the next post.
