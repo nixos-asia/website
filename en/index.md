@@ -28,6 +28,7 @@ sidebar navigation.
 You can participate in the community discussion through the following venues. Zulip is the primary venue for discussion.
 
 - [Zulip](https://nixos.zulipchat.com/): Zulip is a hybrid of "chat" and "forum".
+    - Public chat logs are available at [chat.nixos.asia](https://chat.nixos.asia/)
 - [Matrix](https://matrix.to/#/#nixos-asia:matrix.org)
 - [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
 - [GitHub](https://github.com/nixos-asia)
