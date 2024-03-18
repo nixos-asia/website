@@ -26,8 +26,7 @@
             sites = lib.mapAttrs
               (name: lang: {
                 inherit (lang) port;
-                layers = [ lang.path ./global ];
-                layersString = [ name "global" ];
+                layers = [ { path = lang.path; pathString = name; } { path = ./global; pathString = "global"; } ];
                 prettyUrls = true;
                 baseUrl = "/${name}/";
                 basePath = name;
