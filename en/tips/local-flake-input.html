@@ -14,15 +14,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Gotchas – NixOS Asia
+    Use a local directory as flake input – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='[[nix]] can behave unexpectedly in certain cases.' />
+      <meta property='og:description' content='A [[flake-url]] can not only be [[git]] repositories. They can also refer to local paths. If you have two projects ~/code/foo and ~/code/bar, and bar depends on foo, you can use the following flake.nix in bar to have it refer to the local foo project:' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Gotchas' />
+      <meta property='og:title' content='Use a local directory as flake input' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
@@ -346,6 +346,15 @@
             <li class='inline-flex items-center'>
               <a class='px-1 font-bold' href=''>
                 NixOS Asia
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href='tips'>
+                Tips
               </a>
               <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
                 <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
@@ -868,7 +877,7 @@
       <!-- Variable bindings for this tree-->
 
   
-  
+
 
 
   
@@ -881,152 +890,33 @@
     <span>
       
         
+          <a href='gotchas' title='View folgezettel children'>
+            
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
-        <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 24 24' fill='currentColor'>
+        <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z' clip-rule='evenodd'></path>
       </svg>
-      
+    
   
-        
+          </a>
+          
+      
     </span>
-    <a class='mavenLinkBold bg-green-100 hover:bg-green-200 rounded px-1.5 truncate' title='Gotchas' href='gotchas'>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Gotchas' href='gotchas'>
       Gotchas
     </a>
     
       
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-      <!-- Variable bindings for this tree-->
-
-  
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+        <span class='text-gray-300' title='3 children inside'>
+          3
+        </span>
       
-        
-          
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-        
-      
-    </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
-      Nix is broken after macOS upgrade
-    </a>
-    
-      
-        
     
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-
-  
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
-      
-        
-          
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-        
-      
-    </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
-      Nix does not recognize a new file I added
-    </a>
-    
-      
-        
-    
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-
-  
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
-      
-        
-          
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-        
-      
-    </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix’s sqlite database is corrupted/broken' href='gotchas/sqlite-corruption'>
-      Nix’s sqlite database is corrupted/broken
-    </a>
-    
-      
-        
-    
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-</div>
-    
   
 </div>
     
@@ -1297,6 +1187,10 @@
       <!-- Variable bindings for this tree-->
 
   
+    
+      
+    
+  
 
 
 
@@ -1310,33 +1204,150 @@
     <span>
       
         
-          <a href='tips' title='View folgezettel children'>
-            
     
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 24 24' fill='currentColor'>
-        <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z' clip-rule='evenodd'></path>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+        <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
-    
-  
-          </a>
-          
       
+  
+        
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Tips' href='tips'>
+    <a class='mavenLinkBold hover:bg-green-200 rounded px-1.5 truncate' title='Tips' href='tips'>
       Tips
     </a>
     
       
-        <span class='text-gray-300' title='3 children inside'>
-          3
-        </span>
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+      <!-- Variable bindings for this tree-->
+
+  
+  
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
       
+        
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'>
+        </path>
+      </svg>
+      
+  
+        
+    </span>
+    <a class='mavenLinkBold bg-green-100 hover:bg-green-200 rounded px-1.5 truncate' title='Use a local directory as flake input' href='tips/local-flake-input'>
+      Use a local directory as flake input
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Copying packages to a remote Nix store' href='tips/remote-cp'>
+      Copying packages to a remote Nix store
+    </a>
+    
+      
+        
     
   </div>
 
   <!-- Node's children forest, displayed only on active trees
     TODO: Use <details> to toggle visibility?
   -->
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='traceVerbose' href='traceVerbose'>
+      <code>traceVerbose</code>
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+    
   
 </div>
     
@@ -1446,7 +1457,7 @@
   <main class='px-4 py-4'>
     <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Gotchas
+    Use a local directory as flake input
   </a>
 </h1>
     
@@ -1460,54 +1471,40 @@
 
 
     <p class='mb-3'>
-      <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix</a> can behave unexpectedly in certain cases.
+      A <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake URL</a> can not only be <a href='git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a> repositories. They can also refer to local paths. If you have two projects <code class='py-0.5 px-0.5 bg-gray-100'>~/code/foo</code> and <code class='py-0.5 px-0.5 bg-gray-100'>~/code/bar</code>, and <code class='py-0.5 px-0.5 bg-gray-100'>bar</code> depends on <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>, you can use the following <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> in <code class='py-0.5 px-0.5 bg-gray-100'>bar</code> to have it refer to the local <code class='py-0.5 px-0.5 bg-gray-100'>foo</code> project:
     </p>
-  <nav>
-  <div class='mb-8'>
-    <header data-nosnippet class='pb-2 mb-2 font-semibold text-gray-600'>
-      Folgezettel children
-    </header>
-    <ul>
-      
-        <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='gotchas/macos-upgrade'>
-              Nix is broken after macOS upgrade
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='gotchas/new-file'>
-              Nix does not recognize a new file I added
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='gotchas/sqlite-corruption'>
-              Nix’s sqlite database is corrupted/broken
-            </a>
-          </div>
-        </li>
-      
-    </ul>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    foo.url = "path:/Users/me/code/foo";
+  };
+  outputs = inputs: { ... };
+}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'></path>
+<line x1='12' y1='9' x2='12' y2='13'></line>
+<line x1='12' y1='17' x2='12.01' y2='17'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code>
+    </div>
   </div>
-</nav>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      Whenever you modify files under <code class='py-0.5 px-0.5 bg-gray-100'>~/code/foo</code>, you must run update the <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> hash in <code class='py-0.5 px-0.5 bg-gray-100'>~/code/bar</code> by running:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nix flake update foo</code></pre></div>
+    <p class='mb-3'>
+      The alternative is to pass <code class='py-0.5 px-0.5 bg-gray-100'>--override-input foo ~/code/foo</code> to <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> or <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code> commands; this will override the hash for “foo” in the <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file.
+    </p>
+  
+  </div>
+</div>
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -1524,7 +1521,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/gotchas.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/tips/local-flake-input.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>
