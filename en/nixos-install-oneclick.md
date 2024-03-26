@@ -10,10 +10,11 @@ order: 3
 Boot from a NixOS install live CD, and then:
 
 ```sh
+# Assuming your system is x86_64-linux
 sudo nix \
     --extra-experimental-features 'flakes nix-command' \
     run github:nix-community/disko#disko-install -- \
-    --flake "github:nixos-asia/website/disko-install?dir=global/nixos-install-oneclick#oneclick" \
+    --flake "github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick" \
     --write-efi-boot-entries \
     --disk main /dev/sda
 ```
