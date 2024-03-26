@@ -16,15 +16,18 @@
           boot.loader = {
             systemd-boot.enable = true;
             efi.canTouchEfiVariables = true;
-            /* grub = {
+            grub = {
               efiSupport = true;
-              efiInstallAsRemovable = true;
-            }; */
+              # efiInstallAsRemovable = true;
+            };
           };
           networking.hostName = "oneclick";
-          users.users.root.openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQRxPoqlThDrkR58pKnJgmeWPY9/wleReRbZ2MOZRyd"
-          ];
+          services.openssh.enable = true;
+
+          # Remove this after setting up users and keys
+          services.openssh.settings.PermitRootLogin = "yes";
+          users.users.root.initialHashedPassword = "root";
+
           system.stateVersion = "23.11";
         })
       ];
