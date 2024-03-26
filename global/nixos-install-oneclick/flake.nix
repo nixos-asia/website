@@ -13,9 +13,13 @@
         disko.nixosModules.disko
         ({ pkgs, ... }: {
           environment.systemPackages = [ pkgs.htop ];
-          boot.loader.grub = {
-            efiSupport = true;
-            efiInstallAsRemovable = true;
+          boot.loader = {
+            systemd-boot.enable = true;
+            efi.canTouchEfiVariables = true;
+            /* grub = {
+              efiSupport = true;
+              efiInstallAsRemovable = true;
+            }; */
           };
           networking.hostName = "oneclick";
           users.users.root.openssh.authorizedKeys.keys = [
