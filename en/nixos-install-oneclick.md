@@ -7,7 +7,7 @@ order: 3
 >[!WARNING] To Write
 > This tutorial has not been written yet. What you see below are just rough notes.
 
-Boot from a NixOS install live CD, and then:
+Boot from a NixOS install live CD ("minimal" version is sufficient), and then:
 
 ```sh
 # Assuming your system is x86_64-linux
