@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=b8f2bf9c-28eb-4426-901a-7b0d02312bef' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=aa300baa-accf-43e7-b968-96bd89d0bcc1' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1298,11 +1298,10 @@
     <p class='mb-3'>
       Boot from a NixOS install live CD, and then:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># Assuming your system is x86_64-linux
-sudo nix \
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>sudo nix \
     --extra-experimental-features 'flakes nix-command' \
     run github:nix-community/disko#disko-install -- \
-    --flake "github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick" \
+    --flake "github:nixos-asia/website/disko-install?dir=global/nixos-install-oneclick#oneclick" \
     --write-efi-boot-entries \
     --disk main /dev/sda</code></pre></div>
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
