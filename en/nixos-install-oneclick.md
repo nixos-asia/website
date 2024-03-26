@@ -4,7 +4,7 @@ order: 3
 
 # Install NixOS directly from a remote flake
 
->[!todo] To Write
+>[!WARNING] To Write
 > This tutorial has not been written yet. What you see below are just rough notes.
 
 Boot from a NixOS install live CD, and then:
