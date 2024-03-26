@@ -5,11 +5,8 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = { self, nixpkgs, disko, ... }: {
-    # A bare NixOS configuration that can be ssh'ed to as root, with known password
-    # For testing/demo purposes only.
     nixosConfigurations.oneclick = nixpkgs.lib.nixosSystem {
-      # TODO: can we parametrize this? Maybe via --override-input?
-      system = "aarch64-linux";
+      system = "x86_64-linux";
       modules = [
         ./disk-config.nix
         disko.nixosModules.disko
