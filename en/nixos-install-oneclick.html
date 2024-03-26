@@ -18,7 +18,7 @@
   </title>
   
     
-      <meta property='og:description' content='[ ] To write' />
+      <meta property='og:description' content='[!WARNING] To Write This tutorial has not been written yet. What you see below are just rough notes.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=da3eed27-b5c9-4231-a7cf-8e6a2d8cdf21' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=b8f2bf9c-28eb-4426-901a-7b0d02312bef' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1272,19 +1272,39 @@
 
 
 
-
-    <p class='mb-3'>
-      
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      To write
+<div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'></path>
+<line x1='12' y1='9' x2='12' y2='13'></line>
+<line x1='12' y1='17' x2='12.01' y2='17'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       To Write
+    </div>
+  </div>
+  <div class='callout-content'>
     
-</span>
-
-  
+    <p class='mb-3'>
+      This tutorial has not been written yet. What you see below are just rough notes.
     </p>
   
+  </div>
+</div>
+    <p class='mb-3'>
+      Boot from a NixOS install live CD, and then:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># Assuming your system is x86_64-linux
+sudo nix \
+    --extra-experimental-features 'flakes nix-command' \
+    run github:nix-community/disko#disko-install -- \
+    --flake "github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick" \
+    --write-efi-boot-entries \
+    --disk main /dev/sda</code></pre></div>
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
