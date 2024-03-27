@@ -1,9 +1,67 @@
-# How do you make using rust functions in haskell easier?
+# Rust FFI in Haskell
 
-Recently at work, there was a [[rust]] library that had a use case in most of the projects. The only problem being, we use a varietly of languages and re-rewriting the same code in all of them means: 1000s of developer hours down the drain. So, the maintainers decide to pull out the big guns: [FFI (Foreign Function Interface)](https://en.wikipedia.org/wiki/Foreign_function_interface). In simple words, languages decide to talk to each other by interoping with C (although not always, or atleast in the case of this blog post, yes).
+This #[[tutorial|tutorial]] will show you how to use [[nix]] to simplify the workflow of using [[rust]] library as a dependency in your [[haskell]] project via [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface).
 
-Everything is going well, the rust library outputs architecture specific binary files and the lanugage making the FFI call is able to do so by pointing to the binary files. Again, everything seems to be going well, like it did, until:
+> [!info] Foreign Function Interface (FFI)
+> This is not just limited between haskell and rust, it can be used between any two languages that can find a common ground to communicate with each other, in this case, C.
 
-- You need to run on someone else's machine, all that endless instructions to install rust, run `cargo build` and then, assuming you are doing FFI from [[haskell]], you need to install haskell build tools and run it, pffft, it's a nightmare.
-- You write a library that does the FFI for you, then another package uses this library, only to realise that I can't run this without knowing where to find the rust binary files.
+The end goal of this tutorial is to be able to call a rust function that returns "Hello, from rust!" from a haskell package. Let's get started with the rust library.
 
+## Initialize rust project
+
+Initialize a new rust project with [rust-nix-template](https://github.com/srid/rust-nix-template):
+
+```sh
+git clone https://github.com/srid/rust-nix-template.git
+cd rust-nix-template
+```
+
+Let's run the project:
+
+```sh
+nix develop
+just run
+```
+
+## Create a rust library
+
+The template we just initialized is a binary project, let's follow the convention for a library project and move the contents of `src/main.rs` to `src/lib.rs`:
+
+```sh
+mv src/main.rs src/lib.rs
+```
+
+`cargo run` will no longer work, but we can still `cargo build`.
+
+As this is now a library, let's not worry about the arguments for it and just create a public function `hello` that returns a C-style string. Replace the contents of `src/lib.rs` with:
+
+[[haskell-rust-ffi/lib.rs]]
+![[haskell-rust-ffi/lib.rs]]
+
+Read more about "Calling Rust code from C" [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
+
+The library now builds, but we don't have the dynamic library yet. Let's add a `crate-type` to the `Cargo.toml`:
+
+```toml
+[lib]
+crate-type = ["cdylib"]
+```
+
+Now when you run `cargo build`, you should see a `librust_nix_template.dylib` (if you are on macOS) or `librust_nix_template.so` (if you are on Linux) in the `target/debug` directory.
+
+## Initialize haskell project
+
+TODO
+
+## Add rust library as a dependency
+
+TODO
+
+## Call rust function from haskell
+
+TODO
+
+## Template
+
+> [!warning] TODO
+> Provide a link to the template and talk about the added benefits of formatting, lsp, etc.
