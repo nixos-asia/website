@@ -40,7 +40,7 @@ As this is now a library, let's not worry about the arguments for it and just cr
 
 Read more about "Calling Rust code from C" [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
 
-The library now builds, but we don't have the dynamic library yet. Let's add a `crate-type` to the `Cargo.toml`:
+The library now builds, but we don't have the dynamic library files that are required for FFI. For this, let's add a `crate-type` to the `Cargo.toml`:
 
 ```toml
 [lib]
