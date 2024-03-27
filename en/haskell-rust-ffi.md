@@ -25,7 +25,7 @@ just run
 
 ## Create a rust library
 
-The template we just initialized is a binary project, let's follow the convention for a library project and move the contents of `src/main.rs` to `src/lib.rs`:
+The template we just initialized is a binary project, let's follow the convention for a library project and use `lib.rs`:
 
 ```sh
 mv src/main.rs src/lib.rs
