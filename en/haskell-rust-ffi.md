@@ -7,6 +7,7 @@ This #[[tutorial|tutorial]] will show you how to use [[nix]] to simplify the wor
 
 The end goal of this tutorial is to be able to call a rust function that returns "Hello, from rust!" from a haskell package. Let's get started with the rust library.
 
+{#init-rust}
 ## Initialize rust project
 
 Initialize a new rust project with [rust-nix-template](https://github.com/srid/rust-nix-template):
@@ -23,6 +24,7 @@ nix develop
 just run
 ```
 
+{#rust-lib}
 ## Create a rust library
 
 The template we just initialized is a binary project, let's follow the convention for a library project and use `lib.rs`:
@@ -49,6 +51,7 @@ crate-type = ["cdylib"]
 
 Now when you run `cargo build`, you should see a `librust_nix_template.dylib` (if you are on macOS) or `librust_nix_template.so` (if you are on Linux) in the `target/debug` directory.
 
+{#init-haskell}
 ## Initialize haskell project
 
 TODO
