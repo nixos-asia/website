@@ -129,7 +129,7 @@ $ readlink $(which fortune)
 Note that this is the same path used by both `nix build` and `nix shell`. Each specific package is uniquely identified by their [[store-path]]; changing any part of its [[drv|build recipe]] (including dependencies), changes that path. Hence, nix is reproducible.
 
 {#nixpkgs-pin}
-## How is [[nixpkgs]] fetched
+## How is [[nixpkgs|nixpkgs]] fetched
 
 So far we have been retrieving and installing software from the [[nixpkgs]] flake, which is defined in the GitHub repository: https://github.com/nixos/nixpkgs. This information comes from the [[registry]]:
 
@@ -166,7 +166,7 @@ $ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
 ```
 
 {#external-software}
-## Using software outside of [[nixpkgs]]
+## Using software outside of [[nixpkgs|nixpkgs]]
 
 [[nixpkgs]] is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from *any* [[flakes|flake]] by specifying its [[flake-url|flake URL]] to the `nix ?` commands. For example, [Emanote](https://emanote.srid.ca/start/install) (which is used to build this very website) can be executed or installed directly off its flake [on GitHub](https://github.com/srid/emanote):
 

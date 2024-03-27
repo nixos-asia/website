@@ -8,5 +8,5 @@ order: -10
 
 - [x] [[nix-first]]#
 - [x] [[nix-rapid]]#
-- [ ] `evalModules`
-- [ ] `flake-parts`
+- [x] [[nix-modules]]#
+- [ ] `flake-parts` tutorial

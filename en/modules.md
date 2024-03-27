@@ -1,6 +1,6 @@
 # Module System
 
-The #[[nixpkgs]] library provides a module system for [[nix]] expressions. See https://nixos.wiki/wiki/NixOS_modules for a detailed explanation.
+The #[[nixpkgs]] library provides a module system for [[nix]] expressions. To learn it, see our tutorial: [[nix-modules]]#.
 
 ## NixOS
 
