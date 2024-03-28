@@ -237,5 +237,4 @@ Hello, from rust!
 
 ## Template
 
-> [!warning] TODO
-> Provide a link to the template and talk about the added benefits of formatting, lsp, etc.
+You can find the template at <https://github.com/shivaraj-bh/haskell-rust-ffi-template>. This template additionally comes with formatting setup with [[treefmt|treefmt-nix]] and VSCode integration.
