@@ -204,6 +204,37 @@ You should see the output `Hello, from rust!`.
 >}
 >```
 
+## Problems with `cabal repl`
+
+`cabal repl` doesn't look for `NIX_LDFLAGS` to find the dynamic library, see why [here](https://discourse.nixos.org/t/shared-libraries-error-with-cabal-repl-in-nix-shell/8921/10). This can be worked around in `hello-haskell/default.nix` using:
+
+```nix
+{
+  # Inside `devShells.haskell`
+  shellHook = ''
+    export LIBRARY_PATH=${config.haskellProjects.default.outputs.finalPackages.rust_nix_template}/lib
+  '';
+}
+```
+
+Re-enter the shell, and voila!
+
+```sh
+❯ cd hello-haskell && cabal repl
+Build profile: -w ghc-9.4.8 -O1
+In order, the following will be built (use -v for more details):
+ - hello-haskell-0.1.0.0 (exe:hello-haskell) (ephemeral targets)
+Preprocessing executable 'hello-haskell' for hello-haskell-0.1.0.0..
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+[1 of 2] Compiling Main             ( app/Main.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+Hello, from rust!
+```
+
+> [!note] What about `ghci`?
+> If you use `ghci` you will have to link the library manually: `ghci -lrust_nix_template`. See the [documentation](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html#extra-libraries).
+
 ## Template
 
 > [!warning] TODO
