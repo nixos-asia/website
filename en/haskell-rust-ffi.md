@@ -27,15 +27,7 @@ just run
 {#rust-lib}
 ## Create a rust library
 
-The template we just initialized is a binary project, let's follow the convention for a library project and use `lib.rs`:
-
-```sh
-mv src/main.rs src/lib.rs
-```
-
-`cargo run` will no longer work, but we can still `cargo build`.
-
-As this is now a library, let's not worry about the arguments for it and just create a public function `hello` that returns a C-style string. Replace the contents of `src/lib.rs` with:
+The template we just initialized is a binary project, we will need a library project. The library must export a function that we can call from haskell, for simplicity, let's export a function `hello` that returns a `C-style string`. Create a new file `src/lib.rs` with contents:
 
 [[haskell-rust-ffi/lib.rs]]
 ![[haskell-rust-ffi/lib.rs]]
