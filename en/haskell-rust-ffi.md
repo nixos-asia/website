@@ -126,7 +126,54 @@ cd .. && cargo build
 
 ## Add rust library as a dependency
 
-TODO
+As any other depedency, you will first add them to your `.cabal` file:
+
+```cabal
+executable hello-haskell
+  -- ...
+  extra-libraries: rust_nix_template
+```
+
+Try to build it:
+
+```sh
+cd hello-haskell && cabal build
+```
+
+And you will see an error like this:
+
+```sh
+...
+* Missing (or bad) C library: rust_nix_template
+...
+```
+
+The easiest thing to do would be to `export LIBRARY_PATH=../target/debug`. This would mean that building the rust project will always be an extra command you run in the setup/distribution process. And it only gets harder when you have more dependencies and are spread across repositories.
+
+Even on trying to re-enter the `devShell`, the haskell package derivation will not resolve as it can't find `rust_nix_template`:
+
+```sh
+...
+error: function 'anonymous lambda' called without required argument 'rust_nix_template'
+...
+```
+
+Several times, easiest thing to do is not the simplest, let's use nix to simplify this process.
+
+Edit `hello-haskell/default.nix` to:
+
+```nix
+{
+  # Inside haskellProjects.default
+  otherOverlays = [
+    (_: _: {
+      rust_nix_template = self'.packages.default;
+    })
+  ];
+}
+```
+
+This will not require user to manually build the rust project because we have autowired it as a pre-requisite to the haskell package.
 
 ## Call rust function from haskell
 
