@@ -177,7 +177,32 @@ This will not require user to manually build the rust project because we have au
 
 ## Call rust function from haskell
 
-TODO
+Replace the contents of `hello-haskell/app/Main.hs` with:
+
+[[haskell-rust-ffi/hs/Main.hs]]
+![[haskell-rust-ffi/hs/Main.hs]]
+
+The implementation above is based on the [Haskell FFI documentation](https://wiki.haskell.org/Foreign_Function_Interface). Now, run the haskell project:
+
+```sh
+nix run .#hello-haskell
+```
+
+You should see the output `Hello, from rust!`.
+
+> [!note] MacOS caveat
+> If you are on MacOS, the haskell package will not run because `dlopen` will be looking for the `.dylib` file in the temporary build directory (`/private/tmp/nix-build-rust-nix...`). To fix this, you will need [fixDarwinDylibNames](https://github.com/NixOS/nixpkgs/blob/af8fd52e05c81eafcfd4fb9fe7d3553b61472712/pkgs/build-support/setup-hooks/fix-darwin-dylib-names.sh) in `flake.nix`:
+>
+>```nix
+>{
+>  # Inside `perSystem.packages.default`
+>  # ...
+>  buildInputs = if pkgs.stdenv.isDarwin then [ pkgs.fixDarwinDylibNames ] else [ ];
+>  postInstall = ''
+>    ${if pkgs.stdenv.isDarwin then "fixDarwinDylibNames" else ""}
+>  '';  
+>}
+>```
 
 ## Template
 
