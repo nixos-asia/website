@@ -123,7 +123,6 @@ cd .. && cargo build
 ```
 
 {#add-rust-lib}
-
 ## Add rust library as a dependency
 
 As any other depedency, you will first add them to your `.cabal` file:
@@ -175,6 +174,7 @@ Edit `hello-haskell/default.nix` to:
 
 This will not require user to manually build the rust project because we have autowired it as a pre-requisite to the haskell package.
 
+{#call-rust}
 ## Call rust function from haskell
 
 Replace the contents of `hello-haskell/app/Main.hs` with:
@@ -204,6 +204,7 @@ You should see the output `Hello, from rust!`.
 >}
 >```
 
+{#cabal-repl}
 ## Problems with `cabal repl`
 
 `cabal repl` doesn't look for `NIX_LDFLAGS` to find the dynamic library, see why [here](https://discourse.nixos.org/t/shared-libraries-error-with-cabal-repl-in-nix-shell/8921/10). This can be worked around in `hello-haskell/default.nix` using:
@@ -235,6 +236,7 @@ Hello, from rust!
 > [!note] What about `ghci`?
 > If you use `ghci` you will have to link the library manually: `ghci -lrust_nix_template`. See the [documentation](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html#extra-libraries).
 
+{#tpl}
 ## Template
 
 You can find the template at <https://github.com/shivaraj-bh/haskell-rust-ffi-template>. This template additionally comes with formatting setup with [[treefmt|treefmt-nix]] and VSCode integration.
