@@ -66,6 +66,38 @@ Then, run:
 nix develop -c cabal init -n --exe -m --simple hello-haskell
 ```
 
+{#nixify-haskell}
+## Nixify haskell project
+
+We will use [haskell-flake](https://community.flake.parts/haskell-flake) to nixify the haskell project. Add the following to `./hello-haskell/default.nix`:
+
+[[haskell-rust-ffi/hs/default.nix]]
+![[haskell-rust-ffi/hs/default.nix]]
+
+Additionally, add the following to `flake.nix`:
+
+```nix
+{
+  inputs.haskell-flake.url = "github:srid/haskell-flake";
+
+  outputs = inputs:
+    # Inside `mkFlake`
+    {
+      imports = [
+        ./hello-haskell
+      ];
+    };
+}
+```
+
+Stage the changes:
+
+```sh
+git add hello-haskell
+```
+
+Now, `nix run .#hello-haskell` to build and run the haskell project.
+
 ## Add rust library as a dependency
 
 TODO
