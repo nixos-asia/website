@@ -46,7 +46,25 @@ Now when you run `cargo build`, you should see a `librust_nix_template.dylib` (i
 {#init-haskell}
 ## Initialize haskell project
 
-TODO
+Temporarily add to the `devShells.default` in `flake.nix`:
+
+```nix
+{
+  # Inside devShells.default
+  nativeBuildInputs = with pkgs; [
+    # ...
+    cabal-install
+    ghc
+  ];
+}
+
+```
+
+Then, run:
+
+```sh
+nix develop -c cabal init -n --exe -m --simple hello-haskell
+```
 
 ## Add rust library as a dependency
 
