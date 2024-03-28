@@ -98,6 +98,32 @@ git add hello-haskell
 
 Now, `nix run .#hello-haskell` to build and run the haskell project.
 
+{#merge-devshell}
+## Merge Rust and Haskell development environments
+
+We created `devShells.haskell` in the previous section. Let's merge it with the Rust development environment in `flake.nix`:
+
+```nix
+{
+  # Inside devShells.default
+  inputsFrom = [
+    # ...
+    self'.devShells.haskell
+  ];
+}
+```
+
+Re-enter the shell and you now have both Rust and Haskell development environments:
+
+```sh
+exit
+nix develop
+cd hello-haskell && cabal build
+cd .. && cargo build
+```
+
+{#add-rust-lib}
+
 ## Add rust library as a dependency
 
 TODO
