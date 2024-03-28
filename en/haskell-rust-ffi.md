@@ -32,7 +32,7 @@ The template we just initialized is a binary project, we will need a library pro
 [[haskell-rust-ffi/lib.rs]]
 ![[haskell-rust-ffi/lib.rs]]
 
-Read more about "Calling Rust code from C" [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
+Read more about **Calling Rust code from C** [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
 
 The library now builds, but we don't have the dynamic library files that are required for FFI. For this, let's add a `crate-type` to the `Cargo.toml`:
 
