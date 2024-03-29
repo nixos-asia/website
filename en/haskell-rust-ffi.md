@@ -164,11 +164,9 @@ Edit `hello-haskell/default.nix` to:
 ```nix
 {
   # Inside haskellProjects.default
-  otherOverlays = [
-    (_: _: {
-      rust_nix_template = self'.packages.default;
-    })
-  ];
+  settings = {
+    rust_nix_template.custom = _: self'.packages.default;
+  };
 }
 ```
 
