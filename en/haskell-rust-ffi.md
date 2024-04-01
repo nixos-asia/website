@@ -27,14 +27,13 @@ just run
 {#rust-lib}
 ## Create a Rust Library
 
-The template we've initialized is a binary project, but we need a library project. The library should export a function callable from Haskell. For simplicity, let's export a function named `hello` that returns a `C-style string`.
-
-Create a new file named `src/lib.rs` with the following contents:
+The template we've initialized is a binary project, but we need a library project. The library should export a function callable from Haskell. For simplicity, let's export a function named `hello` that returns a `C-style string`. To do so, create a new file named `src/lib.rs` with the following contents:
 
 [[haskell-rust-ffi/lib.rs]]
 ![[haskell-rust-ffi/lib.rs]]
 
-You can learn more about **Calling Rust code from C** [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
+> [!info] Calling Rust code from C
+> You can learn more about it [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
 
 Now, the library builds, but we need the dynamic library files required for FFI. To achieve this, let's add a `crate-type` to the `Cargo.toml`:
 
@@ -141,11 +140,11 @@ You'll likely encounter an error like this:
 ...
 ```
 
-The easiest solution might seem to be `export LIBRARY_PATH=../target/debug`. However, this would mean additional command for building the Rust project each time during setup or distribution. This process becomes even more complex with multiple dependencies spread across repositories.
+The easiest solution might seem to be `export LIBRARY_PATH=../target/debug`. However, this is not reproducible and would mean running an additional command to setup the prerequisite to build the Haskell package. Even worse if the rust project is in a different repository. 
 
 Often, the easiest solution isn't the simplest. Let's use Nix to simplify this process.
 
-Even after re-entering the `devShell`, the Haskell package derivation won't resolve because it can't find `rust_nix_template`:
+When you use Nix, you set up all the prerequisites beforehand, which is why you'll encounter an error when trying to re-enter the devShell without explicitly specifying where the Rust project is:
 
 ```sh
 ...
@@ -153,7 +152,7 @@ error: function 'anonymous lambda' called without required argument 'rust_nix_te
 ...
 ```
 
-To fix that, let's edit `hello-haskell/default.nix` to:
+To specify the Rust project as a dependency, let's edit `hello-haskell/default.nix` to:
 
 ```nix
 {
@@ -164,7 +163,7 @@ To fix that, let's edit `hello-haskell/default.nix` to:
 }
 ```
 
-This eliminates the need for manual Rust project building as it's wired as a prerequisite to the Haskell package.
+This process eliminates the need for manual Rust project building as it's wired as a prerequisite to the Haskell package.
 
 {#call-rust}
 ## Call Rust function from Haskell
