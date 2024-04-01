@@ -48,24 +48,14 @@ Now when you run `cargo build`, you should see a `librust_nix_template.dylib`[^h
 {#init-haskell}
 ## Initialize haskell project
 
-Temporarily add to the `devShells.default` in `flake.nix`:
+Fetch `cabal-install` and `ghc` from the `nixpkgs` input of current flake and initialize a new haskell project[^why-proj-nixpkgs]:
 
-```nix
-{
-  # Inside devShells.default
-  nativeBuildInputs = with pkgs; [
-    # ...
-    cabal-install
-    ghc
-  ];
-}
-
-```
-
-Then, run:
+[^why-proj-nixpkgs]: `cabal init` sets up the `base` package constraints based on GHC version, by using the `nixpkgs` from current flake, we ensure reproducibility.
 
 ```sh
-nix develop -c cabal init -n --exe -m --simple hello-haskell
+nixpkgs_url="github:nixos/nixpkgs/$(nix flake metadata --json | nix run nixpkgs#jq -- '.locks.nodes.nixpkgs.locked.rev' -r)" && \
+nix shell $nixpkgs_url#cabal-install $nixpkgs_url#ghc -c \
+cabal init -n --exe -m --simple hello-haskell
 ```
 
 {#nixify-haskell}
