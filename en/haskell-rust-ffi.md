@@ -1,23 +1,23 @@
 # Rust FFI in Haskell
 
-This #[[tutorial|tutorial]] will show you how to use [[nix]] to simplify the workflow of using [[rust]] library as a dependency in your [[haskell]] project via [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface). If you are new to [[nix]] and [[flakes]], first go through the [[nix-tutorial]].
+This #[[tutorial|tutorial]] will guide you through using [[nix]] to simplify the workflow of incorporating [[rust]] library as a dependency in your [[haskell]] project via [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface). If you are new to [[nix]] and [[flakes]], I recommend starting with the [[nix-tutorial]].
 
 > [!info] Foreign Function Interface (FFI)
-> This is not just limited to haskell and rust, it can be used between any two languages that can find a common ground to communicate with each other, in this case, C.
+> This isn't solely restricted to Haskell and Rust, it can be used between any two languages that can establish a common ground to communicate, such as C.
 
-The end goal of this tutorial is to be able to call a rust function that returns `Hello, from rust!` from a haskell package. Let's get started with the rust library.
+The objective of this tutorial is to demonstrate calling a Rust function that returns `Hello, from rust!` from within a Haskell package. Let's begin by setting up the Rust library.
 
 {#init-rust}
-## Initialize rust project
+## Initialize Rust Project
 
-Initialize a new rust project with [rust-nix-template](https://github.com/srid/rust-nix-template):
+Start by initializing a new Rust project using [rust-nix-template](https://github.com/srid/rust-nix-template):
 
 ```sh
 git clone https://github.com/srid/rust-nix-template.git
 cd rust-nix-template
 ```
 
-Let's run the project:
+Now, let's run the project:
 
 ```sh
 nix develop
@@ -25,32 +25,34 @@ just run
 ```
 
 {#rust-lib}
-## Create a rust library
+## Create a Rust Library
 
-The template we just initialized is a binary project, we will need a library project. The library must export a function that we can call from haskell, for simplicity, let's export a function `hello` that returns a `C-style string`. Create a new file `src/lib.rs` with contents:
+The template we've initialized is a binary project, but we need a library project. The library should export a function callable from Haskell. For simplicity, let's export a function named `hello` that returns a `C-style string`.
+
+Create a new file named `src/lib.rs` with the following contents:
 
 [[haskell-rust-ffi/lib.rs]]
 ![[haskell-rust-ffi/lib.rs]]
 
-Read more about **Calling Rust code from C** [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
+You can learn more about **Calling Rust code from C** [here](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
 
-The library now builds, but we don't have the dynamic library files that are required for FFI. For this, let's add a `crate-type` to the `Cargo.toml`:
+Now, the library builds, but we need the dynamic library files required for FFI. To achieve this, let's add a `crate-type` to the `Cargo.toml`:
 
 ```toml
 [lib]
 crate-type = ["cdylib"]
 ```
 
-Now when you run `cargo build`, you should see a `librust_nix_template.dylib`[^hyphens-disallowed] (if you are on macOS) or `librust_nix_template.so` (if you are on Linux) in the `target/debug` directory.
+After running `cargo build`, you should find a `librust_nix_template.dylib`[^hyphens-disallowed] (if you are on macOS) or `librust_nix_template.so` (if you are on Linux) in the `target/debug` directory.
 
-[^hyphens-disallowed]: Hyphens are not allowed in the library name, hence `librust_nix_template.dylib`. Explicitly setting the name of the library with hyphens will fail while parsing the manifest with: `library target names cannot contain hyphens: rust-nix-template`
+[^hyphens-disallowed]: Note that the hyphens are disallowed in the library name; hence it's named `librust_nix_template.dylib`. Explicitly setting the name of the library with hyphens will fail while parsing the manifest with: `library target names cannot contain hyphens: rust-nix-template`
 
 {#init-haskell}
-## Initialize haskell project
+## Initialize Haskell Project
 
-Fetch `cabal-install` and `ghc` from the `nixpkgs` input of current flake and initialize a new haskell project[^why-proj-nixpkgs]:
+Fetch `cabal-install` and `ghc` from the `nixpkgs` input of current flake and initialize a new Haskell project[^why-proj-nixpkgs]:
 
-[^why-proj-nixpkgs]: `cabal init` sets up the `base` package constraints based on GHC version, by using the `nixpkgs` from current flake, we ensure reproducibility.
+[^why-proj-nixpkgs]: This approach ensures reproducibility as `cabal init` uses the version of GHC to initialize the `base` package constraints.
 
 ```sh
 nixpkgs_url="github:nixos/nixpkgs/$(nix flake metadata --json | nix run nixpkgs#jq -- '.locks.nodes.nixpkgs.locked.rev' -r)" && \
@@ -59,9 +61,9 @@ cabal init -n --exe -m --simple hello-haskell
 ```
 
 {#nixify-haskell}
-## Nixify haskell project
+## Nixify Haskell Project
 
-We will use [haskell-flake](https://community.flake.parts/haskell-flake) to nixify the haskell project. Add the following to `./hello-haskell/default.nix`:
+We will utilize [haskell-flake](https://community.flake.parts/haskell-flake) to nixify the Haskell project. Add the following to `./hello-haskell/default.nix`:
 
 [[haskell-rust-ffi/hs/default.nix]]
 ![[haskell-rust-ffi/hs/default.nix]]
@@ -88,12 +90,12 @@ Stage the changes:
 git add hello-haskell
 ```
 
-Now, `nix run .#hello-haskell` to build and run the haskell project.
+Now, you can run `nix run .#hello-haskell` to build and execute the Haskell project.
 
 {#merge-devshell}
-## Merge Rust and Haskell development environments
+## Merge Rust and Haskell Development Environments
 
-We created `devShells.haskell` in the previous section. Let's merge it with the Rust development environment in `flake.nix`:
+In the previous section, we created `devShells.haskell`. Let's merge it with the Rust development environment in `flake.nix`:
 
 ```nix
 {
@@ -105,7 +107,7 @@ We created `devShells.haskell` in the previous section. Let's merge it with the 
 }
 ```
 
-Re-enter the shell and you now have both Rust and Haskell development environments:
+Now, re-enter the shell, and you'll have both Rust and Haskell development environments:
 
 ```sh
 exit
@@ -115,9 +117,9 @@ cd .. && cargo build
 ```
 
 {#add-rust-lib}
-## Add rust library as a dependency
+## Add Rust Library as a Dependency
 
-As any other depedency, you will first add them to your `.cabal` file:
+Just like any other dependency, you'll first add it to your `.cabal` file:
 
 ```cabal
 executable hello-haskell
@@ -125,13 +127,13 @@ executable hello-haskell
   extra-libraries: rust_nix_template
 ```
 
-Try to build it:
+Try building it:
 
 ```sh
 cd hello-haskell && cabal build
 ```
 
-And you will see an error like this:
+You'll likely encounter an error like this:
 
 ```sh
 ...
@@ -139,9 +141,11 @@ And you will see an error like this:
 ...
 ```
 
-The easiest thing to do would be to `export LIBRARY_PATH=../target/debug`. This would mean that building the rust project will always be an extra command you run in the setup/distribution process. And it only gets harder when you have more dependencies and are spread across repositories.
+The easiest solution might seem to be `export LIBRARY_PATH=../target/debug`. However, this would mean additional command for building the Rust project each time during setup or distribution. This process becomes even more complex with multiple dependencies spread across repositories.
 
-Even on trying to re-enter the `devShell`, the haskell package derivation will not resolve as it can't find `rust_nix_template`:
+Often, the easiest solution isn't the simplest. Let's use Nix to simplify this process.
+
+Even after re-entering the `devShell`, the Haskell package derivation won't resolve because it can't find `rust_nix_template`:
 
 ```sh
 ...
@@ -149,9 +153,7 @@ error: function 'anonymous lambda' called without required argument 'rust_nix_te
 ...
 ```
 
-Several times, easiest thing to do is not the simplest, let's use nix to simplify this process.
-
-Edit `hello-haskell/default.nix` to:
+To fix that, let's edit `hello-haskell/default.nix` to:
 
 ```nix
 {
@@ -162,17 +164,17 @@ Edit `hello-haskell/default.nix` to:
 }
 ```
 
-This will not require user to manually build the rust project because we have autowired it as a pre-requisite to the haskell package.
+This eliminates the need for manual Rust project building as it's wired as a prerequisite to the Haskell package.
 
 {#call-rust}
-## Call rust function from haskell
+## Call Rust function from Haskell
 
 Replace the contents of `hello-haskell/app/Main.hs` with:
 
 [[haskell-rust-ffi/hs/Main.hs]]
 ![[haskell-rust-ffi/hs/Main.hs]]
 
-The implementation above is based on the [Haskell FFI documentation](https://wiki.haskell.org/Foreign_Function_Interface). Now, run the haskell project:
+The implementation above is based on the [Haskell FFI documentation](https://wiki.haskell.org/Foreign_Function_Interface). Now, run the Haskell project:
 
 ```sh
 nix run .#hello-haskell
@@ -181,7 +183,7 @@ nix run .#hello-haskell
 You should see the output `Hello, from rust!`.
 
 > [!note] MacOS caveat
-> If you are on MacOS, the haskell package will not run because `dlopen` will be looking for the `.dylib` file in the temporary build directory (`/private/tmp/nix-build-rust-nix...`). To fix this, you will need [fixDarwinDylibNames](https://github.com/NixOS/nixpkgs/blob/af8fd52e05c81eafcfd4fb9fe7d3553b61472712/pkgs/build-support/setup-hooks/fix-darwin-dylib-names.sh) in `flake.nix`:
+> If you are on MacOS, the Haskell package will not run because `dlopen` will be looking for the `.dylib` file in the temporary build directory (`/private/tmp/nix-build-rust-nix...`). To fix this, you need to include [fixDarwinDylibNames](https://github.com/NixOS/nixpkgs/blob/af8fd52e05c81eafcfd4fb9fe7d3553b61472712/pkgs/build-support/setup-hooks/fix-darwin-dylib-names.sh) in `flake.nix`:
 >
 >```nix
 >{
@@ -208,7 +210,7 @@ You should see the output `Hello, from rust!`.
 }
 ```
 
-Re-enter the shell, and voila!
+Re-enter the shell, and you're set:
 
 ```sh
 ❯ cd hello-haskell && cabal repl
@@ -224,9 +226,9 @@ Hello, from rust!
 ```
 
 > [!note] What about `ghci`?
-> If you use `ghci` you will have to link the library manually: `ghci -lrust_nix_template`. See the [documentation](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html#extra-libraries).
+> If you use `ghci` you will need to link the library manually: `ghci -lrust_nix_template`. See the [documentation](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html#extra-libraries).
 
 {#tpl}
 ## Template
 
-You can find the template at <https://github.com/shivaraj-bh/haskell-rust-ffi-template>. This template additionally comes with formatting setup with [[treefmt|treefmt-nix]] and VSCode integration.
+You can find the template at <https://github.com/shivaraj-bh/haskell-rust-ffi-template>. This template also includes formatting setup with [[treefmt|treefmt-nix]] and VSCode integration.
