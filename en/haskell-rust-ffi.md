@@ -41,7 +41,9 @@ The library now builds, but we don't have the dynamic library files that are req
 crate-type = ["cdylib"]
 ```
 
-Now when you run `cargo build`, you should see a `librust_nix_template.dylib` (if you are on macOS) or `librust_nix_template.so` (if you are on Linux) in the `target/debug` directory.
+Now when you run `cargo build`, you should see a `librust_nix_template.dylib`[^hyphens-disallowed] (if you are on macOS) or `librust_nix_template.so` (if you are on Linux) in the `target/debug` directory.
+
+[^hyphens-disallowed]: Hyphens are not allowed in the library name, hence `librust_nix_template.dylib`. Explicitly setting the name of the library with hyphens will fail while parsing the manifest with: `library target names cannot contain hyphens: rust-nix-template`
 
 {#init-haskell}
 ## Initialize haskell project
