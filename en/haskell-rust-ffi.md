@@ -120,7 +120,7 @@ cd .. && cargo build
 
 Just like any other dependency, you'll first add it to your `.cabal` file:
 
-```cabal
+```text
 executable hello-haskell
   -- ...
   extra-libraries: rust_nix_template
