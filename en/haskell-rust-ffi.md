@@ -27,7 +27,7 @@ just run
 {#rust-lib}
 ## Create a Rust Library
 
-The template we've initialized is a binary project, but we need a library project. The library should export a function callable from Haskell. For simplicity, let's export a function named `hello` that returns a `C-style string`. To do so, create a new file named `src/lib.rs` with the following contents:
+The template we've initialized is a binary project, but we need a library project. The library should export a function callable from Haskell. For simplicity, let's export a function named `hello` that returns a `C-style string`. To do so, create a new file named `src/lib.rs` with the following contents and `git add src/lib.rs`:
 
 [[haskell-rust-ffi/lib.rs]]
 ![[haskell-rust-ffi/lib.rs]]
@@ -52,7 +52,7 @@ After running `cargo build`, you should find a `librust_nix_template.dylib`[^hyp
 Fetch `cabal-install` and `ghc` from the `nixpkgs` in [flake registry](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry.html) and initialize a new Haskell project:
 
 ```sh
-nix shell nixpkgs#ghc nixpkgs#cabal-install -c cabal -- init -n --exe -m --simple -d base --overwrite
+nix shell nixpkgs#ghc nixpkgs#cabal-install -c cabal -- init -n --exe -m --simple hello-haskell -d base --overwrite
 ```
 
 {#nixify-haskell}
@@ -73,6 +73,7 @@ Additionally, add the following to `flake.nix`:
     # Inside `mkFlake`
     {
       imports = [
+        inputs.haskell-flake.flakeModule
         ./hello-haskell
       ];
     };
@@ -114,7 +115,7 @@ cd .. && cargo build
 {#add-rust-lib}
 ## Add Rust Library as a Dependency
 
-Just like any other dependency, you'll first add it to your `.cabal` file:
+Just like any other dependency, you'll first add it to your `hello-haskell/hello-haskell.cabal` file:
 
 ```text
 executable hello-haskell
