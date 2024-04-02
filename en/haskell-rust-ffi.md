@@ -49,14 +49,10 @@ After running `cargo build`, you should find a `librust_nix_template.dylib`[^hyp
 {#init-haskell}
 ## Initialize Haskell Project
 
-Fetch `cabal-install` and `ghc` from the `nixpkgs` input of current flake and initialize a new Haskell project[^why-proj-nixpkgs]:
-
-[^why-proj-nixpkgs]: This approach ensures reproducibility as `cabal init` uses the version of GHC to initialize the `base` package constraints.
+Fetch `cabal-install` and `ghc` from the `nixpkgs` in [flake registry](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry.html) and initialize a new Haskell project:
 
 ```sh
-nixpkgs_url="github:nixos/nixpkgs/$(nix flake metadata --json | nix run nixpkgs#jq -- '.locks.nodes.nixpkgs.locked.rev' -r)" && \
-nix shell $nixpkgs_url#cabal-install $nixpkgs_url#ghc -c \
-cabal init -n --exe -m --simple hello-haskell
+nix shell nixpkgs#ghc nixpkgs#cabal-install -c cabal -- init -n --exe -m --simple -d base --overwrite
 ```
 
 {#nixify-haskell}
