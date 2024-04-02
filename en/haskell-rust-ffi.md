@@ -140,7 +140,7 @@ You'll likely encounter an error like this:
 ...
 ```
 
-The easiest solution might seem to be `export LIBRARY_PATH=../target/debug`. However, this is not reproducible and would mean running an additional command to setup the prerequisite to build the Haskell package. Even worse if the rust project is in a different repository. 
+The easiest solution might seem to be `export LIBRARY_PATH=../target/debug`. However, this is not reproducible and would mean running an additional command to setup the prerequisite to build the Haskell package. Even worse if the Rust project is in a different repository. 
 
 Often, the easiest solution isn't the simplest. Let's use Nix to simplify this process.
 
