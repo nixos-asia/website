@@ -152,7 +152,7 @@ error: function 'anonymous lambda' called without required argument 'rust_nix_te
 ...
 ```
 
-To specify the Rust project as a dependency, let's edit `hello-haskell/default.nix` to:
+To specify the Rust project as a dependency, we [setup haskell-flake dependency overrides](https://community.flake.parts/haskell-flake/dependency) by editing `hello-haskell/default.nix` to:
 
 ```nix
 {
