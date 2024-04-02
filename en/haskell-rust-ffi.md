@@ -1,6 +1,6 @@
 # Rust FFI in Haskell
 
-This #[[tutorial|tutorial]] will guide you through using [[nix]] to simplify the workflow of incorporating [[rust]] library as a dependency in your [[haskell]] project via [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface). If you are new to [[nix]] and [[flakes]], I recommend starting with the [[nix-tutorial]].
+This #[[tutorial|tutorial]] will guide you through using [[nix]] to simplify the workflow of incorporating [[rust]] library as a dependency in your [[haskell]] project via [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface). If you are new to [[nix]] and [[flakes]], we recommend starting with the [[nix-tutorial]].
 
 > [!info] Foreign Function Interface (FFI)
 > This isn't solely restricted to Haskell and Rust, it can be used between any two languages that can establish a common ground to communicate, such as C.
@@ -116,7 +116,7 @@ cd .. && cargo build
 
 Just like any other dependency, you'll first add it to your `.cabal` file:
 
-```cabal
+```text
 executable hello-haskell
   -- ...
   extra-libraries: rust_nix_template
@@ -136,7 +136,7 @@ You'll likely encounter an error like this:
 ...
 ```
 
-The easiest solution might seem to be `export LIBRARY_PATH=../target/debug`. However, this is not reproducible and would mean running an additional command to setup the prerequisite to build the Haskell package. Even worse if the rust project is in a different repository. 
+The easiest solution might seem to be `export LIBRARY_PATH=../target/debug`. However, this is not reproducible and would mean running an additional command to setup the prerequisite to build the Haskell package. Even worse if the Rust project is in a different repository. 
 
 Often, the easiest solution isn't the simplest. Let's use Nix to simplify this process.
 
@@ -148,7 +148,7 @@ error: function 'anonymous lambda' called without required argument 'rust_nix_te
 ...
 ```
 
-To specify the Rust project as a dependency, let's edit `hello-haskell/default.nix` to:
+To specify the Rust project as a dependency, we [setup haskell-flake dependency overrides](https://community.flake.parts/haskell-flake/dependency) by editing `hello-haskell/default.nix` to:
 
 ```nix
 {
@@ -177,8 +177,8 @@ nix run .#hello-haskell
 
 You should see the output `Hello, from rust!`.
 
-> [!note] MacOS caveat
-> If you are on MacOS, the Haskell package will not run because `dlopen` will be looking for the `.dylib` file in the temporary build directory (`/private/tmp/nix-build-rust-nix...`). To fix this, you need to include [fixDarwinDylibNames](https://github.com/NixOS/nixpkgs/blob/af8fd52e05c81eafcfd4fb9fe7d3553b61472712/pkgs/build-support/setup-hooks/fix-darwin-dylib-names.sh) in `flake.nix`:
+> [!note] macOS caveat
+> If you are on [[macos]], the Haskell package will not run because `dlopen` will be looking for the `.dylib` file in the temporary build directory (`/private/tmp/nix-build-rust-nix...`). To fix this, you need to include [fixDarwinDylibNames](https://github.com/NixOS/nixpkgs/blob/af8fd52e05c81eafcfd4fb9fe7d3553b61472712/pkgs/build-support/setup-hooks/fix-darwin-dylib-names.sh) in `flake.nix`:
 >
 >```nix
 >{
