@@ -7,6 +7,10 @@ This #[[tutorial|tutorial]] will guide you through using [[nix]] to simplify the
 
 The objective of this tutorial is to demonstrate calling a Rust function that returns `Hello, from rust!` from within a Haskell package. Let's begin by setting up the Rust library.
 
+:::{.center}
+![[haskell-rust-ffi-banner.png]]
+:::
+
 {#init-rust}
 ## Initialize Rust Project
 
