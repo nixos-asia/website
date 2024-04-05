@@ -1,3 +1,8 @@
+---
+page:
+  image: haskell-rust-ffi/haskell-rust-ffi-banner.png
+---
+
 # Rust FFI in Haskell
 
 This #[[tutorial|tutorial]] will guide you through using [[nix]] to simplify the workflow of incorporating [[rust]] library as a dependency in your [[haskell]] project via [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface). If you are new to [[nix]] and [[flakes]], we recommend starting with the [[nix-tutorial]].
