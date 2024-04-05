@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=8efe3c2d-8964-4312-a8b9-b5105513c159' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=e07f611a-cc40-4e46-a992-d92ef9ae4215' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1371,7 +1371,7 @@
     <p class='mb-3'>
       Boot your computer from this USB flash drive, and expect to be greeted with a command line interface (CLI):
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-installer-cli.jpeg' alt='/nix/store/wgd6614r4z8y1diba8rwsf8rn1p9kss1-global/nixos-install-disko/nixos-installer-cli.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-installer-cli.jpeg' alt='/nix/store/lwmy3r5lzv6g7ri95xsnz272nbign42a-global/nixos-install-disko/nixos-installer-cli.jpeg' style='width: inherit;' /></div>
     <h2 id='partition' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Partition the disk
@@ -1429,11 +1429,11 @@
     <p class='mb-3'>
       The above downloaded Nix file uses a hardcoded disk device. So, we need to replace it with the device name of the disk we want to install <a href='nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a> on. We can use <code class='py-0.5 px-0.5 bg-gray-100'>lsblk</code> to find it.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-lsblk.jpeg' alt='/nix/store/wgd6614r4z8y1diba8rwsf8rn1p9kss1-global/nixos-install-disko/nixos-lsblk.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-lsblk.jpeg' alt='/nix/store/lwmy3r5lzv6g7ri95xsnz272nbign42a-global/nixos-install-disko/nixos-lsblk.jpeg' style='width: inherit;' /></div>
     <p class='mb-3'>
       In this case, the device name is <code class='py-0.5 px-0.5 bg-gray-100'>vda</code>. The device file is located at <code class='py-0.5 px-0.5 bg-gray-100'>/dev/vda</code>. We will use this to modify <code class='py-0.5 px-0.5 bg-gray-100'>disko-config.nix</code> we downloaded earlier.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-config.jpeg' alt='/nix/store/wgd6614r4z8y1diba8rwsf8rn1p9kss1-global/nixos-install-disko/nixos-disko-config.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-config.jpeg' alt='/nix/store/lwmy3r5lzv6g7ri95xsnz272nbign42a-global/nixos-install-disko/nixos-disko-config.jpeg' style='width: inherit;' /></div>
     <h3 id='run-the-partitioning-script' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Run the partitioning script
@@ -1458,7 +1458,7 @@
     <p class='mb-3'>
       Once the command completes, you should see the disk partitioned and mounted at <code class='py-0.5 px-0.5 bg-gray-100'>/mnt</code>:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-post-partition.jpeg' alt='/nix/store/wgd6614r4z8y1diba8rwsf8rn1p9kss1-global/nixos-install-disko/nixos-disko-post-partition.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-post-partition.jpeg' alt='/nix/store/lwmy3r5lzv6g7ri95xsnz272nbign42a-global/nixos-install-disko/nixos-disko-post-partition.jpeg' style='width: inherit;' /></div>
     <h2 id='configuration' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Generate initial NixOS configuration
@@ -1643,7 +1643,7 @@
       inputs.disko.nixosModules.disko
     ];
   };
-}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-flake-with-disko.jpeg' alt='/nix/store/wgd6614r4z8y1diba8rwsf8rn1p9kss1-global/nixos-install-disko/nixos-flake-with-disko.jpeg' style='width: inherit;' /></div>
+}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-flake-with-disko.jpeg' alt='/nix/store/lwmy3r5lzv6g7ri95xsnz272nbign42a-global/nixos-install-disko/nixos-flake-with-disko.jpeg' style='width: inherit;' /></div>
         </li>
       
         <li>
@@ -1670,7 +1670,7 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
-}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' alt='/nix/store/wgd6614r4z8y1diba8rwsf8rn1p9kss1-global/nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' style='width: inherit;' /></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' alt='/nix/store/lwmy3r5lzv6g7ri95xsnz272nbign42a-global/nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' style='width: inherit;' /></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
@@ -1704,7 +1704,7 @@
 sudo nix --experimental-features "nix-command flakes" flake lock
 
 # Start repl
-nix --experimental-features "nix-command flakes" repl</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-filesystems.jpeg' alt='/nix/store/wgd6614r4z8y1diba8rwsf8rn1p9kss1-global/nixos-install-disko/nixos-disko-filesystems.jpeg' style='width: inherit;' /></div>
+nix --experimental-features "nix-command flakes" repl</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-filesystems.jpeg' alt='/nix/store/lwmy3r5lzv6g7ri95xsnz272nbign42a-global/nixos-install-disko/nixos-disko-filesystems.jpeg' style='width: inherit;' /></div>
     <p class='mb-3'>
       If you see something similar to the above, everything’s good and we are ready to perform the actual installation.
     </p>
