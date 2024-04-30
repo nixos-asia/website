@@ -32,10 +32,6 @@ You can participate in the community discussion through the following venues. Zu
 - [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
 - [GitHub](https://github.com/nixos-asia)
 
-Other venues:
-
-- [Discord](https://discord.gg/PMHqryBmQU): We recommend this unofficial Discord, if Discord is your preferred way of communication online.
-
 Also consider taking a look at our sister community, [Functional Programming India](https://functionalprogramming.in/).
 
 ## Events
