@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=ef6e4800-1855-4c56-87df-a86caa03060f' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=d2e805e3-1d20-4f85-89af-e55dbf754abe' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1835,9 +1835,9 @@ programs.starship = {
     </h4>
   
     <p class='mb-3'>
-      Since both <a href='nixify-haskell-nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file changes. This can be achieved using the <code class='py-0.5 px-0.5 bg-gray-100'>nix_direnv_watch_file</code> function. Modify your <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code> to contain:
+      Since both <a href='nixify-haskell-nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file changes. This can be achieved using the <code class='py-0.5 px-0.5 bg-gray-100'>watch_file</code> function. Modify your <code class='py-0.5 px-0.5 bg-gray-100'>.envrc</code> to contain:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>nix_direnv_watch_file *.cabal
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>watch_file *.cabal
 use flake</code></pre></div>
     <p class='mb-3'>
       As a result of this whenever you change a <code class='py-0.5 px-0.5 bg-gray-100'>.cabal</code> file, direnv will reload the environment. If you are using VSCode, you will see a notification that the environment has changed, prompting you to restart it (<a href='https://github.com/nammayatri/nammayatri/tree/main/Backend#visual-studio-code' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>see example</a>).
