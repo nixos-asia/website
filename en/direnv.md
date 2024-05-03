@@ -63,10 +63,10 @@ Now run `direnv allow` to authorize the current `.envrc` file. You can now `cd` 
 
 #### [[haskell]] - when `.cabal` files change
 
-Since both [[nixify-haskell-nixpkgs|nixpkgs]] and [haskell-flake](https://community.flake.parts/haskell-flake) use Nix expressions that read the `.cabal` file to get dependency information, you will want the devshell be recreated every time a `.cabal` file changes. This can be achieved using the `nix_direnv_watch_file` function. Modify your `.envrc` to contain:
+Since both [[nixify-haskell-nixpkgs|nixpkgs]] and [haskell-flake](https://community.flake.parts/haskell-flake) use Nix expressions that read the `.cabal` file to get dependency information, you will want the devshell be recreated every time a `.cabal` file changes. This can be achieved using the `watch_file` function. Modify your `.envrc` to contain:
 
 ```text title=".envrc"
-nix_direnv_watch_file *.cabal
+watch_file *.cabal
 use flake
 ```
 
