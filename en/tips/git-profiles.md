@@ -1,6 +1,6 @@
 # Separate Git "profiles"
 
-You want to override #[[git]] config (such as commit author email) for only certain repos, such as those under a certain folder. This is useful when dealing with corporate policies, which often block commit pushes that doesn't comfort to certain standards, such as using work email address in the commit email. Those using Bitbucket's [Control Freak](https://marketplace.atlassian.com/apps/1217635/control-freak-commit-checkers-and-jira-hooks-for-bitbucket?tab=overview&hosting=cloud) may be familiar with this error throw in response `git push`:
+You want to override #[[git|Git]] config (such as commit author email) for only certain repos, such as those under a certain folder. This is useful when dealing with corporate policies, which often block commit pushes that doesn't comfort to certain standards, such as using work email address in the commit email. Those using Bitbucket's [Control Freak](https://marketplace.atlassian.com/apps/1217635/control-freak-commit-checkers-and-jira-hooks-for-bitbucket?tab=overview&hosting=cloud) may be familiar with this error throw in response `git push`:
 
 ```text
 remote:
