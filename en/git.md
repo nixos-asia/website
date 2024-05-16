@@ -19,3 +19,9 @@ Git can be declaratively configured in [[nix]] via [[home-manager]]. [Here is](h
   };
 }
 ```
+
+## Git related pages
+
+```query
+children:.
+```
