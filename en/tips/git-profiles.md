@@ -36,3 +36,7 @@ programs.git = {
 ```
 
 With this, any commit you make to repos under the `~/mycompany` directory will use that email address as its commit author email.
+
+## Examples
+
+- [srid/nixos-config: juspay.nix](https://github.com/srid/nixos-config/blob/f5388e798737d63eae4f88508f57fea0dd0b4192/home/juspay.nix)
