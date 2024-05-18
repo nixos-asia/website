@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=8c1f0e92-1ee0-4788-bdd2-db877f5cf6e9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=46154145-aff7-466a-ae97-39fcce11e9e8' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1031,6 +1031,48 @@
   
 </div>
     
+      <!-- Variable bindings for this tree-->
+
+  
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    <span>
+      
+        
+          
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+        
+      
+    </span>
+    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Installing fonts using home-manager' href='tips/hm-fonts'>
+      Installing fonts using home-manager
+    </a>
+    
+      
+        
+    
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+</div>
+    
   
 </div>
     
@@ -1285,8 +1327,8 @@
     </a>
     
       
-        <span class='text-gray-300' title='4 children inside'>
-          4
+        <span class='text-gray-300' title='5 children inside'>
+          5
         </span>
       
     
@@ -1380,8 +1422,8 @@
     </a>
     
       
-        <span class='text-gray-300' title='2 children inside'>
-          2
+        <span class='text-gray-300' title='3 children inside'>
+          3
         </span>
       
     
@@ -1408,7 +1450,9 @@
   </a>
 </h1>
     
-      <article class='overflow-auto'>
+      <div class='md:grid md:gap-4 md:grid-cols-8'>
+        <div class='md:col-span-6'>
+          <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
 
@@ -1447,10 +1491,65 @@
       To view help from terminal,
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ man home-configuration.nix</code></pre></div>
-    <p class='mb-3'>
+    <h2 id='sub-pages' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
-    </p>
+  Sub-pages
   
+  <a href='home-manager#sub-pages' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  <nav>
+  <div class='mb-8'>
+    <header data-nosnippet class='pb-2 mb-2 font-semibold text-gray-600'>
+      Folgezettel children
+    </header>
+    <ul>
+      
+        <li>
+          <div class='flex flex-wrap my-2'>
+            
+              <span data-nosnippet class='mr-2 text-right text-gray-600'>
+              </span>
+            
+            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='hm-tutorial'>
+              home-manager Tutorial Series
+            </a>
+          </div>
+        </li>
+      
+        <li>
+          <div class='flex flex-wrap my-2'>
+            
+              <span data-nosnippet class='mr-2 text-right text-gray-600'>
+              </span>
+            
+            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='tips/git-profiles'>
+              Separate Git “profiles”
+            </a>
+          </div>
+        </li>
+      
+        <li>
+          <div class='flex flex-wrap my-2'>
+            
+              <span data-nosnippet class='mr-2 text-right text-gray-600'>
+              </span>
+            
+            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='tips/hm-fonts'>
+              Installing fonts using home-manager
+            </a>
+          </div>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -1477,7 +1576,95 @@
   </div>
 </div>
 </article>
+        </div>
+        <div class='hidden md:block md:col-span-2 md:border-l'>
+          <nav id='toc' class='hidden leading-relaxed md:block md:sticky md:top-0 md:max-h-screen md:overflow-y-auto'>
+  <div class='text-gray-600 text-sm -mt-2'>
     
+        <ul class='ml-2'>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Getting Started'>
+              <a href='home-manager#getting-started' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Getting Started
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Sub-pages'>
+              <a href='home-manager#sub-pages' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Sub-pages
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+        </ul>
+      
+  </div>
+  <script>
+    // Highlight the TOC, based from https://stackoverflow.com/a/75346369
+    // TODO: We should get rid of JavaScript! See https://github.com/srid/emanote/issues/520
+    function highlightTOC() {
+      // Grab the toc links
+      const links = document.querySelectorAll("ul > li > a.--ema-toc");
+
+      // Find the matching anchors in the document body
+      const sections = [];
+      links.forEach((link) => {
+        let found = {};
+        for (section of document.querySelectorAll("a.--ema-anchor")) {
+          if (link.href == section.href) {
+            found = section;
+            break;
+          }
+        }
+        sections.push(found);
+      });
+
+      // Current toc link is marked with the following class
+      const mark = "toc-item-active";
+
+      // Set window scroll handler to update the toc mark.
+      window.onscroll = () => {
+        // Remove previous mark
+        links.forEach((link) => {
+          link.classList.remove(mark);
+        });
+
+        // Mark the link of the section that is in view, starting from the end
+        let marked = false;
+        for (var i = sections.length - 1; i >= 0; i--) {
+          if (window.scrollY > sections[i].offsetTop - 80) {
+            links[i].classList.add(mark);
+            marked = true;
+            break;
+          }
+        }
+
+        // Special case for the first and last section which might not reach the top
+        if (!marked && window.scrollY > 0) {
+          let i = 0;
+          if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+            // We are at the bottom
+            i = links.length - 1
+          }
+          links[i].classList.add(mark);
+        }
+      };
+    }
+    highlightTOC();
+  </script>
+</nav>
+        </div>
+      </div>
+      
     <div class='flex flex-col lg:flex-row lg:space-x-2'>
       
       
@@ -1543,6 +1730,21 @@
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
       <div><p>When using <a href='home-manager' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>home-manager</a>, you can add the following to your <code>programs.git</code> module:</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='tips/hm-fonts'>
+            Installing fonts using home-manager
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
+      <div><p>Whethere you are on <a href='macos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>macOS</a> or <a href='nixos' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>NixOS</a>, you can install and setup fonts in an unified fashion using <a href='nix' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Nix</a> using <a href='home-manager' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>home-manager</a>.</p></div>
     </div>
   
 </div>
