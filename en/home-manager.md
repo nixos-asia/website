@@ -11,3 +11,9 @@ To view help from terminal,
 ```sh
 $ man home-configuration.nix
 ```
+
+## Sub-pages
+
+```query
+children:.
+```
