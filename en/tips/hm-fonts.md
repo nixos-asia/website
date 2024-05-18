@@ -18,4 +18,4 @@ To do this, add:
 The above installs the [Cascadia Code](https://x.com/dhh/status/1791920107637354964) font. 
 
 >[!tip] Verify on macOS
-> To confirm that the font was successfully installed on [[macos]], you can open the "Font Book" app and search for the font.
+> To confirm that the font was successfully installed on [[macos]], you can open the "Font Book" app and search for the font. They will have been installed into `$HOME/Library/Fonts/HomeManager` folder.
