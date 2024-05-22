@@ -8,12 +8,12 @@ page:
 # Getting Started with Nix for Haskell & Rust
 
 :::{.center}
-| When                                                  | Where                                             |
-| ----------------------------------------------------- | ------------------------------------------------- |
+| When                             | Where                                             |
+| -------------------------------- | ------------------------------------------------- |
 | Tuesday, January 23, 2024 at 4PM | [IndiQube Garden, Bengaluru][map-indiqube-garden] |
 :::
 
-[Sridhar Ratnakumar][srid] will demonstrate the delights of using [[nix|Nix]] to [[dev|develop]] [[rust|Rust]] as well as [[haskell|Haskell]] projects without needing to do any manual global setup on your system. We'll start from a pristine [[macos|macOS]] machine as well as a pristine Linux machine to get our [[dev|development environment]] up and running in no time, all the way up to [LSP] support in VSCode
+[Sridhar Ratnakumar][srid] will demonstrate the delights of using [[nix|Nix]] to [[dev|develop]] [[rust|Rust]] as well as [[haskell|Haskell]] projects without needing to do any manual global setup on your system. We'll start from a pristine [[macos|macOS]] machine as well as a pristine Linux machine to get our [[dev|development environment]] up and running in no time, all the way up to [LSP] support in [[vscode|VSCode]].
 
 RSVP links:
 

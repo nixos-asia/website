@@ -236,4 +236,4 @@ Hello, from rust!
 {#tpl}
 ## Template
 
-You can find the template at <https://github.com/shivaraj-bh/haskell-rust-ffi-template>. This template also includes formatting setup with [[treefmt|treefmt-nix]] and VSCode integration.
+You can find the template at <https://github.com/shivaraj-bh/haskell-rust-ffi-template>. This template also includes formatting setup with [[treefmt|treefmt-nix]] and [[vscode]] integration.
