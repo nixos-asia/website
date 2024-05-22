@@ -8,7 +8,7 @@
 {#nix}
 ## Using in [[nix|Nix]] based projects
 
-If your project provides a [[flakes|flake.nix]], it can be developed on VSCode using one of the two ways (prefer the 2nd way):
+If your project provides a [[flakes|flake.nix]] along with a #[[dev|development]] shell, it can be developed on VSCode using one of the two ways (prefer the 2nd way):
 
 1. Open VSCode [from a terminal][vscode-term], inside of a [[shell|devshell]] (i.e., `nix develop -c code .`), **or**
 2. Setup [[direnv|direnv]] and install the [direnv VSCode extension][direnv-ext].
