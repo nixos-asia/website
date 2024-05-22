@@ -22,7 +22,7 @@ The ideal candidate is:
 - Cares about improving Developer Experience
 - Communicates clearly & writes good documentation[^this]
 
-To apply, send the Nix contributions you are most proud of (along with your résumé) by [email](mailto:sridhar.ratnakumar+jobs@juspay.in) or [X DM](https://x.com/sridca).
+To apply, send the Nix contributions you are most proud of (along with your résumé) by [email](mailto:sridhar.ratnakumar@juspay.in) or [X DM](https://x.com/sridca).
 
 
 [Juspay]: https://juspay.in/careers/
