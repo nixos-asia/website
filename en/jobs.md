@@ -14,7 +14,7 @@ A list of currently available [[nix|Nix]] jobs.
 
 [Juspay] is looking to add a 3rd member to our Nix team. The position is **full-time and remote**.
 
-The role primarily involves nixifying our internal projects - which are written mostly in Haskell, but also Rust, PureScript, ReScript, Python and several other languages and tools. We use [flake-parts](https://community.flake.parts/) wherever possible to provide a simpler Developer Experience. To get a sense of what you will mostly be working on, see the Nix in [nammayatri]. The role can potentially involve some Rust work as well. Contributing to OSS is encouraged; you may view **our OSS Nix projects** [on GitHub][oss].
+The role primarily involves nixifying our internal projects - which are written mostly in Haskell, but also Rust, PureScript, ReScript, Python and several other languages and tools. We use [flake-parts](https://community.flake.parts/) wherever possible to provide a simpler Developer Experience. To get a sense of what you will mostly be working on, see the Nix in [nammayatri]. The role can potentially involve some Rust work as well. Contributing to Open Source is encouraged; you may view **our Open Source Nix projects** [on GitHub][oss].
 
 The ideal candidate is:
 
