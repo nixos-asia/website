@@ -6,7 +6,7 @@
   };
   outputs = { self, nixpkgs, disko, ... }: {
     nixosConfigurations.oneclick = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      system = "aarch64-linux";
       modules = [
         ./disk-config.nix
         disko.nixosModules.disko
