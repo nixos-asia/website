@@ -18,7 +18,7 @@
   </title>
   
     
-      <meta property='og:description' content='[!WARNING] To Write This tutorial has not been written yet. What you see below are just rough notes.' />
+      <meta property='og:description' content='[!WARNING] WIP This tutorial has not been completed yet.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=dffd3f0c-1478-4627-81cb-b7edd4f13fcc' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=0ff3d858-d8ec-4b3c-8d6e-078f5f4b09c8' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1306,7 +1306,9 @@
   </a>
 </h1>
     
-      <article class='overflow-auto'>
+      <div class='md:grid md:gap-4 md:grid-cols-8'>
+        <div class='md:col-span-6'>
+          <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
 
@@ -1326,27 +1328,109 @@
       </svg>
     </div>
     <div class='callout-title-inner'>
-       To Write
+       WIP
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      This tutorial has not been written yet. What you see below are just rough notes.
+      This tutorial has not been completed yet.
     </p>
   
   </div>
 </div>
     <p class='mb-3'>
-      Boot from a NixOS install live CD (“minimal” version is sufficient), and then:
+      Unlike the previous tutorials (<a href='nixos-install-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>1</a>; <a href='nixos-install-disko' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>2</a>), the goal here is to near-fully automate our NixOS install using one command (see the next section)
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># Assuming your system is x86_64-linux
+  
+    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+      
+  How to install
+  
+  <a href='nixos-install-oneclick#install' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      Boot your computer from any NixOS install live CD (“minimal” version is sufficient), and then from the terminal run:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># Assuming 
+# - your system is x86_64-linux
+# - your harddrive device is /dev/sda
 sudo nix \
     --extra-experimental-features 'flakes nix-command' \
     run github:nix-community/disko#disko-install -- \
     --flake "github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick" \
     --write-efi-boot-entries \
     --disk main /dev/sda</code></pre></div>
+    <p class='mb-3'>
+      Here, <code class='py-0.5 px-0.5 bg-gray-100'>"github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"</code> is <a href='https://github.com/nixos-asia/website/tree/master/global/nixos-install-oneclick' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>our own sample configuration</a> flake. Feel free to substitute it with your own flake.
+    </p>
+  
+    <p class='mb-3'>
+      If everything goes well, you should see the installation successfully finish with a message like this below:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>...
+Random seed file /boot/loader/random-seed successfully written (32 bytes).
+Successfully initialized system token in EFI variable with 32 bytes.
+Created EFI boot entry "Linux Boot Manager".
+installation finished!</code></pre></div>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Take note of the IP address of your machine using <code class='py-0.5 px-0.5 bg-gray-100'>ifconfig</code>.
+        </li>
+      
+        <li>
+          Reboot your computer (or VM)! And you should boot into NixOS.
+        </li>
+      
+        <li>
+          Test ssh access using <code class='py-0.5 px-0.5 bg-gray-100'>ssh root@&lt;ip-addr&gt;</code>
+        </li>
+      
+    </ul>
+  
+    <h2 id='user-management' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+      
+  User management
+  
+  <a href='nixos-install-oneclick#user-management' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      The above flake is meant to be used on a server. As such, it authorizes root access through SSH keys.
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          
+    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+      If you are setting up a desktop, you may have to …
+    
+</span>
+
+  
+        </li>
+      
+    </ul>
+  
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -1373,7 +1457,95 @@ sudo nix \
   </div>
 </div>
 </article>
+        </div>
+        <div class='hidden md:block md:col-span-2 md:border-l'>
+          <nav id='toc' class='hidden leading-relaxed md:block md:sticky md:top-0 md:max-h-screen md:overflow-y-auto'>
+  <div class='text-gray-600 text-sm -mt-2'>
     
+        <ul class='ml-2'>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='How to install'>
+              <a href='nixos-install-oneclick#install' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                How to install
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='User management'>
+              <a href='nixos-install-oneclick#user-management' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                User management
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+        </ul>
+      
+  </div>
+  <script>
+    // Highlight the TOC, based from https://stackoverflow.com/a/75346369
+    // TODO: We should get rid of JavaScript! See https://github.com/srid/emanote/issues/520
+    function highlightTOC() {
+      // Grab the toc links
+      const links = document.querySelectorAll("ul > li > a.--ema-toc");
+
+      // Find the matching anchors in the document body
+      const sections = [];
+      links.forEach((link) => {
+        let found = {};
+        for (section of document.querySelectorAll("a.--ema-anchor")) {
+          if (link.href == section.href) {
+            found = section;
+            break;
+          }
+        }
+        sections.push(found);
+      });
+
+      // Current toc link is marked with the following class
+      const mark = "toc-item-active";
+
+      // Set window scroll handler to update the toc mark.
+      window.onscroll = () => {
+        // Remove previous mark
+        links.forEach((link) => {
+          link.classList.remove(mark);
+        });
+
+        // Mark the link of the section that is in view, starting from the end
+        let marked = false;
+        for (var i = sections.length - 1; i >= 0; i--) {
+          if (window.scrollY > sections[i].offsetTop - 80) {
+            links[i].classList.add(mark);
+            marked = true;
+            break;
+          }
+        }
+
+        // Special case for the first and last section which might not reach the top
+        if (!marked && window.scrollY > 0) {
+          let i = 0;
+          if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+            // We are at the bottom
+            i = links.length - 1
+          }
+          links[i].classList.add(mark);
+        }
+      };
+    }
+    highlightTOC();
+  </script>
+</nav>
+        </div>
+      </div>
+      
     <div class='flex flex-col lg:flex-row lg:space-x-2'>
       
       
