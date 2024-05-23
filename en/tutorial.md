@@ -4,10 +4,11 @@ order: -100
 
 # Tutorials
 
-![[tutorial-philosophy]]
-
 >[!warning] WIP
 > Our tutorials are being written.
+
+> [!note] Structure of these tutorials
+> Our tutorials are deliberately designed to give a quick overview of a topic, and then link to other resources for further reading. Think of them as providing a "guided tour" of the topic in question, as well as providing a learning progression.
 
 - [[nix-tutorial]]#
 - [[nixos-tutorial]]#
@@ -17,6 +18,3 @@ order: -100
   - [[haskell-rust-ffi]]
 - [ ] CI/CD tutorial series
 
-
-
-> [!note] See our [[tutorial-philosophy|Tutorial philosophy]]#

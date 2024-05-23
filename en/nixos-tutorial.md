@@ -4,16 +4,14 @@ order: -7
 
 # NixOS Tutorial Series
 
-![[tutorial-philosophy]]
+- [x] **Installation**
 
-- **Installation**
-
-  Choose from one of the following to install [[nixos]]:
+  Choose from *one of* the following ways to install [[nixos]]:
     
-  | Tutorial | Description |
-  | --- | --- |
-  | [x] [[nixos-install-flake]]# | Install NixOS the easy way, using graphical installer |
-  | [x] [[nixos-install-disko]]# | Same as above, but automate disk partitioning using disko |
-  | [ ] [[nixos-install-oneclick]]# | Automated install directly from a remote flake |
+  | Tutorial                        | Description                                                             |
+  | ------------------------------- | ----------------------------------------------------------------------- |
+  | [x] [[nixos-install-flake]]#    | Install NixOS the easy way, using graphical installer                   |
+  | [x] [[nixos-install-disko]]#    | Partially automated install; disko used for automatic disk partitioning |
+  | [ ] [[nixos-install-oneclick]]# | Fully automated install using an *existing* configuration               |
 - [ ] Basics
 - [ ] Services
