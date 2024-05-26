@@ -6,7 +6,7 @@ order: -1000
 
 
 >[!info] Linux
-> If you prefer to use Linux, you may be interested in installing [[nixos]]. The following instructions are for users of other Linux distros as well as [[macos]].
+> If you prefer to use Linux, you may be interested in [[nixos-tutorial|installing NixOS]]. The following instructions are for users of other Linux distros as well as [[macos|macOS]].
 
 Install #[[nix]] using [the unofficial installer](https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer):[^official]
 

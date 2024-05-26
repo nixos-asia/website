@@ -7,7 +7,7 @@ order: 3
 >[!WARNING] WIP
 > This tutorial has not been completed yet.
 
-Unlike the previous tutorials ([[nixos-install-flake|1]]; [[nixos-install-disko|2]]), the goal here is to near-fully automate our NixOS install using one command (see the next section)
+Unlike the previous tutorials ([[nixos-install-flake|1]]; [[nixos-install-disko|2]]), the goal here is to near-fully automate our NixOS install using one command (see the next section).
 
 {#install}
 ## How to install
