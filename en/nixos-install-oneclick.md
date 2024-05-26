@@ -52,3 +52,8 @@ installation finished!
 The above flake is meant to be used on a server. As such, it authorizes root access through SSH keys.
 
 - [ ] If you are setting up a desktop, you may have to ...
+
+## Making further changes to the flake
+
+- [ ] After install, how do we make further changes to the flake and apply that configuration?
+  - Is the "device" in `disk-config.nix` still valid?
