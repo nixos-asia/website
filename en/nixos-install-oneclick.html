@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=b7ddf82e-400f-4ead-a835-e0952217fd8e' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=44938241-7d41-455f-92bd-adb1f4cea4a2' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1340,7 +1340,7 @@
   </div>
 </div>
     <p class='mb-3'>
-      Unlike the previous tutorials (<a href='nixos-install-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>1</a>; <a href='nixos-install-disko' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>2</a>), the goal here is to near-fully automate our NixOS install using one command (see the next section)
+      Unlike the previous tutorials (<a href='nixos-install-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>1</a>; <a href='nixos-install-disko' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>2</a>), the goal here is to near-fully automate our NixOS install using one command (see the next section).
     </p>
   
     <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
@@ -1358,7 +1358,7 @@
     </h2>
   
     <p class='mb-3'>
-      Boot your computer from any NixOS install live CD (<a href='https://nixos.org/download/#minimal-iso-image' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Minimal ISO image</a> is sufficient), and then from the terminal run:
+      Boot your computer from any NixOS install live CD (<a href='https://nixos.org/download/#nixos-iso' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Minimal ISO image</a> is sufficient), and then from the terminal run:
     </p>
   <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
@@ -1377,7 +1377,7 @@
   <div class='callout-content'>
     
     <p class='mb-3'>
-      Move this template to <a href='https://github.com/flake-parts/templates' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>flake-parts/templates</a> and guide users as to how to <a href='https://github.com/flake-parts/templates/issues/2' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>override</a> it (to set <code class='py-0.5 px-0.5 bg-gray-100'>system</code>, disk device and root user’s authorized ssh key)?
+      Move this template to <a href='https://github.com/flake-parts/templates' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>flake-parts/templates</a> and guide users as to how to <a href='https://github.com/flake-parts/templates/issues/2' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>override</a> it (to set <code class='py-0.5 px-0.5 bg-gray-100'>system</code>, hostname and root user’s authorized ssh key)?
     </p>
   
   </div>
@@ -1475,22 +1475,26 @@ installation finished!</code></pre></div>
     <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
 <span>
   
-      After install, how do we make further changes to the flake and apply that configuration?
+      After install, how do we make further changes to the flake and apply that configuration? Can we simplify this?
     
 </span>
 
   
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
-      
-        <li>
-          Is the “device” in <code class='py-0.5 px-0.5 bg-gray-100'>disk-config.nix</code> still valid?
         </li>
       
     </ul>
   
-        </li>
+    <p class='mb-3'>
+      This worked:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='language-none'>[root@oneclick:~]# git clone https://github.com/nixos-asia/website.git
+
+[root@oneclick:~]# cd website/global/nixos-install-oneclick/
+
+[root@oneclick:~/website/global/nixos-install-oneclick]# sudo nixos-rebuild switch --flake .</code></pre></div>
+    <p class='mb-3'>
       
-    </ul>
+    </p>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
