@@ -12,10 +12,10 @@ Unlike the previous tutorials ([[nixos-install-flake|1]]; [[nixos-install-disko|
 {#install}
 ## How to install
 
-Boot your computer from any NixOS install live CD ([Minimal ISO image](https://nixos.org/download/#minimal-iso-image) is sufficient), and then from the terminal run:
+Boot your computer from any NixOS install live CD ([Minimal ISO image](https://nixos.org/download/#nixos-iso) is sufficient), and then from the terminal run:
 
 >[!NOTE] Flake template? 
-> Move this template to [flake-parts/templates](https://github.com/flake-parts/templates) and guide users as to how to [override](https://github.com/flake-parts/templates/issues/2) it (to set `system`, disk device and root user's authorized ssh key)?
+> Move this template to [flake-parts/templates](https://github.com/flake-parts/templates) and guide users as to how to [override](https://github.com/flake-parts/templates/issues/2) it (to set `system`, hostname and root user's authorized ssh key)?
 
 ```sh
 # Assuming
@@ -55,5 +55,15 @@ The above flake is meant to be used on a server. As such, it authorizes root acc
 
 ## Making further changes to the flake
 
-- [ ] After install, how do we make further changes to the flake and apply that configuration?
-  - Is the "device" in `disk-config.nix` still valid?
+- [ ] After install, how do we make further changes to the flake and apply that configuration? Can we simplify this?
+
+
+This worked:
+
+```
+[root@oneclick:~]# git clone https://github.com/nixos-asia/website.git
+
+[root@oneclick:~]# cd website/global/nixos-install-oneclick/
+
+[root@oneclick:~/website/global/nixos-install-oneclick]# sudo nixos-rebuild switch --flake .
+```
