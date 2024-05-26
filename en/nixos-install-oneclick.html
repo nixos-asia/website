@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0ff3d858-d8ec-4b3c-8d6e-078f5f4b09c8' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=1b5d785c-e7ad-4dde-aedb-195d714773a7' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1358,37 +1358,60 @@
     </h2>
   
     <p class='mb-3'>
-      Boot your computer from any NixOS install live CD (“minimal” version is sufficient), and then from the terminal run:
+      Boot your computer from any NixOS install live CD (<a href='https://nixos.org/download/#minimal-iso-image' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Minimal ISO image</a> is sufficient), and then from the terminal run:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># Assuming 
+  <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <line x1='18' y1='2' x2='22' y2='6'></line>
+<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       Flake template?
+    </div>
+  </div>
+  <div class='callout-content'>
+    
+    <p class='mb-3'>
+      Move this template to <a href='https://github.com/flake-parts/templates' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>flake-parts/templates</a> and guide users as to how to <a href='https://github.com/flake-parts/templates/issues/2' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>override</a> it (to set <code class='py-0.5 px-0.5 bg-gray-100'>system</code>, disk device and root user’s authorized ssh key)?
+    </p>
+  
+  </div>
+</div><div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'># Assuming
 # - your system is x86_64-linux
 # - your harddrive device is /dev/sda
+FLAKE="github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"
+DISK_DEVICE=/dev/sda
 sudo nix \
     --extra-experimental-features 'flakes nix-command' \
     run github:nix-community/disko#disko-install -- \
-    --flake "github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick" \
+    --flake "$FLAKE" \
     --write-efi-boot-entries \
-    --disk main /dev/sda</code></pre></div>
+    --disk main "$DISK_DEVICE"</code></pre></div>
     <p class='mb-3'>
       Here, <code class='py-0.5 px-0.5 bg-gray-100'>"github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"</code> is <a href='https://github.com/nixos-asia/website/tree/master/global/nixos-install-oneclick' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>our own sample configuration</a> flake. Feel free to substitute it with your own flake.
     </p>
   
     <p class='mb-3'>
-      If everything goes well, you should see the installation successfully finish with a message like this below:
+      If everything goes well, you should see the installation successfully finish with a message like below:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>...
 Random seed file /boot/loader/random-seed successfully written (32 bytes).
 Successfully initialized system token in EFI variable with 32 bytes.
 Created EFI boot entry "Linux Boot Manager".
 installation finished!</code></pre></div>
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
+    <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
       
         <li>
           Take note of the IP address of your machine using <code class='py-0.5 px-0.5 bg-gray-100'>ifconfig</code>.
         </li>
       
         <li>
-          Reboot your computer (or VM)! And you should boot into NixOS.
+          Reboot your computer (or VM)! Expect to boot into NixOS.
         </li>
       
         <li>
