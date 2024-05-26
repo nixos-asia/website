@@ -12,23 +12,28 @@ Unlike the previous tutorials ([[nixos-install-flake|1]]; [[nixos-install-disko|
 {#install}
 ## How to install
 
-Boot your computer from any NixOS install live CD ("minimal" version is sufficient), and then from the terminal run:
+Boot your computer from any NixOS install live CD ([Minimal ISO image](https://nixos.org/download/#minimal-iso-image) is sufficient), and then from the terminal run:
+
+>[!NOTE] Flake template? 
+> Move this template to [flake-parts/templates](https://github.com/flake-parts/templates) and guide users as to how to [override](https://github.com/flake-parts/templates/issues/2) it (to set `system`, disk device and root user's authorized ssh key)?
 
 ```sh
-# Assuming 
+# Assuming
 # - your system is x86_64-linux
 # - your harddrive device is /dev/sda
+FLAKE="github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"
+DISK_DEVICE=/dev/sda
 sudo nix \
     --extra-experimental-features 'flakes nix-command' \
     run github:nix-community/disko#disko-install -- \
-    --flake "github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick" \
+    --flake "$FLAKE" \
     --write-efi-boot-entries \
-    --disk main /dev/sda
+    --disk main "$DISK_DEVICE"
 ```
 
-Here, `"github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"` is [our own sample configuration](https://github.com/nixos-asia/website/tree/master/global/nixos-install-oneclick) flake. Feel free to substitute it with your own flake. 
+Here, `"github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"` is [our own sample configuration](https://github.com/nixos-asia/website/tree/master/global/nixos-install-oneclick) flake. Feel free to substitute it with your own flake.
 
-If everything goes well, you should see the installation successfully finish with a message like this below:
+If everything goes well, you should see the installation successfully finish with a message like below:
 
 ```text
 ...
@@ -38,12 +43,12 @@ Created EFI boot entry "Linux Boot Manager".
 installation finished!
 ```
 
-- Take note of the IP address of your machine using `ifconfig`.
-- Reboot your computer (or VM)! And you should boot into NixOS. 
-- Test ssh access using `ssh root@<ip-addr>`
+1. Take note of the IP address of your machine using `ifconfig`.
+1. Reboot your computer (or VM)! Expect to boot into NixOS.
+1. Test ssh access using `ssh root@<ip-addr>`
 
 ## User management
 
-The above flake is meant to be used on a server. As such, it authorizes root access through SSH keys. 
+The above flake is meant to be used on a server. As such, it authorizes root access through SSH keys.
 
 - [ ] If you are setting up a desktop, you may have to ...
