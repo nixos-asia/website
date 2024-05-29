@@ -12,7 +12,7 @@ Using the [[modules|module system]] is a key stepping stone to writing maintaina
 
 We shall begin by understanding the low-levels: how to use `evalModules` from [[nixpkgs|nixpkgs]] to define and use our own modules from scratch, using the aforementioned `lsd` use-case. The next tutorial in this series will go one high-level up and talk about how to work with modules across [[flakes|flakes]], using [[flake-parts]].
 
-[doc]: https://nix.dev/tutorials/module-system/module-system.html
+[doc]: https://nix.dev/tutorials/module-system/deep-dive
 
 ## A simple example
 
