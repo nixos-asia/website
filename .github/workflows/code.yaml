@@ -8,4 +8,5 @@ jobs:
   code:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v4
       - run: nixci build
