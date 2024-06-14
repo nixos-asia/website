@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   emanote:
-    runs-on: self-hosted
+    runs-on: x86_64-linux
     steps:
       - uses: actions/checkout@v4
       - name: Build the website (Nix) 🔧
