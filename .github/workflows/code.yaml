@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   code:
-    runs-on: self-hosted
+    runs-on: aarch64-darwin
     steps:
       - uses: actions/checkout@v4
       - run: nixci build
