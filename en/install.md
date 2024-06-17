@@ -17,7 +17,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 > [!tip] Graphical installer for [[macos]]
 > The unofficial installer is also available as a graphical installer for [[macos]]. You can get get it [here](https://determinate.systems/posts/graphical-nix-installer).
 
-After installing Nix, open a new terminal and run the [Nix Health](https://github.com/juspay/nix-browser/tree/main/crates/nix_health) checks,
+After installing Nix, open a new terminal and run the [Nix Health](https://github.com/juspay/nix-health) checks,
 
 ```sh
 nix --accept-flake-config run github:juspay/nix-health
