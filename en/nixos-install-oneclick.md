@@ -60,7 +60,7 @@ The above flake is meant to be used on a server. As such, it authorizes root acc
 
 This worked:
 
-```
+```sh
 [root@oneclick:~]# git clone https://github.com/nixos-asia/website.git
 
 [root@oneclick:~]# cd website/global/nixos-install-oneclick/
