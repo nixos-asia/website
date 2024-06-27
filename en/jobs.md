@@ -11,6 +11,8 @@ A list of currently available [[nix|Nix]] jobs.
 
 >[!info] 
 > Posted on May 21, 2024
+>
+> Hired on Jun 21, 2024
 
 [Juspay] is looking to add a 3rd member to our Nix team. The position is **full-time and remote**.
 
