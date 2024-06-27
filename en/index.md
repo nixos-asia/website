@@ -25,10 +25,11 @@ sidebar navigation.
 
 ## Community
 
-You can participate in the community discussion through the following venues. Zulip is the primary venue for discussion.
+You can participate in the community discussion through the following venues. Zulip & Telegram are the primary venues for discussion.
 
 - [Zulip](https://nixos.zulipchat.com/): Zulip is a hybrid of "chat" and "forum".
     - Public chat logs are available at [chat.nixos.asia](https://chat.nixos.asia/)
+- [Telegram](https://t.me/nixosasia)
 - [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
 - [GitHub](https://github.com/nixos-asia)
 
