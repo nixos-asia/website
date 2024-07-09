@@ -32,7 +32,7 @@ You can participate in the community discussion through the following venues.
 - [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
 - [GitHub](https://github.com/nixos-asia)
 
-[^log]: Public chat logs are available at [chat.nixos.asia]
+[^log]: Public chat logs are available at [chat.nixos.asia](https://chat.nixos.asia/)
 
 Also consider taking a look at our sister community, [Functional Programming India](https://functionalprogramming.in/).
 
