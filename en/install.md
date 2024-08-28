@@ -20,7 +20,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 After installing Nix, open a new terminal and run the [Nix Health](https://github.com/juspay/nix-health) checks,
 
 ```sh
-nix --accept-flake-config run github:juspay/nix-health
+nix --accept-flake-config run github:juspay/omnix health
 ```
 
 Expect to see all results in either green (or yellow).
