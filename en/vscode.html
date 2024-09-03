@@ -20,7 +20,7 @@
     
       <meta property='og:description' content='Visual Studio Code is a popular open source code editor from Microsoft with extension support.Visual Studio Code' />
       <meta property='og:site_name' content='NixOS Asia' />
-      <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
+      <meta property='og:image' content='https://user-images.githubusercontent.com/3998/235459201-f0442741-294b-40bc-9c65-77500c9f4f1c.png' />
       <meta property='og:type' content='website' />
       <meta property='og:title' content='VSCode' />
       
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=5bdaa266-466c-4b9e-aa46-029bcdc13142' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=741fe9cd-8adc-4660-a14d-e4138a5160e5' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1716,7 +1716,9 @@
   </a>
 </h1>
     
-      <article class='overflow-auto'>
+      <div class='md:grid md:gap-4 md:grid-cols-8'>
+        <div class='md:col-span-6'>
+          <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
 
@@ -1802,6 +1804,92 @@
   
   </div>
 </div>
+    <h3 id='direnv' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+      
+  Working on <code class='py-0.5 px-0.5 bg-gray-100'>direnv</code>-activated projects
+  
+  <a href='vscode#direnv' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <p class='mb-3'>
+      If you use <a href='direnv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>direnv</a>, it is rather simple to get setup with VSCode:
+    </p>
+  
+    <p class='mb-3'>
+      Once you have cloned your project repo and have activated the direnv environment (using `direnv allow), you can open it in VSCode to develop it:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Launch <a href='https://code.visualstudio.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>VSCode</a>, and open the <code class='py-0.5 px-0.5 bg-gray-100'>git clone</code>’ed project directory <a href='https://code.visualstudio.com/docs/editor/workspaces#_singlefolder-workspaces' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>as single-folder workspace</a>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          NOTE: If you are on Windows, you must use the <a href='https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Remote - WSL extension</a> to open the folder in WSL.
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          When prompted by VSCode, install the <a href='https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>workspace recommended</a> extensions.
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          If it doesn’t prompt, press Cmd+Shift+X and search for <code class='py-0.5 px-0.5 bg-gray-100'>@recommended</code> to install them all manually.
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          Ensure that the direnv extension is fully activated. You should expect to see this in the footer of VSCode: <img src='https://user-images.githubusercontent.com/3998/235459201-f0442741-294b-40bc-9c65-77500c9f4f1c.png' alt='image' />
+        </li>
+      
+        <li>
+          For Haskell projects: Once direnv is activated (and only then) open a Haskell file (<code class='py-0.5 px-0.5 bg-gray-100'>.hs</code>). You should expect haskell-language-server to startup, as seen in the footer: <img src='https://user-images.githubusercontent.com/3998/235459551-7c6c0c61-f4e8-41f3-87cf-6a834e2cdbc7.png' alt='image' />
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Once this processing is complete, all IDE features should work.
+        </li>
+      
+        <li>
+          The experience is similar for other languages; for Rust, it will be rust-analyzer.
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      To give this a try, here are some sample repos:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Haskell: <a href='https://github.com/srid/haskell-template' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/srid/haskell-template</a>
+        </li>
+      
+        <li>
+          Rust: <a href='https://github.com/srid/rust-nix-template' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/srid/rust-nix-template</a>
+        </li>
+      
+    </ul>
+  
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -1828,7 +1916,95 @@
   </div>
 </div>
 </article>
+        </div>
+        <div class='hidden md:block md:col-span-2 md:border-l'>
+          <nav id='toc' class='hidden leading-relaxed md:block md:sticky md:top-0 md:max-h-screen md:overflow-y-auto'>
+  <div class='text-gray-600 text-sm -mt-2'>
     
+        <ul class='ml-2'>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Using in Nix based projectsNix'>
+              <a href='vscode#nix' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Using in Nix based projectsNix
+              </a>
+              
+        <ul class='ml-2'>
+          
+            <li class='whitespace-nowrap truncate mt-2' title='Working on direnv-activated projects'>
+              <a href='vscode#direnv' class='--ema-toc bg-green-200 rounded-md p-0.5'>
+                Working on direnv-activated projects
+              </a>
+              
+        <ul class='ml-2'>
+          
+        </ul>
+      
+            </li>
+          
+        </ul>
+      
+            </li>
+          
+        </ul>
+      
+  </div>
+  <script>
+    // Highlight the TOC, based from https://stackoverflow.com/a/75346369
+    // TODO: We should get rid of JavaScript! See https://github.com/srid/emanote/issues/520
+    function highlightTOC() {
+      // Grab the toc links
+      const links = document.querySelectorAll("ul > li > a.--ema-toc");
+
+      // Find the matching anchors in the document body
+      const sections = [];
+      links.forEach((link) => {
+        let found = {};
+        for (section of document.querySelectorAll("a.--ema-anchor")) {
+          if (link.href == section.href) {
+            found = section;
+            break;
+          }
+        }
+        sections.push(found);
+      });
+
+      // Current toc link is marked with the following class
+      const mark = "toc-item-active";
+
+      // Set window scroll handler to update the toc mark.
+      window.onscroll = () => {
+        // Remove previous mark
+        links.forEach((link) => {
+          link.classList.remove(mark);
+        });
+
+        // Mark the link of the section that is in view, starting from the end
+        let marked = false;
+        for (var i = sections.length - 1; i >= 0; i--) {
+          if (window.scrollY > sections[i].offsetTop - 80) {
+            links[i].classList.add(mark);
+            marked = true;
+            break;
+          }
+        }
+
+        // Special case for the first and last section which might not reach the top
+        if (!marked && window.scrollY > 0) {
+          let i = 0;
+          if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+            // We are at the bottom
+            i = links.length - 1
+          }
+          links[i].classList.add(mark);
+        }
+      };
+    }
+    highlightTOC();
+  </script>
+</nav>
+        </div>
+      </div>
+      
     <div class='flex flex-col lg:flex-row lg:space-x-2'>
       
       
