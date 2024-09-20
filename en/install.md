@@ -11,7 +11,8 @@ order: -1000
 Install #[[nix]] using [the unofficial installer](https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer):[^official]
 
 ```sh
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
+  sh -s -- install --extra-conf "trusted-users = $(whoami)"
 ```
 
 > [!tip] Graphical installer for [[macos]]
