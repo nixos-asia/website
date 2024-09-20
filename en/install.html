@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=741fe9cd-8adc-4660-a14d-e4138a5160e5' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=fe77baba-6b1a-4e7b-b030-f755db7f69bb' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1448,7 +1448,8 @@
     </sup>
   
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
+  sh -s -- install --extra-conf "trusted-users = $(whoami)"</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title'>
