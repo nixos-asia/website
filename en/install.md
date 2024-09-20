@@ -12,7 +12,7 @@ Install #[[nix]] using [the unofficial installer](https://github.com/Determinate
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
-  sh -s -- install --extra-conf "trusted-users = $(whoami)"
+  sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"
 ```
 
 After installing Nix, open a new terminal and run the [Nix Health](https://github.com/juspay/nix-health) checks,
