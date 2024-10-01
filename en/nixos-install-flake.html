@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=8270ff42-3206-4be7-881d-e276c4658fd2' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6d811f45-8fb8-4f53-b00e-df6eb4f02fc5' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -1884,7 +1884,7 @@ $ git init && git add . && git commit -m init</code></pre></div>
     </h2>
   
     <p class='mb-3'>
-      As a final step, let’s permanently enable <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a> on our system, which is particular useful if you do a lot of <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>software development</a>. This time, instead of editing <code class='py-0.5 px-0.5 bg-gray-100'>configuration.nix</code> again, let’s do it in a separate <a href='modules' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>module</a> (for no particular reasons other than pedagogic purposes). Remember the <code class='py-0.5 px-0.5 bg-gray-100'>modules</code> argument to <code class='py-0.5 px-0.5 bg-gray-100'>nixosSystem</code> function in our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>? It is a list of modules, so we can add a second module there:
+      As a final step, let’s permanently enable <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a> on our system, which is particularly useful if you do a lot of <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>software development</a>. This time, instead of editing <code class='py-0.5 px-0.5 bg-gray-100'>configuration.nix</code> again, let’s do it in a separate <a href='modules' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>module</a> (for no particular reasons other than pedagogic purposes). Remember the <code class='py-0.5 px-0.5 bg-gray-100'>modules</code> argument to <code class='py-0.5 px-0.5 bg-gray-100'>nixosSystem</code> function in our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>? It is a list of modules, so we can add a second module there:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='diff language-diff'>diff --git a/flake.nix b/flake.nix
 index cc77fb9..4e84bdf 100644
