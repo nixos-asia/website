@@ -133,7 +133,7 @@ You may now [create a repository](https://docs.github.com/en/get-started/quickst
 {#enable-flakes}
 ## Enable flakes
 
-As a final step, let's permanently enable [[flakes]] on our system, which is particular useful if you do a lot of [[dev|software development]]. This time, instead of editing `configuration.nix` again, let's do it in a separate [[modules|module]] (for no particular reasons other than pedagogic purposes). Remember the `modules` argument to `nixosSystem` function in our `flake.nix`? It is a list of modules, so we can add a second module there:
+As a final step, let's permanently enable [[flakes]] on our system, which is particularly useful if you do a lot of [[dev|software development]]. This time, instead of editing `configuration.nix` again, let's do it in a separate [[modules|module]] (for no particular reasons other than pedagogic purposes). Remember the `modules` argument to `nixosSystem` function in our `flake.nix`? It is a list of modules, so we can add a second module there:
 
 ```diff
 diff --git a/flake.nix b/flake.nix
