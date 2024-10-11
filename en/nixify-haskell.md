@@ -5,7 +5,7 @@ This is a #[[tutorial|tutorial]] series on nixifying #[[haskell]] projects. In p
 
 1. [x] [[nixify-haskell-nixpkgs]]#
 2. [ ] [[nixify-haskell-parts]]#
-3. [ ] Nixify Haskell projects with [haskell-flake]
+3. [ ] [[nixify-haskell-flake]]#
 
 [^other]: There are also other approaches (like [haskell.nix](https://github.com/input-output-hk/haskell.nix), [stacklock2nix](https://github.com/cdepillabout/stacklock2nix)).
 
