@@ -35,9 +35,8 @@ programs.starship = {
 ```
 
 >[!tip] Newcomer Tip
-> If you have never used [[home-manager]] before, we recommend that you set it up[^nf] by following the instrutions at https://github.com/juspay/nix-dev-home.
+> If you have never used [[home-manager]] before, we recommend that you set it up by following the instrutions at https://github.com/juspay/nixos-unified-template (which is based on [nixos-unified](https://nixos-unified.org/), thus works on macOS and Linux).
 
-[^nf]: The "nix-dev-home" template uses [nixos-flake](https://community.flake.parts/nixos-flake), and works on both Linux or macOS.
 
 ### Text Editor configuration
 
