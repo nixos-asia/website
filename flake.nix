@@ -26,7 +26,7 @@
             sites = lib.mapAttrs
               (name: lang: {
                 inherit (lang) port;
-                layers = [ { path = lang.path; pathString = name; } { path = ./global; pathString = "global"; } ];
+                layers = [{ path = lang.path; pathString = name; } { path = ./global; pathString = "global"; }];
                 prettyUrls = true;
                 baseUrl = "/${name}/";
                 basePath = name;
@@ -36,6 +36,7 @@
           devShells.default = pkgs.mkShell {
             buildInputs = [
               pkgs.nixpkgs-fmt
+              pkgs.nixd
             ];
           };
           packages = rec {
