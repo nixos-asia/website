@@ -1,0 +1,26 @@
+ci:
+  default:
+    ROOT:
+      dir: .
+    nix-modules-1:
+      dir: ./global/nix-modules/1
+    nix-modules-2:
+      dir: ./global/nix-modules/2
+    nix-modules-3:
+      dir: ./global/nix-modules/3
+    nix-modules-4:
+      dir: ./global/nix-modules/4
+    nix-modules-5:
+      dir: ./global/nix-modules/5
+      overrideInputs:
+        flake4: ./global/nix-modules/4
+develop:
+  default:
+    readme: |
+      🍾 Welcome to nixos.asia website authoring.
+
+      To run the English website locally for rapid edit-preview cycles, run:
+
+      ```sh
+      nix run .#en  # Or, just: nix run
+      ````
