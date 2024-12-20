@@ -9,4 +9,4 @@ jobs:
     runs-on: aarch64-darwin
     steps:
       - uses: actions/checkout@v4
-      - run: nixci build
+      - run: om ci
