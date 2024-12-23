@@ -14,15 +14,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Getting Started with Nix for Haskell & Rust – NixOS Asia
+    services-flake: Services simplified for Dev/CI workflows – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='Sridhar Ratnakumar will demonstrate the delights of using Nix to develop Rust as well as Haskell projects without needing to do any manual global setup on your system. We’ll start from a pristine macOS machine as well as a pristine Linux machine to get our development environment up and running in no time, all the way up to LSP support in VSCode.Sridhar RatnakumarNixdevelopRustHaskellmacOSdevelopment environmentLSPVSCode' />
+      <meta property='og:description' content='Shivaraj B H will demonstrate using [[services-flake]] to declaratively manage service dependencies (for example, databases) of your project in the Nix development environment and re-use the same configuration for testing in your CI workflow. This talk builds upon my lightning talk from NixCon 2024, diving deeper into the topic with additional insights.Shivaraj B HNixmy lightning talk from NixCon 2024' />
       <meta property='og:site_name' content='NixOS Asia' />
-      <meta property='og:image' content='https://nixos.asia/en/event/srid-nix-dev/vscode-haskell-template.png' />
+      <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Getting Started with Nix for Haskell & Rust' />
+      <meta property='og:title' content='services-flake: Services simplified for Dev/CI workflows' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
@@ -444,7 +444,7 @@
   <main class='px-4 py-4'>
     <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Getting Started with Nix for Haskell & Rust
+    services-flake: Services simplified for Dev/CI workflows
   </a>
 </h1>
     
@@ -456,9 +456,13 @@
 
 
 
-<div class='flex justify-center items-center mx-auto'><table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>When</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Where</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Tuesday, January 23, 2024 at 4PM</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href="https://www.google.com/maps/place/12%C2%B056'12.0%22N+77%C2%B037'17.5%22E/@12.936661,77.62153,17z/data=!3m1!4b1!4m4!3m3!8m2!3d12.936661!4d77.62153?entry=ttu" class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>IndiQube Garden, Bengaluru</a></td></tr></tbody></table></div>
+<div class='flex justify-center items-center mx-auto'><table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>When</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Where</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Saturday, Jan 4, 2025 at 5 PM IST</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Online meetup (Link to be shared soon)</td></tr></tbody></table></div>
     <p class='mb-3'>
-      <a href='https://x.com/sridca' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Sridhar Ratnakumar</a> will demonstrate the delights of using <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> to <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>develop</a> <a href='rust' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Rust</a> as well as <a href='haskell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Haskell</a> projects without needing to do any manual global setup on your system. We’ll start from a pristine <a href='macos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>macOS</a> machine as well as a pristine Linux machine to get our <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>development environment</a> up and running in no time, all the way up to <a href='https://langserver.org/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>LSP</a> support in <a href='vscode' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>VSCode</a>.
+      <a href='https://x.com/shivaraj_bh_' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Shivaraj B H</a> will demonstrate using <a href='services-flake' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>services-flake</a> to declaratively manage service dependencies (for example, databases) of your project in the <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> development environment and re-use the same configuration for testing in your CI workflow. This talk builds upon <a href='https://talks.nixcon.org/nixcon-2024/talk/review/UTZQ8YZHKSMTUPRSC83TKALDUYNL9BCX' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>my lightning talk from NixCon 2024</a>, diving deeper into the topic with additional insights.
+    </p>
+  
+    <p class='mb-3'>
+      The talk serves as a video demonstration of the <strong>Part-4</strong> in the <a href='nixify-haskell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nixify Haskell projects</a> series.
     </p>
   
     <p class='mb-3'>
@@ -468,11 +472,11 @@
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <a href='https://www.meetup.com/the-bangalore-haskell-user-group/events/298349003' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>The Bangalore Haskell User Group</a>
+          Link to be shared soon
         </li>
       
     </ul>
-  <img class='inline mb-3' src='event/srid-nix-dev/vscode-haskell-template.png' alt='/nix/store/08li72g9rnzyksx82g0iivz95dvjcvwd-global/event/srid-nix-dev/vscode-haskell-template.png' style='width: inherit;' />
+  
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -489,7 +493,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/event/srid-nix-dev.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/event/services-flake-meetup.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>
