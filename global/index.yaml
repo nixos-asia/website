@@ -13,6 +13,10 @@ template:
   iconUrl: static/nixos-asia.svg
 
   uptree:
+    enable: true
+  toc:
+    enable: false
+  sidebar:
     enable: false
 
   urlStrategy: pretty
