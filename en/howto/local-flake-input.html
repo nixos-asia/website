@@ -14,15 +14,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Copying packages to a remote Nix store – NixOS Asia
+    Use a local directory as flake input – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='This is useful if your local machine is powerful and you have built a number of packages on it, but want to re-use them on another machine, without using a Nix cache or rebuilding them.' />
+      <meta property='og:description' content='A [[flake-url]] can not only be [[git]] repositories. They can also refer to local paths. If you have two projects ~/code/foo and ~/code/bar, and bar depends on foo, you can use the following flake.nix in bar to have it refer to the local foo project:' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Copying packages to a remote Nix store' />
+      <meta property='og:title' content='Use a local directory as flake input' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=9b1a57a1-51d0-4715-93f2-a65586b13623' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=990e74a2-2148-4e77-ac58-a5d050146672' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -355,7 +355,7 @@
           
             <li>
 
-  <a href='tips'>
+  <a href='howto'>
     <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
       Tips
     </div>
@@ -440,7 +440,7 @@
             </li>
           
             <li class='inline-flex items-center'>
-              <a class='px-1 font-bold' href='tips'>
+              <a class='px-1 font-bold' href='howto'>
                 Tips
               </a>
               <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
@@ -488,7 +488,7 @@
   <main class='px-4 py-4'>
     <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Copying packages to a remote Nix store
+    Use a local directory as flake input
   </a>
 </h1>
     
@@ -502,13 +502,40 @@
 
 
     <p class='mb-3'>
-      This is useful if your local machine is powerful and you have built a number of packages on it, but want to re-use them on another machine, without using a Nix cache or rebuilding them.
+      A <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake URL</a> can not only be <a href='git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Git</a> repositories. They can also refer to local paths. If you have two projects <code class='py-0.5 px-0.5 bg-gray-100'>~/code/foo</code> and <code class='py-0.5 px-0.5 bg-gray-100'>~/code/bar</code>, and <code class='py-0.5 px-0.5 bg-gray-100'>bar</code> depends on <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>, you can use the following <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> in <code class='py-0.5 px-0.5 bg-gray-100'>bar</code> to have it refer to the local <code class='py-0.5 px-0.5 bg-gray-100'>foo</code> project:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nix copy --to ssh-ng://admin@100.96.121.13 /nix/store/???</code></pre></div>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  inputs = {
+    foo.url = "path:/Users/me/code/foo";
+  };
+  outputs = inputs: { ... };
+}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <path d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'></path>
+<line x1='12' y1='9' x2='12' y2='13'></line>
+<line x1='12' y1='17' x2='12.01' y2='17'></line>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code>
+    </div>
+  </div>
+  <div class='callout-content'>
+    
     <p class='mb-3'>
-      If you use <a href='https://github.com/srid/nixci' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>nixci</a>, this looks like:
+      Whenever you modify files under <code class='py-0.5 px-0.5 bg-gray-100'>~/code/foo</code>, you must run update the <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> hash in <code class='py-0.5 px-0.5 bg-gray-100'>~/code/bar</code> by running:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nixci . -- --option system aarch64-linux | xargs nix copy --to ssh-ng://admin@100.96.121.13</code></pre></div>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>nix flake update foo</code></pre></div>
+    <p class='mb-3'>
+      The alternative is to pass <code class='py-0.5 px-0.5 bg-gray-100'>--override-input foo ~/code/foo</code> to <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> or <code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code> commands; this will override the hash for “foo” in the <code class='py-0.5 px-0.5 bg-gray-100'>flake.lock</code> file.
+    </p>
+  
+  </div>
+</div>
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -525,7 +552,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/tips/remote-cp.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/howto/local-flake-input.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>

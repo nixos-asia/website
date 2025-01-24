@@ -14,15 +14,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Tips – NixOS Asia
+    Separate Git profiles – NixOS Asiaprofiles
   </title>
   
     
-      <meta property='og:description' content='Tips on using [[nix]]:' />
+      <meta property='og:description' content='You want to override Git config (such as commit author email) for only certain repos, such as those under a certain folder. This is useful when dealing with corporate policies, which often block commit pushes that doesn’t comfort to certain standards, such as using work email address in the commit email. Those using Bitbucket’s Control Freak may be familiar with this error throw in response git push:GitControl Freak' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Tips' />
+      <meta property='og:title' content='Separate Git “profiles”' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=9b1a57a1-51d0-4715-93f2-a65586b13623' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=990e74a2-2148-4e77-ac58-a5d050146672' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -355,6 +355,28 @@
           
             <li>
 
+  <a href='git'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Git
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='dev'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Nix for Development
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
   <a href='nix'>
     <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
       Nix
@@ -393,6 +415,36 @@
     </ul>
   
 </li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <a href='home-manager'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      home-manager
+    </div>
+  </a>
+
+  
+</li>
+          
+            <li>
+
+  <a href='howto'>
+    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+      Tips
+    </div>
+  </a>
+
+  
+</li>
           
         </ul>
       
@@ -418,6 +470,15 @@
             <li class='inline-flex items-center'>
               <a class='px-1 font-bold' href=''>
                 NixOS Asia
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href='howto'>
+                Tips
               </a>
               <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
                 <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
@@ -464,7 +525,7 @@
   <main class='px-4 py-4'>
     <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    Tips
+    Separate Git “profiles”
   </a>
 </h1>
     
@@ -478,78 +539,85 @@
 
 
     <p class='mb-3'>
-      Tips on using <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Nix</a>:
+      You want to override <a href='git' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>Git</a> config (such as commit author email) for only certain repos, such as those under a certain folder. This is useful when dealing with corporate policies, which often block commit pushes that doesn’t comfort to certain standards, such as using work email address in the commit email. Those using Bitbucket’s <a href='https://marketplace.atlassian.com/apps/1217635/control-freak-commit-checkers-and-jira-hooks-for-bitbucket?tab=overview&amp;hosting=cloud' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Control Freak</a> may be familiar with this error throw in response <code class='py-0.5 px-0.5 bg-gray-100'>git push</code>:
     </p>
-  <nav>
-  <div class='mb-8'>
-    <header data-nosnippet class='pb-2 mb-2 font-semibold text-gray-600'>
-      Folgezettel children
-    </header>
-    <ul>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>remote:
+remote: Control Freak - Commit 484b773a7e6d2ed8 rejected: bad committer metadata.
+remote: -----
+remote: Committer "John Doe &lt;john.doe@gmail.com&gt;" does not exactly match
+remote: a Bitbucket user record. The closest match is:
+remote:
+remote:     "john.doe &lt;john.doe@somecompany.com&gt;"</code></pre></div>
+    <h2 id='git-config' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+      
+  Git config has a solution
+  
+  <a href='howto/git-profiles#git-config' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      Git provides a way to solve the above problem – by specifying configuration unique to repos whose paths match a given filepattern. This is achieved using <a href='https://git-scm.com/docs/git-config#_includes' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the <code class='py-0.5 px-0.5 bg-gray-100'>includeIf</code> section</a> in Git config. But how do we configure this <em>through</em> Nix?
+    </p>
+  
+    <h2 id='hm' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+      
+  Configuring in home-manager
+  
+  <a href='howto/git-profiles#hm' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      When using <a href='home-manager' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>home-manager</a>, you can add the following to your <code class='py-0.5 px-0.5 bg-gray-100'>programs.git</code> module:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>programs.git = {
+  # Bitbucket git access and policies
+  includes = [{
+    condition = "gitdir:~/mycompany/**";
+    contents = {
+      user.email = "john.doe@mycompany.com";
+    };
+  }];
+}</code></pre></div>
+    <p class='mb-3'>
+      With this, any commit you make to repos under the <code class='py-0.5 px-0.5 bg-gray-100'>~/mycompany</code> directory will use that email address as its commit author email.
+    </p>
+  
+    <h2 id='examples' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+      
+  Examples
+  
+  <a href='howto/git-profiles#examples' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='tips/git-profiles'>
-              Separate Git “profiles”
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='tips/hm-fonts'>
-              Installing fonts using home-manager
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='tips/local-flake-input'>
-              Use a local directory as flake input
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='tips/remote-cp'>
-              Copying packages to a remote Nix store
-            </a>
-          </div>
-        </li>
-      
-        <li>
-          <div class='flex flex-wrap my-2'>
-            
-              <span data-nosnippet class='mr-2 text-right text-gray-600'>
-              </span>
-            
-            <a class='flex-1 text-green-600 mavenLinkBold border-l-2 pl-2 hover:underline' href='traceVerbose'>
-              <code class='py-0.5 px-0.5 bg-gray-100'>traceVerbose</code>
-            </a>
-          </div>
+          <a href='https://github.com/srid/nixos-config/blob/f5388e798737d63eae4f88508f57fea0dd0b4192/home/juspay.nix' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>srid/nixos-config: juspay.nix</a>
         </li>
       
     </ul>
-  </div>
-</nav>
+  
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -566,7 +634,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/tips.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/howto/git-profiles.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>
@@ -580,28 +648,6 @@
     <div class='flex flex-col lg:flex-row lg:space-x-2'>
       
       
-  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
-    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
-    <ul class='space-y-1'>
-      
-        <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='traceVerbose'>
-            <code>traceVerbose</code>
-          </a>
-          
-            <div class='mb-4 overflow-auto text-sm text-gray-500'>
-  
-    <div class='pl-2 mt-2 border-l-2 border-green-200 hover:border-green-500'>
-      <div><p><a href='tips' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>Tips</a></p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-    </ul>
-  </div>
-
     </div>
     
   <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
