@@ -1,6 +1,6 @@
-# Tips
+# HOWTO
 
-Tips on using #[[nix]]:
+How to do various things with #[[nix]]:
 
 ```query
 children:.
