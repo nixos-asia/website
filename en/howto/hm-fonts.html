@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0c252e3a-e1d9-413b-a151-869565fd84fc' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=8dc022f4-3417-4764-ba81-9b716d50c31f' rel='stylesheet' type='text/css' />
 
   <style>
     /* Heist error element */
@@ -528,7 +528,7 @@
     </p>
   
     <p class='mb-3'>
-      To do this, add:
+      For e.g., to install the <a href='https://x.com/dhh/status/1791920107637354964' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Cascadia Code</a> font:
     </p>
   <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
   home.packages = [
@@ -539,30 +539,27 @@
   fonts.fontconfig.enable = true;
 }</code></pre></div>
     <p class='mb-3'>
-      The above installs the <a href='https://x.com/dhh/status/1791920107637354964' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Cascadia Code</a> font. See <a href='https://github.com/nix-community/home-manager/issues/605' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>this issue</a> for details.
-    </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
-  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-  </path>
-  <div class='callout-title'>
-    <div class='callout-icon'>
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-</path>
-      </svg>
-    </div>
-    <div class='callout-title-inner'>
-       Verify on macOS
-    </div>
-  </div>
-  <div class='callout-content'>
-    
-    <p class='mb-3'>
-      To confirm that the font was successfully installed on <a href='macos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>macOS</a>, you can open the “Font Book” app and search for the font. They will have been installed into <code class='py-0.5 px-0.5 bg-gray-100'>$HOME/Library/Fonts/HomeManager</code> folder.
+      See <a href='https://github.com/nix-community/home-manager/issues/605' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>this issue</a> for details.
     </p>
   
-  </div>
-</div>
+    <h2 id='macos' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+      
+  Verify on macOS
+  
+  <a href='howto/hm-fonts#macos' class='--ema-anchor'>
+    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-3'>
+      To confirm that the font was successfully installed on <a href='macos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>macOS</a>, you can open the <a href='https://support.apple.com/en-ca/guide/font-book/welcome/mac' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Font Book</a> app and search for the font. They will have been installed into <code class='py-0.5 px-0.5 bg-gray-100'>~/Library/Fonts/HomeManager</code> folder.
+    </p>
+  
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
