@@ -1,6 +1,6 @@
 # Installing fonts using home-manager
 
-Whethere you are on #[[macos|macOS]] or [[nixos|NixOS]], you can install and setup fonts in an unified fashion with [[nix|Nix]] using #[[home-manager|home-manager]].
+Whether you are on #[[macos|macOS]] or [[nixos|NixOS]], you can install and setup fonts in an unified fashion with [[nix|Nix]] using #[[home-manager|home-manager]].
 
 To do this, add:
 
