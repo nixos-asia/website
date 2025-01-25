@@ -1,7 +1,7 @@
 # NixOS Asia
 
 > [!tip] Welcome to NixOS Asia
-> NixOS Asia is a community of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent. Talk to us on [Zulip](https://nixos.zulipchat.com/)!
+> NixOS Asia is a community of [[nix]] and [[nixos]] users, promulgated initially from the Indian subcontinent.
 
 
 ## Explore this website
@@ -14,9 +14,6 @@ Here, you must establish `[[..]]#` style folgezettel links which will shape our
 sidebar navigation.
 
 -->
-
-> [!info] WIP
-> We are currently in the process of  building this website.
 
 - Start from [[install|here]] if you are new to Nix. 
 - We have [[tutorial]]# and a [[blog]]#
