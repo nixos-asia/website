@@ -1,9 +1,4 @@
 {
-  nixConfig = {
-    extra-substituters = "https://cache.garnix.io";
-    extra-trusted-public-keys = "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=";
-  };
-
   inputs = {
     emanote.url = "github:srid/emanote";
     nixpkgs.follows = "emanote/nixpkgs";
@@ -37,6 +32,7 @@
             buildInputs = [
               pkgs.nixpkgs-fmt
               pkgs.nixd
+              pkgs.just
             ];
           };
           packages = rec {
