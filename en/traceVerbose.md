@@ -9,4 +9,4 @@ For eg., running `nix build` will not cause `traceVerbose` to have any effect. B
 
 - haskell-flake uses this to [provide conditional logging](https://community.flake.parts/haskell-flake/debugging)
 
-#[[tips]]
+#[[howto]]
