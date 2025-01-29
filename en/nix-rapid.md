@@ -108,7 +108,9 @@ $ nix eval .#foo
 
 ### Graph
 
-A flake can refer to other flakes in its inputs. Phrased differently, a flake's outputs can be used as inputs in other flakes. The most common example is the [[nixpkgs]] flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger graph, with inputs being the incoming arrows and outputs being the outgoing arrows.
+A flake can refer to other flakes in its inputs. Phrased differently, a flake's outputs can be used as inputs in other flakes. The most common example is the [[nixpkgs]] flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger [graph], with inputs being the incoming arrows and outputs being the outgoing arrows.
+
+[graph]: https://en.wikipedia.org/wiki/Directed_graph
 
 ### Inputs
 
