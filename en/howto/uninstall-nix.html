@@ -14,15 +14,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    traceVerbose – NixOS Asia
+    Uninstall Nix – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='Nix 2.10 introduced a new function, builtins.traceVerbose, that works like builtins.trace but is no-op until the user explicitly enables it.' />
+      <meta property='og:description' content='[!note] Problems while deleting Nix Store volume on macOS If the installer fails to delete the /nix/store volume, try rebooting your mac and running /nix/nix-installer uninstall again. If that path doesn’t exist, delete manually by following last step from here.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='traceVerbose' />
+      <meta property='og:title' content='Uninstall Nix' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
@@ -439,6 +439,15 @@
               </svg>
             </li>
           
+            <li class='inline-flex items-center'>
+              <a class='px-1 font-bold' href='howto'>
+                HOWTO
+              </a>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+                <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
+              </svg>
+            </li>
+          
         
       </ul>
     </div>
@@ -479,7 +488,7 @@
   <main class='px-4 py-4'>
     <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    <code>traceVerbose</code>
+    Uninstall Nix
   </a>
 </h1>
     
@@ -491,40 +500,39 @@
 
 
 
-
+<div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10' role='note'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title'>
+    <div class='callout-icon'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        <line x1='18' y1='2' x2='22' y2='6'></line>
+<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+      </svg>
+    </div>
+    <div class='callout-title-inner'>
+       Problems while deleting <code class='py-0.5 px-0.5 bg-gray-100'>Nix Store</code> volume on macOS
+    </div>
+  </div>
+  <div class='callout-content'>
+    
     <p class='mb-3'>
-      <a href='https://nixos.org/manual/nix/stable/release-notes/rl-2.10' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix 2.10</a> introduced a new function, <code class='py-0.5 px-0.5 bg-gray-100'>builtins.traceVerbose</code>, that works like <code class='py-0.5 px-0.5 bg-gray-100'>builtins.trace</code> but is no-op until the user explicitly enables it.
+      If the installer fails to delete the <code class='py-0.5 px-0.5 bg-gray-100'>/nix/store</code> volume, try rebooting your mac and running <code class='py-0.5 px-0.5 bg-gray-100'>/nix/nix-installer uninstall</code> again. If that path doesn’t exist, delete manually by following last step from <a href='https://nixos.org/manual/nix/stable/installation/uninstall.html#macos' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a>.
     </p>
   
-    <p class='mb-3'>
-      For eg., running <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> will not cause <code class='py-0.5 px-0.5 bg-gray-100'>traceVerbose</code> to have any effect. But if you run <code class='py-0.5 px-0.5 bg-gray-100'>nix build --trace-verbose</code>, then logs from <code class='py-0.5 px-0.5 bg-gray-100'>traceVerbose</code> will be printed to the console.
-    </p>
-  
-    <h2 id='examples' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
-      
-  Examples
-  
-  <a href='traceVerbose#examples' class='--ema-anchor'>
-    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
-        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
-      </svg></span>
-  </a>
-
-
-    </h2>
-  
+  </div>
+</div>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          haskell-flake uses this to <a href='https://community.flake.parts/haskell-flake/debugging' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>provide conditional logging</a>
+          Run <code class='py-0.5 px-0.5 bg-gray-100'>/nix/nix-installer uninstall</code>
+        </li>
+      
+        <li>
+          If that path above does not exist, <a href='https://nixos.org/manual/nix/stable/installation/uninstall.html#macos' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>follow these instructions</a> to manually uninstall Nix.
         </li>
       
     </ul>
-  
-    <p class='mb-3'>
-      <a href='howto' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>HOWTO</a>
-    </p>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
@@ -542,7 +550,7 @@
   <div class='flex items-center justify-center mt-2'>
     
       
-        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/traceVerbose.md'>
+        <a class='text-gray-300 hover:text-green-600 text-sm' title='Edit this page on GitHub' href='https://github.com/nixos-asia/website/edit/master/en/howto/uninstall-nix.md'>
           <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'></path>
           </svg>
