@@ -6,4 +6,3 @@ In addition to [[tutorial]], we also have [atomic](https://neuron.zettel.page/at
 - [[nix]]#
 - [[nixos]]#
 - [[macos]]#
-- [[howto]]

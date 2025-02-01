@@ -15,9 +15,10 @@ sidebar navigation.
 
 -->
 
-- Start from [[install|here]] if you are new to Nix. 
-- We have [[tutorial]]# and a [[blog]]#
-- Topical entry points: [[topics]]#
+- Start from [[install|here]] if you are new to Nix.
+- Then, checkout our [[tutorial]]#
+- For further reading, read [[howto]]# and [[blog]]#
+- Most other pages are usually under [[topics]]#
 - You can browse the rest of the content  in [the index](-/all).
 
 ## Community
@@ -45,4 +46,3 @@ View *good first issues* involving [Nix][gfi-nix] or [Rust][gfi-rust].
 ## Events
 
 See [[event]].
-
