@@ -35,11 +35,11 @@
     "ema": {
       "flake": false,
       "locked": {
-        "lastModified": 1738418901,
-        "narHash": "sha256-bRJ0v/d+28DwKx/VtRawjlIdHq5l+1N30Bq+H4Q5FpI=",
+        "lastModified": 1738428103,
+        "narHash": "sha256-vZgaNI0y6IKnWDSLFsl7mwSUZ3ONgduclQkB6WK0VMo=",
         "owner": "srid",
         "repo": "ema",
-        "rev": "fdf4a8b0f4e1849f446400bc00eb5c04fcf4b090",
+        "rev": "4478e88d33126ef0b478b2980a71592b8f9afd6b",
         "type": "github"
       },
       "original": {
@@ -64,11 +64,11 @@
         "unionmount": "unionmount"
       },
       "locked": {
-        "lastModified": 1738420818,
-        "narHash": "sha256-4F7t0kmGq1SnWmc62qvqkIECXx5iSFRBQS9b58TfcQk=",
+        "lastModified": 1738428221,
+        "narHash": "sha256-n8YN65q1ogyrgVAEmOiCFlhfFtgwOYeQ+EOoMMdsmpc=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "07194db3bec5965a6f7e9105df07615db8c12ea4",
+        "rev": "dda84f04569099ee8f1ceb2ee1d82aabd52f14a5",
         "type": "github"
       },
       "original": {
