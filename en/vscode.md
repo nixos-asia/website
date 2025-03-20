@@ -2,9 +2,6 @@
 
 [Visual Studio Code](https://code.visualstudio.com/) is a popular open source code editor from Microsoft with extension support. 
 
->[!warning] WIP
-> This page has not been completed.
-
 {#nix}
 ## Using in [[nix|Nix]] based projects
 
