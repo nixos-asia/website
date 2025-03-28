@@ -43,107 +43,64 @@
 
   
   
-  <link href='tailwind.css?instanceId=1961f919-7bf8-444a-aa46-7af3eb171b61' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=617b40e2-3d12-4f22-8aa5-05e0d1c6cd14' rel='stylesheet' type='text/css' />
 
-  <style>
-    /* Heist error element */
-    strong.error {
-      color: lightcoral;
-      font-size: 90%;
-      font-family: monospace;
-    }
+  <style data-category='error'>
+  /* Heist error element */
+  strong.error {
+    color: lightcoral;
+    font-size: 90%;
+    font-family: monospace;
+  }
+</style>
 
-    /* <kbd> styling */
-    kbd {
-      background-color: #eee;
-      border-radius: 3px;
-      border: 1px solid #b4b4b4;
-      box-shadow:
-        0 1px 1px rgba(0, 0, 0, 0.2),
-        0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
-      display: inline-block;
-      line-height: 1;
-      padding: 2px 4px;
-      white-space: nowrap;
-    }
+<style data-category='kbd'>
+  /* <kbd> styling */
+  kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.2),
+      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+    display: inline-block;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+</style>
 
-    /* Callouts */
-    div.callout {
-      background-color: #f5f5f5;
-      padding: 1em 1em 0.5em;
-      border-radius: 0.5em;
-      margin-bottom: 1em;
-    }
+<style data-category='callout'>
+  /* To prevent overemphasis of link styles in callout titles */
+  .callout .callout-title a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>
 
-    .callout[data-callout="note"] {
-      --callout-color: 8, 109, 221;
-    }
+<style data-category='toc'>
+  a.--ema-toc:not(.toc-item-active) {
+    background-color: #ffffff !important;
+  }
+</style>
 
-    .callout[data-callout="info"] {
-      --callout-color: 8, 109, 221;
-    }
+<style data-category='external-link'>
+  /* External link icon */
+  a[data-linkicon=""]::after {
+    content: ""
+  }
 
-    .callout[data-callout="tip"] {
-      --callout-color: 8, 191, 188;
-    }
+  a[data-linkicon=none]::after {
+    content: ""
+  }
 
-    .callout[data-callout="warning"] {
-      --callout-color: 236, 117, 0;
-    }
+  a[data-linkicon="external"] {
+    padding-right: 24px;
+  }
 
-    .callout[data-callout="failure"] {
-      --callout-color: 233, 49, 71;
-    }
-
-    .callout[data-callout="quote"] {
-      --callout-color: 158, 158, 158;
-    }
-
-    /* To prevent overemphasis of link styles in callout titles */
-    .callout .callout-title a {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    div.callout {
-      background-color: rgba(var(--callout-color), 0.1);
-    }
-
-    .callout .callout-title {
-      color: rgb(var(--callout-color));
-    }
-
-    div.callout-title {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5em;
-      font-variation-settings: 'wght' 600;
-    }
-
-    div.callout-title div.callout-title-inner {
-      margin-left: 0.5em;
-    }
-
-    a.--ema-toc:not(.toc-item-active) {
-      background-color: #ffffff !important;
-    }
-
-    /* External link icon */
-    a[data-linkicon=""]::after {
-      content: ""
-    }
-
-    a[data-linkicon=none]::after {
-      content: ""
-    }
-
-    a[data-linkicon="external"] {
-      padding-right: 24px;
-    }
-
-    a[data-linkicon="external"]::after {
-      margin-right: -24px;
-      content: url('data:image/svg+xml,\
+  a[data-linkicon="external"]::after {
+    margin-right: -24px;
+    content: url('data:image/svg+xml,\
       <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
         <g style="stroke:gray;stroke-width:1"> \
           <line x1="5" y1="5" x2="5" y2="14" /> \
@@ -155,10 +112,10 @@
           <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
         </g> \
       </svg>');
-    }
+  }
 
-    a[data-linkicon="external"][href^="mailto:"]::after {
-      content: url('data:image/svg+xml,\
+  a[data-linkicon="external"][href^="mailto:"]::after {
+    content: url('data:image/svg+xml,\
         <svg \
           xmlns="http://www.w3.org/2000/svg" \
           height="0.7em" \
@@ -171,55 +128,9 @@
             stroke-linejoin="round" \
             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
         </svg>');
-    }
-  </style>
-  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
-
-<style>
-  @font-face {
-    font-family: 'WorkSans';
-    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf */
-    src: url(_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf) format("truetype");
-    font-display: swap;
-  }
-
-  body {
-    font-family: 'WorkSans', sans-serif;
-    font-variation-settings: 'wght' 350;
-  }
-
-  a.mavenLinkBold {
-    font-variation-settings: 'wght' 400;
-  }
-
-  strong {
-    font-variation-settings: 'wght' 500;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  header,
-  .header-font {
-    font-family: 'WorkSans', sans-serif;
-  }
-
-  h1 {
-    font-variation-settings: 'wght' 500;
-  }
-
-  h2 {
-    font-variation-settings: 'wght' 400;
-  }
-
-  h3 {
-    font-variation-settings: 'wght' 300;
   }
 </style>
-
+  <!-- What goes in this file will appear on near the end of <head>-->
 
   
     <style>
@@ -245,7 +156,7 @@
   
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->
-<style>
+<style data-category='stork'>
   #stork-search-container {
     z-index: 1000;
     background-color: rgb(15 23 42/.8);
@@ -357,7 +268,7 @@
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+<nav id='uptree' class='flipped tree font-sans font-medium' style='transform-origin: 50%;'>
   <ul class='root'>
     <li>
       
@@ -488,10 +399,10 @@
 
 
     <p class='mb-3'>
-      You have <a href='install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code class='py-0.5 px-0.5 bg-gray-100'>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.
+      You have <a href='install' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.
     </p>
   <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nix-tutorial/nix-first.png' style='width: inherit;' />
-    <h2 id='run' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='run' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Running a package
   
@@ -506,9 +417,9 @@
     </h2>
   
     <p class='mb-3'>
-      As of this writing, <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> has over 80,000 packages. You can search them <a href='https://search.nixos.org/packages' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a>. Search for “<code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code>” and <a href='https://search.nixos.org/packages?type=packages&amp;query=cowsay' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>you will find</a> that it is available in Nixpkgs. We can download and run the <a href='https://en.wikipedia.org/wiki/Cowsay' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>cowsay</a> package as follows:
+      As of this writing, <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> has over 80,000 packages. You can search them <a href='https://search.nixos.org/packages' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a>. Search for “<code class='py-0.5 px-0.5 bg-gray-100 font-mono'>cowsay</code>” and <a href='https://search.nixos.org/packages?type=packages&amp;query=cowsay' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>you will find</a> that it is available in Nixpkgs. We can download and run the <a href='https://en.wikipedia.org/wiki/Cowsay' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>cowsay</a> package as follows:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run nixpkgs#cowsay "G'day $USER"
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix run nixpkgs#cowsay "G'day $USER"
  ____________
 &lt; G'day srid &gt;
  ------------
@@ -517,30 +428,32 @@
             (__)\       )\/\
                 ||----w |
                 ||     || 
-$</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+$</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <circle cx='12' cy='12' r='10'></circle>
-<line x1='12' y1='16' x2='12' y2='12'></line>
-<line x1='12' y1='8' x2='12.01' y2='8'></line>
+        
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='12' y1='16' x2='12' y2='12'></line>
+    <line x1='12' y1='8' x2='12.01' y2='8'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
-       <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code>
+    <div class='ml-2'>
+       <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix run</code>
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code> command will run the specified package from the flake. Here <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs</code> is the <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a>, followed by the letter <code class='py-0.5 px-0.5 bg-gray-100'>#</code>, which is followed by the package (<a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a>) name <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> that is outputted by that flake. See <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake URL</a> for details on the syntax.
+      <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix run</code> command will run the specified package from the flake. Here <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nixpkgs</code> is the <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a>, followed by the letter <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>#</code>, which is followed by the package (<a href='drv' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a>) name <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>cowsay</code> that is outputted by that flake. See <a href='flake-url' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake URL</a> for details on the syntax.
     </p>
   
   </div>
 </div>
-    <h2 id='inside-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='inside-package' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Looking inside a package
   
@@ -555,13 +468,13 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     </h2>
   
     <p class='mb-3'>
-      What is a Nix “package”? Technically, a Nix package is a special <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a> built using instructions from a <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a>, both of which reside in the <a href='store' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. To see what is contained by the <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> package, look inside its <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>. To get the store path for a package (here, <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code>), run <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> as follows:
+      What is a Nix “package”? Technically, a Nix package is a special <a href='store-path' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a> built using instructions from a <a href='drv' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a>, both of which reside in the <a href='store' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. To see what is contained by the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>cowsay</code> package, look inside its <a href='store-path' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>. To get the store path for a package (here, <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>cowsay</code>), run <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code> as follows:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix build nixpkgs#cowsay --no-link --print-out-paths
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix build nixpkgs#cowsay --no-link --print-out-paths
 /nix/store/8ij2wj5nh4faqwqjy1fqg20llawbi0d5-cowsay-3.7.0-man
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0</code></pre></div>
     <p class='mb-3'>
-      The <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that
+      The <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>cowsay</code> <a href='drv' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that
     <sup class='px-0.5'>
       <a class='text-green-600 hover:underline' href='nix-first#fn1'>
         1
@@ -569,7 +482,7 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     </sup>
    you will see the contents of it:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
 ├── bin
 │   ├── cowsay
@@ -580,30 +493,32 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
         │   ├── DragonAndCow.pm
         │   ├── Example.pm
         │   ├── Frogs.pm
-        │   ├── ...</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+        │   ├── ...</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <circle cx='12' cy='12' r='10'></circle>
-<line x1='12' y1='16' x2='12' y2='12'></line>
-<line x1='12' y1='8' x2='12.01' y2='8'></line>
+        
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='12' y1='16' x2='12' y2='12'></line>
+    <line x1='12' y1='8' x2='12.01' y2='8'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        Nix Store & Store Paths
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      <code class='py-0.5 px-0.5 bg-gray-100'>/nix/store</code> is a special directory representing the <a href='store' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. The paths inside <code class='py-0.5 px-0.5 bg-gray-100'>/nix/store</code> are known as <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>. Nix fundamentally is, in large part, about manipulating these store paths in a <em>pure</em> and <em>reproducible</em> fashion; <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> are “recipes” that does this manipulation, and they too live in the <a href='store' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>.
+      <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>/nix/store</code> is a special directory representing the <a href='store' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. The paths inside <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>/nix/store</code> are known as <a href='store-path' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>. Nix fundamentally is, in large part, about manipulating these store paths in a <em>pure</em> and <em>reproducible</em> fashion; <a href='drv' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> are “recipes” that does this manipulation, and they too live in the <a href='store' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>.
     </p>
   
   </div>
 </div>
-    <h2 id='shell' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='shell' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Shell environment
   
@@ -618,14 +533,14 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     </h2>
   
     <p class='mb-3'>
-      One of the powers of Nix is that it enables us to create <em>isolated</em> <a href='shell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>shell</a> environments containing just the packages we need. For eg., here’s how we create a transient shell containing the “cowsay” and “<a href='https://en.wikipedia.org/wiki/Fortune_(Unix)' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>fortune</a>” packages:
+      One of the powers of Nix is that it enables us to create <em>isolated</em> <a href='shell' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>shell</a> environments containing just the packages we need. For eg., here’s how we create a transient shell containing the “cowsay” and “<a href='https://en.wikipedia.org/wiki/Fortune_(Unix)' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>fortune</a>” packages:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
 ❯</code></pre></div>
     <p class='mb-3'>
-      From here, you can verify that both the programs are indeed in <code class='py-0.5 px-0.5 bg-gray-100'>$PATH</code> as indicated by the “bin” directory in their respective <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>store paths</a>:
+      From here, you can verify that both the programs are indeed in <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>$PATH</code> as indicated by the “bin” directory in their respective <a href='store-path' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>store paths</a>:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
 ❯ which cowsay
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0/bin/cowsay
 ❯ which fortune
@@ -639,29 +554,31 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
-                ||     ||</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
+                ||     ||</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #08BFBC20'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #08BFBC'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-</path>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        One-off command
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      Instead of creating a shell environment, you can also run commands one-off using the <code class='py-0.5 px-0.5 bg-gray-100'>-c</code> option. The above session can equally be achieved using:
+      Instead of creating a shell environment, you can also run commands one-off using the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>-c</code> option. The above session can equally be achieved using:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
   </div>
 </div>
-    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Installing a package
   
@@ -674,54 +591,56 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
 
 
     </h2>
-  <div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #EC750020'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #EC7500'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <path d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'></path>
-<line x1='12' y1='9' x2='12' y2='13'></line>
-<line x1='12' y1='17' x2='12.01' y2='17'></line>
+        
+    <path d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'></path>
+    <line x1='12' y1='9' x2='12' y2='13'></line>
+    <line x1='12' y1='17' x2='12.01' y2='17'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        Declarative package management
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      This section explains how to install a package <em>imperatively</em>. For a better way of installing packages (<em>declaratively</em>), see <a href='hm-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>.
+      This section explains how to install a package <em>imperatively</em>. For a better way of installing packages (<em>declaratively</em>), see <a href='hm-tutorial' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>.
     </p>
   
   </div>
 </div>
     <p class='mb-3'>
-      Neither <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code> nor <code class='py-0.5 px-0.5 bg-gray-100'>nix shell</code> will mutate your system environment, aside from changing the <a href='store' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. If you would like to <em>permanently</em> install a package somewhere under your $HOME directory, you can do so using <code class='py-0.5 px-0.5 bg-gray-100'>nix profile install</code>:
+      Neither <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix run</code> nor <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix shell</code> will mutate your system environment, aside from changing the <a href='store' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. If you would like to <em>permanently</em> install a package somewhere under your $HOME directory, you can do so using <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix profile install</code>:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix profile install nixpkgs#cowsay nixpkgs#fortune
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix profile install nixpkgs#cowsay nixpkgs#fortune
 $ which cowsay
 /home/user/.nix-profile/bin/cowsay
 $ which fortune
 /home/user/.nix-profile/bin/fortune
 $ </code></pre></div>
     <p class='mb-3'>
-      <code class='py-0.5 px-0.5 bg-gray-100'>nix profile install</code> installs symlinks under the <code class='py-0.5 px-0.5 bg-gray-100'>$HOME/.nix-profile</code> directory, which the Nix <a href='install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installer</a> already added to your <code class='py-0.5 px-0.5 bg-gray-100'>$PATH</code>. For details, see the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-profile-install' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix manual</a>.
+      <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix profile install</code> installs symlinks under the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>$HOME/.nix-profile</code> directory, which the Nix <a href='install' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>installer</a> already added to your <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>$PATH</code>. For details, see the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-profile-install' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix manual</a>.
     </p>
   
     <p class='mb-3'>
-      These symlinks, ultimately, point to the package <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a> outputs under the <a href='store' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>, viz.:
+      These symlinks, ultimately, point to the package <a href='store-path' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a> outputs under the <a href='store' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix Store</a>, viz.:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ readlink $(which fortune)
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ readlink $(which fortune)
 /nix/store/mfw77f008xy0zb7dqdyggw0xj2gd4jjv-fortune-mod-3.20.0/bin/fortune</code></pre></div>
     <p class='mb-3'>
-      Note that this is the same path used by both <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> and <code class='py-0.5 px-0.5 bg-gray-100'>nix shell</code>. Each specific package is uniquely identified by their <a href='store-path' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>; changing any part of its <a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>build recipe</a> (including dependencies), changes that path. Hence, nix is reproducible.
+      Note that this is the same path used by both <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code> and <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix shell</code>. Each specific package is uniquely identified by their <a href='store-path' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>; changing any part of its <a href='drv' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>build recipe</a> (including dependencies), changes that path. Hence, nix is reproducible.
     </p>
   
-    <h2 id='nixpkgs-pin' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='nixpkgs-pin' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
-  How is <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> fetched
+  How is <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> fetched
   
   <a href='nix-first#nixpkgs-pin' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -734,77 +653,81 @@ $ </code></pre></div>
     </h2>
   
     <p class='mb-3'>
-      So far we have been retrieving and installing software from the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake, which is defined in the GitHub repository: <a href='https://github.com/nixos/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/nixos/nixpkgs</a>. This information comes from the <a href='registry' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake registry</a>:
+      So far we have been retrieving and installing software from the <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake, which is defined in the GitHub repository: <a href='https://github.com/nixos/nixpkgs' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/nixos/nixpkgs</a>. This information comes from the <a href='registry' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake registry</a>:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix registry list | grep nixpkgs
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix registry list | grep nixpkgs
 global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <p class='mb-3'>
-      A registry is simply a mapping of flake alias to <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake URL</a>.
+      A registry is simply a mapping of flake alias to <a href='flake-url' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Flake URL</a>.
     </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #08BFBC20'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #08BFBC'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-</path>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        Adding to registry
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      You can add your own flakes to this <a href='registry' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>registry</a> as well. See <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-add' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the manual</a>
+      You can add your own flakes to this <a href='registry' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>registry</a> as well. See <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-add' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the manual</a>
     </p>
   
   </div>
 </div>
     <p class='mb-3'>
-      We can find the current Git revision of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used by our <a href='registry' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>registry</a> as follows:
+      We can find the current Git revision of <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used by our <a href='registry' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>registry</a> as follows:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>❯ nix flake metadata nixpkgs --json | nix run nixpkgs#jq -- -r .locked.rev
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>❯ nix flake metadata nixpkgs --json | nix run nixpkgs#jq -- -r .locked.rev
 317484b1ead87b9c1b8ac5261a8d2dd748a0492d</code></pre></div>
     <p class='mb-3'>
       From here, you can see the revision <a href='https://github.com/NixOS/nixpkgs/commit/317484b1ead87b9c1b8ac5261a8d2dd748a0492d' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>on GitHub</a>.
     </p>
   
     <p class='mb-3'>
-      The discerning readers may have noticed that the registry specifies <em>only</em> the branch (<code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!
+      The discerning readers may have noticed that the registry specifies <em>only</em> the branch (<code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!
     </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #08BFBC20'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #08BFBC'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-</path>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        Pinning nixpkgs
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      To avoid the aforementioned automatic update, you can manually <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>pin</a> the registry entry for <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>. In <a href='hm-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, we will see <a href='https://github.com/juspay/nix-dev-home/commit/99f304a6512f59194932b2010af5e270efdfebe8' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>an automatic and declarative way</a> of doing this (through flake inputs).
+      To avoid the aforementioned automatic update, you can manually <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>pin</a> the registry entry for <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>. In <a href='hm-tutorial' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager</a>, we will see <a href='https://github.com/juspay/nix-dev-home/commit/99f304a6512f59194932b2010af5e270efdfebe8' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>an automatic and declarative way</a> of doing this (through flake inputs).
     </p>
   
   </div>
 </div>
     <p class='mb-3'>
-      You are not required to use a registry. Without a registry, getting a package off nixpkgs would instead involve its fully qualified <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>URL</a>:
+      You are not required to use a registry. Without a registry, getting a package off nixpkgs would instead involve its fully qualified <a href='flake-url' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>URL</a>:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
 ...</code></pre></div>
-    <h2 id='external-software' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='external-software' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
-  Using software outside of <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>
+  Using software outside of <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>
   
   <a href='nix-first#external-software' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -817,16 +740,16 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </h2>
   
     <p class='mb-3'>
-      <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from <em>any</em> <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a> by specifying its <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake URL</a> to the <code class='py-0.5 px-0.5 bg-gray-100'>nix ?</code> commands. For example, <a href='https://emanote.srid.ca/start/install' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which is used to build this very website) can be executed or installed directly off its flake <a href='https://github.com/srid/emanote' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>on GitHub</a>:
+      <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from <em>any</em> <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a> by specifying its <a href='flake-url' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>flake URL</a> to the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix ?</code> commands. For example, <a href='https://emanote.srid.ca/start/install' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which is used to build this very website) can be executed or installed directly off its flake <a href='https://github.com/srid/emanote' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>on GitHub</a>:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix run github:srid/emanote
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix run github:srid/emanote
 ...</code></pre></div>
     <p class='mb-3'>
       You can of course also install it to your home directory:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='text language-text'>$ nix profile install github:srid/emanote
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix profile install github:srid/emanote
 ...</code></pre></div>
-    <h2 id='whats-next' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='whats-next' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   What’s next
   
@@ -843,11 +766,11 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          See <a href='nix-rapid' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> where we will go over writing simple Nix expressions and <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>.
+          See <a href='nix-rapid' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> where we will go over writing simple Nix expressions and <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>.
         </li>
       
         <li>
-          If you want to manage your system using Nix, see <a href='hm-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager Tutorial Series</a> (if you are on <a href='macos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>macOS</a> or non-NixOS Linux) or <a href='nixos-tutorial' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS Tutorial Series</a> (if you are on <a href='nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>).
+          If you want to manage your system using Nix, see <a href='hm-tutorial' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>home-manager Tutorial Series</a> (if you are on <a href='macos' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>macOS</a> or non-NixOS Linux) or <a href='nixos-tutorial' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS Tutorial Series</a> (if you are on <a href='nixos' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>).
         </li>
       
     </ul>
@@ -860,7 +783,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
             1.
           </header>
           <div class='inline-block mb-2 ml-4'>
-            Incidentally, we use the <a href='https://en.wikipedia.org/wiki/Tree_(command)' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>tree</a> command, rather than <code class='py-0.5 px-0.5 bg-gray-100'>ls</code>, to look at the directory tree, using the package from <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> of course (since it may not already be installed).
+            Incidentally, we use the <a href='https://en.wikipedia.org/wiki/Tree_(command)' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>tree</a> command, rather than <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>ls</code>, to look at the directory tree, using the package from <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> of course (since it may not already be installed).
           </div>
         </div>
       
@@ -901,7 +824,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nix-rapid'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='nix-rapid'>
             Rapid Introduction to Nix
           </a>
           
@@ -916,7 +839,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nix-tutorial'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='nix-tutorial'>
             Nix Tutorial Series
           </a>
           
@@ -938,7 +861,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nix-modules'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='nix-modules'>
             Introduction to module system
           </a>
           
@@ -953,7 +876,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='install'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='install'>
             Install Nix
           </a>
           
@@ -998,7 +921,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.24.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.27.1'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

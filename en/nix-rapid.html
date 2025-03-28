@@ -43,107 +43,64 @@
 
   
   
-  <link href='tailwind.css?instanceId=1961f919-7bf8-444a-aa46-7af3eb171b61' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=617b40e2-3d12-4f22-8aa5-05e0d1c6cd14' rel='stylesheet' type='text/css' />
 
-  <style>
-    /* Heist error element */
-    strong.error {
-      color: lightcoral;
-      font-size: 90%;
-      font-family: monospace;
-    }
+  <style data-category='error'>
+  /* Heist error element */
+  strong.error {
+    color: lightcoral;
+    font-size: 90%;
+    font-family: monospace;
+  }
+</style>
 
-    /* <kbd> styling */
-    kbd {
-      background-color: #eee;
-      border-radius: 3px;
-      border: 1px solid #b4b4b4;
-      box-shadow:
-        0 1px 1px rgba(0, 0, 0, 0.2),
-        0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
-      display: inline-block;
-      line-height: 1;
-      padding: 2px 4px;
-      white-space: nowrap;
-    }
+<style data-category='kbd'>
+  /* <kbd> styling */
+  kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.2),
+      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+    display: inline-block;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+</style>
 
-    /* Callouts */
-    div.callout {
-      background-color: #f5f5f5;
-      padding: 1em 1em 0.5em;
-      border-radius: 0.5em;
-      margin-bottom: 1em;
-    }
+<style data-category='callout'>
+  /* To prevent overemphasis of link styles in callout titles */
+  .callout .callout-title a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>
 
-    .callout[data-callout="note"] {
-      --callout-color: 8, 109, 221;
-    }
+<style data-category='toc'>
+  a.--ema-toc:not(.toc-item-active) {
+    background-color: #ffffff !important;
+  }
+</style>
 
-    .callout[data-callout="info"] {
-      --callout-color: 8, 109, 221;
-    }
+<style data-category='external-link'>
+  /* External link icon */
+  a[data-linkicon=""]::after {
+    content: ""
+  }
 
-    .callout[data-callout="tip"] {
-      --callout-color: 8, 191, 188;
-    }
+  a[data-linkicon=none]::after {
+    content: ""
+  }
 
-    .callout[data-callout="warning"] {
-      --callout-color: 236, 117, 0;
-    }
+  a[data-linkicon="external"] {
+    padding-right: 24px;
+  }
 
-    .callout[data-callout="failure"] {
-      --callout-color: 233, 49, 71;
-    }
-
-    .callout[data-callout="quote"] {
-      --callout-color: 158, 158, 158;
-    }
-
-    /* To prevent overemphasis of link styles in callout titles */
-    .callout .callout-title a {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    div.callout {
-      background-color: rgba(var(--callout-color), 0.1);
-    }
-
-    .callout .callout-title {
-      color: rgb(var(--callout-color));
-    }
-
-    div.callout-title {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5em;
-      font-variation-settings: 'wght' 600;
-    }
-
-    div.callout-title div.callout-title-inner {
-      margin-left: 0.5em;
-    }
-
-    a.--ema-toc:not(.toc-item-active) {
-      background-color: #ffffff !important;
-    }
-
-    /* External link icon */
-    a[data-linkicon=""]::after {
-      content: ""
-    }
-
-    a[data-linkicon=none]::after {
-      content: ""
-    }
-
-    a[data-linkicon="external"] {
-      padding-right: 24px;
-    }
-
-    a[data-linkicon="external"]::after {
-      margin-right: -24px;
-      content: url('data:image/svg+xml,\
+  a[data-linkicon="external"]::after {
+    margin-right: -24px;
+    content: url('data:image/svg+xml,\
       <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
         <g style="stroke:gray;stroke-width:1"> \
           <line x1="5" y1="5" x2="5" y2="14" /> \
@@ -155,10 +112,10 @@
           <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
         </g> \
       </svg>');
-    }
+  }
 
-    a[data-linkicon="external"][href^="mailto:"]::after {
-      content: url('data:image/svg+xml,\
+  a[data-linkicon="external"][href^="mailto:"]::after {
+    content: url('data:image/svg+xml,\
         <svg \
           xmlns="http://www.w3.org/2000/svg" \
           height="0.7em" \
@@ -171,55 +128,9 @@
             stroke-linejoin="round" \
             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
         </svg>');
-    }
-  </style>
-  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
-
-<style>
-  @font-face {
-    font-family: 'WorkSans';
-    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf */
-    src: url(_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf) format("truetype");
-    font-display: swap;
-  }
-
-  body {
-    font-family: 'WorkSans', sans-serif;
-    font-variation-settings: 'wght' 350;
-  }
-
-  a.mavenLinkBold {
-    font-variation-settings: 'wght' 400;
-  }
-
-  strong {
-    font-variation-settings: 'wght' 500;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  header,
-  .header-font {
-    font-family: 'WorkSans', sans-serif;
-  }
-
-  h1 {
-    font-variation-settings: 'wght' 500;
-  }
-
-  h2 {
-    font-variation-settings: 'wght' 400;
-  }
-
-  h3 {
-    font-variation-settings: 'wght' 300;
   }
 </style>
-
+  <!-- What goes in this file will appear on near the end of <head>-->
 
   
     <style>
@@ -245,7 +156,7 @@
   
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->
-<style>
+<style data-category='stork'>
   #stork-search-container {
     z-index: 1000;
     background-color: rgb(15 23 42/.8);
@@ -357,7 +268,7 @@
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+<nav id='uptree' class='flipped tree font-sans font-medium' style='transform-origin: 50%;'>
   <ul class='root'>
     <li>
       
@@ -529,19 +440,21 @@
 
 
     <p class='mb-3'>
-      The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> the language, including <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>, as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
+      The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> the language, including <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>flakes</a>, as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
     </p>
-  <img class='inline mb-3' src='nix-tutorial/nix-rapid.png' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nix-tutorial/nix-rapid.png' style='width: inherit;' /><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
+  <img class='inline mb-3' src='nix-tutorial/nix-rapid.png' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nix-tutorial/nix-rapid.png' style='width: inherit;' /><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #08BFBC20'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #08BFBC'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-</path>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        Purely functional
     </div>
   </div>
@@ -561,7 +474,7 @@
   
   </div>
 </div>
-    <h2 id='pre' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='pre' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Pre-requisites
   
@@ -578,16 +491,16 @@
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <strong>Install Nix</strong>: Nix can be <a href='install' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='nixos' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
+          <strong>Install Nix</strong>: Nix can be <a href='install' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='nixos' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
         </li>
       
         <li>
-          <strong>Play with Nix</strong>: Before writing Nix expressions, it is useful to get a feel for working with the <code class='py-0.5 px-0.5 bg-gray-100'>nix</code> command. See <a href='nix-first' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>First steps with Nix</a>
+          <strong>Play with Nix</strong>: Before writing Nix expressions, it is useful to get a feel for working with the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix</code> command. See <a href='nix-first' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>First steps with Nix</a>
         </li>
       
     </ul>
   
-    <h2 id='attrset' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='attrset' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Attrset
   
@@ -600,18 +513,20 @@
 
 
     </h2>
-  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <circle cx='12' cy='12' r='10'></circle>
-<line x1='12' y1='16' x2='12' y2='12'></line>
-<line x1='12' y1='8' x2='12.01' y2='8'></line>
+        
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='12' y1='16' x2='12' y2='12'></line>
+    <line x1='12' y1='8' x2='12.01' y2='8'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        To learn more
     </div>
   </div>
@@ -632,18 +547,18 @@
   </div>
 </div>
     <p class='mb-3'>
-      The <a href='https://nixos.org/manual/nix/stable/language/index.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix programming language</a> provides a lot of general constructs. But at its most basic use, it makes heavy use of <em>nested hash maps</em> otherwise called an “attrset”. They are equivalent to <a href='https://hackage.haskell.org/package/containers-0.6.7/docs/Data-Map-Strict.html#t:Map' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>Map Text a</code></a> in Haskell. The following is a simple example of an attrset:
+      The <a href='https://nixos.org/manual/nix/stable/language/index.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix programming language</a> provides a lot of general constructs. But at its most basic use, it makes heavy use of <em>nested hash maps</em> otherwise called an “attrset”. They are equivalent to <a href='https://hackage.haskell.org/package/containers-0.6.7/docs/Data-Map-Strict.html#t:Map' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>Map Text a</code></a> in Haskell. The following is a simple example of an attrset:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   foo = {
     bar = 1;
   };
 }</code></pre></div>
     <p class='mb-3'>
-      We have an outer attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>, whose value is another attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100'>bar</code> and a value of <code class='py-0.5 px-0.5 bg-gray-100'>1</code>.
+      We have an outer attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>foo</code>, whose value is another attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>bar</code> and a value of <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>1</code>.
     </p>
   
-    <h2 id='repl' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='repl' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   repl
   
@@ -658,16 +573,16 @@
     </h2>
   
     <p class='mb-3'>
-      Nix expressions can be readily evaluated in the <a href='repl' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code class='py-0.5 px-0.5 bg-gray-100'>nix repl</code>.
+      Nix expressions can be readily evaluated in the <a href='repl' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix repl</code>.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix repl
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix repl
 Welcome to Nix 2.12.0. Type :? for help.
 
 nix-repl&gt;</code></pre></div>
     <p class='mb-3'>
       You can then evaluate expressions:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>nix-repl&gt; 2+3
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>nix-repl&gt; 2+3
 5
 
 nix-repl&gt; x = { foo = { bar = 1; }; }
@@ -682,9 +597,9 @@ nix-repl&gt; x.foo.bar
 1
 
 nix-repl&gt;</code></pre></div>
-    <h2 id='flakes' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='flakes' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
-  <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>
+  <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>
   
   <a href='nix-rapid#flakes' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -695,18 +610,20 @@ nix-repl&gt;</code></pre></div>
 
 
     </h2>
-  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <circle cx='12' cy='12' r='10'></circle>
-<line x1='12' y1='16' x2='12' y2='12'></line>
-<line x1='12' y1='8' x2='12.01' y2='8'></line>
+        
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='12' y1='16' x2='12' y2='12'></line>
+    <line x1='12' y1='8' x2='12.01' y2='8'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        To learn more
     </div>
   </div>
@@ -723,9 +640,9 @@ nix-repl&gt;</code></pre></div>
   </div>
 </div>
     <p class='mb-3'>
-      A Nix <a href='flakes' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code> and <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
+      A Nix <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>inputs</code> and <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   inputs = { };
 
   outputs = inputs: {
@@ -733,22 +650,22 @@ nix-repl&gt;</code></pre></div>
   };
 }</code></pre></div>
     <p class='mb-3'>
-      This flake has zero <code class='py-0.5 px-0.5 bg-gray-100'>inputs</code>. <code class='py-0.5 px-0.5 bg-gray-100'>outputs</code> is a <a href='https://nixos.org/manual/nix/stable/language/constructs.html#functions' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>function</a> that takes the (realised) inputs as an argument and returns the final output attrset. This output attrset, in our example, has a single key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code> with a value of <code class='py-0.5 px-0.5 bg-gray-100'>42</code>.
+      This flake has zero <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>inputs</code>. <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>outputs</code> is a <a href='https://nixos.org/manual/nix/stable/language/constructs.html#functions' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>function</a> that takes the (realised) inputs as an argument and returns the final output attrset. This output attrset, in our example, has a single key <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>foo</code> with a value of <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>42</code>.
     </p>
   
     <p class='mb-3'>
-      We can use the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix flake show</code></a> command to see the output structure of a flake:
+      We can use the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix flake show</code></a> command to see the output structure of a flake:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix flake show
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix flake show
 path:/Users/srid/code/nixplay?lastModified=1675373998&amp;narHash=sha256-ifNiFGU1VV784kVcssn2rXIil%2feHfMLhPfmvaELefwA=
 └───foo: unknown
 $</code></pre></div>
     <p class='mb-3'>
-      We can use <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix eval</code></a> to evaluate any output. For example,
+      We can use <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix eval</code></a> to evaluate any output. For example,
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix eval .#foo
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix eval .#foo
 42</code></pre></div>
-    <h3 id='graph' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='graph' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Graph
   
@@ -763,10 +680,10 @@ $</code></pre></div>
     </h3>
   
     <p class='mb-3'>
-      A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger <a href='https://en.wikipedia.org/wiki/Directed_graph' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>graph</a>, with inputs being the incoming arrows and outputs being the outgoing arrows.
+      A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger <a href='https://en.wikipedia.org/wiki/Directed_graph' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>graph</a>, with inputs being the incoming arrows and outputs being the outgoing arrows.
     </p>
   
-    <h3 id='inputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='inputs' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Inputs
   
@@ -779,18 +696,20 @@ $</code></pre></div>
 
 
     </h3>
-  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <circle cx='12' cy='12' r='10'></circle>
-<line x1='12' y1='16' x2='12' y2='12'></line>
-<line x1='12' y1='8' x2='12.01' y2='8'></line>
+        
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='12' y1='16' x2='12' y2='12'></line>
+    <line x1='12' y1='8' x2='12.01' y2='8'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        To learn more
     </div>
   </div>
@@ -799,7 +718,7 @@ $</code></pre></div>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>URL-like syntax</a> used by the <code class='py-0.5 px-0.5 bg-gray-100'>url</code> attribute
+          <a href='flake-url' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>URL-like syntax</a> used by the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>url</code> attribute
         </li>
       
     </ul>
@@ -807,9 +726,9 @@ $</code></pre></div>
   </div>
 </div>
     <p class='mb-3'>
-      Let’s do something more interesting with our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> by adding the <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> input:
+      Let’s do something more interesting with our <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flake.nix</code> by adding the <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> input:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
@@ -818,47 +737,51 @@ $</code></pre></div>
     # Note: If you are macOS, substitute `x86_64-linux` with `aarch64-darwin`
     foo = inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay;
   };
-}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10' role='note'>
+}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <line x1='18' y1='2' x2='22' y2='6'></line>
-<path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+        
+    <line x1='18' y1='2' x2='22' y2='6'></line>
+    <path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
-       About <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code>
+    <div class='ml-2'>
+       About <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nixpkgs-unstable</code>
     </div>
   </div>
   <div class='callout-content'>
     
     <p class='mb-3'>
-      The <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-unstable</code> branch is frequently updated, hence its name, but this doesn’t imply instability or unsuitability for use.
+      The <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nixpkgs-unstable</code> branch is frequently updated, hence its name, but this doesn’t imply instability or unsuitability for use.
     </p>
   
   </div>
 </div>
     <p class='mb-3'>
-      The <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake has an output called <code class='py-0.5 px-0.5 bg-gray-100'>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>.
+      The <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake has an output called <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>foo</code>.
     </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #08BFBC20'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #08BFBC'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-</path>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
-       You can use <a href='repl' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>`nix repl`</a> to explore the outputs of any flake, using TAB completion:
+    <div class='ml-2'>
+       You can use <a href='repl' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>`nix repl`</a> to explore the outputs of any flake, using TAB completion:
     </div>
   </div>
   <div class='callout-content'>
-    <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix repl --extra-experimental-features 'flakes repl-flake' github:nixos/nixpkgs/nixpkgs-unstable
+    <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix repl --extra-experimental-features 'flakes repl-flake' github:nixos/nixpkgs/nixpkgs-unstable
 Welcome to Nix 2.12.0. Type :? for help.
 
 Loading installable 'github:nixos/nixpkgs/nixpkgs-unstable#'...
@@ -869,7 +792,7 @@ nix-repl&gt; legacyPackages.aarch64-darwin.cowsay
 nix-repl&gt;</code></pre></div>
   </div>
 </div>
-    <h3 id='predefined-outputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='predefined-outputs' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Predefined outputs
   
@@ -886,12 +809,12 @@ nix-repl&gt;</code></pre></div>
     <p class='mb-3'>
       Nix commands treat <a href='https://nixos.wiki/wiki/Flakes#Output_schema' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>certain outputs as special</a>. These are:
     </p>
-  <table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Output</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Nix command</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Description</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>packages</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix build</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='drv' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> output</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>devShells</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='dev' class='text-green-600 mavenLinkBold hover:underline'>Development</a> shells</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>apps</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix run</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Runnable applications</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>checks</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100'>nix flake check</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Tests and checks</td></tr></tbody></table>
+  <table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Output</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Nix command</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Description</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='drv' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Derivation</a> output</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>devShells</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix develop</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='dev' class='text-green-600 font-semibold hover:underline'>Development</a> shells</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>apps</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix run</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Runnable applications</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>checks</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix flake check</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Tests and checks</td></tr></tbody></table>
     <p class='mb-3'>
       All of these predefined outputs are further indexed by the “system” value.
     </p>
   
-    <h4 id='packages' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+    <h4 id='packages' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
       
   Packages
   
@@ -904,18 +827,20 @@ nix-repl&gt;</code></pre></div>
 
 
     </h4>
-  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <circle cx='12' cy='12' r='10'></circle>
-<line x1='12' y1='16' x2='12' y2='12'></line>
-<line x1='12' y1='8' x2='12.01' y2='8'></line>
+        
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='12' y1='16' x2='12' y2='12'></line>
+    <line x1='12' y1='8' x2='12.01' y2='8'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        To learn more
     </div>
   </div>
@@ -924,7 +849,7 @@ nix-repl&gt;</code></pre></div>
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-using-stdenv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>pkgs.stdenv.mkDerivation</code></a> can be used to build a custom package from scratch
+          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-using-stdenv' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>pkgs.stdenv.mkDerivation</code></a> can be used to build a custom package from scratch
         </li>
       
     </ul>
@@ -932,9 +857,9 @@ nix-repl&gt;</code></pre></div>
   </div>
 </div>
     <p class='mb-3'>
-      <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> is the most often used output. Let us extend our previous <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> to use it:
+      <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code> is the most often used output. Let us extend our previous <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flake.nix</code> to use it:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
@@ -947,26 +872,26 @@ nix-repl&gt;</code></pre></div>
   };
 }</code></pre></div>
     <p class='mb-3'>
-      Here, we are producing an output named <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> that is an attrset of systems (currently, only <code class='py-0.5 px-0.5 bg-gray-100'>x86_64-linux</code>) to attrsets of packages. We are definining exactly one package, <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code>, for the <code class='py-0.5 px-0.5 bg-gray-100'>x86_64-linux</code> system.
+      Here, we are producing an output named <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code> that is an attrset of systems (currently, only <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>x86_64-linux</code>) to attrsets of packages. We are definining exactly one package, <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>cowsay</code>, for the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>x86_64-linux</code> system.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix flake show
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix flake show
 path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09fX3hutGa8+dagOCSQKVYAsHI6BsnCSEQ7PG8=
 ├───foo: unknown
 └───packages
     └───aarch64-darwin
         └───cowsay: package 'cowsay-3.7.0'</code></pre></div>
     <p class='mb-3'>
-      Notice that <code class='py-0.5 px-0.5 bg-gray-100'>nix flake show</code> recognizes the <em>type</em> of <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>. With <code class='py-0.5 px-0.5 bg-gray-100'>foo</code>, it couldn’t (hence type is <code class='py-0.5 px-0.5 bg-gray-100'>unknown</code>) but with <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>, it can (hence type is “package”).
+      Notice that <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix flake show</code> recognizes the <em>type</em> of <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code>. With <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>foo</code>, it couldn’t (hence type is <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>unknown</code>) but with <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code>, it can (hence type is “package”).
     </p>
   
     <p class='mb-3'>
-      The <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> output is recognized by <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code>.
+      The <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code> output is recognized by <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code>.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix build .#cowsay</code></pre></div>
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix build .#cowsay</code></pre></div>
     <p class='mb-3'>
-      The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix build</code></a> command takes as argument a value of the form <code class='py-0.5 px-0.5 bg-gray-100'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-0.5 px-0.5 bg-gray-100'>.</code> (which is a <a href='flake-url' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>flake URL</a>) refers to the current flake. Thus, <code class='py-0.5 px-0.5 bg-gray-100'>nix build .#cowsay</code> will build the <code class='py-0.5 px-0.5 bg-gray-100'>cowsay</code> package from the current flake under the current system. <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> produces a <code class='py-0.5 px-0.5 bg-gray-100'>./result</code> symlink that points to the Nix store path containing the package:
+      The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code></a> command takes as argument a value of the form <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>.</code> (which is a <a href='flake-url' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>flake URL</a>) refers to the current flake. Thus, <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build .#cowsay</code> will build the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>cowsay</code> package from the current flake under the current system. <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code> produces a <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>./result</code> symlink that points to the Nix store path containing the package:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ ./result/bin/cowsay hello
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ ./result/bin/cowsay hello
  _______
 &lt; hello &gt;
  -------
@@ -976,10 +901,10 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
                 ||----w |
                 ||     ||</code></pre></div>
     <p class='mb-3'>
-      If you run <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code> without arguments, it will default to <code class='py-0.5 px-0.5 bg-gray-100'>.#default</code>.
+      If you run <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code> without arguments, it will default to <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>.#default</code>.
     </p>
   
-    <h4 id='apps' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+    <h4 id='apps' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
       
   Apps
   
@@ -996,7 +921,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <p class='mb-3'>
       A flake app is similar to a flake package except it always refers to a runnable program. You can expose the cowsay executable from the cowsay package as the default flake app:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
@@ -1011,10 +936,10 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
   };
 }</code></pre></div>
     <p class='mb-3'>
-      Now, you can run <code class='py-0.5 px-0.5 bg-gray-100'>nix run</code> to run the cowsay app, which is equivalent to doing <code class='py-0.5 px-0.5 bg-gray-100'>nix build .#cowsay && ./result/bin/cowsay</code> in the previous flake.
+      Now, you can run <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix run</code> to run the cowsay app, which is equivalent to doing <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build .#cowsay && ./result/bin/cowsay</code> in the previous flake.
     </p>
   
-    <h4 id='demo' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+    <h4 id='demo' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
       
   Interlude: demo
   
@@ -1029,7 +954,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     </h4>
   <div xmlhtmlRaw><script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
 </div>
-    <h4 id='devshells' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
+    <h4 id='devshells' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
       
   DevShells
   
@@ -1042,18 +967,20 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
 
 
     </h4>
-  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10' role='note'>
+  <div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-10 bg-[#f5f5f5] p-4 pt-4 pb-2 rounded-lg mb-4' role='note' style='background-color: #086DD320'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
-  <div class='callout-title'>
+  <div class='callout-title flex items-center mb-2 font-bold' style='color: #086DD3'>
     <div class='callout-icon'>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        <circle cx='12' cy='12' r='10'></circle>
-<line x1='12' y1='16' x2='12' y2='12'></line>
-<line x1='12' y1='8' x2='12.01' y2='8'></line>
+        
+    <circle cx='12' cy='12' r='10'></circle>
+    <line x1='12' y1='16' x2='12' y2='12'></line>
+    <line x1='12' y1='8' x2='12.01' y2='8'></line>
+  
       </svg>
     </div>
-    <div class='callout-title-inner'>
+    <div class='ml-2'>
        To learn more
     </div>
   </div>
@@ -1074,13 +1001,13 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
   </div>
 </div>
     <p class='mb-3'>
-      Like <code class='py-0.5 px-0.5 bg-gray-100'>packages</code>, another predefined flake output is <code class='py-0.5 px-0.5 bg-gray-100'>devShells</code> - which is used to provide a <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>development</a> shell aka. a nix <a href='shell' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>shell</a> or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>mkShell</code></a> that can be used to create devshells.
+      Like <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code>, another predefined flake output is <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>devShells</code> - which is used to provide a <a href='dev' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>development</a> shell aka. a nix <a href='shell' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>shell</a> or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>mkShell</code></a> that can be used to create devshells.
     </p>
   
     <p class='mb-3'>
-      As an example, we will update our <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code> to provide a devshell that contains the <a href='https://github.com/stedolan/jq' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>jq</a> tool.
+      As an example, we will update our <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flake.nix</code> to provide a devshell that contains the <a href='https://github.com/stedolan/jq' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>jq</a> tool.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   inputs = {
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -1103,28 +1030,28 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
   };
 }</code></pre></div>
     <p class='mb-3'>
-      <code class='py-0.5 px-0.5 bg-gray-100'>nix flake show</code> will recognize this output as a “development environmenet”:
+      <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix flake show</code> will recognize this output as a “development environmenet”:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix flake show
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix flake show
 path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD1wbjc+vQ+IUTMXWv%2fm%2f7qb91Hk3ip5MNefeU=
 ├───devShells
 │   └───aarch64-darwin
 │       └───default: development environment 'nix-shell'
 └───foo: unknown</code></pre></div>
     <p class='mb-3'>
-      Just as <code class='py-0.5 px-0.5 bg-gray-100'>packages</code> can be built using <code class='py-0.5 px-0.5 bg-gray-100'>nix build</code>, you can enter the devshell using <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>nix develop</code></a>:
+      Just as <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>packages</code> can be built using <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code>, you can enter the devshell using <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix develop</code></a>:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='sh language-sh'>$ nix develop
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix develop
 ❯ which jq
 /nix/store/33n0kx526i5dnv2gf39qv1p3a046p9yd-jq-1.6-bin/bin/jq
 ❯ echo '{"foo": 42}' | jq .foo
 42
 ❯ </code></pre></div>
     <p class='mb-3'>
-      Typing <code class='py-0.5 px-0.5 bg-gray-100'>Ctrl+D</code> or <code class='py-0.5 px-0.5 bg-gray-100'>exit</code> will exit the devshell.
+      Typing <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>Ctrl+D</code> or <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>exit</code> will exit the devshell.
     </p>
   
-    <h2 id='conclusion' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='conclusion' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Conclusion
   
@@ -1142,7 +1069,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
       This mini tutorial provided a rapid introduction to Nix flakes, enabling you to get started with writing simple flake for your projects. Consult the links above for more information. There is a lot more to Nix than the concepts presented here! You can also read <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix</a> for a highlevel introduction to all things Nix and flakes.
     </p>
   
-    <h2 id='see-also' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='see-also' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   See also
   
@@ -1203,7 +1130,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nixify-haskell-nixpkgs'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='nixify-haskell-nixpkgs'>
             Nixifying a Haskell project using nixpkgs
           </a>
           
@@ -1218,7 +1145,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nix-tutorial'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='nix-tutorial'>
             Nix Tutorial Series
           </a>
           
@@ -1240,7 +1167,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='nix-first'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='nix-first'>
             First steps with Nix
           </a>
           
@@ -1259,7 +1186,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
         </li>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='configuration-as-flake'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='configuration-as-flake'>
             Convert <code>configuration.nix</code> to be a flake
           </a>
           
@@ -1304,7 +1231,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.24.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.27.1'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

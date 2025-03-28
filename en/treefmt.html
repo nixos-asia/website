@@ -43,107 +43,64 @@
 
   
   
-  <link href='tailwind.css?instanceId=1961f919-7bf8-444a-aa46-7af3eb171b61' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=617b40e2-3d12-4f22-8aa5-05e0d1c6cd14' rel='stylesheet' type='text/css' />
 
-  <style>
-    /* Heist error element */
-    strong.error {
-      color: lightcoral;
-      font-size: 90%;
-      font-family: monospace;
-    }
+  <style data-category='error'>
+  /* Heist error element */
+  strong.error {
+    color: lightcoral;
+    font-size: 90%;
+    font-family: monospace;
+  }
+</style>
 
-    /* <kbd> styling */
-    kbd {
-      background-color: #eee;
-      border-radius: 3px;
-      border: 1px solid #b4b4b4;
-      box-shadow:
-        0 1px 1px rgba(0, 0, 0, 0.2),
-        0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
-      display: inline-block;
-      line-height: 1;
-      padding: 2px 4px;
-      white-space: nowrap;
-    }
+<style data-category='kbd'>
+  /* <kbd> styling */
+  kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.2),
+      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+    display: inline-block;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+</style>
 
-    /* Callouts */
-    div.callout {
-      background-color: #f5f5f5;
-      padding: 1em 1em 0.5em;
-      border-radius: 0.5em;
-      margin-bottom: 1em;
-    }
+<style data-category='callout'>
+  /* To prevent overemphasis of link styles in callout titles */
+  .callout .callout-title a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>
 
-    .callout[data-callout="note"] {
-      --callout-color: 8, 109, 221;
-    }
+<style data-category='toc'>
+  a.--ema-toc:not(.toc-item-active) {
+    background-color: #ffffff !important;
+  }
+</style>
 
-    .callout[data-callout="info"] {
-      --callout-color: 8, 109, 221;
-    }
+<style data-category='external-link'>
+  /* External link icon */
+  a[data-linkicon=""]::after {
+    content: ""
+  }
 
-    .callout[data-callout="tip"] {
-      --callout-color: 8, 191, 188;
-    }
+  a[data-linkicon=none]::after {
+    content: ""
+  }
 
-    .callout[data-callout="warning"] {
-      --callout-color: 236, 117, 0;
-    }
+  a[data-linkicon="external"] {
+    padding-right: 24px;
+  }
 
-    .callout[data-callout="failure"] {
-      --callout-color: 233, 49, 71;
-    }
-
-    .callout[data-callout="quote"] {
-      --callout-color: 158, 158, 158;
-    }
-
-    /* To prevent overemphasis of link styles in callout titles */
-    .callout .callout-title a {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    div.callout {
-      background-color: rgba(var(--callout-color), 0.1);
-    }
-
-    .callout .callout-title {
-      color: rgb(var(--callout-color));
-    }
-
-    div.callout-title {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5em;
-      font-variation-settings: 'wght' 600;
-    }
-
-    div.callout-title div.callout-title-inner {
-      margin-left: 0.5em;
-    }
-
-    a.--ema-toc:not(.toc-item-active) {
-      background-color: #ffffff !important;
-    }
-
-    /* External link icon */
-    a[data-linkicon=""]::after {
-      content: ""
-    }
-
-    a[data-linkicon=none]::after {
-      content: ""
-    }
-
-    a[data-linkicon="external"] {
-      padding-right: 24px;
-    }
-
-    a[data-linkicon="external"]::after {
-      margin-right: -24px;
-      content: url('data:image/svg+xml,\
+  a[data-linkicon="external"]::after {
+    margin-right: -24px;
+    content: url('data:image/svg+xml,\
       <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
         <g style="stroke:gray;stroke-width:1"> \
           <line x1="5" y1="5" x2="5" y2="14" /> \
@@ -155,10 +112,10 @@
           <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
         </g> \
       </svg>');
-    }
+  }
 
-    a[data-linkicon="external"][href^="mailto:"]::after {
-      content: url('data:image/svg+xml,\
+  a[data-linkicon="external"][href^="mailto:"]::after {
+    content: url('data:image/svg+xml,\
         <svg \
           xmlns="http://www.w3.org/2000/svg" \
           height="0.7em" \
@@ -171,55 +128,9 @@
             stroke-linejoin="round" \
             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
         </svg>');
-    }
-  </style>
-  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
-
-<style>
-  @font-face {
-    font-family: 'WorkSans';
-    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf */
-    src: url(_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf) format("truetype");
-    font-display: swap;
-  }
-
-  body {
-    font-family: 'WorkSans', sans-serif;
-    font-variation-settings: 'wght' 350;
-  }
-
-  a.mavenLinkBold {
-    font-variation-settings: 'wght' 400;
-  }
-
-  strong {
-    font-variation-settings: 'wght' 500;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  header,
-  .header-font {
-    font-family: 'WorkSans', sans-serif;
-  }
-
-  h1 {
-    font-variation-settings: 'wght' 500;
-  }
-
-  h2 {
-    font-variation-settings: 'wght' 400;
-  }
-
-  h3 {
-    font-variation-settings: 'wght' 300;
   }
 </style>
-
+  <!-- What goes in this file will appear on near the end of <head>-->
 
   
     <style>
@@ -245,7 +156,7 @@
   
   <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
 <!-- Custom Stork-search styling for Emanote -->
-<style>
+<style data-category='stork'>
   #stork-search-container {
     z-index: 1000;
     background-color: rgb(15 23 42/.8);
@@ -357,7 +268,7 @@
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+<nav id='uptree' class='flipped tree font-sans font-medium' style='transform-origin: 50%;'>
   <ul class='root'>
     <li>
       
@@ -555,10 +466,10 @@
 
 
     <p class='mb-3'>
-      <a href='https://github.com/numtide/treefmt' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt</a> provides an interface to run multiple <a href='https://en.wikipedia.org/wiki/Prettyprint' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>code formatters</a> at once, so you don’t have to run them manually for each file type in your <a href='dev' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>development</a> project.
+      <a href='https://github.com/numtide/treefmt' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt</a> provides an interface to run multiple <a href='https://en.wikipedia.org/wiki/Prettyprint' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>code formatters</a> at once, so you don’t have to run them manually for each file type in your <a href='dev' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkTag'>development</a> project.
     </p>
   
-    <h2 id='writing-the-nix-to-configure-treefmt-in-your-project' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='writing-the-nix-to-configure-treefmt-in-your-project' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Writing the Nix to configure treefmt in your project
   
@@ -572,7 +483,7 @@
 
     </h2>
   
-    <h3 id='add-treefmt-and-flake-root-to-your-inputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='add-treefmt-and-flake-root-to-your-inputs' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Add treefmt and flake-root to your inputs
   
@@ -587,16 +498,16 @@
     </h3>
   
     <p class='mb-3'>
-      The <a href='https://github.com/srid/flake-root' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100'>flake-root</code></a> <a href='flake-parts' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code class='py-0.5 px-0.5 bg-gray-100'>flake.nix</code>.
+      The <a href='https://github.com/srid/flake-root' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flake-root</code></a> <a href='flake-parts' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flake.nix</code>.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   # Inside `inputs`
   treefmt-nix.url = "github:numtide/treefmt-nix";
   flake-root.url = "github:srid/flake-root";
 }</code></pre></div>
-    <h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
-  Import <code class='py-0.5 px-0.5 bg-gray-100'>flakeModule</code> output of treefmt and flake-root
+  Import <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flakeModule</code> output of treefmt and flake-root
   
   <a href='treefmt#import-flakemodule-output-of-treefmt-and-flake-root' class='--ema-anchor'>
     <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -607,14 +518,14 @@
 
 
     </h3>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   # Inside outputs' `flake-parts.lib.mkFlake` 
   imports = [
     inputs.treefmt-nix.flakeModule
     inputs.flake-root.flakeModule
   ];
 }</code></pre></div>
-    <h3 id='configure-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='configure-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Configure your formatter
   
@@ -631,7 +542,7 @@
     <p class='mb-3'>
       To actually enable the individual formatters you want to configure treefmt. The example configuration below only consists of formatters required by a haskell project using nix. Refer to <a href='https://numtide.github.io/treefmt/formatters/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt-doc</a> for more formatters.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   # Inside mkFlake's `perSystem`
   treefmt.config = {
     inherit (config.flake-root) projectRootFile;
@@ -647,7 +558,7 @@
     programs.hlint.enable = false;
   };
 }</code></pre></div>
-    <h3 id='add-treefmt-to-your-devshell' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='add-treefmt-to-your-devshell' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Add treefmt to your devShell
   
@@ -662,9 +573,9 @@
     </h3>
   
     <p class='mb-3'>
-      Finally, add the resulting treefmt wrapper (<code class='py-0.5 px-0.5 bg-gray-100'>build.wrapper</code>) to your devShell. We also add the individual formatters (<code class='py-0.5 px-0.5 bg-gray-100'>build.programs</code>) to the devShell, so that they can be used directly in text editors and IDEs.
+      Finally, add the resulting treefmt wrapper (<code class='py-0.5 px-0.5 bg-gray-100 font-mono'>build.wrapper</code>) to your devShell. We also add the individual formatters (<code class='py-0.5 px-0.5 bg-gray-100 font-mono'>build.programs</code>) to the devShell, so that they can be used directly in text editors and IDEs.
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>{
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>{
   # Inside mkFlake's `perSystem`
   haskellProjects.default = {
     devShell.tools = _: {
@@ -672,7 +583,7 @@
     } // config.treefmt.build.programs;
   };
 }</code></pre></div>
-    <h3 id='flake-check' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='flake-check' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Flake check
   
@@ -687,10 +598,10 @@
     </h3>
   
     <p class='mb-3'>
-      The <code class='py-0.5 px-0.5 bg-gray-100'>treefmt-nix</code> flake module automatically adds a flake check that can be evaluated to make sure that the project is already autoformatted.
+      The <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>treefmt-nix</code> flake module automatically adds a flake check that can be evaluated to make sure that the project is already autoformatted.
     </p>
   
-    <h2 id='tips' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='tips' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Tips
   
@@ -704,7 +615,7 @@
 
     </h2>
   
-    <h3 id='exclude-folders' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='exclude-folders' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Exclude folders
   
@@ -721,9 +632,9 @@
     <p class='mb-3'>
       If there are folders where you wouldn’t want to run the formatter on, use the following:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
   settings.formatter.&lt;formatter-name&gt;.excludes = [ "./foo/*" ];</code></pre></div>
-    <h3 id='use-a-different-package-for-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='use-a-different-package-for-formatter' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Use a different package for formatter
   
@@ -738,15 +649,15 @@
     </h3>
   
     <p class='mb-3'>
-      The package shipped with the current <a href='nixpkgs' class='text-green-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> might not be the desired one, follow the snippet below to override the package (assuming <code class='py-0.5 px-0.5 bg-gray-100'>nixpkgs-21_11</code> is present in your flake’s inputs).
+      The package shipped with the current <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> might not be the desired one, follow the snippet below to override the package (assuming <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nixpkgs-21_11</code> is present in your flake’s inputs).
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
   programs.ormolu.package = nixpkgs-21_11.haskellPackages.ormolu;</code></pre></div>
     <p class='mb-3'>
       The same can be applied to other formatters.
     </p>
   
-    <h3 id='pass-additional-parameters-to-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
+    <h3 id='pass-additional-parameters-to-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
       
   Pass additional parameters to your formatter
   
@@ -761,9 +672,9 @@
     </h3>
   
     <p class='mb-3'>
-      You might want to change a certain behaviour of your formatter by overriding by passing the input to the executable. The following example shows how to pass <code class='py-0.5 px-0.5 bg-gray-100'>ghc-opt</code> to ormolu:
+      You might want to change a certain behaviour of your formatter by overriding by passing the input to the executable. The following example shows how to pass <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>ghc-opt</code> to ormolu:
     </p>
-  <div class='py-0.5 mb-3 text-sm'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
+  <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
   settings.formatter.ormolu = {
     options = [
       "--ghc-opt"
@@ -771,10 +682,10 @@
     ];
   };</code></pre></div>
     <p class='mb-3'>
-      Ormolu requires this <code class='py-0.5 px-0.5 bg-gray-100'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-0.5 px-0.5 bg-gray-100'>ormolu --manual-exts</code>.
+      Ormolu requires this <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>ormolu --manual-exts</code>.
     </p>
   
-    <h2 id='example' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='example' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Example
   
@@ -796,7 +707,7 @@
       
     </ul>
   
-    <h2 id='upcoming' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='upcoming' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
       
   Upcoming
   
@@ -813,7 +724,7 @@
     <ul class='my-3 ml-6 space-y-1 list-disc'>
       
         <li>
-          <code class='py-0.5 px-0.5 bg-gray-100'>treefmt</code> will provide a pre-commit mode to disable commit if formatting checks fail. This is tracked here: <a href='https://github.com/numtide/treefmt/issues/78' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/numtide/treefmt/issues/78</a>
+          <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>treefmt</code> will provide a pre-commit mode to disable commit if formatting checks fail. This is tracked here: <a href='https://github.com/numtide/treefmt/issues/78' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/numtide/treefmt/issues/78</a>
         </li>
       
     </ul>
@@ -853,7 +764,7 @@
     <ul class='space-y-1'>
       
         <li>
-          <a class='text-green-600 mavenLinkBold hover:bg-green-50' href='haskell-rust-ffi'>
+          <a class='text-green-600 font-semibold hover:bg-green-50' href='haskell-rust-ffi'>
             Rust FFI in Haskell
           </a>
           
@@ -898,7 +809,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.24.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.27.1'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
