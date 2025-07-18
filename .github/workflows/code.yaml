@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   code:
-    runs-on: aarch64-darwin
+    runs-on: x86_64-linux
     steps:
       - uses: actions/checkout@v4
       - run: om ci
