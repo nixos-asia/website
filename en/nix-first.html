@@ -43,9 +43,18 @@
 
   
   
-  <link href='tailwind.css?instanceId=9c454940-3b1e-43ff-bebc-ccc3c8ca8026' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=bff1281a-b20d-4cc8-947c-22e684b9a2d2' rel='stylesheet' type='text/css' />
 
-  <style data-category='error'>
+  <link rel='stylesheet' href='_emanote-static/fonts/maven-pro.css' />
+
+<style data-category='global-font'>
+  /* Maven Pro font for the entire site */
+  body {
+    font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+</style>
+
+<style data-category='error'>
   /* Heist error element */
   strong.error {
     color: lightcoral;
@@ -268,7 +277,7 @@
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree font-sans font-medium' style='transform-origin: 50%;'>
+<nav id='uptree' class='flipped tree font-medium' style='transform-origin: 50%;'>
   <ul class='root'>
     <li>
       
@@ -402,7 +411,7 @@
       You have <a href='install' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.
     </p>
   <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nix-tutorial/nix-first.png' style='width: inherit;' />
-    <h2 id='run' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='run' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Running a package
   
@@ -453,7 +462,7 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   
   </div>
 </div>
-    <h2 id='inside-package' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='inside-package' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Looking inside a package
   
@@ -518,7 +527,7 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   
   </div>
 </div>
-    <h2 id='shell' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='shell' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Shell environment
   
@@ -578,7 +587,7 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
   </div>
 </div>
-    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Installing a package
   
@@ -638,7 +647,7 @@ $ </code></pre></div>
       Note that this is the same path used by both <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code> and <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix shell</code>. Each specific package is uniquely identified by their <a href='store-path' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Store path</a>; changing any part of its <a href='drv' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>build recipe</a> (including dependencies), changes that path. Hence, nix is reproducible.
     </p>
   
-    <h2 id='nixpkgs-pin' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='nixpkgs-pin' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   How is <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> fetched
   
@@ -725,7 +734,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </p>
   <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
 ...</code></pre></div>
-    <h2 id='external-software' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='external-software' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Using software outside of <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>
   
@@ -749,7 +758,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </p>
   <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='text language-text'>$ nix profile install github:srid/emanote
 ...</code></pre></div>
-    <h2 id='whats-next' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='whats-next' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   What’s next
   
@@ -921,7 +930,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.28.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.30.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

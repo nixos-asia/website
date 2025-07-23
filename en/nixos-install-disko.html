@@ -43,9 +43,18 @@
 
   
   
-  <link href='tailwind.css?instanceId=9c454940-3b1e-43ff-bebc-ccc3c8ca8026' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=bff1281a-b20d-4cc8-947c-22e684b9a2d2' rel='stylesheet' type='text/css' />
 
-  <style data-category='error'>
+  <link rel='stylesheet' href='_emanote-static/fonts/maven-pro.css' />
+
+<style data-category='global-font'>
+  /* Maven Pro font for the entire site */
+  body {
+    font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+</style>
+
+<style data-category='error'>
   /* Heist error element */
   strong.error {
     color: lightcoral;
@@ -268,7 +277,7 @@
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree font-sans font-medium' style='transform-origin: 50%;'>
+<nav id='uptree' class='flipped tree font-medium' style='transform-origin: 50%;'>
   <ul class='root'>
     <li>
       
@@ -428,7 +437,7 @@
       In this second tutorial, we will walk you through the process of installing <a href='nixos' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>NixOS</a>. Unlike <a href='nixos-install-flake' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>the first installation tutorial</a>, we will use the command line to install NixOS manually, except for using <a href='https://github.com/nix-community/disko' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>disko</a> to specify disk partitions declaratively in <a href='nix' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Nix</a> itself. This is the first step toward our <a href='nixos-install-oneclick' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>next tutorial</a>, where we will automate the entire installation process.
     </p>
   
-    <h2 id='prepare' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='prepare' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Prepare to install NixOS
   
@@ -481,7 +490,7 @@
       Boot your computer from this USB flash drive, and expect to be greeted with a command line interface (CLI):
     </p>
   <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-installer-cli.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-installer-cli.jpeg' style='width: inherit;' /></div>
-    <h2 id='partition' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='partition' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Partition the disk
   
@@ -499,7 +508,7 @@
       Before installing NixOS, let’s define our partition layout in Nix. We will follow <a href='https://github.com/nix-community/disko/blob/master/docs/quickstart.md' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>the official disko documentation</a> and include screenshots wherever necessary. Finally, we will use flakes to manage the configuration.
     </p>
   
-    <h3 id='disk-config' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='disk-config' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Choosing the disk configuration
   
@@ -521,7 +530,7 @@
       Retrieve the disk configuration to a temporary location, calling it <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>disko-config.nix</code> (we will use it latter):
     </p>
   <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='bash language-bash'>curl https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid.nix -o /tmp/disko-config.nix</code></pre></div>
-    <h3 id='disk-config-edit' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='disk-config-edit' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Modify the disk configuration
   
@@ -543,7 +552,7 @@
       In this case, the device name is <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>vda</code>. The device file is located at <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>/dev/vda</code>. We will use this to modify <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>disko-config.nix</code> we downloaded earlier.
     </p>
   <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-config.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-disko-config.jpeg' style='width: inherit;' /></div>
-    <h3 id='run-the-partitioning-script' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='run-the-partitioning-script' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Run the partitioning script
   
@@ -568,7 +577,7 @@
       Once the command completes, you should see the disk partitioned and mounted at <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>/mnt</code>:
     </p>
   <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-post-partition.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-disko-post-partition.jpeg' style='width: inherit;' /></div>
-    <h2 id='configuration' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='configuration' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Generate initial NixOS configuration
   
@@ -617,7 +626,7 @@
   
   </div>
 </div>
-    <h2 id='flakeify' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='flakeify' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Flakeify the configuration
   
@@ -686,7 +695,7 @@
       For details, see <a href='configuration-as-flake' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Convert <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>configuration.nix</code> to be a flake</a>.
     </p>
   
-    <h2 id='add-disko' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='add-disko' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Add the <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>disko</code> nixosModule
   
@@ -826,7 +835,7 @@ nix --experimental-features "nix-command flakes" repl</code></pre></div><div cla
       If you see something similar to the above, everything’s good and we are ready to perform the actual installation.
     </p>
   
-    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='install' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Install NixOS
   
@@ -850,7 +859,7 @@ sudo reboot</code></pre></div>
       Once rebooted, you should be greeted with the NixOS login screen, allowing you to login to the machine using the root password you had set.
     </p>
   
-    <h2 id='bonus' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='bonus' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Bonus steps
   
@@ -884,7 +893,7 @@ sudo reboot</code></pre></div>
       
     </ul>
   
-    <h2 id='video' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='video' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Video walkthrough
   
@@ -901,7 +910,7 @@ sudo reboot</code></pre></div>
 <blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Video demo of the install ⤵️ <a href="https://t.co/KJLntZ6CrY">pic.twitter.com/KJLntZ6CrY</a></p>&mdash; Sridhar Ratnakumar (@sridca) <a href="https://twitter.com/sridca/status/1759599633397920219?ref_src=twsrc%5Etfw">February 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
 </div>
-    <h2 id='end' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='end' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Recap & next steps
   
@@ -1036,7 +1045,7 @@ sudo reboot</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.28.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.30.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

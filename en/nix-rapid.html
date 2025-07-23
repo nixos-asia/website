@@ -43,9 +43,18 @@
 
   
   
-  <link href='tailwind.css?instanceId=9c454940-3b1e-43ff-bebc-ccc3c8ca8026' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=bff1281a-b20d-4cc8-947c-22e684b9a2d2' rel='stylesheet' type='text/css' />
 
-  <style data-category='error'>
+  <link rel='stylesheet' href='_emanote-static/fonts/maven-pro.css' />
+
+<style data-category='global-font'>
+  /* Maven Pro font for the entire site */
+  body {
+    font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+</style>
+
+<style data-category='error'>
   /* Heist error element */
   strong.error {
     color: lightcoral;
@@ -268,7 +277,7 @@
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree font-sans font-medium' style='transform-origin: 50%;'>
+<nav id='uptree' class='flipped tree font-medium' style='transform-origin: 50%;'>
   <ul class='root'>
     <li>
       
@@ -474,7 +483,7 @@
   
   </div>
 </div>
-    <h2 id='pre' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='pre' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Pre-requisites
   
@@ -500,7 +509,7 @@
       
     </ul>
   
-    <h2 id='attrset' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='attrset' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Attrset
   
@@ -558,7 +567,7 @@
       We have an outer attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>foo</code>, whose value is another attrset with a single key <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>bar</code> and a value of <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>1</code>.
     </p>
   
-    <h2 id='repl' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='repl' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   repl
   
@@ -597,7 +606,7 @@ nix-repl&gt; x.foo.bar
 1
 
 nix-repl&gt;</code></pre></div>
-    <h2 id='flakes' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='flakes' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   <a href='flakes' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>Flakes</a>
   
@@ -665,7 +674,7 @@ $</code></pre></div>
     </p>
   <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>$ nix eval .#foo
 42</code></pre></div>
-    <h3 id='graph' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='graph' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Graph
   
@@ -683,7 +692,7 @@ $</code></pre></div>
       A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='nixpkgs' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger <a href='https://en.wikipedia.org/wiki/Directed_graph' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>graph</a>, with inputs being the incoming arrows and outputs being the outgoing arrows.
     </p>
   
-    <h3 id='inputs' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='inputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Inputs
   
@@ -792,7 +801,7 @@ nix-repl&gt; legacyPackages.aarch64-darwin.cowsay
 nix-repl&gt;</code></pre></div>
   </div>
 </div>
-    <h3 id='predefined-outputs' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='predefined-outputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Predefined outputs
   
@@ -814,7 +823,7 @@ nix-repl&gt;</code></pre></div>
       All of these predefined outputs are further indexed by the “system” value.
     </p>
   
-    <h4 id='packages' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
+    <h4 id='packages' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
       
   Packages
   
@@ -904,7 +913,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
       If you run <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code> without arguments, it will default to <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>.#default</code>.
     </p>
   
-    <h4 id='apps' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
+    <h4 id='apps' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
       
   Apps
   
@@ -939,7 +948,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
       Now, you can run <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix run</code> to run the cowsay app, which is equivalent to doing <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build .#cowsay && ./result/bin/cowsay</code> in the previous flake.
     </p>
   
-    <h4 id='demo' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
+    <h4 id='demo' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
       
   Interlude: demo
   
@@ -954,7 +963,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     </h4>
   <div xmlhtmlRaw><script async id="asciicast-591420" src="https://asciinema.org/a/591420.js" data-speed="3" data-preload="true" data-theme="solarized-light" data-rows="30" data-idleTimeLimit="3"></script>
 </div>
-    <h4 id='devshells' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-2xl'>
+    <h4 id='devshells' class='group mt-6 mb-4 font-bold text-gray-700 text-2xl'>
       
   DevShells
   
@@ -1051,7 +1060,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
       Typing <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>Ctrl+D</code> or <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>exit</code> will exit the devshell.
     </p>
   
-    <h2 id='conclusion' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='conclusion' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Conclusion
   
@@ -1069,7 +1078,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
       This mini tutorial provided a rapid introduction to Nix flakes, enabling you to get started with writing simple flake for your projects. Consult the links above for more information. There is a lot more to Nix than the concepts presented here! You can also read <a href='https://zero-to-nix.com/' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix</a> for a highlevel introduction to all things Nix and flakes.
     </p>
   
-    <h2 id='see-also' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='see-also' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   See also
   
@@ -1231,7 +1240,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.28.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.30.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>

@@ -43,9 +43,18 @@
 
   
   
-  <link href='tailwind.css?instanceId=9c454940-3b1e-43ff-bebc-ccc3c8ca8026' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=bff1281a-b20d-4cc8-947c-22e684b9a2d2' rel='stylesheet' type='text/css' />
 
-  <style data-category='error'>
+  <link rel='stylesheet' href='_emanote-static/fonts/maven-pro.css' />
+
+<style data-category='global-font'>
+  /* Maven Pro font for the entire site */
+  body {
+    font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+</style>
+
+<style data-category='error'>
   /* Heist error element */
   strong.error {
     color: lightcoral;
@@ -268,7 +277,7 @@
         <!-- DoNotFormat -->
 <!-- DoNotFormat -->
 
-<nav id='uptree' class='flipped tree font-sans font-medium' style='transform-origin: 50%;'>
+<nav id='uptree' class='flipped tree font-medium' style='transform-origin: 50%;'>
   <ul class='root'>
     <li>
       
@@ -469,7 +478,7 @@
       <a href='https://github.com/numtide/treefmt' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>treefmt</a> provides an interface to run multiple <a href='https://en.wikipedia.org/wiki/Prettyprint' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>code formatters</a> at once, so you don’t have to run them manually for each file type in your <a href='dev' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkTag'>development</a> project.
     </p>
   
-    <h2 id='writing-the-nix-to-configure-treefmt-in-your-project' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='writing-the-nix-to-configure-treefmt-in-your-project' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Writing the Nix to configure treefmt in your project
   
@@ -483,7 +492,7 @@
 
     </h2>
   
-    <h3 id='add-treefmt-and-flake-root-to-your-inputs' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='add-treefmt-and-flake-root-to-your-inputs' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Add treefmt and flake-root to your inputs
   
@@ -505,7 +514,7 @@
   treefmt-nix.url = "github:numtide/treefmt-nix";
   flake-root.url = "github:srid/flake-root";
 }</code></pre></div>
-    <h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Import <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>flakeModule</code> output of treefmt and flake-root
   
@@ -525,7 +534,7 @@
     inputs.flake-root.flakeModule
   ];
 }</code></pre></div>
-    <h3 id='configure-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='configure-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Configure your formatter
   
@@ -558,7 +567,7 @@
     programs.hlint.enable = false;
   };
 }</code></pre></div>
-    <h3 id='add-treefmt-to-your-devshell' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='add-treefmt-to-your-devshell' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Add treefmt to your devShell
   
@@ -583,7 +592,7 @@
     } // config.treefmt.build.programs;
   };
 }</code></pre></div>
-    <h3 id='flake-check' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='flake-check' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Flake check
   
@@ -601,7 +610,7 @@
       The <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>treefmt-nix</code> flake module automatically adds a flake check that can be evaluated to make sure that the project is already autoformatted.
     </p>
   
-    <h2 id='tips' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='tips' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Tips
   
@@ -615,7 +624,7 @@
 
     </h2>
   
-    <h3 id='exclude-folders' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='exclude-folders' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Exclude folders
   
@@ -634,7 +643,7 @@
     </p>
   <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
   settings.formatter.&lt;formatter-name&gt;.excludes = [ "./foo/*" ];</code></pre></div>
-    <h3 id='use-a-different-package-for-formatter' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='use-a-different-package-for-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Use a different package for formatter
   
@@ -657,7 +666,7 @@
       The same can be applied to other formatters.
     </p>
   
-    <h3 id='pass-additional-parameters-to-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-3xl'>
+    <h3 id='pass-additional-parameters-to-your-formatter' class='group mt-6 mb-4 font-bold text-gray-700 text-3xl'>
       
   Pass additional parameters to your formatter
   
@@ -685,7 +694,7 @@
       Ormolu requires this <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>ormolu --manual-exts</code>.
     </p>
   
-    <h2 id='example' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='example' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Example
   
@@ -707,7 +716,7 @@
       
     </ul>
   
-    <h2 id='upcoming' class='group mt-6 mb-4 font-bold text-gray-700 font-sans text-4xl'>
+    <h2 id='upcoming' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
       
   Upcoming
   
@@ -809,7 +818,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.28.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.30.0'>
       <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
