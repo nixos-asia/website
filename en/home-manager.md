@@ -4,7 +4,7 @@ https://github.com/nix-community/home-manager
 
 ## Getting Started
 
-https://github.com/juspay/nix-dev-home
+Follow the README of https://github.com/juspay/nixos-unified-template
 
 To view help from terminal,
 
