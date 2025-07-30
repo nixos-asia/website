@@ -35,15 +35,16 @@
     "ema": {
       "flake": false,
       "locked": {
-        "lastModified": 1745123527,
-        "narHash": "sha256-FD6GJaiiKkH65N7iDjHtOtaEcWMf1P/t98kktILSkcg=",
+        "lastModified": 1753226458,
+        "narHash": "sha256-vDhjw+Cm7HniaiIHirwM0B2yzzLYLO3HHMaZsQRL3uw=",
         "owner": "srid",
         "repo": "ema",
-        "rev": "8590cc91e1f3dc3e10409d914c40a484645a2680",
+        "rev": "7ff434cf8f494c62de7fe6c1a36d8681929beb93",
         "type": "github"
       },
       "original": {
         "owner": "srid",
+        "ref": "0.12.0.0",
         "repo": "ema",
         "type": "github"
       }
@@ -65,11 +66,11 @@
         "unionmount": "unionmount"
       },
       "locked": {
-        "lastModified": 1753287231,
-        "narHash": "sha256-0aQhKT+vOfCPwSQhvviXlXWDuKcbM7+6OeP3pud59hU=",
+        "lastModified": 1753915425,
+        "narHash": "sha256-zlJ9NVfeSips2HfSoWiYXFHguoB0sCrlYk++UuIcki8=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "97840ab79499611a85fb99c67b7b07ab7f394d41",
+        "rev": "dddfeb5c3b3a8eeaab16850db8b3ddc55943a2be",
         "type": "github"
       },
       "original": {
@@ -164,15 +165,16 @@
     "lvar": {
       "flake": false,
       "locked": {
-        "lastModified": 1745122737,
-        "narHash": "sha256-ZnYXkkPmnNvt4tA45JgSC7dpttmqhUo4AHfEjB1r1gE=",
+        "lastModified": 1753226155,
+        "narHash": "sha256-Uwg5s0SlxLp83bXHA+6TIQV+L+lu8lwMpBdNuiuk7hg=",
         "owner": "srid",
         "repo": "lvar",
-        "rev": "047a24c4dcd7f85f9c18058f6be991cea531870e",
+        "rev": "cd110d4823ee7b8bbbf115a47c79bc304c3309cd",
         "type": "github"
       },
       "original": {
         "owner": "srid",
+        "ref": "0.2.0.0",
         "repo": "lvar",
         "type": "github"
       }
