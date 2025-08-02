@@ -26,6 +26,7 @@ sidebar navigation.
 You can participate in the community discussion through the following venues.
 
 - [Zulip](https://nixos.zulipchat.com/): Zulip is a hybrid of "chat" and "forum".[^log]
+- [Discord](https://discord.gg/z5rHpFa7NN)
 - [Telegram](https://t.me/nixosasia)
 - [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
 - [GitHub](https://github.com/nixos-asia)
