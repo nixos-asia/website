@@ -15,10 +15,10 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
   sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"
 ```
 
-After installing Nix, open a new terminal and run the [Nix Health](https://github.com/juspay/nix-health) checks,
+After installing Nix, open a new terminal and run the [`om health`](https://omnix.page/om/health) checks,
 
 ```sh
-nix --accept-flake-config run github:juspay/omnix health
+nix run nixpkgs#omnix -- health
 ```
 
 Expect to see all results in either green (or yellow).
