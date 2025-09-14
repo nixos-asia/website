@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=3a0e8f00-81ca-4137-af02-058f3aca750d' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=01feb6e9-ff6e-4004-9648-5e490c3a0ccf' rel='stylesheet' type='text/css' />
 
   <link rel='stylesheet' href='_emanote-static/fonts/maven-pro.css' />
 
@@ -439,6 +439,12 @@
       </a>
     </sup>
   
+    <sup class='px-0.5'>
+      <a class='text-green-600 hover:underline' href='install#fn2'>
+        2
+      </a>
+    </sup>
+  
     </p>
   <div class='py-0.5 mb-3 text-sm font-mono'><pre><code class='sh language-sh'>curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
   sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"</code></pre></div>
@@ -505,6 +511,15 @@
       
     </ul>
   
+          </div>
+        </div>
+      
+        <div id='fn2'>
+          <header class='italic'>
+            2.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            Do <strong>not</strong> use the graphical installer, as it will install the <strong>proprietary</strong> <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nixd</code> daemon. See <a href='https://old.reddit.com/r/NixOS/comments/1ndh3yd/dropping_upstream_nix_from_determinate_nix/ndgzqc8/?context=3' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>here</a> for details.
           </div>
         </div>
       
