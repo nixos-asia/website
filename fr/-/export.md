@@ -10,7 +10,7 @@ The base URL is: https://nixos.asia/fr
 -->
 
 <!-- Source: index.md -->
-<!-- URL: https://nixos.asia/fr/ -->
+<!-- URL: https://nixos.asia/fr//fr/ -->
 <!-- Title: NixOS Asie -->
 <!-- Wikilinks: [[index]] -->
 

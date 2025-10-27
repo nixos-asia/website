@@ -1355,7 +1355,7 @@ For detailed explanation, see [this blog post](https://blog.hercules-ci.com/2019
 ===
 
 <!-- Source: index.md -->
-<!-- URL: https://nixos.asia/en/ -->
+<!-- URL: https://nixos.asia/en//en/ -->
 <!-- Title: NixOS Asia -->
 <!-- Wikilinks: [[index]] -->
 

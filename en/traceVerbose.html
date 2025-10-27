@@ -43,16 +43,24 @@
 
   
   
-  <link href='tailwind.css?instanceId=5b6e34a6-3e28-4a48-949c-fbf6258d8cf5' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=62e95234-a2b9-48d7-b913-009cbecc4068' rel='stylesheet' type='text/css' />
 
-  <link rel='stylesheet' href='_emanote-static/fonts/maven-pro.css' />
-
-<style data-category='global-font'>
-  /* Maven Pro font for the entire site */
+  <style data-category='global-font'>
+  /* Refined typography with system font stack */
   body {
-    font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    font-weight: 700;
   }
 </style>
+
 
 <style data-category='error'>
   /* Heist error element */
@@ -66,16 +74,27 @@
 <style data-category='kbd'>
   /* <kbd> styling */
   kbd {
-    background-color: #eee;
-    border-radius: 3px;
-    border: 1px solid #b4b4b4;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
     box-shadow:
-      0 1px 1px rgba(0, 0, 0, 0.2),
-      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 2px 0 0 rgba(255, 255, 255, 0.8) inset;
     display: inline-block;
-    line-height: 1;
-    padding: 2px 4px;
+    line-height: 1.2;
+    padding: 3px 6px;
     white-space: nowrap;
+    font-size: 0.9em;
+  }
+
+  /* Dark mode kbd styling */
+  .dark kbd {
+    background-color: #374151;
+    border: 1px solid #4b5563;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 2px 0 0 rgba(255, 255, 255, 0.08) inset;
+    color: #f3f4f6;
   }
 </style>
 
@@ -88,10 +107,145 @@
 </style>
 
 <style data-category='toc'>
-  a.--ema-toc:not(.toc-item-active) {
-    background-color: #ffffff !important;
+  a.--ema-toc {
+    background-color: transparent !important;
+  }
+
+  /* Active TOC item styling */
+  a.--ema-toc.toc-item-active {
+    font-weight: 600;
+    border-left: 3px solid #3b82f6;
+    padding-left: calc(0.5rem - 3px) !important;
+  }
+
+  /* Light mode active state */
+  a.--ema-toc.toc-item-active {
+    background-color: #eff6ff !important;
+    color: #1d4ed8 !important;
+  }
+
+  /* Dark mode active state */
+  .dark a.--ema-toc.toc-item-active {
+    background-color: #172554 !important;
+    color: #93c5fd !important;
+    border-left-color: #3b82f6;
   }
 </style>
+
+<style data-category='global-improvements'>
+  /* Smooth transitions for interactive elements */
+  a, button {
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  /* Link improvements */
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* Focus states for accessibility */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Code block enhancements */
+  pre {
+    position: relative;
+  }
+
+  pre code {
+    display: block;
+    line-height: 1.6;
+  }
+
+  /* Copy button for code blocks */
+  .code-copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    color: #374151;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .code-copy-button svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .dark .code-copy-button {
+    background: rgba(31, 41, 55, 0.9);
+    border-color: #4b5563;
+    color: #d1d5db;
+  }
+
+  pre:hover .code-copy-button {
+    opacity: 1;
+  }
+
+  .code-copy-button:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .dark .code-copy-button:hover {
+    background: rgba(31, 41, 55, 1);
+  }
+
+  .code-copy-button:active {
+    transform: scale(0.95);
+  }
+</style>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>';
+    const checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+
+    document.querySelectorAll('pre code').forEach(function(codeBlock) {
+      const pre = codeBlock.parentElement;
+
+      // Create copy button
+      const button = document.createElement('button');
+      button.className = 'code-copy-button';
+      button.innerHTML = copyIcon;
+      button.setAttribute('aria-label', 'Copy code to clipboard');
+      button.setAttribute('title', 'Copy code');
+
+      button.addEventListener('click', function() {
+        const text = codeBlock.textContent;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = checkIcon;
+          button.setAttribute('title', 'Copied!');
+          setTimeout(function() {
+            button.innerHTML = copyIcon;
+            button.setAttribute('title', 'Copy code');
+          }, 2000);
+        }).catch(function(err) {
+          console.error('Copy failed:', err);
+          button.setAttribute('title', 'Copy failed');
+          setTimeout(function() {
+            button.innerHTML = copyIcon;
+            button.setAttribute('title', 'Copy code');
+          }, 2000);
+        });
+      });
+
+      pre.appendChild(button);
+    });
+  });
+</script>
 
 <style data-category='external-link'>
   /* External link icon */
@@ -123,6 +277,21 @@
       </svg>');
   }
 
+  .dark a[data-linkicon="external"]::after {
+    content: url('data:image/svg+xml,\
+      <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
+        <g style="stroke:lightgray;stroke-width:1"> \
+          <line x1="5" y1="5" x2="5" y2="14" /> \
+          <line x1="14" y1="9" x2="14" y2="14" /> \
+          <line x1="5" y1="14" x2="14" y2="14" /> \
+          <line x1="5" y1="5" x2="9" y2="5"  /> \
+          <line x1="10" y1="2" x2="17" y2="2"  /> \
+          <line x1="17" y1="2" x2="17" y2="9" /> \
+          <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
+        </g> \
+      </svg>');
+  }
+
   a[data-linkicon="external"][href^="mailto:"]::after {
     content: url('data:image/svg+xml,\
         <svg \
@@ -138,23 +307,39 @@
             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
         </svg>');
   }
+
+  .dark a[data-linkicon="external"][href^="mailto:"]::after {
+    content: url('data:image/svg+xml,\
+        <svg \
+          xmlns="http://www.w3.org/2000/svg" \
+          height="0.7em" \
+          fill="none" \
+          viewBox="0 0 24 24" \
+          stroke="lightgray" \
+          stroke-width="2"> \
+          <path \
+            stroke-linecap="round" \
+            stroke-linejoin="round" \
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
+        </svg>');
+  }
 </style>
   <!-- What goes in this file will appear on near the end of <head>-->
 
   
     <style>
       /* For use in sidebar.tpl, as we cannot achieve this in tailwind itself! */
-      /* md:min-w-48  */
+      /* md:min-w-52  */
       @media (min-width: 768px) {
         #sidebar {
-          min-width: 12rem;
+          min-width: 13rem;
         }
       }
 
-      /* xl:min-w-64  */
+      /* xl:min-w-72  */
       @media (min-width: 1280px) {
         #sidebar {
-          min-width: 16rem;
+          min-width: 18rem;
         }
       }
     </style>
@@ -163,8 +348,9 @@
       <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
     
   
-  <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
-<!-- Custom Stork-search styling for Emanote -->
+  <!-- Custom Stork-search styling for Emanote --><link rel='stylesheet' href='_emanote-static/stork/edible.css' media='(prefers-color-scheme: light)' />
+<link rel='stylesheet' href='_emanote-static/stork/edible-dark.css' media='(prefers-color-scheme: dark)' />
+
 <style data-category='stork'>
   #stork-search-container {
     z-index: 1000;
@@ -231,10 +417,10 @@
             });
           } else {
             // This section is called during Ema's hot reload.
-            // 
+            //
             // Mark the current index as stale, and refresh it *only when* the
             // user actually invokes search.
-            // 
+            //
             // We do not refresh the index *right away*, as that will cause
             // memory leaks in the browser. See
             // https://github.com/srid/emanote/issues/411#issuecomment-1402056235
@@ -270,7 +456,7 @@
 
 <!-- DoNotFormat -->
 
-<body class='bg-gray-400 overflow-y-scroll'>
+<body class='bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-50 overflow-y-scroll'>
   
     <div class='container mx-auto mt-2 md:mt-4  '>
       
@@ -286,7 +472,7 @@
             <li>
 
   <a href='howto'>
-    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
       HOWTO
     </div>
   </a>
@@ -296,8 +482,8 @@
       
         <li>
 
-  <a href=''>
-    <div class='text-gray-900 hover:bg-green-500 hover:text-white cursor-pointer forest-link'>
+  <a href='/en/'>
+    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
       NixOS Asia
     </div>
   </a>
@@ -317,24 +503,24 @@
       
 
       
-        <nav id='breadcrumbs' class='w-full text-gray-700 md:hidden'>
+        <nav id='breadcrumbs' class='w-full text-gray-700 dark:text-gray-300 md:hidden'>
   <div class='flex justify-left'>
-    <div class='w-full px-2 py-2 bg-gray-50'>
-      <ul class='flex flex-wrap text-lg'>
+    <div class='w-full px-4 py-3 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800'>
+      <ul class='flex flex-wrap text-base'>
         <li class='inline-flex items-center'>
           
             
-              <img style='width: 1rem;' src='static/nixos-asia.svg' />
+              <img style='width: 1rem;' src='static/nixos-asia.svg' alt='Site Icon' />
             
           
         </li>
         
           
             <li class='inline-flex items-center'>
-              <a class='px-1 font-bold' href=''>
+              <a class='px-1 font-bold' href='/en/'>
                 NixOS Asia
               </a>
-              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400'>
+              <svg fill='currentColor' viewBox='0 0 20 20' class='w-auto h-5 text-gray-400 dark:text-gray-500'>
                 <path fill-rule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clip-rule='evenodd'></path>
               </svg>
             </li>
@@ -342,13 +528,13 @@
         
       </ul>
     </div>
-    <button class='inline px-2 py-1 bg-gray-50 outline-none cursor-pointer focus:outline-none' title='Search (Ctrl+K)' type='button' onclick='window.emanote.stork.toggleSearch()'>
+    <button class='inline px-3 py-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 outline-none cursor-pointer focus:outline-none hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors' title='Search (Ctrl+K)' type='button' onclick='window.emanote.stork.toggleSearch()'>
       <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
  fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
   <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
 </svg>
     </button>
-    <button class='inline px-2 py-1 text-white bg-green-600 outline-none cursor-pointer focus:outline-none' title='Toggle sidebar' type='button' onclick="toggleHidden('sidebar')">
+    <button class='inline px-3 py-2 text-white bg-green-600 dark:bg-green-700 outline-none cursor-pointer focus:outline-none hover:bg-green-700 dark:hover:bg-green-800 transition-colors' title='Toggle sidebar' type='button' onclick="toggleHidden('sidebar')">
       <svg xmlns='http://www.w3.org/2000/svg' class='w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'></path>
       </svg>
@@ -363,24 +549,24 @@
       
 
       
-        <div id='container' class='relative md:shadow-2xl md:mb-8'>
+        <div id='container' class='relative md:shadow-md md:rounded-lg md:mb-8 bg-white dark:bg-gray-900 md:border md:border-gray-200 dark:md:border-gray-800'>
           
   <div class='absolute -top-6 right-1 md:right-0 flex flex-row items-center justify-center'>
-    <a title='Search (Ctrl+K)' class='cursor-pointer' onclick='window.emanote.stork.toggleSearch()'>
+    <button title='Search (Ctrl+K)' class='cursor-pointer' onclick='window.emanote.stork.toggleSearch()'>
       <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-green-700' f
  fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
   <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
 </svg>
-    </a>
+    </button>
   </div>
 
           <!-- Main body column -->
-          <div class='flex-1 w-full bg-white'>
-  <main class='px-4 py-4'>
-    <h1 class='flex items-end justify-center mb-4 p-3 bg-green-100 text-5xl font-extrabold text-black rounded'>
-  <a class='z-40 tracking-tighter '>
+          <div class='flex-1 w-full bg-white dark:bg-gray-900'>
+  <main class='px-6 py-8 max-w-7xl mx-auto'>
+    <h1 class='flex items-end justify-center mb-10 px-8 py-5 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 text-5xl font-bold text-gray-900 dark:text-gray-50 rounded-2xl shadow-lg shadow-green-200/50 dark:shadow-green-950/50 border border-green-200/50 dark:border-green-800/50'>
+  <span class='z-40 tracking-tight'>
     <code>traceVerbose</code>
-  </a>
+  </span>
 </h1>
     
       <article class='overflow-auto'>
@@ -392,20 +578,24 @@
 
 
 
-    <p class='mb-3'>
-      <a href='https://nixos.org/manual/nix/stable/release-notes/rl-2.10' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>Nix 2.10</a> introduced a new function, <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>builtins.traceVerbose</code>, that works like <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>builtins.trace</code> but is no-op until the user explicitly enables it.
+
+
+
+
+    <p class='mb-4 leading-relaxed'>
+      <a href='https://nixos.org/manual/nix/stable/release-notes/rl-2.10' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Nix 2.10</a> introduced a new function, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>builtins.traceVerbose</code>, that works like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>builtins.trace</code> but is no-op until the user explicitly enables it.
     </p>
   
-    <p class='mb-3'>
-      For eg., running <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build</code> will not cause <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>traceVerbose</code> to have any effect. But if you run <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>nix build --trace-verbose</code>, then logs from <code class='py-0.5 px-0.5 bg-gray-100 font-mono'>traceVerbose</code> will be printed to the console.
+    <p class='mb-4 leading-relaxed'>
+      For eg., running <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>nix build</code> will not cause <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>traceVerbose</code> to have any effect. But if you run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>nix build --trace-verbose</code>, then logs from <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>traceVerbose</code> will be printed to the console.
     </p>
   
-    <h2 id='examples' class='group mt-6 mb-4 font-bold text-gray-700 text-4xl'>
+    <h2 id='examples' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Examples
   
-  <a href='traceVerbose#examples' class='--ema-anchor'>
-    <span class='hover:text-green-400 group-hover:visible invisible cursor-pointer text-sm align-middle' aria-label='Copy link'><svg class='inline w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+  <a href='traceVerbose#examples' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
       </svg></span>
@@ -414,16 +604,16 @@
 
     </h2>
   
-    <ul class='my-3 ml-6 space-y-1 list-disc'>
+    <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          haskell-flake uses this to <a href='https://community.flake.parts/haskell-flake/debugging' class='text-green-600 hover:underline' data-linkicon='external' target='_blank' rel='noopener'>provide conditional logging</a>
+          haskell-flake uses this to <a href='https://community.flake.parts/haskell-flake/debugging' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>provide conditional logging</a>
         </li>
       
     </ul>
   
-    <p class='mb-3'>
-      <a href='howto' class='text-green-600 font-semibold hover:underline' data-wikilink-type='WikiLinkTag'>HOWTO</a>
+    <p class='mb-4 leading-relaxed'>
+      <a href='howto' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkTag'>HOWTO</a>
     </p>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
@@ -453,7 +643,7 @@
 </div>
 </article>
     
-    <div class='flex flex-col lg:flex-row lg:space-x-2'>
+    <div class='flex flex-col lg:flex-row lg:space-x-4 mt-8'>
       
       
     </div>
@@ -467,30 +657,34 @@
 </div>
         </div>
       
-      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800 dark:text-gray-200'>
   
   <div>
-    <a href='' title='Go to Home page'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
-      </svg>
-    </a>
+    
+      
+        <a href='/en/' title='Go to Home'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
+          </svg>
+        </a>
+      
+    
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.31.0'>
-      <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.0'>
+      <img class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-6 h-6 hover:text-green-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -498,7 +692,7 @@
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
@@ -510,12 +704,23 @@
   <div class='fixed w-screen h-screen inset-0' onclick='window.emanote.stork.toggleSearch()'></div>
 
   <div class='container mx-auto p-10 mt-10'>
-    <div class='stork-wrapper-flat container mx-auto'>
+    <div id='stork-wrapper' class='container mx-auto'>
       <input id='stork-search-input' data-stork='emanote-search' class='stork-input' placeholder='Search (Ctrl+K) ...' />
       <div data-stork='emanote-search-output' class='stork-output'></div>
     </div>
   </div>
 </div>
+
+<script>
+  const wrapper = document.getElementById('stork-wrapper');
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  wrapper.classList.add(isDark ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    wrapper.classList.remove('stork-wrapper-edible', 'stork-wrapper-edible-dark');
+    wrapper.classList.add(e.matches ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
+  });
+</script>
   
     
   

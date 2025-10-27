@@ -36,16 +36,24 @@
 
   
   <emaNoteFeedUrl></emaNoteFeedUrl>
-  <link href='tailwind.css?instanceId=5b6e34a6-3e28-4a48-949c-fbf6258d8cf5' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=62e95234-a2b9-48d7-b913-009cbecc4068' rel='stylesheet' type='text/css' />
 
-  <link rel='stylesheet' href='_emanote-static/fonts/maven-pro.css' />
-
-<style data-category='global-font'>
-  /* Maven Pro font for the entire site */
+  <style data-category='global-font'>
+  /* Refined typography with system font stack */
   body {
-    font-family: 'Maven Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    font-weight: 700;
   }
 </style>
+
 
 <style data-category='error'>
   /* Heist error element */
@@ -59,16 +67,27 @@
 <style data-category='kbd'>
   /* <kbd> styling */
   kbd {
-    background-color: #eee;
-    border-radius: 3px;
-    border: 1px solid #b4b4b4;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
     box-shadow:
-      0 1px 1px rgba(0, 0, 0, 0.2),
-      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 2px 0 0 rgba(255, 255, 255, 0.8) inset;
     display: inline-block;
-    line-height: 1;
-    padding: 2px 4px;
+    line-height: 1.2;
+    padding: 3px 6px;
     white-space: nowrap;
+    font-size: 0.9em;
+  }
+
+  /* Dark mode kbd styling */
+  .dark kbd {
+    background-color: #374151;
+    border: 1px solid #4b5563;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 2px 0 0 rgba(255, 255, 255, 0.08) inset;
+    color: #f3f4f6;
   }
 </style>
 
@@ -81,10 +100,145 @@
 </style>
 
 <style data-category='toc'>
-  a.--ema-toc:not(.toc-item-active) {
-    background-color: #ffffff !important;
+  a.--ema-toc {
+    background-color: transparent !important;
+  }
+
+  /* Active TOC item styling */
+  a.--ema-toc.toc-item-active {
+    font-weight: 600;
+    border-left: 3px solid #3b82f6;
+    padding-left: calc(0.5rem - 3px) !important;
+  }
+
+  /* Light mode active state */
+  a.--ema-toc.toc-item-active {
+    background-color: #eff6ff !important;
+    color: #1d4ed8 !important;
+  }
+
+  /* Dark mode active state */
+  .dark a.--ema-toc.toc-item-active {
+    background-color: #172554 !important;
+    color: #93c5fd !important;
+    border-left-color: #3b82f6;
   }
 </style>
+
+<style data-category='global-improvements'>
+  /* Smooth transitions for interactive elements */
+  a, button {
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  /* Link improvements */
+  a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  /* Focus states for accessibility */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Code block enhancements */
+  pre {
+    position: relative;
+  }
+
+  pre code {
+    display: block;
+    line-height: 1.6;
+  }
+
+  /* Copy button for code blocks */
+  .code-copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    color: #374151;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .code-copy-button svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .dark .code-copy-button {
+    background: rgba(31, 41, 55, 0.9);
+    border-color: #4b5563;
+    color: #d1d5db;
+  }
+
+  pre:hover .code-copy-button {
+    opacity: 1;
+  }
+
+  .code-copy-button:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .dark .code-copy-button:hover {
+    background: rgba(31, 41, 55, 1);
+  }
+
+  .code-copy-button:active {
+    transform: scale(0.95);
+  }
+</style>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>';
+    const checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+
+    document.querySelectorAll('pre code').forEach(function(codeBlock) {
+      const pre = codeBlock.parentElement;
+
+      // Create copy button
+      const button = document.createElement('button');
+      button.className = 'code-copy-button';
+      button.innerHTML = copyIcon;
+      button.setAttribute('aria-label', 'Copy code to clipboard');
+      button.setAttribute('title', 'Copy code');
+
+      button.addEventListener('click', function() {
+        const text = codeBlock.textContent;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = checkIcon;
+          button.setAttribute('title', 'Copied!');
+          setTimeout(function() {
+            button.innerHTML = copyIcon;
+            button.setAttribute('title', 'Copy code');
+          }, 2000);
+        }).catch(function(err) {
+          console.error('Copy failed:', err);
+          button.setAttribute('title', 'Copy failed');
+          setTimeout(function() {
+            button.innerHTML = copyIcon;
+            button.setAttribute('title', 'Copy code');
+          }, 2000);
+        });
+      });
+
+      pre.appendChild(button);
+    });
+  });
+</script>
 
 <style data-category='external-link'>
   /* External link icon */
@@ -116,6 +270,21 @@
       </svg>');
   }
 
+  .dark a[data-linkicon="external"]::after {
+    content: url('data:image/svg+xml,\
+      <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
+        <g style="stroke:lightgray;stroke-width:1"> \
+          <line x1="5" y1="5" x2="5" y2="14" /> \
+          <line x1="14" y1="9" x2="14" y2="14" /> \
+          <line x1="5" y1="14" x2="14" y2="14" /> \
+          <line x1="5" y1="5" x2="9" y2="5"  /> \
+          <line x1="10" y1="2" x2="17" y2="2"  /> \
+          <line x1="17" y1="2" x2="17" y2="9" /> \
+          <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
+        </g> \
+      </svg>');
+  }
+
   a[data-linkicon="external"][href^="mailto:"]::after {
     content: url('data:image/svg+xml,\
         <svg \
@@ -131,12 +300,29 @@
             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
         </svg>');
   }
+
+  .dark a[data-linkicon="external"][href^="mailto:"]::after {
+    content: url('data:image/svg+xml,\
+        <svg \
+          xmlns="http://www.w3.org/2000/svg" \
+          height="0.7em" \
+          fill="none" \
+          viewBox="0 0 24 24" \
+          stroke="lightgray" \
+          stroke-width="2"> \
+          <path \
+            stroke-linecap="round" \
+            stroke-linejoin="round" \
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
+        </svg>');
+  }
 </style>
   <!-- What goes in this file will appear on near the end of <head>-->
 
   <head-main></head-main>
-  <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
-<!-- Custom Stork-search styling for Emanote -->
+  <!-- Custom Stork-search styling for Emanote --><link rel='stylesheet' href='_emanote-static/stork/edible.css' media='(prefers-color-scheme: light)' />
+<link rel='stylesheet' href='_emanote-static/stork/edible-dark.css' media='(prefers-color-scheme: dark)' />
+
 <style data-category='stork'>
   #stork-search-container {
     z-index: 1000;
@@ -203,10 +389,10 @@
             });
           } else {
             // This section is called during Ema's hot reload.
-            // 
+            //
             // Mark the current index as stale, and refresh it *only when* the
             // user actually invokes search.
-            // 
+            //
             // We do not refresh the index *right away*, as that will cause
             // memory leaks in the browser. See
             // https://github.com/srid/emanote/issues/411#issuecomment-1402056235
@@ -242,16 +428,16 @@
 
 <!-- DoNotFormat -->
 
-<body class='bg-gray-400 overflow-y-scroll'>
+<body class='bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-50 overflow-y-scroll'>
   
-    <div class='container mx-auto '>
+    <div class='container mx-auto'>
       <main class='flex-col items-center justify-center mx-2'>
-        <h1 class='pb-2 mt-2 mb-2 text-6xl text-center'>
+        <h1 class='pb-2 mt-2 mb-2 text-6xl text-center text-black dark:text-white'>
           Index
         </h1>
-        <div class='pb-2 mx-auto my-4 lg:max-w-screen-md '>
+        <div class='pb-2 mx-auto my-4 lg:max-w-screen-md'>
           
-    <div class='pt-1 pb-2 pl-4 bg-gray-200'>
+    <div class='pt-1 pb-2 pl-4 bg-gray-200 dark:bg-gray-700'>
       
         <!-- Variable bindings for this tree-->
 
@@ -267,19 +453,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Tutorials' href='tutorial'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Tutorials' href='tutorial'>
       Tutorials
     </a>
     
@@ -305,19 +491,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix Tutorial Series' href='nix-tutorial'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Tutorial Series' href='nix-tutorial'>
       Nix Tutorial Series
     </a>
     
@@ -343,12 +529,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -356,7 +542,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='First steps with Nix' href='nix-first'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='First steps with Nix' href='nix-first'>
       First steps with Nix
     </a>
     
@@ -385,12 +571,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -398,7 +584,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Rapid Introduction to Nix' href='nix-rapid'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rapid Introduction to Nix' href='nix-rapid'>
       Rapid Introduction to Nix
     </a>
     
@@ -427,12 +613,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -440,7 +626,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Introduction to module system' href='nix-modules'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Introduction to module system' href='nix-modules'>
       Introduction to module system
     </a>
     
@@ -472,19 +658,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='NixOS Tutorial Series' href='nixos-tutorial'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS Tutorial Series' href='nixos-tutorial'>
       NixOS Tutorial Series
     </a>
     
@@ -510,19 +696,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
       Install NixOS with Flake configuration on Git
     </a>
     
@@ -548,12 +734,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -561,7 +747,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
       Convert <code>configuration.nix</code> to be a flake
     </a>
     
@@ -593,12 +779,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -606,7 +792,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
       Install NixOS with <code>disko</code> disk partitioning
     </a>
     
@@ -635,12 +821,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -648,7 +834,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
       Install NixOS directly from a remote flake
     </a>
     
@@ -680,12 +866,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -693,7 +879,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Rust FFI in Haskell' href='haskell-rust-ffi'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rust FFI in Haskell' href='haskell-rust-ffi'>
       Rust FFI in Haskell
     </a>
     
@@ -722,12 +908,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -735,7 +921,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='home-manager Tutorial Series' href='hm-tutorial'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='home-manager Tutorial Series' href='hm-tutorial'>
       home-manager Tutorial Series
     </a>
     
@@ -764,19 +950,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nixify Haskell projects' href='nixify-haskell'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nixify Haskell projects' href='nixify-haskell'>
       Nixify Haskell projects
     </a>
     
@@ -802,12 +988,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -815,7 +1001,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='2. Using haskell-flake' href='nixify-haskell-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using haskell-flake' href='nixify-haskell-flake'>
       2. Using haskell-flake
     </a>
     
@@ -844,12 +1030,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -857,7 +1043,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
       1. Using nixpkgs only
     </a>
     
@@ -886,12 +1072,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -899,7 +1085,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='2. Using flake-parts' href='nixify-haskell-parts'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using flake-parts' href='nixify-haskell-parts'>
       2. Using flake-parts
     </a>
     
@@ -928,12 +1114,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -941,7 +1127,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='4. Using services-flake' href='nixify-services-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='4. Using services-flake' href='nixify-services-flake'>
       4. Using services-flake
     </a>
     
@@ -976,19 +1162,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Blog' href='blog'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Blog' href='blog'>
       Blog
     </a>
     
@@ -1014,12 +1200,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1027,7 +1213,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -1059,19 +1245,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Events' href='event'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Events' href='event'>
       Events
     </a>
     
@@ -1097,12 +1283,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1110,7 +1296,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Using home-manager to manage dotfiles, packages, services' href='event/nix-dev-home'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Using home-manager to manage dotfiles, packages, services' href='event/nix-dev-home'>
       Using <code>home-manager</code> to manage dotfiles, packages, services
     </a>
     
@@ -1139,12 +1325,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1152,7 +1338,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='services-flake: Services simplified for Dev/CI workflows' href='event/services-flake-meetup'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake: Services simplified for Dev/CI workflows' href='event/services-flake-meetup'>
       services-flake: Services simplified for Dev/CI workflows
     </a>
     
@@ -1181,12 +1367,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1194,7 +1380,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Getting Started with Nix for Haskell & Rust' href='event/srid-nix-dev'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Getting Started with Nix for Haskell & Rust' href='event/srid-nix-dev'>
       Getting Started with Nix for Haskell & Rust
     </a>
     
@@ -1226,19 +1412,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='HOWTO' href='howto'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='HOWTO' href='howto'>
       HOWTO
     </a>
     
@@ -1264,12 +1450,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1277,7 +1463,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Separate Git “profiles”' href='howto/git-profiles'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
       Separate Git “profiles”
     </a>
     
@@ -1306,12 +1492,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1319,7 +1505,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Installing fonts using home-manager' href='howto/hm-fonts'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
       Installing fonts using home-manager
     </a>
     
@@ -1348,12 +1534,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1361,7 +1547,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Use a local directory as flake input' href='howto/local-flake-input'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Use a local directory as flake input' href='howto/local-flake-input'>
       Use a local directory as flake input
     </a>
     
@@ -1390,12 +1576,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1403,7 +1589,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Use a specific version of nix' href='howto/nix-package'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Use a specific version of nix' href='howto/nix-package'>
       Use a specific version of <code>nix</code>
     </a>
     
@@ -1432,12 +1618,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1445,7 +1631,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Copying packages to a remote Nix store' href='howto/remote-cp'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Copying packages to a remote Nix store' href='howto/remote-cp'>
       Copying packages to a remote Nix store
     </a>
     
@@ -1474,12 +1660,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1487,7 +1673,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Uninstall Nix' href='howto/uninstall-nix'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Uninstall Nix' href='howto/uninstall-nix'>
       Uninstall Nix
     </a>
     
@@ -1516,12 +1702,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1529,7 +1715,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='traceVerbose' href='traceVerbose'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='traceVerbose' href='traceVerbose'>
       <code>traceVerbose</code>
     </a>
     
@@ -1561,19 +1747,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Topics' href='topics'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Topics' href='topics'>
       Topics
     </a>
     
@@ -1599,19 +1785,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix' href='nix'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix' href='nix'>
       Nix
     </a>
     
@@ -1637,19 +1823,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install Nix' href='install'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install Nix' href='install'>
       Install Nix
     </a>
     
@@ -1675,12 +1861,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1688,7 +1874,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
       Nix is broken after macOS upgrade
     </a>
     
@@ -1720,12 +1906,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1733,7 +1919,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Binary Cache' href='cache'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Binary Cache' href='cache'>
       Binary Cache
     </a>
     
@@ -1762,19 +1948,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix for Development' href='dev'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix for Development' href='dev'>
       Nix for Development
     </a>
     
@@ -1800,12 +1986,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1813,7 +1999,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -1842,12 +2028,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1855,7 +2041,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='direnv: manage dev environments' href='direnv'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='direnv: manage dev environments' href='direnv'>
       <code>direnv</code>: manage dev environments
     </a>
     
@@ -1884,19 +2070,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Git' href='git'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Git' href='git'>
       Git
     </a>
     
@@ -1922,12 +2108,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -1935,7 +2121,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Separate Git “profiles”' href='howto/git-profiles'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
       Separate Git “profiles”
     </a>
     
@@ -1967,19 +2153,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Haskell' href='haskell'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Haskell' href='haskell'>
       Haskell
     </a>
     
@@ -2005,19 +2191,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nixify Haskell projects' href='nixify-haskell'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nixify Haskell projects' href='nixify-haskell'>
       Nixify Haskell projects
     </a>
     
@@ -2043,12 +2229,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2056,7 +2242,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='2. Using haskell-flake' href='nixify-haskell-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using haskell-flake' href='nixify-haskell-flake'>
       2. Using haskell-flake
     </a>
     
@@ -2085,12 +2271,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2098,7 +2284,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
       1. Using nixpkgs only
     </a>
     
@@ -2127,12 +2313,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2140,7 +2326,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='2. Using flake-parts' href='nixify-haskell-parts'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using flake-parts' href='nixify-haskell-parts'>
       2. Using flake-parts
     </a>
     
@@ -2169,12 +2355,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2182,7 +2368,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='4. Using services-flake' href='nixify-services-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='4. Using services-flake' href='nixify-services-flake'>
       4. Using services-flake
     </a>
     
@@ -2217,19 +2403,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Rust' href='rust'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rust' href='rust'>
       Rust
     </a>
     
@@ -2255,12 +2441,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2268,7 +2454,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='buildRustPackage' href='buildRustPackage'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='buildRustPackage' href='buildRustPackage'>
       <code>buildRustPackage</code>
     </a>
     
@@ -2300,12 +2486,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2313,7 +2499,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Auto formatting using treefmt-nix' href='treefmt'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
       Auto formatting using <code>treefmt-nix</code>
     </a>
     
@@ -2342,12 +2528,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2355,7 +2541,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='VSCode' href='vscode'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='VSCode' href='vscode'>
       VSCode
     </a>
     
@@ -2384,12 +2570,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2397,7 +2583,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Why Choose Nix for develoment?' href='why-dev'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Why Choose Nix for develoment?' href='why-dev'>
       Why Choose Nix for develoment?
     </a>
     
@@ -2429,19 +2615,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Derivation' href='drv'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Derivation' href='drv'>
       Derivation
     </a>
     
@@ -2467,12 +2653,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2480,7 +2666,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Import From Derivation (IFD)' href='ifd'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Import From Derivation (IFD)' href='ifd'>
       Import From Derivation (IFD)
     </a>
     
@@ -2512,19 +2698,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Flakes' href='flakes'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flakes' href='flakes'>
       Flakes
     </a>
     
@@ -2550,12 +2736,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2563,7 +2749,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
       Convert <code>configuration.nix</code> to be a flake
     </a>
     
@@ -2592,19 +2778,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='flake-parts' href='flake-parts'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='flake-parts' href='flake-parts'>
       flake-parts
     </a>
     
@@ -2630,12 +2816,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2643,7 +2829,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='process-compose-flake' href='process-compose-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='process-compose-flake' href='process-compose-flake'>
       process-compose-flake
     </a>
     
@@ -2672,19 +2858,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='services-flake' href='services-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake' href='services-flake'>
       services-flake
     </a>
     
@@ -2710,12 +2896,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2723,7 +2909,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -2755,12 +2941,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2768,7 +2954,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Auto formatting using treefmt-nix' href='treefmt'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
       Auto formatting using <code>treefmt-nix</code>
     </a>
     
@@ -2800,12 +2986,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2813,7 +2999,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Flake URL' href='flake-url'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flake URL' href='flake-url'>
       Flake URL
     </a>
     
@@ -2842,12 +3028,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2855,7 +3041,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
       Nix does not recognize a new file I added
     </a>
     
@@ -2884,12 +3070,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2897,7 +3083,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Flake registry' href='registry'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flake registry' href='registry'>
       Flake registry
     </a>
     
@@ -2926,12 +3112,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -2939,7 +3125,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Rapid Introduction to Nix' href='nix-rapid'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rapid Introduction to Nix' href='nix-rapid'>
       Rapid Introduction to Nix
     </a>
     
@@ -2971,19 +3157,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Gotchas' href='gotchas'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Gotchas' href='gotchas'>
       Gotchas
     </a>
     
@@ -3009,12 +3195,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3022,7 +3208,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
       Nix is broken after macOS upgrade
     </a>
     
@@ -3051,12 +3237,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3064,7 +3250,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nested devShells can cause problems' href='gotchas/nested-devshells'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nested devShells can cause problems' href='gotchas/nested-devshells'>
       Nested devShells can cause problems
     </a>
     
@@ -3093,12 +3279,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3106,7 +3292,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
       Nix does not recognize a new file I added
     </a>
     
@@ -3135,12 +3321,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3148,7 +3334,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix’s sqlite database is corrupted/broken' href='gotchas/sqlite-corruption'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix’s sqlite database is corrupted/broken' href='gotchas/sqlite-corruption'>
       Nix’s sqlite database is corrupted/broken
     </a>
     
@@ -3180,19 +3366,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='home-manager' href='home-manager'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='home-manager' href='home-manager'>
       home-manager
     </a>
     
@@ -3218,12 +3404,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3231,7 +3417,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='home-manager Tutorial Series' href='hm-tutorial'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='home-manager Tutorial Series' href='hm-tutorial'>
       home-manager Tutorial Series
     </a>
     
@@ -3260,12 +3446,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3273,7 +3459,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Separate Git “profiles”' href='howto/git-profiles'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
       Separate Git “profiles”
     </a>
     
@@ -3302,12 +3488,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3315,7 +3501,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Installing fonts using home-manager' href='howto/hm-fonts'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
       Installing fonts using home-manager
     </a>
     
@@ -3347,12 +3533,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3360,7 +3546,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='nix-darwin' href='nix-darwin'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix-darwin' href='nix-darwin'>
       nix-darwin
     </a>
     
@@ -3389,19 +3575,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='nixpkgs' href='nixpkgs'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nixpkgs' href='nixpkgs'>
       nixpkgs
     </a>
     
@@ -3427,19 +3613,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Module System' href='modules'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Module System' href='modules'>
       Module System
     </a>
     
@@ -3465,19 +3651,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='flake-parts' href='flake-parts'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='flake-parts' href='flake-parts'>
       flake-parts
     </a>
     
@@ -3503,12 +3689,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3516,7 +3702,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='process-compose-flake' href='process-compose-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='process-compose-flake' href='process-compose-flake'>
       process-compose-flake
     </a>
     
@@ -3545,19 +3731,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='services-flake' href='services-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake' href='services-flake'>
       services-flake
     </a>
     
@@ -3583,12 +3769,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3596,7 +3782,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -3628,12 +3814,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3641,7 +3827,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Auto formatting using treefmt-nix' href='treefmt'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
       Auto formatting using <code>treefmt-nix</code>
     </a>
     
@@ -3673,12 +3859,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3686,7 +3872,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Introduction to module system' href='nix-modules'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Introduction to module system' href='nix-modules'>
       Introduction to module system
     </a>
     
@@ -3718,12 +3904,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3731,7 +3917,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='writeShellApplication' href='writeShellApplication'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='writeShellApplication' href='writeShellApplication'>
       <code>writeShellApplication</code>
     </a>
     
@@ -3763,12 +3949,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3776,7 +3962,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='nix repl' href='repl'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix repl' href='repl'>
       nix repl
     </a>
     
@@ -3805,12 +3991,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3818,7 +4004,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix Shell' href='shell'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Shell' href='shell'>
       Nix Shell
     </a>
     
@@ -3847,19 +4033,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix Store' href='store'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Store' href='store'>
       Nix Store
     </a>
     
@@ -3885,12 +4071,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -3898,7 +4084,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Store path' href='store-path'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Store path' href='store-path'>
       Store path
     </a>
     
@@ -3933,19 +4119,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='NixOS' href='nixos'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS' href='nixos'>
       NixOS
     </a>
     
@@ -3971,19 +4157,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='NixOS Tutorial Series' href='nixos-tutorial'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS Tutorial Series' href='nixos-tutorial'>
       NixOS Tutorial Series
     </a>
     
@@ -4009,19 +4195,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
       Install NixOS with Flake configuration on Git
     </a>
     
@@ -4047,12 +4233,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -4060,7 +4246,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
       Convert <code>configuration.nix</code> to be a flake
     </a>
     
@@ -4092,12 +4278,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -4105,7 +4291,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
       Install NixOS with <code>disko</code> disk partitioning
     </a>
     
@@ -4134,12 +4320,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -4147,7 +4333,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
       Install NixOS directly from a remote flake
     </a>
     
@@ -4182,19 +4368,19 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-4 h-4 flex-shrink-0 inline text-gray-700' fill='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='w-5 h-5 flex-shrink-0 inline text-gray-700 dark:text-gray-300' fill='currentColor'>
         <path fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z' clip-rule='evenodd'></path>
       </svg>
       
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='macOS' href='macos'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='macOS' href='macos'>
       macOS
     </a>
     
@@ -4220,12 +4406,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -4233,7 +4419,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
       Nix is broken after macOS upgrade
     </a>
     
@@ -4262,12 +4448,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -4275,7 +4461,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Installing fonts using home-manager' href='howto/hm-fonts'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
       Installing fonts using home-manager
     </a>
     
@@ -4304,12 +4490,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -4317,7 +4503,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='nix-darwin' href='nix-darwin'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix-darwin' href='nix-darwin'>
       nix-darwin
     </a>
     
@@ -4352,12 +4538,12 @@
 <!-- Rendering of this tree -->
 <div class='pl-2'>
   <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    <span>
+  <div class='flex items-center my-1.5 space-x-2 justify-left'>
+    <span class='flex-shrink-0'>
       
         
     
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-5 h-5 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
         </path>
       </svg>
@@ -4365,7 +4551,7 @@
   
         
     </span>
-    <a class='hover:bg-green-200 rounded px-1.5 truncate' title='Nix Jobs' href='jobs'>
+    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Jobs' href='jobs'>
       Nix Jobs
     </a>
     
@@ -4384,30 +4570,34 @@
   
         </div>
       </main>
-      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800 dark:text-gray-200'>
   
   <div>
-    <a href='' title='Go to Home page'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
-      </svg>
-    </a>
+    
+      
+        <a href='/en/' title='Go to Home'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
+          </svg>
+        </a>
+      
+    
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.3.31.0'>
-      <img class='w-6 h-6 hover:text-green-700' src='_emanote-static/emanote-logo.svg' />
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.0'>
+      <img class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-6 h-6 hover:text-green-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -4415,7 +4605,7 @@
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
@@ -4427,12 +4617,23 @@
   <div class='fixed w-screen h-screen inset-0' onclick='window.emanote.stork.toggleSearch()'></div>
 
   <div class='container mx-auto p-10 mt-10'>
-    <div class='stork-wrapper-flat container mx-auto'>
+    <div id='stork-wrapper' class='container mx-auto'>
       <input id='stork-search-input' data-stork='emanote-search' class='stork-input' placeholder='Search (Ctrl+K) ...' />
       <div data-stork='emanote-search-output' class='stork-output'></div>
     </div>
   </div>
 </div>
+
+<script>
+  const wrapper = document.getElementById('stork-wrapper');
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  wrapper.classList.add(isDark ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    wrapper.classList.remove('stork-wrapper-edible', 'stork-wrapper-edible-dark');
+    wrapper.classList.add(e.matches ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
+  });
+</script>
   
     
   
