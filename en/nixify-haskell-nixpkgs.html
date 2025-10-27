@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=2bb97e63-9936-442b-b5f6-88a392095867' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=0623a6cb-11b1-4189-99ef-d70ab2d1b2d9' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -649,7 +649,7 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      Welcome to the <a href='nixify-haskell' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Nixify Haskell projects</a> series, where we start our journey by integrating a Haskell application, particularly one using a PostgreSQL database, into a single-command deployable package. By the end of this article, you’ll have a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>flake.nix</a> file that’s set to build the project, establish the <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>development environment</a>, and execute the Haskell application along with all its dependent services like PostgreSQL and <a href='https://postgrest.org/en/stable' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>PostgREST</a>. We’ll be using <a href='https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>todo-app</a> as a running case study throughout the series, demonstrating the process of building a Haskell project and effectively managing runtime dependencies, such as databases and other services, thereby illustrating the streamlined and powerful capabilities Nix introduces to Haskell development.
+      Welcome to the <a href='nixify-haskell' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nixify Haskell projects</a> series, where we start our journey by integrating a Haskell application, particularly one using a PostgreSQL database, into a single-command deployable package. By the end of this article, you’ll have a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake.nix</a> file that’s set to build the project, establish the <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>development environment</a>, and execute the Haskell application along with all its dependent services like PostgreSQL and <a href='https://postgrest.org/en/stable' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>PostgREST</a>. We’ll be using <a href='https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>todo-app</a> as a running case study throughout the series, demonstrating the process of building a Haskell project and effectively managing runtime dependencies, such as databases and other services, thereby illustrating the streamlined and powerful capabilities Nix introduces to Haskell development.
     </p>
   <div data-callout-metadata data-callout-fold data-callout='warning' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #EC750010; border-left-color: #EC7500'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
@@ -673,11 +673,11 @@
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          A basic understanding of the <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Nix</a> and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Flakes</a> is assumed. See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a>
+          A basic understanding of the <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a> is assumed. See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a>
         </li>
       
         <li>
-          To appreciate why Nix is a great choice for Haskell development, see <a href='why-dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Why Choose Nix for develoment?</a>
+          To appreciate why Nix is a great choice for Haskell development, see <a href='why-dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Why Choose Nix for develoment?</a>
         </li>
       
     </ul>
@@ -699,7 +699,7 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Let’s build a simple flake for our Haskell project, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>todo-app</code>. Start by cloning the <a href='https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>todo-app</a> repository and checking out the specified commit.
+      Let’s build a simple flake for our Haskell project, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>todo-app</code>. Start by cloning the <a href='https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>todo-app</a> repository and checking out the specified commit.
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>git clone https://github.com/juspay/todo-app.git
 cd todo-app
@@ -747,7 +747,7 @@ git checkout 076185e34f70e903b992b597232bc622eadfcd51</code></pre></div>
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      The <a href='https://nixos.org/manual/nixpkgs/stable/#haskell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>official manual</a> explains the Haskell’s infrastructure in <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> detail. For our purposes, the main things to understand are:
+      The <a href='https://nixos.org/manual/nixpkgs/stable/#haskell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>official manual</a> explains the Haskell’s infrastructure in <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> detail. For our purposes, the main things to understand are:
     </p>
   
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
@@ -784,7 +784,7 @@ git checkout 076185e34f70e903b992b597232bc622eadfcd51</code></pre></div>
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      You can use <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nix repl</a> to explore any flake’s output. In the repl session below, we locate and build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>aeson</code> package:
+      You can use <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nix repl</a> to explore any flake’s output. In the repl session below, we locate and build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>aeson</code> package:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>nix repl github:nixos/nixpkgs/nixpkgs-unstable
 nix-repl&gt; pkgs = legacyPackages.${builtins.currentSystem}
@@ -814,7 +814,7 @@ This derivation produced the following outputs:
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      We used <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>callCabal2nix</code> function from <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> to build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>todo-app</code> package above. This functio generates a Haskell package <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Derivation</a> from its source, utilizing the <a href='https://github.com/NixOS/cabal2nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>“cabal2nix”</a> program to convert a cabal file into a Nix derivation.
+      We used <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>callCabal2nix</code> function from <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> to build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>todo-app</code> package above. This functio generates a Haskell package <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a> from its source, utilizing the <a href='https://github.com/NixOS/cabal2nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>“cabal2nix”</a> program to convert a cabal file into a Nix derivation.
     </p>
   
     <h3 id='overlay' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
@@ -852,11 +852,11 @@ This derivation produced the following outputs:
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='https://nixos.wiki/wiki/Overlays' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>NixOS Wiki on Overlays</a>
+          <a href='https://nixos.wiki/wiki/Overlays' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>NixOS Wiki on Overlays</a>
         </li>
       
         <li>
-          <a href='https://github.com/NixOS/nixpkgs/blob/master/lib/fixed-points.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Overlay implementation in fixed-points.nix</a>&gt;
+          <a href='https://github.com/NixOS/nixpkgs/blob/master/lib/fixed-points.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Overlay implementation in fixed-points.nix</a>&gt;
         </li>
       
     </ul>
@@ -925,7 +925,7 @@ This derivation produced the following outputs:
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Our existing flake lets us <em>build</em> <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>todo-app</code>. But what if we want to <em>develop</em> it? Typically, Haskell development involves tools like <a href='https://cabal.readthedocs.io/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>cabal</a> and <a href='https://github.com/ndmitchell/ghcid' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>ghcid</a>. These tools require a GHC environment with the packages specified in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>build-depends</code> of our cabal file. This is where <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>devShell</code> comes in, providing an isolated environment with all packages required by the project.
+      Our existing flake lets us <em>build</em> <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>todo-app</code>. But what if we want to <em>develop</em> it? Typically, Haskell development involves tools like <a href='https://cabal.readthedocs.io/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>cabal</a> and <a href='https://github.com/ndmitchell/ghcid' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>ghcid</a>. These tools require a GHC environment with the packages specified in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>build-depends</code> of our cabal file. This is where <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>devShell</code> comes in, providing an isolated environment with all packages required by the project.
     </p>
   
     <p class='mb-4 leading-relaxed'>
@@ -971,13 +971,13 @@ This derivation produced the following outputs:
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      A Haskell <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>devShell</a> can be provided in one of the two ways. The default way is to use the (language-independent) <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkShell</code> function (Generic shell). However to get full IDE support, it is best to use the (haskell-specific) <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>shellFor</code> function, which is an abstraction over <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkShell</code></a> geared specifically for Haskell development shells
+      A Haskell <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>devShell</a> can be provided in one of the two ways. The default way is to use the (language-independent) <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkShell</code> function (Generic shell). However to get full IDE support, it is best to use the (haskell-specific) <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>shellFor</code> function, which is an abstraction over <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkShell</code></a> geared specifically for Haskell development shells
     </p>
   
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          Every Haskell package set (such as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>pkgs.haskellPackages</code>), exposes <a href='https://nixos.wiki/wiki/Haskell#Using_shellFor_.28multiple_packages.29' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>shellFor</code></a> function, which returns a devShell with GHC package set configured with the Haskell packages in that package set.
+          Every Haskell package set (such as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>pkgs.haskellPackages</code>), exposes <a href='https://nixos.wiki/wiki/Haskell#Using_shellFor_.28multiple_packages.29' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>shellFor</code></a> function, which returns a devShell with GHC package set configured with the Haskell packages in that package set.
         </li>
       
         <li>
@@ -1064,7 +1064,7 @@ This derivation produced the following outputs:
   };
 }</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      This flake defines a flake app that can be run using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run</code>. This app is simply a shell script that starts a Postgres server. <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> provides the convenient <a href='writeShellApplication' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>writeShellApplication</code></a> function to generate such a script. Note that <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>"${script}"</code> provides the path in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix/store</code> where the application is located.
+      This flake defines a flake app that can be run using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run</code>. This app is simply a shell script that starts a Postgres server. <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> provides the convenient <a href='writeShellApplication' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>writeShellApplication</code></a> function to generate such a script. Note that <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>"${script}"</code> provides the path in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix/store</code> where the application is located.
     </p>
   
     <h3 id='run-it' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
@@ -1194,7 +1194,7 @@ This derivation produced the following outputs:
     };
 }</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      For the complete souce code, visit <a href='https://github.com/juspay/todo-app/tree/tutorial/1' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>here</a>.
+      For the complete souce code, visit <a href='https://github.com/juspay/todo-app/tree/tutorial/1' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>here</a>.
     </p>
   <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
@@ -1215,7 +1215,7 @@ This derivation produced the following outputs:
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      The source code uses <a href='https://zero-to-nix.com/concepts/flakes#system-specificity' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>forAllSystems</code></a>, which was not included in the tutorial above to maintain simplicity. Later, we will obviate <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>forAllSystems</code> and simplify the flake further using <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
+      The source code uses <a href='https://zero-to-nix.com/concepts/flakes#system-specificity' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>forAllSystems</code></a>, which was not included in the tutorial above to maintain simplicity. Later, we will obviate <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>forAllSystems</code> and simplify the flake further using <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
     </p>
   
   </div>
@@ -1250,7 +1250,7 @@ This derivation produced the following outputs:
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      This tutorial pratically demonstrated <a href='why-dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>why Nix is a great choice for Haskell development</a>:
+      This tutorial pratically demonstrated <a href='why-dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>why Nix is a great choice for Haskell development</a>:
     </p>
   
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
@@ -1270,7 +1270,7 @@ This derivation produced the following outputs:
     </ul>
   
     <p class='mb-4 leading-relaxed'>
-      In the next tutorial part, we will modularize this <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> using <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
+      In the next tutorial part, we will modularize this <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> using <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
     </p>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
@@ -1308,14 +1308,14 @@ This derivation produced the following outputs:
     <ul class='space-y-2'>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all inline-block' href='direnv'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='direnv'>
             <code>direnv</code>: manage dev environments
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><p>Since both <a href='nixify-haskell-nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code>.cabal</code> file changes. This can be achieved using the <code>watch_file</code> function. Modify your <code>.envrc</code> to contain:</p></div>
+      <div><p>Since both <a href='nixify-haskell-nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code>.cabal</code> file changes. This can be achieved using the <code>watch_file</code> function. Modify your <code>.envrc</code> to contain:</p></div>
     </div>
   
 </div>
@@ -1323,7 +1323,7 @@ This derivation produced the following outputs:
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all inline-block' href='nixify-haskell'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixify-haskell'>
             Nixify Haskell projects
           </a>
           
@@ -1334,7 +1334,7 @@ This derivation produced the following outputs:
           <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current fill-current' viewBox='0 0 28 28'><desc>☑</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect><path stroke='white' fill='none' stroke-linejoin='round' stroke-width='3.5' d='M7 14 l6 5L22 8'></path></svg>
 <span>
   
-            <a href='nixify-haskell-nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkBranch'>Nixifying a Haskell project using nixpkgs</a>
+            <a href='nixify-haskell-nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Nixifying a Haskell project using nixpkgs</a>
           
 </span>
         </div>

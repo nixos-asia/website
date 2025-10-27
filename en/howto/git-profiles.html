@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=2bb97e63-9936-442b-b5f6-88a392095867' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=0623a6cb-11b1-4189-99ef-d70ab2d1b2d9' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -654,7 +654,7 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      You want to override <a href='git' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkTag'>Git</a> config (such as commit author email) for only certain repos, such as those under a certain folder. This is useful when dealing with corporate policies, which often block commit pushes that doesn’t comfort to certain standards, such as using work email address in the commit email. Those using Bitbucket’s <a href='https://marketplace.atlassian.com/apps/1217635/control-freak-commit-checkers-and-jira-hooks-for-bitbucket?tab=overview&amp;hosting=cloud' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Control Freak</a> may be familiar with this error throw in response <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>git push</code>:
+      You want to override <a href='git' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>Git</a> config (such as commit author email) for only certain repos, such as those under a certain folder. This is useful when dealing with corporate policies, which often block commit pushes that doesn’t comfort to certain standards, such as using work email address in the commit email. Those using Bitbucket’s <a href='https://marketplace.atlassian.com/apps/1217635/control-freak-commit-checkers-and-jira-hooks-for-bitbucket?tab=overview&amp;hosting=cloud' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Control Freak</a> may be familiar with this error throw in response <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>git push</code>:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>remote:
 remote: Control Freak - Commit 484b773a7e6d2ed8 rejected: bad committer metadata.
@@ -678,7 +678,7 @@ remote:     "john.doe &lt;john.doe@somecompany.com&gt;"</code></pre></div>
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Git provides a way to solve the above problem – by specifying configuration unique to repos whose paths match a given filepattern. This is achieved using <a href='https://git-scm.com/docs/git-config#_includes' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>includeIf</code> section</a> in Git config. But how do we configure this <em>through</em> Nix?
+      Git provides a way to solve the above problem – by specifying configuration unique to repos whose paths match a given filepattern. This is achieved using <a href='https://git-scm.com/docs/git-config#_includes' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>includeIf</code> section</a> in Git config. But how do we configure this <em>through</em> Nix?
     </p>
   
     <h2 id='hm' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -696,7 +696,7 @@ remote:     "john.doe &lt;john.doe@somecompany.com&gt;"</code></pre></div>
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      When using <a href='home-manager' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkTag'>home-manager</a>, you can add the following to your <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.git</code> module:
+      When using <a href='home-manager' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>home-manager</a>, you can add the following to your <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.git</code> module:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>programs.git = {
   # Bitbucket git access and policies
@@ -728,7 +728,7 @@ remote:     "john.doe &lt;john.doe@somecompany.com&gt;"</code></pre></div>
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='https://github.com/srid/nixos-config/blob/f5388e798737d63eae4f88508f57fea0dd0b4192/home/juspay.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>srid/nixos-config: juspay.nix</a>
+          <a href='https://github.com/srid/nixos-config/blob/f5388e798737d63eae4f88508f57fea0dd0b4192/home/juspay.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>srid/nixos-config: juspay.nix</a>
         </li>
       
     </ul>

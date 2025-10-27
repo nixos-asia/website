@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=2bb97e63-9936-442b-b5f6-88a392095867' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=0623a6cb-11b1-4189-99ef-d70ab2d1b2d9' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -634,7 +634,7 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Nix</a> the language, including <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>flakes</a>, as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
+      The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> the language, including <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>, as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
     </p>
   <img class='inline mb-3' src='nix-tutorial/nix-rapid.png' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nix-tutorial/nix-rapid.png' style='width: inherit;' /><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
@@ -655,7 +655,7 @@
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      If you are already experienced in <a href='https://en.wikipedia.org/wiki/Purely_functional_programming' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>purely functional programming</a>, it is highly recommended to read <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a> to gain a foundational perspective into Nix being purely functional but in the context of <em>file system</em> (as opposed to values stored in memory).
+      If you are already experienced in <a href='https://en.wikipedia.org/wiki/Purely_functional_programming' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>purely functional programming</a>, it is highly recommended to read <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a> to gain a foundational perspective into Nix being purely functional but in the context of <em>file system</em> (as opposed to values stored in memory).
     </p>
   
     <blockquote class='py-3 px-6 mb-6 italic border-l-4 bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 quote rounded-r-lg'>
@@ -685,11 +685,11 @@
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <strong>Install Nix</strong>: Nix can be <a href='install' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
+          <strong>Install Nix</strong>: Nix can be <a href='install' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>installed on Linux and macOS</a>. If you are using <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>, it already comes with Nix pre-installed.
         </li>
       
         <li>
-          <strong>Play with Nix</strong>: Before writing Nix expressions, it is useful to get a feel for working with the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix</code> command. See <a href='nix-first' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>First steps with Nix</a>
+          <strong>Play with Nix</strong>: Before writing Nix expressions, it is useful to get a feel for working with the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix</code> command. See <a href='nix-first' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>First steps with Nix</a>
         </li>
       
     </ul>
@@ -729,11 +729,11 @@
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='https://nixos.org/manual/nix/stable/language/values.html#attribute-set' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Official manual</a>
+          <a href='https://nixos.org/manual/nix/stable/language/values.html#attribute-set' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Official manual</a>
         </li>
       
         <li>
-          <a href='https://nix.dev/tutorials/nix-language#attribute-set' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>nix.dev on attrsets</a>
+          <a href='https://nix.dev/tutorials/nix-language#attribute-set' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>nix.dev on attrsets</a>
         </li>
       
     </ul>
@@ -741,7 +741,7 @@
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      The <a href='https://nixos.org/manual/nix/stable/language/index.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Nix programming language</a> provides a lot of general constructs. But at its most basic use, it makes heavy use of <em>nested hash maps</em> otherwise called an “attrset”. They are equivalent to <a href='https://hackage.haskell.org/package/containers-0.6.7/docs/Data-Map-Strict.html#t:Map' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>Map Text a</code></a> in Haskell. The following is a simple example of an attrset:
+      The <a href='https://nixos.org/manual/nix/stable/language/index.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Nix programming language</a> provides a lot of general constructs. But at its most basic use, it makes heavy use of <em>nested hash maps</em> otherwise called an “attrset”. They are equivalent to <a href='https://hackage.haskell.org/package/containers-0.6.7/docs/Data-Map-Strict.html#t:Map' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>Map Text a</code></a> in Haskell. The following is a simple example of an attrset:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
   foo = {
@@ -767,7 +767,7 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Nix expressions can be readily evaluated in the <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix repl</code>.
+      Nix expressions can be readily evaluated in the <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix repl</code>.
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix repl
 Welcome to Nix 2.12.0. Type :? for help.
@@ -793,7 +793,7 @@ nix-repl&gt; x.foo.bar
 nix-repl&gt;</code></pre></div>
     <h2 id='flakes' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
-  <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Flakes</a>
+  <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a>
   
   <a href='nix-rapid#flakes' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -826,7 +826,7 @@ nix-repl&gt;</code></pre></div>
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='https://serokell.io/blog/practical-nix-flakes#basic-flake-structure' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Serokell Blog: Basic flake structure</a>
+          <a href='https://serokell.io/blog/practical-nix-flakes#basic-flake-structure' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Serokell Blog: Basic flake structure</a>
         </li>
       
     </ul>
@@ -834,7 +834,7 @@ nix-repl&gt;</code></pre></div>
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      A Nix <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>inputs</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
+      A Nix <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>inputs</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
   inputs = { };
@@ -844,18 +844,18 @@ nix-repl&gt;</code></pre></div>
   };
 }</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      This flake has zero <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>inputs</code>. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>outputs</code> is a <a href='https://nixos.org/manual/nix/stable/language/constructs.html#functions' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>function</a> that takes the (realised) inputs as an argument and returns the final output attrset. This output attrset, in our example, has a single key <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>foo</code> with a value of <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>42</code>.
+      This flake has zero <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>inputs</code>. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>outputs</code> is a <a href='https://nixos.org/manual/nix/stable/language/constructs.html#functions' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>function</a> that takes the (realised) inputs as an argument and returns the final output attrset. This output attrset, in our example, has a single key <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>foo</code> with a value of <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>42</code>.
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      We can use the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code></a> command to see the output structure of a flake:
+      We can use the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code></a> command to see the output structure of a flake:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix flake show
 path:/Users/srid/code/nixplay?lastModified=1675373998&amp;narHash=sha256-ifNiFGU1VV784kVcssn2rXIil%2feHfMLhPfmvaELefwA=
 └───foo: unknown
 $</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      We can use <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix eval</code></a> to evaluate any output. For example,
+      We can use <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix eval</code></a> to evaluate any output. For example,
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix eval .#foo
 42</code></pre></div>
@@ -874,7 +874,7 @@ $</code></pre></div>
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger <a href='https://en.wikipedia.org/wiki/Directed_graph' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>graph</a>, with inputs being the incoming arrows and outputs being the outgoing arrows.
+      A flake can refer to other flakes in its inputs. Phrased differently, a flake’s outputs can be used as inputs in other flakes. The most common example is the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake which gets used as an input in most flakes. Intuitively, you may visualize a flake to be a node in a larger <a href='https://en.wikipedia.org/wiki/Directed_graph' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>graph</a>, with inputs being the incoming arrows and outputs being the outgoing arrows.
     </p>
   
     <h3 id='inputs' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
@@ -912,7 +912,7 @@ $</code></pre></div>
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>URL-like syntax</a> used by the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>url</code> attribute
+          <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>URL-like syntax</a> used by the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>url</code> attribute
         </li>
       
     </ul>
@@ -920,7 +920,7 @@ $</code></pre></div>
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      Let’s do something more interesting with our <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> by adding the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> input:
+      Let’s do something more interesting with our <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> by adding the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> input:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
   inputs = {
@@ -956,7 +956,7 @@ $</code></pre></div>
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      The <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake has an output called <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>foo</code>.
+      The <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake has an output called <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>legacyPackages</code>, which is indexed by the platform (called “system” in Nix-speak), further containing all the packages for that system. We assign that package to our flake output key <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>foo</code>.
     </p>
   <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
@@ -971,7 +971,7 @@ $</code></pre></div>
       </svg>
     </div>
     <div class='ml-3'>
-       You can use <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>`nix repl`</a> to explore the outputs of any flake, using TAB completion:
+       You can use <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>`nix repl`</a> to explore the outputs of any flake, using TAB completion:
     </div>
   </div>
   <div class='callout-content text-gray-700 dark:text-gray-300'>
@@ -1001,9 +1001,9 @@ nix-repl&gt;</code></pre></div>
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      Nix commands treat <a href='https://nixos.wiki/wiki/Flakes#Output_schema' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>certain outputs as special</a>. These are:
+      Nix commands treat <a href='https://nixos.wiki/wiki/Flakes#Output_schema' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>certain outputs as special</a>. These are:
     </p>
-  <table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Output</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Nix command</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Description</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Derivation</a> output</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>devShells</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix develop</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all'>Development</a> shells</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>apps</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Runnable applications</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>checks</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake check</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Tests and checks</td></tr></tbody></table>
+  <table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Output</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Nix command</th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Description</th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a> output</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>devShells</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix develop</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900'>Development</a> shells</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>apps</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Runnable applications</td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>checks</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake check</code></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Tests and checks</td></tr></tbody></table>
     <p class='mb-4 leading-relaxed'>
       All of these predefined outputs are further indexed by the “system” value.
     </p>
@@ -1043,7 +1043,7 @@ nix-repl&gt;</code></pre></div>
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-using-stdenv' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>pkgs.stdenv.mkDerivation</code></a> can be used to build a custom package from scratch
+          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-using-stdenv' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>pkgs.stdenv.mkDerivation</code></a> can be used to build a custom package from scratch
         </li>
       
     </ul>
@@ -1083,7 +1083,7 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix build .#cowsay</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code></a> command takes as argument a value of the form <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.</code> (which is a <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>flake URL</a>) refers to the current flake. Thus, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build .#cowsay</code> will build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code> package from the current flake under the current system. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code> produces a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>./result</code> symlink that points to the Nix store path containing the package:
+      The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code></a> command takes as argument a value of the form <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.</code> (which is a <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake URL</a>) refers to the current flake. Thus, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build .#cowsay</code> will build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code> package from the current flake under the current system. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code> produces a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>./result</code> symlink that points to the Nix store path containing the package:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ ./result/bin/cowsay hello
  _______
@@ -1183,11 +1183,11 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Official Nix manual</a>
+          <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Official Nix manual</a>
         </li>
       
         <li>
-          <a href='https://nixos.wiki/wiki/Development_environment_with_nix-shell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>NixOS Wiki</a>
+          <a href='https://nixos.wiki/wiki/Development_environment_with_nix-shell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>NixOS Wiki</a>
         </li>
       
     </ul>
@@ -1195,11 +1195,11 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      Like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code>, another predefined flake output is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>devShells</code> - which is used to provide a <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>development</a> shell aka. a nix <a href='shell' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>shell</a> or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkShell</code></a> that can be used to create devshells.
+      Like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code>, another predefined flake output is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>devShells</code> - which is used to provide a <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>development</a> shell aka. a nix <a href='shell' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>shell</a> or devshell. A devshell is a sandboxed environment containing the packages and other shell environment you specify. nixpkgs provides a function called <a href='https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-mkShell' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkShell</code></a> that can be used to create devshells.
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      As an example, we will update our <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> to provide a devshell that contains the <a href='https://github.com/stedolan/jq' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>jq</a> tool.
+      As an example, we will update our <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> to provide a devshell that contains the <a href='https://github.com/stedolan/jq' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>jq</a> tool.
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
   inputs = {
@@ -1233,7 +1233,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
 │       └───default: development environment 'nix-shell'
 └───foo: unknown</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      Just as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code> can be built using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code>, you can enter the devshell using <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix develop</code></a>:
+      Just as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code> can be built using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code>, you can enter the devshell using <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix develop</code></a>:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix develop
 ❯ which jq
@@ -1260,7 +1260,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      This mini tutorial provided a rapid introduction to Nix flakes, enabling you to get started with writing simple flake for your projects. Consult the links above for more information. There is a lot more to Nix than the concepts presented here! You can also read <a href='https://zero-to-nix.com/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix</a> for a highlevel introduction to all things Nix and flakes.
+      This mini tutorial provided a rapid introduction to Nix flakes, enabling you to get started with writing simple flake for your projects. Consult the links above for more information. There is a lot more to Nix than the concepts presented here! You can also read <a href='https://zero-to-nix.com/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Zero to Nix</a> for a highlevel introduction to all things Nix and flakes.
     </p>
   
     <h2 id='see-also' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -1280,11 +1280,11 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='https://github.com/tazjin/nix-1p' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>A (more or less) one page introduction to Nix, the language</a>
+          <a href='https://github.com/tazjin/nix-1p' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>A (more or less) one page introduction to Nix, the language</a>
         </li>
       
         <li>
-          <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a>
+          <a href='https://www.tweag.io/blog/2022-07-14-taming-unix-with-nix/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Nix - taming Unix with functional programming</a>
         </li>
       
     </ul>
@@ -1324,14 +1324,14 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     <ul class='space-y-2'>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all inline-block' href='nixify-haskell-nixpkgs'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixify-haskell-nixpkgs'>
             Nixifying a Haskell project using nixpkgs
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div>A basic understanding of the <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Nix</a> and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Flakes</a> is assumed. See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a></div>
+      <div>A basic understanding of the <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a> is assumed. See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a></div>
     </div>
   
 </div>
@@ -1339,7 +1339,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all inline-block' href='nix-tutorial'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nix-tutorial'>
             Nix Tutorial Series
           </a>
           
@@ -1350,7 +1350,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
           <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current fill-current' viewBox='0 0 28 28'><desc>☑</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect><path stroke='white' fill='none' stroke-linejoin='round' stroke-width='3.5' d='M7 14 l6 5L22 8'></path></svg>
 <span>
   
-            <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkBranch'>Rapid Introduction to Nix</a>
+            <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Rapid Introduction to Nix</a>
           
 </span>
         </div>
@@ -1361,18 +1361,18 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all inline-block' href='nix-first'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nix-first'>
             First steps with Nix
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div>See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> where we will go over writing simple Nix expressions and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>flakes</a>.</div>
+      <div>See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> where we will go over writing simple Nix expressions and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>.</div>
     </div>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><p>You have <a href='install' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.</p></div>
+      <div><p>You have <a href='install' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.</p></div>
     </div>
   
 </div>
@@ -1380,14 +1380,14 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all inline-block' href='configuration-as-flake'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='configuration-as-flake'>
             Convert <code>configuration.nix</code> to be a flake
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><p>[!info] More on Flakes See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> for more information on flakes.</p></div>
+      <div><p>[!info] More on Flakes See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> for more information on flakes.</p></div>
     </div>
   
 </div>
