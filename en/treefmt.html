@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=62e95234-a2b9-48d7-b913-009cbecc4068' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=2bb97e63-9936-442b-b5f6-88a392095867' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -133,11 +133,6 @@
 </style>
 
 <style data-category='global-improvements'>
-  /* Smooth transitions for interactive elements */
-  a, button {
-    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-  }
-
   /* Link improvements */
   a {
     text-decoration-thickness: 1px;
@@ -697,7 +692,7 @@
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      The <a href='https://github.com/srid/flake-root' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>flake-root</code></a> <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>flake.nix</code>.
+      The <a href='https://github.com/srid/flake-root' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake-root</code></a> <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>.
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
   # Inside `inputs`
@@ -706,7 +701,7 @@
 }</code></pre></div>
     <h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
-  Import <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>flakeModule</code> output of treefmt and flake-root
+  Import <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flakeModule</code> output of treefmt and flake-root
   
   <a href='treefmt#import-flakemodule-output-of-treefmt-and-flake-root' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -772,7 +767,7 @@
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      Finally, add the resulting treefmt wrapper (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>build.wrapper</code>) to your devShell. We also add the individual formatters (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>build.programs</code>) to the devShell, so that they can be used directly in text editors and IDEs.
+      Finally, add the resulting treefmt wrapper (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>build.wrapper</code>) to your devShell. We also add the individual formatters (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>build.programs</code>) to the devShell, so that they can be used directly in text editors and IDEs.
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
   # Inside mkFlake's `perSystem`
@@ -797,7 +792,7 @@
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      The <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>treefmt-nix</code> flake module automatically adds a flake check that can be evaluated to make sure that the project is already autoformatted.
+      The <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>treefmt-nix</code> flake module automatically adds a flake check that can be evaluated to make sure that the project is already autoformatted.
     </p>
   
     <h2 id='tips' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -848,7 +843,7 @@
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      The package shipped with the current <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> might not be the desired one, follow the snippet below to override the package (assuming <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>nixpkgs-21_11</code> is present in your flake’s inputs).
+      The package shipped with the current <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 transition-all' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> might not be the desired one, follow the snippet below to override the package (assuming <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs-21_11</code> is present in your flake’s inputs).
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
   programs.ormolu.package = nixpkgs-21_11.haskellPackages.ormolu;</code></pre></div>
@@ -871,7 +866,7 @@
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      You might want to change a certain behaviour of your formatter by overriding by passing the input to the executable. The following example shows how to pass <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>ghc-opt</code> to ormolu:
+      You might want to change a certain behaviour of your formatter by overriding by passing the input to the executable. The following example shows how to pass <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ghc-opt</code> to ormolu:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
   settings.formatter.ormolu = {
@@ -881,7 +876,7 @@
     ];
   };</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      Ormolu requires this <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>ormolu --manual-exts</code>.
+      Ormolu requires this <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ormolu --manual-exts</code>.
     </p>
   
     <h2 id='example' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -923,7 +918,7 @@
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-sm'>treefmt</code> will provide a pre-commit mode to disable commit if formatting checks fail. This is tracked here: <a href='https://github.com/numtide/treefmt/issues/78' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/numtide/treefmt/issues/78</a>
+          <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>treefmt</code> will provide a pre-commit mode to disable commit if formatting checks fail. This is tracked here: <a href='https://github.com/numtide/treefmt/issues/78' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2 transition-all' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/numtide/treefmt/issues/78</a>
         </li>
       
     </ul>
