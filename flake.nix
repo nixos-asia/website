@@ -22,8 +22,10 @@
               (name: lang: {
                 inherit (lang) port;
                 layers = [{ path = lang.path; pathString = name; } { path = ./global; pathString = "global"; }];
-                prettyUrls = true;
-                baseUrl = "/${name}/";
+		extraConfig.template = {
+                  prettyUrls = true;
+                  baseUrl = "/${name}/";
+                };
                 basePath = name;
               })
               langs;
