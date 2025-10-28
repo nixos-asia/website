@@ -1,6 +1,6 @@
 {
   inputs = {
-    emanote.url = "github:srid/emanote/ui2025Oct";
+    emanote.url = "github:srid/emanote";
     nixpkgs.follows = "emanote/nixpkgs";
     flake-parts.follows = "emanote/flake-parts";
   };
