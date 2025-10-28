@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0623a6cb-11b1-4189-99ef-d70ab2d1b2d9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=360ac908-2f72-4587-9e3a-d2fe5793cf55' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -451,7 +451,7 @@
 
 <!-- DoNotFormat -->
 
-<body class='bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-50 overflow-y-scroll'>
+<body class='bg-gray-200 dark:bg-black text-gray-900 dark:text-gray-50 overflow-y-scroll'>
   
     <div class='container mx-auto mt-2 md:mt-4  '>
       
@@ -673,12 +673,10 @@
   </div>
 
           <!-- Main body column -->
-          <div class='flex-1 w-full bg-white dark:bg-gray-900'>
+          <div class='flex-1 w-full bg-white dark:bg-gray-800'>
   <main class='px-6 py-8 max-w-7xl mx-auto'>
-    <h1 class='flex items-end justify-center mb-10 px-8 py-5 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 text-5xl font-bold text-gray-900 dark:text-gray-50 rounded-2xl shadow-lg shadow-green-200/50 dark:shadow-green-950/50 border border-green-200/50 dark:border-green-800/50'>
-  <span class='z-40 tracking-tight'>
-    Replacing docker-compose with Nix for development
-  </span>
+    <h1 class='mb-10 px-8 py-5 bg-green-600 dark:bg-green-800 text-5xl font-bold text-white text-center rounded-2xl'>
+  Replacing docker-compose with Nix for development
 </h1>
     
       <article class='overflow-auto'>
@@ -695,7 +693,7 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      Ever since I first started using <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> for <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>development</a>, I have enjoyed the <a href='why-dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>simplicity of setup</a>: <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix develop</code>, make the code change and see it work. That’s all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then, a quick search will tell you that <a href='https://www.docker.com/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>docker</a> is the way to go. You include it, <a href='https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>add one more step</a> in the setup guide, increasing the barrier to entry for new contributors. Not to mention, eating up all the system resources
+      Ever since I first started using <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> for <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>development</a>, I have enjoyed the <a href='why-dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>simplicity of setup</a>: <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix develop</code>, make the code change and see it work. That’s all well and good, but when your project keeps growing, you need to depend on external services like databases, message brokers, etc. And then, a quick search will tell you that <a href='https://www.docker.com/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>docker</a> is the way to go. You include it, <a href='https://github.com/nammayatri/nammayatri/tree/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend#other-tools' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>add one more step</a> in the setup guide, increasing the barrier to entry for new contributors. Not to mention, eating up all the system resources
     <sup class='px-0.5'>
       <a class='text-green-600 dark:text-green-400 hover:underline' href='blog/replacing-docker-compose#fn1'>
         1
@@ -750,7 +748,7 @@
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      If you’ve ever used <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> before, you might be familiar with the way services are managed. Let’s take a quick look at an example to understand if that will help us arrive at a solution for our problem.
+      If you’ve ever used <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> before, you might be familiar with the way services are managed. Let’s take a quick look at an example to understand if that will help us arrive at a solution for our problem.
     </p>
   
     <h2 id='nixos-services' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -768,7 +766,7 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Running services in <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> is a breeze. For example, <a href='https://nixos.wiki/wiki/PostgreSQL' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>running a PostgreSQL Database</a> is as simple as adding one line to your configuration:
+      Running services in <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> is a breeze. For example, <a href='https://nixos.wiki/wiki/PostgreSQL' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>running a PostgreSQL Database</a> is as simple as adding one line to your configuration:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
   services.postgresql.enable = true;
@@ -792,7 +790,7 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      In the last section, we saw how easy it is to run services in <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>. We are looking for something similar for our development environment that runs across platforms. Additionally, the solution should:
+      In the last section, we saw how easy it is to run services in <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>. We are looking for something similar for our development environment that runs across platforms. Additionally, the solution should:
     </p>
   
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
@@ -808,7 +806,7 @@
     </ul>
   
     <p class='mb-4 leading-relaxed'>
-      These were the exact problems <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>services-flake</a> was designed to solve. Along with running services natively, it also <a href='https://community.flake.parts/services-flake/start' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>integrates with your project’s <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code></a>.
+      These were the exact problems <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>services-flake</a> was designed to solve. Along with running services natively, it also <a href='https://community.flake.parts/services-flake/start' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>integrates with your project’s <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code></a>.
     </p>
   
     <h2 id='services-flake' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -826,13 +824,13 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      How does <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>services-flake</a> solve them?
+      How does <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>services-flake</a> solve them?
     </p>
   
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          It uses <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a> for the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a> (that’s the simplicity aspect), and <a href='process-compose-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>process-compose-flake</a> for managing services, along with providing a TUI app to monitor them.
+          It uses <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a> for the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a> (that’s the simplicity aspect), and <a href='process-compose-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>process-compose-flake</a> for managing services, along with providing a TUI app to monitor them.
         </li>
       
         <li>
@@ -840,7 +838,7 @@
         </li>
       
         <li>
-          By default, the data of each service is stored under <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>./data/&lt;service-name&gt;</code>, where <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>./</code> refers to the path where the process-compose app, exported by the project <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a> is run (usually in the project root).
+          By default, the data of each service is stored under <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>./data/&lt;service-name&gt;</code>, where <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>./</code> refers to the path where the process-compose app, exported by the project <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a> is run (usually in the project root).
         </li>
       
     </ul>
@@ -860,7 +858,7 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Now that we have all the answers, it’s time to replace <a href='https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>docker-compose in NY</a> with <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>services-flake</a>. We will only focus on a few services to keep it simple; for more details, refer to the <a href='https://github.com/nammayatri/nammayatri/pull/3718' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>PR</a>.
+      Now that we have all the answers, it’s time to replace <a href='https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>docker-compose in NY</a> with <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>services-flake</a>. We will only focus on a few services to keep it simple; for more details, refer to the <a href='https://github.com/nammayatri/nammayatri/pull/3718' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>PR</a>.
     </p>
   <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='blog/replacing-docker-compose/ny-services-flake.png' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/blog/replacing-docker-compose/ny-services-flake.png' style='width: inherit;' /></div>
     <h3 id='postgresql' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
@@ -888,7 +886,7 @@
   services.passetto.enable = true;
 }</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      By leveraging the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a>, we can hide the implementation details and only expose the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>passetto</code> service to the user, enabling its use as shown above.
+      By leveraging the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a>, we can hide the implementation details and only expose the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>passetto</code> service to the user, enabling its use as shown above.
     </p>
   
     <p class='mb-4 leading-relaxed'>
@@ -963,7 +961,7 @@ nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Sharing <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>services-flake</a> modules deserves a separate post, so we will delve into this topic more in the next post.
+      Sharing <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>services-flake</a> modules deserves a separate post, so we will delve into this topic more in the next post.
     </p>
   
     <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 dark:text-gray-400 transform scale-x-90 border-t-2 border-gray-200 dark:border-gray-700'>
@@ -1021,13 +1019,14 @@ nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
 </div>
         </div>
       
-      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800 dark:text-gray-200'>
-  
+      <footer class='flex items-center justify-center mt-10 mb-10'>
+  <div class='inline-flex items-center justify-center space-x-6 px-8 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg'>
+    
   <div>
     
       
         <a href='/en/' title='Go to Home'>
-          <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
           </svg>
         </a>
@@ -1036,19 +1035,19 @@ nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.0'>
-      <img class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+      <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -1056,10 +1055,11 @@ nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
+  </div>
   </div>
 </footer>
     </div>

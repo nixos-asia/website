@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0623a6cb-11b1-4189-99ef-d70ab2d1b2d9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=360ac908-2f72-4587-9e3a-d2fe5793cf55' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -451,7 +451,7 @@
 
 <!-- DoNotFormat -->
 
-<body class='bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-50 overflow-y-scroll'>
+<body class='bg-gray-200 dark:bg-black text-gray-900 dark:text-gray-50 overflow-y-scroll'>
   
     <div class='container mx-auto mt-2 md:mt-4  '>
       
@@ -597,12 +597,10 @@
   </div>
 
           <!-- Main body column -->
-          <div class='flex-1 w-full bg-white dark:bg-gray-900'>
+          <div class='flex-1 w-full bg-white dark:bg-gray-800'>
   <main class='px-6 py-8 max-w-7xl mx-auto'>
-    <h1 class='flex items-end justify-center mb-10 px-8 py-5 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 text-5xl font-bold text-gray-900 dark:text-gray-50 rounded-2xl shadow-lg shadow-green-200/50 dark:shadow-green-950/50 border border-green-200/50 dark:border-green-800/50'>
-  <span class='z-40 tracking-tight'>
-    Install NixOS with <code>disko</code> disk partitioning
-  </span>
+    <h1 class='mb-10 px-8 py-5 bg-green-600 dark:bg-green-800 text-5xl font-bold text-white text-center rounded-2xl'>
+  Install NixOS with <code>disko</code> disk partitioning
 </h1>
     
       <article class='overflow-auto'>
@@ -619,7 +617,7 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      In this second tutorial, we will walk you through the process of installing <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>. Unlike <a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the first installation tutorial</a>, we will use the command line to install NixOS manually, except for using <a href='https://github.com/nix-community/disko' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>disko</a> to specify disk partitions declaratively in <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> itself. This is the first step toward our <a href='nixos-install-oneclick' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>next tutorial</a>, where we will automate the entire installation process.
+      In this second tutorial, we will walk you through the process of installing <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>. Unlike <a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the first installation tutorial</a>, we will use the command line to install NixOS manually, except for using <a href='https://github.com/nix-community/disko' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>disko</a> to specify disk partitions declaratively in <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> itself. This is the first step toward our <a href='nixos-install-oneclick' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>next tutorial</a>, where we will automate the entire installation process.
     </p>
   
     <h2 id='prepare' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -654,7 +652,7 @@
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      This tutorial doesn’t use a <a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>graphical installer</a>. Instead, it uses the minimal ISO image. This is primarily because we don’t want the installer to partion the disk for us. We will use <a href='https://github.com/nix-community/disko' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>disko</a> to do that.
+      This tutorial doesn’t use a <a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>graphical installer</a>. Instead, it uses the minimal ISO image. This is primarily because we don’t want the installer to partion the disk for us. We will use <a href='https://github.com/nix-community/disko' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>disko</a> to do that.
     </p>
   
   </div>
@@ -730,7 +728,7 @@
     </h3>
   
     <p class='mb-4 leading-relaxed'>
-      The above downloaded Nix file uses a hardcoded disk device. So, we need to replace it with the device name of the disk we want to install <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> on. We can use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsblk</code> to find it.
+      The above downloaded Nix file uses a hardcoded disk device. So, we need to replace it with the device name of the disk we want to install <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> on. We can use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsblk</code> to find it.
     </p>
   <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-lsblk.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-lsblk.jpeg' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
@@ -826,7 +824,7 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Before we can utilize <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code> in our generated configuration, we will <a href='configuration-as-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>convert our configuration to a flake</a>. This is a simple process of adding a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> file in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt/etc/nixos</code>:
+      Before we can utilize <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code> in our generated configuration, we will <a href='configuration-as-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>convert our configuration to a flake</a>. This is a simple process of adding a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> file in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt/etc/nixos</code>:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'># /mnt/etc/nixos/flake.nix
 {
@@ -877,7 +875,7 @@
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      For details, see <a href='configuration-as-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Convert <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code> to be a flake</a>.
+      For details, see <a href='configuration-as-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Convert <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code> to be a flake</a>.
     </p>
   
     <h2 id='add-disko' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -1009,7 +1007,7 @@
     </ul>
   
     <p class='mb-4 leading-relaxed'>
-      Let’s check that our final configuration is correct by using <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nix repl</a>. In particular, we test the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>fileSystems</code> set by <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code>:
+      Let’s check that our final configuration is correct by using <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nix repl</a>. In particular, we test the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>fileSystems</code> set by <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code>:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'># First, create a flake.lock
 sudo nix --experimental-features "nix-command flakes" flake lock
@@ -1059,21 +1057,21 @@ sudo reboot</code></pre></div>
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      This tutorial focused mostly on <a href='https://github.com/nix-community/disko' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>disko</a>, but left some of the things covered in <a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the previous tutorial</a> which you might want to consider:
+      This tutorial focused mostly on <a href='https://github.com/nix-community/disko' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>disko</a>, but left some of the things covered in <a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the previous tutorial</a> which you might want to consider:
     </p>
   
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='configuration-as-flake#homedir' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900'>Move configuration to home dir</a>
+          <a href='configuration-as-flake#homedir' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900'>Move configuration to home dir</a>
         </li>
       
         <li>
-          <a href='nixos-install-flake#git' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900'>Store the configuration on Git</a>
+          <a href='nixos-install-flake#git' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900'>Store the configuration on Git</a>
         </li>
       
         <li>
-          <a href='nixos-install-flake#enable-flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900'>Enable flakes</a>
+          <a href='nixos-install-flake#enable-flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900'>Enable flakes</a>
         </li>
       
     </ul>
@@ -1110,7 +1108,7 @@ sudo reboot</code></pre></div>
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      You now have a reproducible disk partitioning scheme. This does come at the cost of a few extra manual steps, but you can automate them with a script. Which is what we will do in <a href='nixos-install-oneclick' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the next tutorial</a>. We will use <a href='https://github.com/nix-community/nixos-anywhere' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>nixos-anywhere</a> to automate the steps above and eliminate the need for a USB flash drive (assuming you have a working Linux system or are booted into a rescue image).
+      You now have a reproducible disk partitioning scheme. This does come at the cost of a few extra manual steps, but you can automate them with a script. Which is what we will do in <a href='nixos-install-oneclick' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the next tutorial</a>. We will use <a href='https://github.com/nix-community/nixos-anywhere' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>nixos-anywhere</a> to automate the steps above and eliminate the need for a USB flash drive (assuming you have a working Linux system or are booted into a rescue image).
     </p>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
@@ -1148,7 +1146,7 @@ sudo reboot</code></pre></div>
     <ul class='space-y-2'>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixos-tutorial'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixos-tutorial'>
             NixOS Tutorial Series
           </a>
           
@@ -1159,7 +1157,7 @@ sudo reboot</code></pre></div>
           <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current fill-current' viewBox='0 0 28 28'><desc>☑</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect><path stroke='white' fill='none' stroke-linejoin='round' stroke-width='3.5' d='M7 14 l6 5L22 8'></path></svg>
 <span>
   
-            <a href='nixos-install-disko' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Install NixOS with <code>disko</code> disk partitioning</a>
+            <a href='nixos-install-disko' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Install NixOS with <code>disko</code> disk partitioning</a>
           
 </span>
         </div>
@@ -1170,14 +1168,14 @@ sudo reboot</code></pre></div>
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixos-install-flake'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixos-install-flake'>
             Install NixOS with Flake configuration on Git
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><p>In <a href='nixos-install-disko' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the next tutorial</a>, we will automate the install process a bit by declaratively specifying our disk partitioning in Nix.</p></div>
+      <div><p>In <a href='nixos-install-disko' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>the next tutorial</a>, we will automate the install process a bit by declaratively specifying our disk partitioning in Nix.</p></div>
     </div>
   
 </div>
@@ -1185,14 +1183,14 @@ sudo reboot</code></pre></div>
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixos-install-oneclick'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixos-install-oneclick'>
             Install NixOS directly from a remote flake
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><p>Unlike the previous tutorials (<a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>1</a>; <a href='nixos-install-disko' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>2</a>), the goal here is to near-fully automate our NixOS install using one command (see the next section).</p></div>
+      <div><p>Unlike the previous tutorials (<a href='nixos-install-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>1</a>; <a href='nixos-install-disko' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>2</a>), the goal here is to near-fully automate our NixOS install using one command (see the next section).</p></div>
     </div>
   
 </div>
@@ -1213,13 +1211,14 @@ sudo reboot</code></pre></div>
 </div>
         </div>
       
-      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800 dark:text-gray-200'>
-  
+      <footer class='flex items-center justify-center mt-10 mb-10'>
+  <div class='inline-flex items-center justify-center space-x-6 px-8 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg'>
+    
   <div>
     
       
         <a href='/en/' title='Go to Home'>
-          <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
           </svg>
         </a>
@@ -1228,19 +1227,19 @@ sudo reboot</code></pre></div>
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.0'>
-      <img class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+      <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -1248,10 +1247,11 @@ sudo reboot</code></pre></div>
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
+  </div>
   </div>
 </footer>
     </div>

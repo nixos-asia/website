@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0623a6cb-11b1-4189-99ef-d70ab2d1b2d9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=360ac908-2f72-4587-9e3a-d2fe5793cf55' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -451,7 +451,7 @@
 
 <!-- DoNotFormat -->
 
-<body class='bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-50 overflow-y-scroll'>
+<body class='bg-gray-200 dark:bg-black text-gray-900 dark:text-gray-50 overflow-y-scroll'>
   
     <div class='container mx-auto mt-2 md:mt-4  '>
       
@@ -627,12 +627,10 @@
   </div>
 
           <!-- Main body column -->
-          <div class='flex-1 w-full bg-white dark:bg-gray-900'>
+          <div class='flex-1 w-full bg-white dark:bg-gray-800'>
   <main class='px-6 py-8 max-w-7xl mx-auto'>
-    <h1 class='flex items-end justify-center mb-10 px-8 py-5 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 text-5xl font-bold text-gray-900 dark:text-gray-50 rounded-2xl shadow-lg shadow-green-200/50 dark:shadow-green-950/50 border border-green-200/50 dark:border-green-800/50'>
-  <span class='z-40 tracking-tight'>
-    Introduction to module system
-  </span>
+    <h1 class='mb-10 px-8 py-5 bg-green-600 dark:bg-green-800 text-5xl font-bold text-white text-center rounded-2xl'>
+  Introduction to module system
 </h1>
     
       <article class='overflow-auto'>
@@ -649,11 +647,11 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      Using the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a> is a key stepping stone to writing maintainable and shareable <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> code. In this tutorial, we’ll write a configuration system for the simple <a href='https://github.com/lsd-rs/lsd' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>lsd</a> command, thus <em>introducing</em> the reader to the Nix <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a>, so that they benefit from features such as configuration type checking, option documentation, and modularity. To learn more about the module system, we recommend <a href='https://www.youtube.com/watch?v=N7hFP_40DJo' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>this video from Tweag</a> as well the article “<a href='https://nix.dev/tutorials/module-system/deep-dive' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Module system deep dive</a>” from nix.dev.
+      Using the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a> is a key stepping stone to writing maintainable and shareable <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> code. In this tutorial, we’ll write a configuration system for the simple <a href='https://github.com/lsd-rs/lsd' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>lsd</a> command, thus <em>introducing</em> the reader to the Nix <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a>, so that they benefit from features such as configuration type checking, option documentation, and modularity. To learn more about the module system, we recommend <a href='https://www.youtube.com/watch?v=N7hFP_40DJo' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>this video from Tweag</a> as well the article “<a href='https://nix.dev/tutorials/module-system/deep-dive' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Module system deep dive</a>” from nix.dev.
     </p>
   <img class='inline mb-3' src='nix-tutorial/nix-modules.png' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nix-tutorial/nix-modules.png' style='width: inherit;' />
     <p class='mb-4 leading-relaxed'>
-      We shall begin by understanding the low-levels: how to use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>evalModules</code> from <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> to define and use our own modules from scratch, using the aforementioned <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsd</code> use-case. The next tutorial in this series will go one high-level up and talk about how to work with modules across <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>, using <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
+      We shall begin by understanding the low-levels: how to use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>evalModules</code> from <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> to define and use our own modules from scratch, using the aforementioned <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsd</code> use-case. The next tutorial in this series will go one high-level up and talk about how to work with modules across <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>, using <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
     </p>
   
     <h2 id='a-simple-example' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -671,11 +669,11 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Consider the following Nix code, defined in a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a>:
+      Consider the following Nix code, defined in a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a>:
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      <a href='nix-modules/1/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/1/flake.nix</a> <div class='mb-6' title='[[nix-modules/1/flake.nix]]'>
+      <a href='nix-modules/1/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/1/flake.nix</a> <div class='mb-6' title='[[nix-modules/1/flake.nix]]'>
   <pre class='py-4 pr-4 text-sm font-mono rounded-lg overflow-x-auto'><code class='nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -725,7 +723,7 @@
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      This is a simple flake that exposes a package (a <a href='writeShellApplication' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>writeShellApplication</code></a> <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a> wrapping <a href='https://github.com/lsd-rs/lsd' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>lsd</a>), that can be <a href='nix-first' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>`nix run`ed</a> to list the contents of the root directory.
+      This is a simple flake that exposes a package (a <a href='writeShellApplication' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>writeShellApplication</code></a> <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a> wrapping <a href='https://github.com/lsd-rs/lsd' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>lsd</a>), that can be <a href='nix-first' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>`nix run`ed</a> to list the contents of the root directory.
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>❯ nix run
 drwxrwxr-x root admin 2.5 KB Tue Jan 30 15:19:06 2024  Applications
@@ -757,11 +755,11 @@ drwxr-xr-x root wheel 224 B  Sat Jul 22 20:09:12 2023  nix
     </ul>
   
     <p class='mb-4 leading-relaxed'>
-      Normally we can achieve this by refactoring our Nix expression to be a <em>function</em> (see <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsdFor</code> ⤵️) that takes arguments for these variations (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>dir</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>tree</code> ⤵️), producing the appropriate <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>derivation</a> as a result:
+      Normally we can achieve this by refactoring our Nix expression to be a <em>function</em> (see <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsdFor</code> ⤵️) that takes arguments for these variations (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>dir</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>tree</code> ⤵️), producing the appropriate <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>derivation</a> as a result:
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      <a href='nix-modules/2/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/2/flake.nix</a> <div class='mb-6' title='[[nix-modules/2/flake.nix]]'>
+      <a href='nix-modules/2/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/2/flake.nix</a> <div class='mb-6' title='[[nix-modules/2/flake.nix]]'>
   <pre class='py-4 pr-4 text-sm font-mono rounded-lg overflow-x-auto'><code class='nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -880,7 +878,7 @@ drwxr-xr-x root wheel 224 B  Sat Jul 22 20:09:12 2023  nix
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      <a href='nix-modules/3/lsd.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/3/lsd.nix</a> <div class='mb-6' title='[[nix-modules/3/lsd.nix]]'>
+      <a href='nix-modules/3/lsd.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/3/lsd.nix</a> <div class='mb-6' title='[[nix-modules/3/lsd.nix]]'>
   <pre class='py-4 pr-4 text-sm font-mono rounded-lg overflow-x-auto'><code class='nix'># A module can be an attrset, or a function returning an attrset.
 #
 # Our module here is of the latter kind. By default, certain arguments are
@@ -1003,7 +1001,7 @@ drwxr-xr-x root wheel 224 B  Sat Jul 22 20:09:12 2023  nix
     </ul>
   
     <p class='mb-4 leading-relaxed'>
-      Let’s evaluate it from the <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nix repl</a>:
+      Let’s evaluate it from the <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nix repl</a>:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>❯ nix repl
 Welcome to Nix 2.19.2. Type :? for help.
@@ -1028,7 +1026,7 @@ This derivation produced the following outputs:
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      <a href='nix-modules/3/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/3/flake.nix</a> <div class='mb-6' title='[[nix-modules/3/flake.nix]]'>
+      <a href='nix-modules/3/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/3/flake.nix</a> <div class='mb-6' title='[[nix-modules/3/flake.nix]]'>
   <pre class='py-4 pr-4 text-sm font-mono rounded-lg overflow-x-auto'><code class='nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -1108,7 +1106,7 @@ This derivation produced the following outputs:
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      <a href='nix-modules/4/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/flake.nix</a> <div class='mb-6' title='[[nix-modules/4/flake.nix]]'>
+      <a href='nix-modules/4/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/flake.nix</a> <div class='mb-6' title='[[nix-modules/4/flake.nix]]'>
   <pre class='py-4 pr-4 text-sm font-mono rounded-lg overflow-x-auto'><code class='nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -1176,11 +1174,11 @@ This derivation produced the following outputs:
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          In <a href='nix-modules/4/lsd.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/lsd.nix</a>: a new option <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>long</code> to specify <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>-l</code> to lsd.
+          In <a href='nix-modules/4/lsd.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/lsd.nix</a>: a new option <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>long</code> to specify <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>-l</code> to lsd.
         </li>
       
         <li>
-          In <a href='nix-modules/4/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/flake.nix</a>:
+          In <a href='nix-modules/4/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/flake.nix</a>:
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
@@ -1224,7 +1222,7 @@ This derivation produced the following outputs:
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      <a href='nix-modules/5/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/5/flake.nix</a> <div class='mb-6' title='[[nix-modules/5/flake.nix]]'>
+      <a href='nix-modules/5/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/5/flake.nix</a> <div class='mb-6' title='[[nix-modules/5/flake.nix]]'>
   <pre class='py-4 pr-4 text-sm font-mono rounded-lg overflow-x-auto'><code class='nix'>{
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -1270,11 +1268,11 @@ This derivation produced the following outputs:
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          <a href='nix-modules/4/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/flake.nix</a> outputs a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkLib</code> function that gives us the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>common</code> module along with the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsdFor</code> function.
+          <a href='nix-modules/4/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/4/flake.nix</a> outputs a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>mkLib</code> function that gives us the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>common</code> module along with the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsdFor</code> function.
         </li>
       
         <li>
-          In <a href='nix-modules/5/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/5/flake.nix</a>, we access these for re-use, thus relieving our 5th flake of having to define <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsd.nix</code> and the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>common</code> module.
+          In <a href='nix-modules/5/flake.nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>File:nix-modules/5/flake.nix</a>, we access these for re-use, thus relieving our 5th flake of having to define <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsd.nix</code> and the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>common</code> module.
         </li>
       
     </ul>
@@ -1298,7 +1296,7 @@ This derivation produced the following outputs:
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      You have just read a quick introduction to the module system, in particular how to define, use and share them in <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a>. To learn more about the module system, we recommend <a href='https://www.youtube.com/watch?v=N7hFP_40DJo' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>this video from Tweag</a> as well the article “<a href='https://nix.dev/tutorials/module-system/deep-dive' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Module system deep dive</a>” from nix.dev. Look out for the next tutorial in this series, where we will talk about <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
+      You have just read a quick introduction to the module system, in particular how to define, use and share them in <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a>. To learn more about the module system, we recommend <a href='https://www.youtube.com/watch?v=N7hFP_40DJo' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>this video from Tweag</a> as well the article “<a href='https://nix.dev/tutorials/module-system/deep-dive' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Module system deep dive</a>” from nix.dev. Look out for the next tutorial in this series, where we will talk about <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
     </p>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
@@ -1336,7 +1334,7 @@ This derivation produced the following outputs:
     <ul class='space-y-2'>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nix-tutorial'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nix-tutorial'>
             Nix Tutorial Series
           </a>
           
@@ -1347,7 +1345,7 @@ This derivation produced the following outputs:
           <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current fill-current' viewBox='0 0 28 28'><desc>☑</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect><path stroke='white' fill='none' stroke-linejoin='round' stroke-width='3.5' d='M7 14 l6 5L22 8'></path></svg>
 <span>
   
-            <a href='nix-modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Introduction to module system</a>
+            <a href='nix-modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Introduction to module system</a>
           
 </span>
         </div>
@@ -1358,14 +1356,14 @@ This derivation produced the following outputs:
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='modules'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='modules'>
             Module System
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><p>The <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>nixpkgs</a> library provides a module system for <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> expressions. To learn it, see our tutorial: <a href='nix-modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Introduction to module system</a>.</p></div>
+      <div><p>The <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>nixpkgs</a> library provides a module system for <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> expressions. To learn it, see our tutorial: <a href='nix-modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Introduction to module system</a>.</p></div>
     </div>
   
 </div>
@@ -1373,14 +1371,14 @@ This derivation produced the following outputs:
         </li>
       
         <li>
-          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixify-haskell-parts'>
+          <a class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900 inline-block' href='nixify-haskell-parts'>
             Modularize our flake using flake-parts
           </a>
           
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div>allows us to define <a href='nix-modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>our own modules</a> and use them (just like <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> options)</div>
+      <div>allows us to define <a href='nix-modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>our own modules</a> and use them (just like <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> options)</div>
     </div>
   
 </div>
@@ -1401,13 +1399,14 @@ This derivation produced the following outputs:
 </div>
         </div>
       
-      <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800 dark:text-gray-200'>
-  
+      <footer class='flex items-center justify-center mt-10 mb-10'>
+  <div class='inline-flex items-center justify-center space-x-6 px-8 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg'>
+    
   <div>
     
       
         <a href='/en/' title='Go to Home'>
-          <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
           </svg>
         </a>
@@ -1416,19 +1415,19 @@ This derivation produced the following outputs:
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.0'>
-      <img class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+      <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -1436,10 +1435,11 @@ This derivation produced the following outputs:
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-green-700 dark:hover:text-green-300' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
+  </div>
   </div>
 </footer>
     </div>
