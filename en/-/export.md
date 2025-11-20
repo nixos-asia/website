@@ -46,6 +46,8 @@ page:
 
 Nix flakes support `self.submodules = true`, allowing git submodules to be referenced as flake inputs via `path:` URLs. This approach offers distinct advantages over GitHub-based inputs when co-developing dependencies alongside your main configuration.
 
+![[submodule-banner.png]]
+
 ## The Pattern {#pat}
 
 Standard GitHub-based flake input:
