@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=360ac908-2f72-4587-9e3a-d2fe5793cf55' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=9aab4f29-534e-48b3-9a85-a411c031605f' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -672,7 +672,7 @@
     <p class='mb-4 leading-relaxed'>
       Boot your computer from this USB flash drive, and expect to be greeted with a command line interface (CLI):
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-installer-cli.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-installer-cli.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-installer-cli.jpeg' alt='/nix/store/2n236hnxplrrx6r9rcds0d3xgpn8cmw3-global/nixos-install-disko/nixos-installer-cli.jpeg' style='width: inherit;' /></div>
     <h2 id='partition' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Partition the disk
@@ -730,11 +730,11 @@
     <p class='mb-4 leading-relaxed'>
       The above downloaded Nix file uses a hardcoded disk device. So, we need to replace it with the device name of the disk we want to install <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> on. We can use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsblk</code> to find it.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-lsblk.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-lsblk.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-lsblk.jpeg' alt='/nix/store/2n236hnxplrrx6r9rcds0d3xgpn8cmw3-global/nixos-install-disko/nixos-lsblk.jpeg' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
       In this case, the device name is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>vda</code>. The device file is located at <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/dev/vda</code>. We will use this to modify <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko-config.nix</code> we downloaded earlier.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-config.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-disko-config.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-config.jpeg' alt='/nix/store/2n236hnxplrrx6r9rcds0d3xgpn8cmw3-global/nixos-install-disko/nixos-disko-config.jpeg' style='width: inherit;' /></div>
     <h3 id='run-the-partitioning-script' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Run the partitioning script
@@ -759,7 +759,7 @@
     <p class='mb-4 leading-relaxed'>
       Once the command completes, you should see the disk partitioned and mounted at <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt</code>:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-post-partition.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-disko-post-partition.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-post-partition.jpeg' alt='/nix/store/2n236hnxplrrx6r9rcds0d3xgpn8cmw3-global/nixos-install-disko/nixos-disko-post-partition.jpeg' style='width: inherit;' /></div>
     <h2 id='configuration' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Generate initial NixOS configuration
@@ -950,7 +950,7 @@
       inputs.disko.nixosModules.disko
     ];
   };
-}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-flake-with-disko.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-flake-with-disko.jpeg' style='width: inherit;' /></div>
+}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-flake-with-disko.jpeg' alt='/nix/store/2n236hnxplrrx6r9rcds0d3xgpn8cmw3-global/nixos-install-disko/nixos-flake-with-disko.jpeg' style='width: inherit;' /></div>
         </li>
       
         <li>
@@ -977,7 +977,7 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
-}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' style='width: inherit;' /></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' alt='/nix/store/2n236hnxplrrx6r9rcds0d3xgpn8cmw3-global/nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' style='width: inherit;' /></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -1013,7 +1013,7 @@
 sudo nix --experimental-features "nix-command flakes" flake lock
 
 # Start repl
-nix --experimental-features "nix-command flakes" repl</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-filesystems.jpeg' alt='/nix/store/1c99jp7g8w8qilv1mpw8sw7s19v6h57f-global/nixos-install-disko/nixos-disko-filesystems.jpeg' style='width: inherit;' /></div>
+nix --experimental-features "nix-command flakes" repl</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-filesystems.jpeg' alt='/nix/store/2n236hnxplrrx6r9rcds0d3xgpn8cmw3-global/nixos-install-disko/nixos-disko-filesystems.jpeg' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
       If you see something similar to the above, everything’s good and we are ready to perform the actual installation.
     </p>
