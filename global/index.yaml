@@ -12,6 +12,8 @@ template:
   theme: green
   iconUrl: static/nixos-asia.svg
 
+  base:
+    containerClass: container mx-auto max-w-screen-lg
   uptree:
     enable: true
   toc:
