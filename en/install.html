@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=0ba03a5b-5e02-4ac2-8ef6-8e4d525ae82d' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=aa465278-5653-4af5-8931-6165b148e3e9' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -615,26 +615,16 @@
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      Install <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>Nix</a> using <a href='https://github.com/DeterminateSystems/nix-installer#the-determinate-nix-installer' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>the unofficial installer</a>:
+      Install <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>Nix</a> using <a href='https://github.com/NixOS/experimental-nix-installer' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>the experimental installer</a>:
     <sup class='px-0.5'>
       <a class='text-green-600 dark:text-green-400 hover:underline' href='install#fn1'>
         1
       </a>
     </sup>
   
-    <sup class='px-0.5'>
-      <a class='text-green-600 dark:text-green-400 hover:underline' href='install#fn2'>
-        2
-      </a>
-    </sup>
-  
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
-  sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"</code></pre></div>
-    <p class='mb-4 leading-relaxed'>
-      After installing Nix, open a new terminal and run the <a href='https://omnix.page/om/health' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>om health</code></a> checks,
-    </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>nix run nixpkgs#omnix -- health</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>curl --proto '=https' --tlsv1.2 -sSf -L https://artifacts.nixos.org/experimental-installer | \
+  sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"</code></pre></div><div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>nix run nixpkgs#omnix -- health</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Expect to see all results in either green (or yellow).
     </p>
@@ -694,15 +684,6 @@
       
     </ul>
   
-          </div>
-        </div>
-      
-        <div id='fn2'>
-          <header class='italic'>
-            2.
-          </header>
-          <div class='inline-block mb-2 ml-4'>
-            Do <strong>not</strong> use the graphical installer, as it will install the <strong>proprietary</strong> <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixd</code> daemon. See <a href='https://old.reddit.com/r/NixOS/comments/1ndh3yd/dropping_upstream_nix_from_determinate_nix/ndgzqc8/?context=3' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>here</a> for details.
           </div>
         </div>
       
