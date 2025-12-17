@@ -18,7 +18,7 @@
   </title>
   
     
-      <meta property='og:description' content='You have installed Nix. Now let’s play with the nix command but without bothering to write any Nix expressions yet (we reserve that for the next tutorial). In particular, we will learn how to use packages from the nixpkgs repository and elsewhere.' />
+      <meta property='og:description' content='You have installed Nix. Now let’s play with the nix command.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/nix-tutorial/nix-first.png' />
       <meta property='og:type' content='website' />
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=aa465278-5653-4af5-8931-6165b148e3e9' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=e3774855-505f-40b6-b116-dfedd7cf7bd7' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -591,7 +591,11 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      You have <a href='install' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix</code> command but without bothering to write any Nix expressions yet (we reserve that for the <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>next tutorial</a>). In particular, we will learn how to use packages from the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere.
+      You have <a href='install' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>installed Nix</a>. Now let’s play with the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix</code> command.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      In this tutorial we will learn how to use existing packages from the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere. We will <em>not</em> be writing any Nix language code yet (we reserve that for the <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>next tutorial</a>).
     </p>
   <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/zc81gyfh92jhvgcwv6am5hcpqp1xi5h7-global/nix-tutorial/nix-first.png' style='width: inherit;' />
     <h2 id='run' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -609,7 +613,11 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      As of this writing, <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> has over 80,000 packages. You can search them <a href='https://search.nixos.org/packages' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>here</a>. Search for “<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code>” and <a href='https://search.nixos.org/packages?type=packages&amp;query=cowsay' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>you will find</a> that it is available in Nixpkgs. We can download and run the <a href='https://en.wikipedia.org/wiki/Cowsay' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>cowsay</a> package as follows:
+      As of this writing, <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> has over 80,000 packages. You can search them <a href='https://search.nixos.org/packages' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>here</a>. Search for “<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code>” and <a href='https://search.nixos.org/packages?type=packages&amp;query=cowsay' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>you will find</a> that it is available in Nixpkgs.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      We can download and run the <a href='https://en.wikipedia.org/wiki/Cowsay' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>cowsay</a> package as follows:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run nixpkgs#cowsay "G'day $USER"
  ____________
@@ -645,11 +653,11 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   
   </div>
 </div>
-    <h2 id='inside-package' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='shell' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
-  Looking inside a package
+  Transient shells
   
-  <a href='nix-first#inside-package' class='--ema-anchor ml-2'>
+  <a href='nix-first#shell' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -660,19 +668,87 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      What is a Nix “package”? Technically, a Nix package is a special <a href='store-path' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Store path</a> built using instructions from a <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a>, both of which reside in the <a href='store' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. To see what is contained by the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code> package, look inside its <a href='store-path' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Store path</a>. To get the store path for a package (here, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code>), run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code> as follows:
+      One of the superpowers of Nix is that it enables us to create <em>isolated</em> <a href='shell' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>shell</a> environments containing just the packages we need.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      For example, here’s how we create a temporary shell containing the “cowsay” and “<a href='https://en.wikipedia.org/wiki/Fortune_(Unix)' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>fortune</a>” packages:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
+❯</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      From here, you can verify that both the programs are indeed in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>$PATH</code>. But where do they live?
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>❯ which cowsay
+/nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0/bin/cowsay
+❯ which fortune
+/nix/store/mfw77f008xy0zb7dqdyggw0xj2gd4jjv-fortune-mod-3.20.0/bin/fortune
+❯ fortune | cowsay
+ ________________________________
+/ The longer the title, the less \
+\ important the job.             /
+ --------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      When you exit this shell (type <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>exit</code> or press Ctrl+D), <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>fortune</code> will no longer be available in your path.
+    </p>
+  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
+    <div class='callout-icon flex-shrink-0'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
+      </svg>
+    </div>
+    <div class='ml-3'>
+       One-off command
+    </div>
+  </div>
+  <div class='callout-content text-gray-700 dark:text-gray-300'>
+    
+    <p class='mb-4 leading-relaxed'>
+      Instead of entering an interactive shell, you can also run commands one-off using the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>-c</code> option.
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
+  </div>
+</div>
+    <h2 id='under-the-hood' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Under the hood
+  
+  <a href='nix-first#under-the-hood' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      You might have noticed the specific paths in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>which</code> output above, looking like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/nix/store/...-cowsay-...</code>.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Technically, a Nix package is a special directory (a <a href='store-path' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Store path</a>) inside the <strong>Nix Store</strong> (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/nix/store</code>), built using instructions from a <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a>.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      To inspect the contents of a package without running it or creating a shell, we can use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code>. This will realize the package in the store and print its path:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix build nixpkgs#cowsay --no-link --print-out-paths
-/nix/store/8ij2wj5nh4faqwqjy1fqg20llawbi0d5-cowsay-3.7.0-man
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      The <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code> <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a> produces two output paths, the second of which is the cowsay binary package (the first one is the separate documentation path), and if you inspect that
-    <sup class='px-0.5'>
-      <a class='text-green-600 dark:text-green-400 hover:underline' href='nix-first#fn1'>
-        1
-      </a>
-    </sup>
-   you will see the contents of it:
+      We can then inspect this directory structure (using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>tree</code>, which we can also run via Nix!):
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
@@ -705,69 +781,9 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/nix/store</code> is a special directory representing the <a href='store' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. The paths inside <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/nix/store</code> are known as <a href='store-path' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Store path</a>. Nix fundamentally is, in large part, about manipulating these store paths in a <em>pure</em> and <em>reproducible</em> fashion; <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Derivation</a> are “recipes” that does this manipulation, and they too live in the <a href='store' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix Store</a>.
+      <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/nix/store</code> is a special directory representing the <a href='store' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. It is read-only and all components within it are immutable. Nix fundamentally is about manipulating these store paths in a <em>pure</em> and <em>reproducible</em> fashion.
     </p>
   
-  </div>
-</div>
-    <h2 id='shell' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
-      
-  Shell environment
-  
-  <a href='nix-first#shell' class='--ema-anchor ml-2'>
-    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
-        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
-      </svg></span>
-  </a>
-
-
-    </h2>
-  
-    <p class='mb-4 leading-relaxed'>
-      One of the powers of Nix is that it enables us to create <em>isolated</em> <a href='shell' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>shell</a> environments containing just the packages we need. For eg., here’s how we create a transient shell containing the “cowsay” and “<a href='https://en.wikipedia.org/wiki/Fortune_(Unix)' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>fortune</a>” packages:
-    </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
-❯</code></pre></div>
-    <p class='mb-4 leading-relaxed'>
-      From here, you can verify that both the programs are indeed in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>$PATH</code> as indicated by the “bin” directory in their respective <a href='store-path' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>store paths</a>:
-    </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
-❯ which cowsay
-/nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0/bin/cowsay
-❯ which fortune
-/nix/store/mfw77f008xy0zb7dqdyggw0xj2gd4jjv-fortune-mod-3.20.0/bin/fortune
-❯ fortune | cowsay
- ________________________________
-/ The longer the title, the less \
-\ important the job.             /
- --------------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
-  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-  </path>
-  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
-    <div class='callout-icon flex-shrink-0'>
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        
-    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-    </path>
-  
-      </svg>
-    </div>
-    <div class='ml-3'>
-       One-off command
-    </div>
-  </div>
-  <div class='callout-content text-gray-700 dark:text-gray-300'>
-    
-    <p class='mb-4 leading-relaxed'>
-      Instead of creating a shell environment, you can also run commands one-off using the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>-c</code> option. The above session can equally be achieved using:
-    </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
   </div>
 </div>
     <h2 id='install' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -809,30 +825,18 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
   </div>
 </div>
     <p class='mb-4 leading-relaxed'>
-      Neither <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run</code> nor <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix shell</code> will mutate your system environment, aside from changing the <a href='store' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix Store</a>. If you would like to <em>permanently</em> install a package somewhere under your $HOME directory, you can do so using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix profile install</code>:
+      If you want to keep a package available permanently (not just in a transient shell), you can install it into your user profile using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix profile install</code>:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix profile install nixpkgs#cowsay nixpkgs#fortune
 $ which cowsay
-/home/user/.nix-profile/bin/cowsay
-$ which fortune
-/home/user/.nix-profile/bin/fortune
-$ </code></pre></div>
+/home/user/.nix-profile/bin/cowsay</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix profile install</code> installs symlinks under the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>$HOME/.nix-profile</code> directory, which the Nix <a href='install' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>installer</a> already added to your <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>$PATH</code>. For details, see the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-profile-install' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Nix manual</a>.
-    </p>
-  
-    <p class='mb-4 leading-relaxed'>
-      These symlinks, ultimately, point to the package <a href='store-path' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Store path</a> outputs under the <a href='store' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix Store</a>, viz.:
-    </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ readlink $(which fortune)
-/nix/store/mfw77f008xy0zb7dqdyggw0xj2gd4jjv-fortune-mod-3.20.0/bin/fortune</code></pre></div>
-    <p class='mb-4 leading-relaxed'>
-      Note that this is the same path used by both <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix shell</code>. Each specific package is uniquely identified by their <a href='store-path' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Store path</a>; changing any part of its <a href='drv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>build recipe</a> (including dependencies), changes that path. Hence, nix is reproducible.
+      <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix profile install</code> creates symlinks under <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>$HOME/.nix-profile</code>, pointing to the actual files in the Nix Store.
     </p>
   
     <h2 id='nixpkgs-pin' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
-  How is <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> fetched
+  Where do packages come from?
   
   <a href='nix-first#nixpkgs-pin' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -845,50 +849,23 @@ $ </code></pre></div>
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      So far we have been retrieving and installing software from the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> flake, which is defined in the GitHub repository: <a href='https://github.com/nixos/nixpkgs' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/nixos/nixpkgs</a>. This information comes from the <a href='registry' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flake registry</a>:
+      So far we have been getting software from <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs</code>. What is that?
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      It is the specific identifier for the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository (<a href='https://github.com/nixos/nixpkgs' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/nixos/nixpkgs</a>) defined in your local <a href='registry' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flake registry</a>:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix registry list | grep nixpkgs
 global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      A registry is simply a mapping of flake alias to <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flake URL</a>.
-    </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
-  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-  </path>
-  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
-    <div class='callout-icon flex-shrink-0'>
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        
-    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-    </path>
-  
-      </svg>
-    </div>
-    <div class='ml-3'>
-       Adding to registry
-    </div>
-  </div>
-  <div class='callout-content text-gray-700 dark:text-gray-300'>
-    
-    <p class='mb-4 leading-relaxed'>
-      You can add your own flakes to this <a href='registry' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>registry</a> as well. See <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-add' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>the manual</a>
+      A registry is simply a shortcut mapping (like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs</code>) to a full <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flake URL</a> (like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>github:NixOS/nixpkgs/nixpkgs-unstable</code>).
     </p>
   
-  </div>
-</div>
     <p class='mb-4 leading-relaxed'>
-      We can find the current Git revision of <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used by our <a href='registry' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>registry</a> as follows:
+      We can confirm which version of nixpkgs we are using:
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>❯ nix flake metadata nixpkgs --json | nix run nixpkgs#jq -- -r .locked.rev
-317484b1ead87b9c1b8ac5261a8d2dd748a0492d</code></pre></div>
-    <p class='mb-4 leading-relaxed'>
-      From here, you can see the revision <a href='https://github.com/NixOS/nixpkgs/commit/317484b1ead87b9c1b8ac5261a8d2dd748a0492d' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>on GitHub</a>.
-    </p>
-  
-    <p class='mb-4 leading-relaxed'>
-      The discerning readers may have noticed that the registry specifies <em>only</em> the branch (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs-unstable</code>), but not the specific revision. Nix registry internally <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry#description' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>caches flakes locally and updates them automatically</a>, thus the specific Git revision of <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> used may change over time!
-    </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+317484b1ead87b9c1b8ac5261a8d2dd748a0492d</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -907,7 +884,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      To avoid the aforementioned automatic update, you can manually <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>pin</a> the registry entry for <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>. In <a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>home-manager</a>, we will see <a href='https://github.com/juspay/nix-dev-home/commit/99f304a6512f59194932b2010af5e270efdfebe8' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>an automatic and declarative way</a> of doing this (through flake inputs).
+      By default, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs</code> corresponds to a rolling branch (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs-unstable</code>), which updates automatically. To <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry-pin' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>pin</a> it to a specific version, or to manage it declaratively, see <a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>home-manager</a>.
     </p>
   
   </div>
@@ -919,7 +896,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
 ...</code></pre></div>
     <h2 id='external-software' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
-  Using software outside of <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a>
+  Software from elsewhere
   
   <a href='nix-first#external-software' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -932,15 +909,17 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is not the only way to get software packaged by Nix. As you have seen immediately above, you can install programs from <em>any</em> <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a> by specifying its <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake URL</a> to the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix ?</code> commands. For example, <a href='https://emanote.srid.ca/start/install' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which is used to build this very website) can be executed or installed directly off its flake <a href='https://github.com/srid/emanote' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>on GitHub</a>:
+      <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> is the main repository, but Nix allows installing software from <em>anywhere</em>. You can run or install programs from any <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a> by specifying its <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>URL</a>.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run github:srid/emanote
-...</code></pre></div>
+  
     <p class='mb-4 leading-relaxed'>
-      You can of course also install it to your home directory:
+      For example, <a href='https://emanote.srid.ca' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which builds this website) can be run directly from its own GitHub repository:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix profile install github:srid/emanote
-...</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run github:srid/emanote</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Or installed:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix profile install github:srid/emanote</code></pre></div>
     <h2 id='whats-next' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   What’s next
@@ -958,28 +937,18 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          See <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> where we will go over writing simple Nix expressions and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>.
+          <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Next Tutorial</a>: We will start writing our own simple Nix expressions and <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>.
         </li>
       
         <li>
-          If you want to manage your system using Nix, see <a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>home-manager Tutorial Series</a> (if you are on <a href='macos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>macOS</a> or non-NixOS Linux) or <a href='nixos-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS Tutorial Series</a> (if you are on <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>).
+          <a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Home Manager</a>: If you want to manage your shell environment and packages declaratively (recommended for personal machines).
+        </li>
+      
+        <li>
+          <a href='nixos-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>: If you are ready to configure your entire operating system with Nix.
         </li>
       
     </ul>
-  
-    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 dark:text-gray-400 transform scale-x-90 border-t-2 border-gray-200 dark:border-gray-700'>
-      <header class='font-semibold'>Footnotes</header>
-      
-        <div id='fn1'>
-          <header class='italic'>
-            1.
-          </header>
-          <div class='inline-block mb-2 ml-4'>
-            Incidentally, we use the <a href='https://en.wikipedia.org/wiki/Tree_(command)' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>tree</a> command, rather than <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ls</code>, to look at the directory tree, using the package from <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> of course (since it may not already be installed).
-          </div>
-        </div>
-      
-    </div>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
