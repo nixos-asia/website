@@ -6,6 +6,8 @@ page:
   siteUrl: https://nixos.asia/en
   headHtml: |
     <snippet var="js.highlightjs" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js"></script>
+
   image: static/nixos-asia.svg
 
 template:
