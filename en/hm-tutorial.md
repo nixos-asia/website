@@ -46,7 +46,7 @@ This file defines your inputs (dependencies) and outputs (configurations).
 }
 ```
 
-> [!important] Architecture
+> [!tip] Architecture
 > Make sure to update the `system` variable above to match your machine!
 > - Linux (Intel/AMD): `x86_64-linux`
 > - macOS (Apple Silicon): `aarch64-darwin`
