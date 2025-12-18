@@ -6,7 +6,11 @@ page:
 
 # Home Manager Tutorial
 
-In the [[nix-first|previous tutorial]], we learned how to use `nix` commands ad-hoc. In this tutorial, we will learn how to manage our user environment *declaratively* using [Home Manager](https://github.com/nix-community/home-manager).
+In the [[nix-first|previous tutorial]], we learned how to use `nix` commands ad-hoc. We even installed packages with `nix profile install`. But there's a better way.
+
+**The problem with imperative installs**: If you run `nix profile install nixpkgs#cowsay` today and set up a new machine tomorrow, you'll have to remember every package you installed. Your environment isn't reproducible.
+
+**The declarative approach**: With [Home Manager](https://github.com/nix-community/home-manager), you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
 
 We will build a configuration from scratch that provides a modern terminal experience, including:
 - **Git**: Version control with aliases and smart defaults.
@@ -18,7 +22,14 @@ We will build a configuration from scratch that provides a modern terminal exper
 
 We will use [[flakes|Nix Flakes]] to configure Home Manager.
 
-Create a new configuration directory (e.g., `~/.config/home-manager`) and create the following two files.
+First, create the configuration directory:
+
+```bash
+mkdir -p ~/.config/home-manager
+cd ~/.config/home-manager
+```
+
+Now create two files in this directory.
 
 ### 1. `flake.nix`
 
@@ -36,10 +47,10 @@ This file defines your inputs (dependencies) and outputs (configurations).
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux"; # Change to "aarch64-darwin" for Mac
+      system = "aarch64-darwin"; # Change if not on Apple Silicon Mac
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      homeConfigurations."user" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."YOUR_USERNAME" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
       };
@@ -48,38 +59,51 @@ This file defines your inputs (dependencies) and outputs (configurations).
 ```
 
 > [!tip] Architecture
-> Make sure to update the `system` variable above to match your machine!
-> - Linux (Intel/AMD): `x86_64-linux`
+> Update the `system` variable to match your machine:
 > - macOS (Apple Silicon): `aarch64-darwin`
 > - macOS (Intel): `x86_64-darwin`
-> Also replace `"user"` in `homeConfigurations."user"` with your actual username.
+> - Linux: `x86_64-linux`
+> 
+> Replace `YOUR_USERNAME` with your actual username (run `whoami` to check).
 
 ### 2. `home.nix`
 
-This file will contain your actual configuration.
+This file contains your actual configuration. Start with:
 
 ```nix
 { config, pkgs, ... }:
 
 {
-  home.username = "user"; # Replace with your username
-  home.homeDirectory = "/home/user"; # Replace with your home directory path
+  # TODO: Change these to your actual username and home directory
+  home.username = "YOUR_USERNAME";
+  home.homeDirectory = "/Users/YOUR_USERNAME";
 
-  home.stateVersion = "23.11"; 
+  # Don't change this after initial setup
+  home.stateVersion = "24.05"; 
 
+  # Let Home Manager manage itself
   programs.home-manager.enable = true;
 }
 ```
 
 ### Apply configuration
 
-Activate the configuration by running this inside `~/.config/home-manager`:
+Activate your configuration:
 
 ```bash
 nix run home-manager/master -- switch --flake .
 ```
 
-After the first run, you can simply run:
+> [!note] What to expect
+> The first run downloads Home Manager and builds your configuration. This may take a few minutes. You should see output ending with something like:
+> ```
+> Activating home-manager configuration for YOUR_USERNAME
+> ...
+> ```
+
+**Important**: After activation, open a new terminal for changes to take effect.
+
+From now on, whenever you modify your configuration, run:
 
 ```bash
 home-manager switch --flake .
@@ -87,7 +111,7 @@ home-manager switch --flake .
 
 ## Configure Git
 
-Let's configure Git with useful aliases and defaults. Add this to `home.nix`:
+Add the following inside the `{ ... }` block in `home.nix`, after `programs.home-manager.enable = true;`:
 
 ```nix
   # Shell aliases for Git
@@ -100,11 +124,7 @@ Let's configure Git with useful aliases and defaults. Add this to `home.nix`:
     enable = true;
     userName  = "Your Name";
     userEmail = "your-email@example.com";
-    
-    # Files to ignore globally
-    ignores = [ "*~" "*.swp" ];
-    
-    # Git command aliases
+    ignores = [ "*~" "*.swp" ".DS_Store" ];
     aliases = {
       ci = "commit";
     };
@@ -114,32 +134,39 @@ Let's configure Git with useful aliases and defaults. Add this to `home.nix`:
   programs.lazygit.enable = true;
 ```
 
-Now you can type `g status` instead of `git status`, and `lg` to launch lazygit!
+Run `home-manager switch --flake .` and open a new terminal. Now `g status` works as `git status`!
 
 ## Shell Prompt (Starship)
 
 [Starship](https://starship.rs/) provides a fast, customizable prompt that shows git status, directory, and more.
+
+Add to `home.nix`:
 
 ```nix
   programs.starship = {
     enable = true;
     settings = {
       add_newline = false;
+      aws.disabled = true;
+      gcloud.disabled = true;
       line_break.disabled = true;
     };
   };
 ```
 
+After switching and opening a new terminal, your prompt will look different—showing your directory and git branch.
+
 ## Shell Enhancements
 
-Make your shell more powerful with autosuggestions, syntax highlighting, and smart directory jumping.
+Since macOS uses Zsh by default, we can enhance it with autosuggestions and syntax highlighting.
+
+Add to `home.nix`:
 
 ```nix
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    enableCompletion = true;
   };
   
   # Smart directory jumping - type `z <pattern>` instead of `cd`
@@ -151,7 +178,9 @@ Make your shell more powerful with autosuggestions, syntax highlighting, and sma
 
 ## Smart Environments (Direnv)
 
-[Direnv](https://direnv.net/) loads environment variables automatically when you `cd` into directories.
+[[direnv|Direnv]] loads environment variables automatically when you `cd` into directories. This is essential for Nix-based development.
+
+Add to `home.nix`:
 
 ```nix
   programs.direnv = {
@@ -160,12 +189,11 @@ Make your shell more powerful with autosuggestions, syntax highlighting, and sma
   };
 ```
 
-> [!tip] nix-direnv
-> `nix-direnv` is a crucial plugin that makes direnv fast and compatible with Nix shells.
+Now when you enter a project with a `flake.nix` and `.envrc` file containing `use flake`, the development environment loads automatically.
 
 ## Essential Programs
 
-Home Manager has native support for many programs via `programs.*`. These provide better integration than just installing via `home.packages`.
+Home Manager has native support for many programs via `programs.*`. Add to `home.nix`:
 
 ```nix
   programs = {
@@ -178,86 +206,168 @@ Home Manager has native support for many programs via `programs.*`. These provid
     # JSON processor
     jq.enable = true;
     
-    # Beautiful system monitor
+    # System monitor
     btop.enable = true;
   };
 ```
 
 ## Additional Tools
 
-For packages without native Home Manager support, use `home.packages`:
+For packages without native Home Manager support, use `home.packages`. Add to `home.nix`:
 
 ```nix
   home.packages = with pkgs; [
-    # Unix tools
     ripgrep  # Better grep
     fd       # Better find  
     sd       # Better sed
     tree     # Directory visualization
-    
-    # Nix tools
-    omnix    # Nix workflow helper
   ];
 ```
 
 ## Maintenance (Garbage Collection)
 
-Automatically clean up old generations to save disk space.
+Nix stores all package versions, which can use disk space. Enable automatic cleanup:
 
 ```nix
   nix.gc = {
     automatic = true;
-    frequency = "weekly";
     options = "--delete-older-than 30d";
   };
 ```
 
-## Advanced: Run without installing
+## Complete Example
 
-If you want to run any package without installing it using `, cowsay`, you can set up `comma` with `nix-index`.
-
-First, update your `flake.nix` to include `nix-index-database`:
+Here's a complete `home.nix` with everything we've covered:
 
 ```nix
+{ config, pkgs, ... }:
+
+{
+  home.username = "YOUR_USERNAME";
+  home.homeDirectory = "/Users/YOUR_USERNAME";
+  home.stateVersion = "24.05";
+
+  programs.home-manager.enable = true;
+
+  # Git
+  home.shellAliases = {
+    g = "git";
+    lg = "lazygit";
+  };
+  programs.git = {
+    enable = true;
+    userName = "Your Name";
+    userEmail = "your-email@example.com";
+    ignores = [ "*~" "*.swp" ".DS_Store" ];
+    aliases.ci = "commit";
+  };
+  programs.lazygit.enable = true;
+
+  # Shell
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      aws.disabled = true;
+      gcloud.disabled = true;
+      line_break.disabled = true;
+    };
+  };
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+  programs.zoxide.enable = true;
+
+  # Development
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  # Tools
+  programs.bat.enable = true;
+  programs.fzf.enable = true;
+  programs.jq.enable = true;
+  programs.btop.enable = true;
+
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+    sd
+    tree
+  ];
+
+  # Maintenance
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };
+}
+```
+
+## What's Next
+
+- Explore more options: Run `man home-configuration.nix` or browse the [Home Manager Options](https://nix-community.github.io/home-manager/options.xhtml)
+- Version control: Initialize a git repository in `~/.config/home-manager` to track your configuration changes
+- [[nixos-tutorial|NixOS]]: Manage your entire operating system with Nix
+
+## Troubleshooting
+
+**Error: `opening lock file ... No such file or directory`**
+
+Run this once and try again:
+```bash
+sudo mkdir -p /nix/var/nix/profiles/per-user/$(whoami)
+sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)
+```
+
+**Changes not taking effect?**
+
+Open a new terminal after running `home-manager switch`.
+
+---
+
+## Advanced: Run without installing
+
+Want to run any package without installing it? Set up `comma` to run commands like `, cowsay "Hello!"`.
+
+Create this complete `flake.nix`:
+
+```nix
+{
+  description = "My Home Manager configuration";
+
   inputs = {
-    # ... other inputs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, home-manager, nix-index-database, ... }:
-    # ...
-    # inside homeConfigurations."user":
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      homeConfigurations."YOUR_USERNAME" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
         modules = [
           ./home.nix
           nix-index-database.hmModules.nix-index
         ];
-    # ...
+      };
+    };
+}
 ```
 
-Then, enable it in `home.nix`:
+Add to `home.nix`:
 
 ```nix
   programs.nix-index.enable = true;
   programs.nix-index-database.comma.enable = true;
 ```
 
-Now you can run: `, cowsay "Hello!"`
-
-## Summary
-
-You have now built a declarative user environment from scratch!
-
-- `flake.nix`: Pins dependencies.
-- `home.nix`: Describes configuration.
-
-Your setup now includes:
-- Git with aliases and lazygit
-- Starship prompt
-- Zsh with autosuggestions  
-- Zoxide for smart navigation
-- Direnv for project environments
-- Essential CLI tools (bat, fzf, ripgrep, etc.)
-- Automatic garbage collection
-
-Next, you might want to look at managing your entire system with [[nixos-tutorial|NixOS]].
+Now `, cowsay "Hello!"` downloads and runs cowsay without installing it permanently.
