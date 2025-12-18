@@ -200,7 +200,9 @@ Now when you enter a project with a `flake.nix` and `.envrc` file containing `us
 
 ## Essential Programs
 
-Home Manager has native support for many programs via `programs.*`. Add to `home.nix`:
+Home Manager has [native support for many programs](https://github.com/nix-community/home-manager/tree/master/modules/programs) via `programs.*`. These modules don't just install the package—they also configure it, set up shell integration, and manage dotfiles. For example, `programs.fzf.enable` automatically adds keybindings to your shell.
+
+Add to `home.nix`:
 
 ```nix
   programs = {
@@ -220,7 +222,7 @@ Home Manager has native support for many programs via `programs.*`. Add to `home
 
 ## Additional Tools
 
-For packages without native Home Manager support, use `home.packages`. Add to `home.nix`:
+For packages without native Home Manager support, use `home.packages`. You can [search for packages here](https://search.nixos.org/packages). Add to `home.nix`:
 
 ```nix
   home.packages = with pkgs; [
