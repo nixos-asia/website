@@ -79,7 +79,13 @@ This file contains your actual configuration. Start with:
   home.homeDirectory = "/Users/YOUR_USERNAME";
 
   # Don't change this after initial setup
-  home.stateVersion = "24.05"; 
+  home.stateVersion = "25.05"; 
+
+  # Ensure Nix binaries are in PATH
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin"
+    "/nix/var/nix/profiles/default/bin"
+  ];
 
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
@@ -248,7 +254,11 @@ Here's a complete `home.nix` with everything we've covered:
 {
   home.username = "YOUR_USERNAME";
   home.homeDirectory = "/Users/YOUR_USERNAME";
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin"
+    "/nix/var/nix/profiles/default/bin"
+  ];
 
   programs.home-manager.enable = true;
 
