@@ -235,7 +235,7 @@ For packages without native Home Manager support, use `home.packages`. You can [
 
 ## Maintenance (Garbage Collection)
 
-Nix stores all package versions, which can use disk space. Enable automatic cleanup:
+Nix keeps old versions of your configuration (for rollbacks) and caches project devShells. Over time, this uses disk space. Enable automatic cleanup—don't worry, `nix-direnv` pins your active project shells so they won't be deleted:
 
 ```nix
   nix.gc = {
@@ -322,6 +322,7 @@ Here's a complete `home.nix` with everything we've covered:
 - Explore more options: Run `man home-configuration.nix` or browse the [Home Manager Options](https://nix-community.github.io/home-manager/options.xhtml)
 - Version control: Initialize a git repository in `~/.config/home-manager` to track your configuration changes
 - [[nixos-tutorial|NixOS]]: Manage your entire operating system with Nix
+- [nixos-unified-template](https://github.com/juspay/nixos-unified-template): a fully-fledged home-manager template that configures what this tutorial shows, and more. It also supports NixOS.
 
 ## Troubleshooting
 
