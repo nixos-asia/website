@@ -40,10 +40,11 @@
 <script>hljs.highlightAll();</script>
 
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
 
   
   
-  <link href='tailwind.css?instanceId=2b9c46c8-83e5-46e3-bd80-5f2116cef696' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -649,7 +650,7 @@
     <p class='mb-4 leading-relaxed'>
       Using the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a> is a key stepping stone to writing maintainable and shareable <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> code. In this tutorial, we’ll write a configuration system for the simple <a href='https://github.com/lsd-rs/lsd' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>lsd</a> command, thus <em>introducing</em> the reader to the Nix <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a>, so that they benefit from features such as configuration type checking, option documentation, and modularity. To learn more about the module system, we recommend <a href='https://www.youtube.com/watch?v=N7hFP_40DJo' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>this video from Tweag</a> as well the article “<a href='https://nix.dev/tutorials/module-system/deep-dive' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Module system deep dive</a>” from nix.dev.
     </p>
-  <img class='inline mb-3' src='nix-tutorial/nix-modules.png' alt='/nix/store/zc81gyfh92jhvgcwv6am5hcpqp1xi5h7-global/nix-tutorial/nix-modules.png' style='width: inherit;' />
+  <img class='inline mb-3' src='nix-tutorial/nix-modules.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nix-tutorial/nix-modules.png' style='width: inherit;' />
     <p class='mb-4 leading-relaxed'>
       We shall begin by understanding the low-levels: how to use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>evalModules</code> from <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> to define and use our own modules from scratch, using the aforementioned <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsd</code> use-case. The next tutorial in this series will go one high-level up and talk about how to work with modules across <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>, using <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake-parts</a>.
     </p>
