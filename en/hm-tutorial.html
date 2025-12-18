@@ -14,15 +14,15 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    home-manager Tutorial Series – NixOS Asia
+    Home Manager Tutorial – NixOS Asia
   </title>
   
     
-      <meta property='og:description' content='A tutorial series on [[home-manager]],' />
+      <meta property='og:description' content='In the previous tutorial, we learned how to use nix commands ad-hoc. We even installed packages with nix profile install. But there’s a better way.' />
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='home-manager Tutorial Series' />
+      <meta property='og:title' content='Home Manager Tutorial' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
@@ -43,7 +43,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=e3774855-505f-40b6-b116-dfedd7cf7bd7' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=2b9c46c8-83e5-46e3-bd80-5f2116cef696' rel='stylesheet' type='text/css' />
 
   <style data-category='global-font'>
   /* Refined typography with system font stack */
@@ -490,47 +490,6 @@
   
 </li>
           
-            <li>
-
-  <a href='home-manager'>
-    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
-      home-manager
-    </div>
-  </a>
-
-  
-    <ul>
-      
-        <li>
-
-  <a href='nix'>
-    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
-      Nix
-    </div>
-  </a>
-
-  
-    <ul>
-      
-        <li>
-
-  <a href='topics'>
-    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
-      Topics
-    </div>
-  </a>
-
-  
-</li>
-      
-    </ul>
-  
-</li>
-      
-    </ul>
-  
-</li>
-          
         </ul>
       
     </li>
@@ -600,7 +559,7 @@
           <div class='flex-1 w-full bg-white dark:bg-gray-800'>
   <main class='px-6 py-8 max-w-7xl mx-auto'>
     <h1 class='mb-10 px-8 py-5 bg-green-600 dark:bg-green-800 text-5xl font-bold text-white text-center rounded-2xl'>
-  home-manager Tutorial Series
+  Home Manager Tutorial
 </h1>
     
       <article class='overflow-auto'>
@@ -617,48 +576,671 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      A tutorial series on <a href='home-manager' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>home-manager</a>,
+      In the <a href='nix-first' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>previous tutorial</a>, we learned how to use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix</code> commands ad-hoc. We even installed packages with <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix profile install</code>. But there’s a better way.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      <strong>The problem with imperative installs</strong>: If you run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix profile install nixpkgs#cowsay</code> today and set up a new machine tomorrow, you’ll have to remember every package you installed. Your environment isn’t reproducible.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      <strong>The declarative approach</strong>: With <a href='https://github.com/nix-community/home-manager' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Home Manager</a>, you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      We will build a configuration from scratch that provides a modern terminal experience, including:
     </p>
   
     <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
       
         <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      Setting it up using <a href='https://github.com/juspay/nixos-unified-template' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/juspay/nixos-unified-template</a>
-    
-</span>
-
-  
+          <strong>Git</strong>: Version control with aliases and smart defaults.
         </li>
       
         <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      Basics (packages, dotfiles)
-    
-</span>
-
-  
+          <strong>Starship</strong>: A fast, customizable shell prompt.
         </li>
       
         <li>
-          
-    <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
-<span>
-  
-      Services (macOS and Ubuntu)
-    
-</span>
-
-  
+          <strong>Zsh</strong>: Enhanced shell with autosuggestions and syntax highlighting.
+        </li>
+      
+        <li>
+          <strong>Direnv</strong>: Automatic environment loading for your projects.
         </li>
       
     </ul>
+  
+    <h2 id='initial-setup' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Initial Setup
+  
+  <a href='hm-tutorial#initial-setup' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      We will use <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix Flakes</a> to configure Home Manager.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      First, create the configuration directory:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>mkdir -p ~/.config/home-manager
+cd ~/.config/home-manager</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Now create two files in this directory.
+    </p>
+  
+    <h3 id='1-flakenix' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
+      
+  1. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>
+  
+  <a href='hm-tutorial#1-flakenix' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <p class='mb-4 leading-relaxed'>
+      This file defines your inputs (dependencies) and outputs (configurations).
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
+  description = "My Home Manager configuration";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { nixpkgs, home-manager, ... }:
+    let
+      system = "aarch64-darwin"; # Change if not on Apple Silicon Mac
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      homeConfigurations."YOUR_USERNAME" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home.nix ];
+      };
+    };
+}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
+    <div class='callout-icon flex-shrink-0'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
+      </svg>
+    </div>
+    <div class='ml-3'>
+       Architecture
+    </div>
+  </div>
+  <div class='callout-content text-gray-700 dark:text-gray-300'>
+    
+    <p class='mb-4 leading-relaxed'>
+      Update the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>system</code> variable to match your machine:
+    </p>
+  
+    <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
+      
+        <li>
+          macOS (Apple Silicon): <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>aarch64-darwin</code>
+        </li>
+      
+        <li>
+          macOS (Intel): <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>x86_64-darwin</code>
+        </li>
+      
+        <li>
+          Linux: <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>x86_64-linux</code>
+        </li>
+      
+    </ul>
+  
+    <p class='mb-4 leading-relaxed'>
+      Replace <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>YOUR_USERNAME</code> with your actual username (run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>whoami</code> to check).
+    </p>
+  
+  </div>
+</div>
+    <h3 id='2-homenix' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
+      
+  2. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>
+  
+  <a href='hm-tutorial#2-homenix' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <p class='mb-4 leading-relaxed'>
+      This file contains your actual configuration. Start with:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{ config, pkgs, ... }:
+
+{
+  # TODO: Change these to your actual username and home directory
+  home.username = "YOUR_USERNAME";
+  home.homeDirectory = "/Users/YOUR_USERNAME";
+
+  # Don't change this after initial setup
+  home.stateVersion = "25.05"; 
+
+  # Ensure Nix binaries are in PATH
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin"
+    "/nix/var/nix/profiles/default/bin"
+  ];
+
+  # Let Home Manager manage itself
+  programs.home-manager.enable = true;
+
+  # macOS uses Zsh by default, so we configure it here
+  programs.zsh.enable = true;
+}</code></pre></div>
+    <h3 id='apply-configuration' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
+      
+  Apply configuration
+  
+  <a href='hm-tutorial#apply-configuration' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h3>
+  
+    <p class='mb-4 leading-relaxed'>
+      Activate your configuration:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>nix run home-manager/master -- switch</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
+    <div class='callout-icon flex-shrink-0'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        
+    <line x1='18' y1='2' x2='22' y2='6'></line>
+    <path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+  
+      </svg>
+    </div>
+    <div class='ml-3'>
+       What to expect
+    </div>
+  </div>
+  <div class='callout-content text-gray-700 dark:text-gray-300'>
+    
+    <p class='mb-4 leading-relaxed'>
+      The first run downloads Home Manager and builds your configuration. This may take a few minutes. You should see output ending with something like:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='language-none'>Activating home-manager configuration for YOUR_USERNAME
+...</code></pre></div>
+  </div>
+</div>
+    <p class='mb-4 leading-relaxed'>
+      <strong>Important</strong>: After activation, open a new terminal for changes to take effect.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      From now on, whenever you modify your configuration, run:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>home-manager switch</code></pre></div>
+    <h2 id='configure-git' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Configure Git
+  
+  <a href='hm-tutorial#configure-git' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      Add the following inside the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>{ ... }</code> block in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>, after <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.home-manager.enable = true;</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  # Shell aliases for Git
+  home.shellAliases = {
+    g = "git";
+    lg = "lazygit";
+  };
+
+  programs.git = {
+    enable = true;
+    userName  = "Your Name";
+    userEmail = "your-email@example.com";
+    ignores = [ "*~" "*.swp" ".DS_Store" ];
+    aliases = {
+      ci = "commit";
+    };
+  };
+  
+  # Terminal UI for Git
+  programs.lazygit.enable = true;</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home-manager switch</code> and open a new terminal. Now <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>g status</code> works as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>git status</code>!
+    </p>
+  
+    <h2 id='shell-prompt-starship' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Shell Prompt (Starship)
+  
+  <a href='hm-tutorial#shell-prompt-starship' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      <a href='https://starship.rs/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Starship</a> provides a fast, customizable prompt that shows git status, directory, and more.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.starship = {
+    enable = true;
+    settings = {
+      # add_newline = false;
+      gcloud.disabled = true;
+    };
+  };</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      After switching and opening a new terminal, your prompt will look different—showing your directory and git branch.
+    </p>
+  
+    <h2 id='shell-enhancements' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Shell Enhancements
+  
+  <a href='hm-tutorial#shell-enhancements' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      We already enabled Zsh in the initial setup. Now let’s enhance it with autosuggestions and syntax highlighting.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+  
+  # Smart directory jumping - type `z &lt;pattern&gt;` instead of `cd`
+  programs.zoxide.enable = true;</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
+    <div class='callout-icon flex-shrink-0'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
+      </svg>
+    </div>
+    <div class='ml-3'>
+       Zoxide
+    </div>
+  </div>
+  <div class='callout-content text-gray-700 dark:text-gray-300'>
+    
+    <p class='mb-4 leading-relaxed'>
+      After using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cd</code> to directories a few times, zoxide learns them. Then you can jump with <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>z docs</code> instead of <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cd ~/projects/my-app/docs</code>.
+    </p>
+  
+  </div>
+</div>
+    <h2 id='smart-environments-direnv' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Smart Environments (Direnv)
+  
+  <a href='hm-tutorial#smart-environments-direnv' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      <a href='direnv' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Direnv</a> loads environment variables automatically when you <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cd</code> into directories. This is essential for Nix-based development.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Now when you enter a project with a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.envrc</code> file containing <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>use flake</code>, the development environment loads automatically.
+    </p>
+  
+    <h2 id='essential-programs' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Essential Programs
+  
+  <a href='hm-tutorial#essential-programs' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      Home Manager has <a href='https://github.com/nix-community/home-manager/tree/master/modules/programs' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>native support for many programs</a> via <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.*</code>. These modules don’t just install the package—they also configure it, set up shell integration, and manage dotfiles. For example, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.fzf.enable</code> automatically adds keybindings to your shell.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs = {
+    # Better cat with syntax highlighting
+    bat.enable = true;
+    
+    # Fuzzy finder - press Ctrl+R to search shell history
+    fzf.enable = true;
+    
+    # JSON processor
+    jq.enable = true;
+    
+    # System monitor
+    btop.enable = true;
+  };</code></pre></div>
+    <h2 id='additional-tools' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Additional Tools
+  
+  <a href='hm-tutorial#additional-tools' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      For packages without native Home Manager support, use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.packages</code>. You can <a href='https://search.nixos.org/packages' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>search for packages here</a>. Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  home.packages = with pkgs; [
+    ripgrep  # Better grep
+    fd       # Better find  
+    sd       # Better sed
+    tree     # Directory visualization
+  ];</code></pre></div>
+    <h2 id='maintenance-garbage-collection' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Maintenance (Garbage Collection)
+  
+  <a href='hm-tutorial#maintenance-garbage-collection' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      Nix keeps old versions of your configuration (for rollbacks) and caches project devShells. Over time, this uses disk space. Enable automatic cleanup—don’t worry, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix-direnv</code> pins your active project shells so they won’t be deleted:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };</code></pre></div>
+    <h2 id='complete-example' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Complete Example
+  
+  <a href='hm-tutorial#complete-example' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      Here’s a complete <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code> with everything we’ve covered:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{ config, pkgs, ... }:
+
+{
+  home.username = "YOUR_USERNAME";
+  home.homeDirectory = "/Users/YOUR_USERNAME";
+  home.stateVersion = "25.05";
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin"
+    "/nix/var/nix/profiles/default/bin"
+  ];
+
+  programs.home-manager.enable = true;
+
+  # Git
+  home.shellAliases = {
+    g = "git";
+    lg = "lazygit";
+  };
+  programs.git = {
+    enable = true;
+    userName = "Your Name";
+    userEmail = "your-email@example.com";
+    ignores = [ "*~" "*.swp" ".DS_Store" ];
+    aliases.ci = "commit";
+  };
+  programs.lazygit.enable = true;
+
+  # Shell
+  programs.starship = {
+    enable = true;
+    settings = {
+      gcloud.disabled = true;
+    };
+  };
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+  programs.zoxide.enable = true;
+
+  # Development
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  # Tools
+  programs.bat.enable = true;
+  programs.fzf.enable = true;
+  programs.jq.enable = true;
+  programs.btop.enable = true;
+
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+    sd
+    tree
+  ];
+
+  # Maintenance
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };
+}</code></pre></div>
+    <h2 id='whats-next' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  What’s Next
+  
+  <a href='hm-tutorial#whats-next' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <ul class='my-4 ml-6 space-y-2 list-disc leading-relaxed'>
+      
+        <li>
+          Explore more options: Run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>man home-configuration.nix</code> or browse the <a href='https://nix-community.github.io/home-manager/options.xhtml' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Home Manager Options</a>
+        </li>
+      
+        <li>
+          Version control: Initialize a git repository in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>~/.config/home-manager</code> to track your configuration changes
+        </li>
+      
+        <li>
+          <a href='nixos-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a>: Manage your entire operating system with Nix
+        </li>
+      
+        <li>
+          <a href='https://github.com/juspay/nixos-unified-template' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>nixos-unified-template</a>: a fully-fledged home-manager template that configures what this tutorial shows, and more. It also supports NixOS.
+        </li>
+      
+    </ul>
+  
+    <h2 id='troubleshooting' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Troubleshooting
+  
+  <a href='hm-tutorial#troubleshooting' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      <strong>Error: <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>opening lock file ... No such file or directory</code></strong>
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Run this once and try again:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>sudo mkdir -p /nix/var/nix/profiles/per-user/$(whoami)
+sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      <strong>Changes not taking effect?</strong>
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Open a new terminal after running <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home-manager switch</code>.
+    </p>
+  
+    <hr class='my-8 border-gray-200 dark:border-gray-800' />
+  
+    <h2 id='advanced-run-without-installing' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+      
+  Advanced: Run without installing
+  
+  <a href='hm-tutorial#advanced-run-without-installing' class='--ema-anchor ml-2'>
+    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
+        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
+      </svg></span>
+  </a>
+
+
+    </h2>
+  
+    <p class='mb-4 leading-relaxed'>
+      Want to run any package without installing it? Set up <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>comma</code> to run commands like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>, cowsay "Hello!"</code>.
+    </p>
+  
+    <p class='mb-4 leading-relaxed'>
+      Create this complete <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
+  description = "My Home Manager configuration";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { nixpkgs, home-manager, nix-index-database, ... }:
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      homeConfigurations."YOUR_USERNAME" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home.nix
+          nix-index-database.hmModules.nix-index
+        ];
+      };
+    };
+}</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Now <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>, cowsay "Hello!"</code> downloads and runs cowsay without installing it permanently.
+    </p>
   
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
@@ -702,7 +1284,7 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>home-manager Tutorial Series</a></div>
+      <div><a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Home Manager Tutorial</a></div>
     </div>
   
 </div>
