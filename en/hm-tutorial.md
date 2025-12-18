@@ -83,6 +83,9 @@ This file contains your actual configuration. Start with:
 
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
+
+  # macOS uses Zsh by default, so we configure it here
+  programs.zsh.enable = true;
 }
 ```
 
@@ -91,7 +94,7 @@ This file contains your actual configuration. Start with:
 Activate your configuration:
 
 ```bash
-nix run home-manager/master -- switch --flake .
+nix run home-manager/master -- switch
 ```
 
 > [!note] What to expect
@@ -106,7 +109,7 @@ nix run home-manager/master -- switch --flake .
 From now on, whenever you modify your configuration, run:
 
 ```bash
-home-manager switch --flake .
+home-manager switch
 ```
 
 ## Configure Git
@@ -134,7 +137,7 @@ Add the following inside the `{ ... }` block in `home.nix`, after `programs.home
   programs.lazygit.enable = true;
 ```
 
-Run `home-manager switch --flake .` and open a new terminal. Now `g status` works as `git status`!
+Run `home-manager switch` and open a new terminal. Now `g status` works as `git status`!
 
 ## Shell Prompt (Starship)
 
@@ -158,7 +161,7 @@ After switching and opening a new terminal, your prompt will look different—sh
 
 ## Shell Enhancements
 
-Since macOS uses Zsh by default, we can enhance it with autosuggestions and syntax highlighting.
+We already enabled Zsh in the initial setup. Now let's enhance it with autosuggestions and syntax highlighting.
 
 Add to `home.nix`:
 
