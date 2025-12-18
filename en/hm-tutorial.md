@@ -9,8 +9,9 @@ page:
 In the [[nix-first|previous tutorial]], we learned how to use `nix` commands ad-hoc. In this tutorial, we will learn how to manage our user environment *declaratively* using [Home Manager](https://github.com/nix-community/home-manager).
 
 We will build a configuration from scratch that provides a modern terminal experience, including:
-- **Git**: Version control configuration.
+- **Git**: Version control with aliases and smart defaults.
 - **Starship**: A fast, customizable shell prompt.
+- **Zsh**: Enhanced shell with autosuggestions and syntax highlighting.
 - **Direnv**: Automatic environment loading for your projects.
 
 ## Initial Setup
@@ -86,31 +87,67 @@ home-manager switch --flake .
 
 ## Configure Git
 
-Let's configure `git` declaratively. Add this to `home.nix`:
+Let's configure Git with useful aliases and defaults. Add this to `home.nix`:
 
 ```nix
+  # Shell aliases for Git
+  home.shellAliases = {
+    g = "git";
+    lg = "lazygit";
+  };
+
   programs.git = {
     enable = true;
     userName  = "Your Name";
     userEmail = "your-email@example.com";
+    
+    # Files to ignore globally
+    ignores = [ "*~" "*.swp" ];
+    
+    # Git command aliases
+    aliases = {
+      ci = "commit";
+    };
   };
+  
+  # Terminal UI for Git
+  programs.lazygit.enable = true;
 ```
 
-## Shell Configuration (Starship)
+Now you can type `g status` instead of `git status`, and `lg` to launch lazygit!
 
-We will use [Starship](https://starship.rs/) for a cross-shell prompt. Add the following to `home.nix`:
+## Shell Prompt (Starship)
+
+[Starship](https://starship.rs/) provides a fast, customizable prompt that shows git status, directory, and more.
 
 ```nix
   programs.starship = {
     enable = true;
     settings = {
       add_newline = false;
-      aws.disabled = true;
-      gcloud.disabled = true;
       line_break.disabled = true;
     };
   };
 ```
+
+## Shell Enhancements
+
+Make your shell more powerful with autosuggestions, syntax highlighting, and smart directory jumping.
+
+```nix
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    enableCompletion = true;
+  };
+  
+  # Smart directory jumping - type `z <pattern>` instead of `cd`
+  programs.zoxide.enable = true;
+```
+
+> [!tip] Zoxide
+> After using `cd` to directories a few times, zoxide learns them. Then you can jump with `z docs` instead of `cd ~/projects/my-app/docs`.
 
 ## Smart Environments (Direnv)
 
@@ -126,23 +163,46 @@ We will use [Starship](https://starship.rs/) for a cross-shell prompt. Add the f
 > [!tip] nix-direnv
 > `nix-direnv` is a crucial plugin that makes direnv fast and compatible with Nix shells.
 
-## Common Packages
+## Essential Programs
 
-Install your favorite tools by adding them to `home.packages`.
+Home Manager has native support for many programs via `programs.*`. These provide better integration than just installing via `home.packages`.
+
+```nix
+  programs = {
+    # Better cat with syntax highlighting
+    bat.enable = true;
+    
+    # Fuzzy finder - press Ctrl+R to search shell history
+    fzf.enable = true;
+    
+    # JSON processor
+    jq.enable = true;
+    
+    # Beautiful system monitor
+    btop.enable = true;
+  };
+```
+
+## Additional Tools
+
+For packages without native Home Manager support, use `home.packages`:
 
 ```nix
   home.packages = with pkgs; [
-    ripgrep
-    fd
-    jq
-    fzf
-    just
+    # Unix tools
+    ripgrep  # Better grep
+    fd       # Better find  
+    sd       # Better sed
+    tree     # Directory visualization
+    
+    # Nix tools
+    omnix    # Nix workflow helper
   ];
 ```
 
 ## Maintenance (Garbage Collection)
 
-To keep your disk usage low, you can tell Nix to automatically delete old versions of your profile.
+Automatically clean up old generations to save disk space.
 
 ```nix
   nix.gc = {
@@ -154,7 +214,7 @@ To keep your disk usage low, you can tell Nix to automatically delete old versio
 
 ## Advanced: Run without installing
 
-If you want to run any package without installing it (similar to `nix run`), but using a simple command like `, cowsay`, you can set up `comma` with `nix-index`.
+If you want to run any package without installing it using `, cowsay`, you can set up `comma` with `nix-index`.
 
 First, update your `flake.nix` to include `nix-index-database`:
 
@@ -179,7 +239,7 @@ Then, enable it in `home.nix`:
 
 ```nix
   programs.nix-index.enable = true;
-  home.packages = [ pkgs.comma ];
+  programs.nix-index-database.comma.enable = true;
 ```
 
 Now you can run: `, cowsay "Hello!"`
@@ -190,5 +250,14 @@ You have now built a declarative user environment from scratch!
 
 - `flake.nix`: Pins dependencies.
 - `home.nix`: Describes configuration.
+
+Your setup now includes:
+- Git with aliases and lazygit
+- Starship prompt
+- Zsh with autosuggestions  
+- Zoxide for smart navigation
+- Direnv for project environments
+- Essential CLI tools (bat, fzf, ripgrep, etc.)
+- Automatic garbage collection
 
 Next, you might want to look at managing your entire system with [[nixos-tutorial|NixOS]].
