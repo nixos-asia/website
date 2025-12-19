@@ -14,4 +14,7 @@
         , "./global/nix-modules/5" { overrideInputs = [("flake4", "./global/nix-modules/4")] }
         ]
     , signoff.enable = True
+    , cache.url = if
+        | isMaster -> Just "https://cache.nixos.asia/oss"
+        | otherwise -> Nothing
     }
