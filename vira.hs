@@ -13,5 +13,4 @@
         , "./global/nix-modules/4"
         , "./global/nix-modules/5" { overrideInputs = [("flake4", "./global/nix-modules/4")] }
         ]
-    , signoff.enable = True
     }
