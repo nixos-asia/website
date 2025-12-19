@@ -8,7 +8,7 @@ In the [[nix-first|previous tutorial]], we learned how to use `nix` commands ad-
 
 **The problem with imperative installs**: If you run `nix profile install nixpkgs#cowsay` today and set up a new machine tomorrow, you'll have to remember every package you installed. Your environment isn't reproducible.
 
-**The declarative approach**: With [Home Manager](https://github.com/nix-community/home-manager), you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
+**The declarative approach**: With #[[home-manager]], you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
 
 We will build a configuration from scratch that provides a modern terminal experience, including:
 - **Git**: Version control with aliases and smart defaults.
