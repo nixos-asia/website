@@ -1207,22 +1207,20 @@ children:.
 
 <!-- Source: hm-tutorial.md -->
 <!-- URL: https://nixos.asia/en/hm-tutorial -->
-<!-- Title: Home Manager Tutorial -->
+<!-- Title: Declarative User Environments with Home Manager -->
 <!-- Wikilinks: [[hm-tutorial]] -->
 
 ---
 order: 2
-page:
-  title: Home Manager Tutorial
 ---
 
-# Home Manager Tutorial
+# Declarative User Environments with Home Manager
 
 In the [[nix-first|previous tutorial]], we learned how to use `nix` commands ad-hoc. We even installed packages with `nix profile install`. But there's a better way.
 
 **The problem with imperative installs**: If you run `nix profile install nixpkgs#cowsay` today and set up a new machine tomorrow, you'll have to remember every package you installed. Your environment isn't reproducible.
 
-**The declarative approach**: With [Home Manager](https://github.com/nix-community/home-manager), you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
+**The declarative approach**: With #[[home-manager]], you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
 
 We will build a configuration from scratch that provides a modern terminal experience, including:
 - **Git**: Version control with aliases and smart defaults.
@@ -1246,6 +1244,9 @@ Now create two files in this directory.
 ### 1. `flake.nix`
 
 This file defines your inputs (dependencies) and outputs (configurations).
+
+> [!note] Understanding the syntax
+> If you want to learn about `flake.nix` structure and Nix language syntax, see the [[nix-rapid|Rapid Introduction to Nix]] tutorial.
 
 ```nix
 {
@@ -1307,6 +1308,9 @@ This file contains your actual configuration. Start with:
 }
 ```
 
+> [!tip] Linux users
+> If you use Bash instead of Zsh, replace `programs.zsh.enable` with `programs.bash.enable` throughout this tutorial.
+
 ### Apply configuration
 
 Activate your configuration:
@@ -1330,7 +1334,7 @@ From now on, whenever you modify your configuration, run:
 home-manager switch
 ```
 
-## Configure Git
+## Configure Git {#git}
 
 Add the following inside the `{ ... }` block in `home.nix`, after `programs.home-manager.enable = true;`:
 
@@ -1357,7 +1361,7 @@ Add the following inside the `{ ... }` block in `home.nix`, after `programs.home
 
 Run `home-manager switch` and open a new terminal. Now `g status` works as `git status`!
 
-## Shell Prompt (Starship)
+## Shell Prompt (Starship) {#starship}
 
 [Starship](https://starship.rs/) provides a fast, customizable prompt that shows git status, directory, and more.
 
@@ -1375,7 +1379,7 @@ Add to `home.nix`:
 
 After switching and opening a new terminal, your prompt will look different—showing your directory and git branch.
 
-## Shell Enhancements
+## Shell Enhancements {#shell}
 
 We already enabled Zsh in the initial setup. Now let's enhance it with autosuggestions and syntax highlighting.
 
@@ -1395,7 +1399,7 @@ Add to `home.nix`:
 > [!tip] Zoxide
 > After using `cd` to directories a few times, zoxide learns them. Then you can jump with `z docs` instead of `cd ~/projects/my-app/docs`.
 
-## Smart Environments (Direnv)
+## Smart Environments (Direnv) {#direnv}
 
 [[direnv|Direnv]] loads environment variables automatically when you `cd` into directories. This is essential for Nix-based development.
 
@@ -1410,7 +1414,7 @@ Add to `home.nix`:
 
 Now when you enter a project with a `flake.nix` and `.envrc` file containing `use flake`, the development environment loads automatically.
 
-## Essential Programs
+## Essential Programs {#programs}
 
 Home Manager has [native support for many programs](https://github.com/nix-community/home-manager/tree/master/modules/programs) via `programs.*`. These modules don't just install the package—they also configure it, set up shell integration, and manage dotfiles. For example, `programs.fzf.enable` automatically adds keybindings to your shell.
 
@@ -1432,7 +1436,7 @@ Add to `home.nix`:
   };
 ```
 
-## Additional Tools
+## Additional Tools {#packages}
 
 For packages without native Home Manager support, use `home.packages`. You can [search for packages here](https://search.nixos.org/packages). Add to `home.nix`:
 
@@ -1445,7 +1449,7 @@ For packages without native Home Manager support, use `home.packages`. You can [
   ];
 ```
 
-## Maintenance (Garbage Collection)
+## Maintenance (Garbage Collection) {#gc}
 
 Nix keeps old versions of your configuration (for rollbacks) and caches project devShells. Over time, this uses disk space. Enable automatic cleanup—don't worry, `nix-direnv` pins your active project shells so they won't be deleted:
 
@@ -1536,25 +1540,9 @@ Here's a complete `home.nix` with everything we've covered:
 - [[nixos-tutorial|NixOS]]: Manage your entire operating system with Nix
 - [nixos-unified-template](https://github.com/juspay/nixos-unified-template): a fully-fledged home-manager template that configures what this tutorial shows, and more. It also supports NixOS.
 
-## Troubleshooting
-
-**Error: `opening lock file ... No such file or directory`**
-
-Run this once and try again:
-```bash
-sudo mkdir -p /nix/var/nix/profiles/per-user/$(whoami)
-sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)
-```
-
-**Changes not taking effect?**
-
-Open a new terminal after running `home-manager switch`.
-
----
-
 ## Advanced: Run without installing
 
-Want to run any package without installing it? Set up `comma` to run commands like `, cowsay "Hello!"`.
+Want to run any package without installing it? Set up [`comma`](https://github.com/nix-community/comma) to run commands like `, cowsay "Hello!"`.
 
 Create this complete `flake.nix`:
 

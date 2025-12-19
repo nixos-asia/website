@@ -14,7 +14,7 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    Home Manager Tutorial – NixOS Asia
+    Declarative User Environments with Home Manager – NixOS Asia
   </title>
   
     
@@ -22,7 +22,7 @@
       <meta property='og:site_name' content='NixOS Asia' />
       <meta property='og:image' content='https://nixos.asia/en/static/nixos-asia.svg' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='Home Manager Tutorial' />
+      <meta property='og:title' content='Declarative User Environments with Home Manager' />
       
         <meta name='twitter:card' content='summary_large_image' />
       
@@ -35,7 +35,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=f9420e1f-ff8c-4398-b10a-6ae1a5529462' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=5faa6acb-6249-45b4-8f17-0065689f9d6d' rel='stylesheet' type='text/css' />
 
   <link rel='stylesheet' href='_emanote-static/skylighting.css' />
 
@@ -484,6 +484,47 @@
   
 </li>
           
+            <li>
+
+  <a href='home-manager'>
+    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
+      home-manager
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='nix'>
+    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
+      Nix
+    </div>
+  </a>
+
+  
+    <ul>
+      
+        <li>
+
+  <a href='topics'>
+    <div class='bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-green-500 dark:hover:bg-green-600 hover:text-white cursor-pointer transition-all duration-150 forest-link'>
+      Topics
+    </div>
+  </a>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
         </ul>
       
     </li>
@@ -553,7 +594,7 @@
           <div class='flex-1 w-full bg-white dark:bg-gray-800'>
   <main class='px-6 py-8 max-w-7xl mx-auto'>
     <h1 class='mb-10 px-8 py-5 bg-green-600 dark:bg-green-800 text-5xl font-bold text-white text-center rounded-2xl'>
-  Home Manager Tutorial
+  Declarative User Environments with Home Manager
 </h1>
     
       <article class='overflow-auto'>
@@ -578,7 +619,7 @@
     </p>
   
     <p class='mb-4 leading-relaxed'>
-      <strong>The declarative approach</strong>: With <a href='https://github.com/nix-community/home-manager' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Home Manager</a>, you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
+      <strong>The declarative approach</strong>: With <a href='home-manager' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>home-manager</a>, you describe your entire environment in a configuration file. Want to set up a new machine? Just copy your config and run one command. Everything is reproducible and version-controlled.
     </p>
   
     <p class='mb-4 leading-relaxed'>
@@ -650,7 +691,30 @@
     <p class='mb-4 leading-relaxed'>
       This file defines your inputs (dependencies) and outputs (configurations).
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
+    <div class='callout-icon flex-shrink-0'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        
+    <line x1='18' y1='2' x2='22' y2='6'></line>
+    <path d='M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z'></path>
+  
+      </svg>
+    </div>
+    <div class='ml-3'>
+       Understanding the syntax
+    </div>
+  </div>
+  <div class='callout-content text-gray-700 dark:text-gray-300'>
+    
+    <p class='mb-4 leading-relaxed'>
+      If you want to learn about <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> structure and Nix language syntax, see the <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Rapid Introduction to Nix</a> tutorial.
+    </p>
+  
+  </div>
+</div><div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
   <span class='va'>description</span> <span class='op'>=</span> <span class='st'>"My Home Manager configuration"</span><span class='op'>;</span>
 
   <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
@@ -753,7 +817,30 @@
   <span class='co'># macOS uses Zsh by default, so we configure it here</span>
   <span class='va'>programs</span>.<span class='va'>zsh</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
 <span class='op'>}</span>
-</code></pre></div>
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+  </path>
+  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
+    <div class='callout-icon flex-shrink-0'>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+        
+    <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
+    </path>
+  
+      </svg>
+    </div>
+    <div class='ml-3'>
+       Linux users
+    </div>
+  </div>
+  <div class='callout-content text-gray-700 dark:text-gray-300'>
+    
+    <p class='mb-4 leading-relaxed'>
+      If you use Bash instead of Zsh, replace <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.zsh.enable</code> with <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.bash.enable</code> throughout this tutorial.
+    </p>
+  
+  </div>
+</div>
     <h3 id='apply-configuration' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Apply configuration
@@ -806,11 +893,11 @@
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='ex'>home-manager</span> switch
 </code></pre></div>
-    <h2 id='configure-git' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='git' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Configure Git
   
-  <a href='hm-tutorial#configure-git' class='--ema-anchor ml-2'>
+  <a href='hm-tutorial#git' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -846,11 +933,11 @@
       Run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home-manager switch</code> and open a new terminal. Now <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>g status</code> works as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>git status</code>!
     </p>
   
-    <h2 id='shell-prompt-starship' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='starship' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Shell Prompt (Starship)
   
-  <a href='hm-tutorial#shell-prompt-starship' class='--ema-anchor ml-2'>
+  <a href='hm-tutorial#starship' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -879,11 +966,11 @@
       After switching and opening a new terminal, your prompt will look different—showing your directory and git branch.
     </p>
   
-    <h2 id='shell-enhancements' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='shell' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Shell Enhancements
   
-  <a href='hm-tutorial#shell-enhancements' class='--ema-anchor ml-2'>
+  <a href='hm-tutorial#shell' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -932,11 +1019,11 @@
   
   </div>
 </div>
-    <h2 id='smart-environments-direnv' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='direnv' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Smart Environments (Direnv)
   
-  <a href='hm-tutorial#smart-environments-direnv' class='--ema-anchor ml-2'>
+  <a href='hm-tutorial#direnv' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -962,11 +1049,11 @@
       Now when you enter a project with a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.envrc</code> file containing <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>use flake</code>, the development environment loads automatically.
     </p>
   
-    <h2 id='essential-programs' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='programs' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Essential Programs
   
-  <a href='hm-tutorial#essential-programs' class='--ema-anchor ml-2'>
+  <a href='hm-tutorial#programs' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -997,11 +1084,11 @@
     <span class='va'>btop</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
   <span class='op'>}</span>;
 </code></pre></div>
-    <h2 id='additional-tools' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='packages' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Additional Tools
   
-  <a href='hm-tutorial#additional-tools' class='--ema-anchor ml-2'>
+  <a href='hm-tutorial#packages' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1021,11 +1108,11 @@
     tree     <span class='co'># Directory visualization</span>
   <span class='op'>]</span>;
 </code></pre></div>
-    <h2 id='maintenance-garbage-collection' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='gc' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Maintenance (Garbage Collection)
   
-  <a href='hm-tutorial#maintenance-garbage-collection' class='--ema-anchor ml-2'>
+  <a href='hm-tutorial#gc' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
         <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
         <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
@@ -1161,40 +1248,6 @@
       
     </ul>
   
-    <h2 id='troubleshooting' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
-      
-  Troubleshooting
-  
-  <a href='hm-tutorial#troubleshooting' class='--ema-anchor ml-2'>
-    <span class='text-gray-400 hover:text-green-500 dark:hover:text-green-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'></path>
-        <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'></path>
-      </svg></span>
-  </a>
-
-
-    </h2>
-  
-    <p class='mb-4 leading-relaxed'>
-      <strong>Error: <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>opening lock file ... No such file or directory</code></strong>
-    </p>
-  
-    <p class='mb-4 leading-relaxed'>
-      Run this once and try again:
-    </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>sudo</span> mkdir <span class='at'>-p</span> /nix/var/nix/profiles/per-user/<span class='va'>$(</span><span class='fu'>whoami</span><span class='va'>)</span>
-<span class='fu'>sudo</span> chown <span class='va'>$(</span><span class='fu'>whoami</span><span class='va'>)</span> /nix/var/nix/profiles/per-user/<span class='va'>$(</span><span class='fu'>whoami</span><span class='va'>)</span>
-</code></pre></div>
-    <p class='mb-4 leading-relaxed'>
-      <strong>Changes not taking effect?</strong>
-    </p>
-  
-    <p class='mb-4 leading-relaxed'>
-      Open a new terminal after running <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home-manager switch</code>.
-    </p>
-  
-    <hr class='my-8 border-gray-200 dark:border-gray-800' />
-  
     <h2 id='advanced-run-without-installing' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Advanced: Run without installing
@@ -1210,7 +1263,7 @@
     </h2>
   
     <p class='mb-4 leading-relaxed'>
-      Want to run any package without installing it? Set up <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>comma</code> to run commands like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>, cowsay "Hello!"</code>.
+      Want to run any package without installing it? Set up <a href='https://github.com/nix-community/comma' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>comma</code></a> to run commands like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>, cowsay "Hello!"</code>.
     </p>
   
     <p class='mb-4 leading-relaxed'>
@@ -1294,7 +1347,7 @@
             <div class='mb-4 overflow-auto text-sm text-gray-500 dark:text-gray-300'>
   
     <div class='pl-2 mt-2 border-l-2 border-green-200 dark:border-green-600 hover:border-green-500 dark:hover:border-green-400'>
-      <div><a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Home Manager Tutorial</a></div>
+      <div><a href='hm-tutorial' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkBranch'>Declarative User Environments with Home Manager</a></div>
     </div>
   
 </div>
