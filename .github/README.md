@@ -41,4 +41,4 @@ This site is made of multiple Emanote layers:
 
 ## Discussion
 
-We hang out in [Zulip](https://nixos.zulipchat.com/) ― come say hi.
+[Come say hi](https://nixos.asia/en/#community)
