@@ -27,6 +27,7 @@
                   baseUrl = "/${name}/";
                 };
                 basePath = name;
+                check = false;
               })
               langs;
           };
