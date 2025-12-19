@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -607,7 +600,7 @@
     <p class='mb-4 leading-relaxed'>
       The objective of this tutorial is to demonstrate calling a Rust function that returns <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>Hello, from rust!</code> from within a Haskell package. Let’s begin by setting up the Rust library.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='haskell-rust-ffi/haskell-rust-ffi-banner.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/haskell-rust-ffi/haskell-rust-ffi-banner.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='haskell-rust-ffi/haskell-rust-ffi-banner.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/haskell-rust-ffi/haskell-rust-ffi-banner.png' style='width: inherit;' /></div>
     <h2 id='init-rust' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Initialize Rust Project
@@ -625,13 +618,15 @@
     <p class='mb-4 leading-relaxed'>
       Start by initializing a new Rust project using <a href='https://github.com/srid/rust-nix-template' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>rust-nix-template</a>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>git clone https://github.com/srid/rust-nix-template.git
-cd rust-nix-template</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='fu'>git</span> clone https://github.com/srid/rust-nix-template.git
+<span class='bu'>cd</span> rust-nix-template
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now, let’s run the project:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>nix develop
-just run</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>nix</span> develop
+<span class='ex'>just</span> run
+</code></pre></div>
     <h2 id='rust-lib' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Create a Rust Library
@@ -691,8 +686,9 @@ pub extern "C" fn hello() -&gt; *mut c_char {
     <p class='mb-4 leading-relaxed'>
       Now, the library builds, but we need the dynamic library files required for FFI. To achieve this, let’s add a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>crate-type</code> to the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>Cargo.toml</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='toml language-toml'>[lib]
-crate-type = ["cdylib"]</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='toml'><span class='kw'>[lib]</span>
+<span class='dt'>crate-type</span> <span class='op'>=</span> <span class='op'>[</span><span class='st'>"cdylib"</span><span class='op'>]</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       After running <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cargo build</code>, you should find a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>librust_nix_template.dylib</code>
     <sup class='px-0.5'>
@@ -720,7 +716,8 @@ crate-type = ["cdylib"]</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Fetch <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cabal-install</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ghc</code> from the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs</code> in <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>flake registry</a> and initialize a new Haskell project:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>nix shell nixpkgs#ghc nixpkgs#cabal-install -c cabal -- init -n --exe -m --simple hello-haskell -d base --overwrite</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>nix</span> shell nixpkgs#ghc nixpkgs#cabal-install <span class='at'>-c</span> cabal <span class='at'>--</span> init <span class='at'>-n</span> <span class='at'>--exe</span> <span class='at'>-m</span> <span class='at'>--simple</span> hello-haskell <span class='at'>-d</span> base <span class='at'>--overwrite</span>
+</code></pre></div>
     <h2 id='nixify-haskell' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Nixify Haskell Project
@@ -763,22 +760,24 @@ crate-type = ["cdylib"]</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Additionally, add the following to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs.haskell-flake.url = "github:srid/haskell-flake";
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span>.<span class='va'>haskell-flake</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:srid/haskell-flake"</span><span class='op'>;</span>
 
-  outputs = inputs:
-    # Inside `mkFlake`
-    {
-      imports = [
-        inputs.haskell-flake.flakeModule
-        ./hello-haskell
-      ];
-    };
-}</code></pre></div>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='va'>inputs</span><span class='op'>:</span>
+    <span class='co'># Inside `mkFlake`</span>
+    <span class='op'>{</span>
+      <span class='va'>imports</span> <span class='op'>=</span> <span class='op'>[</span>
+        inputs<span class='op'>.</span>haskell-flake<span class='op'>.</span>flakeModule
+        <span class='ss'>./hello-haskell</span>
+      <span class='op'>];</span>
+    <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Stage the changes:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>git add hello-haskell</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='fu'>git</span> add hello-haskell
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now, you can run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run .#hello-haskell</code> to build and execute the Haskell project.
     </p>
@@ -800,20 +799,22 @@ crate-type = ["cdylib"]</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       In the previous section, we created <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>devShells.haskell</code>. Let’s merge it with the Rust development environment in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # Inside devShells.default
-  inputsFrom = [
-    # ...
-    self'.devShells.haskell
-  ];
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># Inside devShells.default</span>
+  <span class='va'>inputsFrom</span> <span class='op'>=</span> <span class='op'>[</span>
+    <span class='co'># ...</span>
+    self'<span class='op'>.</span>devShells<span class='op'>.</span>haskell
+  <span class='op'>];</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now, re-enter the shell, and you’ll have both Rust and Haskell development environments:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>exit
-nix develop
-cd hello-haskell && cabal build
-cd .. && cargo build</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='bu'>exit</span>
+<span class='ex'>nix</span> develop
+<span class='bu'>cd</span> hello-haskell <span class='kw'>&&</span> <span class='ex'>cabal</span> build
+<span class='bu'>cd</span> .. <span class='kw'>&&</span> <span class='ex'>cargo</span> build
+</code></pre></div>
     <h2 id='add-rust-lib' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Add Rust Library as a Dependency
@@ -831,19 +832,21 @@ cd .. && cargo build</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Just like any other dependency, you’ll first add it to your <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>hello-haskell/hello-haskell.cabal</code> file:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>executable hello-haskell
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>executable hello-haskell
   -- ...
   extra-libraries: rust_nix_template</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Try building it:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>cd hello-haskell && cabal build</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='bu'>cd</span> hello-haskell <span class='kw'>&&</span> <span class='ex'>cabal</span> build
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       You’ll likely encounter an error like this:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>...
-* Missing (or bad) C library: rust_nix_template
-...</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>...</span>
+<span class='ex'>*</span> Missing <span class='er'>(</span><span class='ex'>or</span> bad<span class='kw'>)</span> <span class='ex'>C</span> library: rust_nix_template
+<span class='ex'>...</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       The easiest solution might seem to be <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>export LIBRARY_PATH=../target/debug</code>. However, this is not reproducible and would mean running an additional command to setup the prerequisite to build the Haskell package. Even worse if the Rust project is in a different repository.
     </p>
@@ -855,18 +858,20 @@ cd .. && cargo build</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       When you use Nix, you set up all the prerequisites beforehand, which is why you’ll encounter an error when trying to re-enter the devShell without explicitly specifying where the Rust project is:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>...
-error: function 'anonymous lambda' called without required argument 'rust_nix_template'
-...</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>...</span>
+<span class='ex'>error:</span> function <span class='st'>'anonymous lambda'</span> called without required argument <span class='st'>'rust_nix_template'</span>
+<span class='ex'>...</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       To specify the Rust project as a dependency, we <a href='https://community.flake.parts/haskell-flake/dependency' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>setup haskell-flake dependency overrides</a> by editing <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>hello-haskell/default.nix</code> to:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # Inside haskellProjects.default
-  settings = {
-    rust_nix_template.custom = _: self'.packages.default;
-  };
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># Inside haskellProjects.default</span>
+  <span class='va'>settings</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>rust_nix_template</span>.<span class='va'>custom</span> <span class='op'>=</span> <span class='va'>_</span><span class='op'>:</span> self'<span class='op'>.</span>packages<span class='op'>.</span>default<span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This process eliminates the need for manual Rust project building as it’s wired as a prerequisite to the Haskell package.
     </p>
@@ -915,7 +920,8 @@ main = hello_haskell &gt;&gt;= putStrLn
     <p class='mb-4 leading-relaxed'>
       The implementation above is based on the <a href='https://wiki.haskell.org/Foreign_Function_Interface' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Haskell FFI documentation</a>. Now, run the Haskell project:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>nix run .#hello-haskell</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>nix</span> run .#hello-haskell
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       You should see the output <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>Hello, from rust!</code>.
     </p>
@@ -940,14 +946,15 @@ main = hello_haskell &gt;&gt;= putStrLn
     <p class='mb-4 leading-relaxed'>
       If you are on <a href='macos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>macOS</a>, the Haskell package will not run because <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>dlopen</code> will be looking for the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.dylib</code> file in the temporary build directory (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/private/tmp/nix-build-rust-nix...</code>). To fix this, you need to include <a href='https://github.com/NixOS/nixpkgs/blob/af8fd52e05c81eafcfd4fb9fe7d3553b61472712/pkgs/build-support/setup-hooks/fix-darwin-dylib-names.sh' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>fixDarwinDylibNames</a> in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
- # Inside `perSystem.packages.default`
- # ...
- buildInputs = if pkgs.stdenv.isDarwin then [ pkgs.fixDarwinDylibNames ] else [ ];
- postInstall = ''
-   ${if pkgs.stdenv.isDarwin then "fixDarwinDylibNames" else ""}
- '';  
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+ <span class='co'># Inside `perSystem.packages.default`</span>
+ <span class='co'># ...</span>
+ <span class='va'>buildInputs</span> <span class='op'>=</span> <span class='kw'>if</span> pkgs<span class='op'>.</span>stdenv<span class='op'>.</span>isDarwin <span class='kw'>then</span> <span class='op'>[</span> pkgs<span class='op'>.</span>fixDarwinDylibNames <span class='op'>]</span> <span class='kw'>else</span> <span class='op'>[</span> <span class='op'>];</span>
+ <span class='va'>postInstall</span> <span class='op'>=</span> <span class='st'>''</span>
+<span class='st'>   </span><span class='sc'>${</span><span class='kw'>if</span> pkgs<span class='op'>.</span>stdenv<span class='op'>.</span>isDarwin <span class='kw'>then</span> <span class='st'>"fixDarwinDylibNames"</span> <span class='kw'>else</span> <span class='st'>""</span><span class='sc'>}</span>
+<span class='st'> ''</span><span class='op'>;</span>  
+<span class='op'>}</span>
+</code></pre></div>
   </div>
 </div>
     <h2 id='cabal-repl' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -967,25 +974,27 @@ main = hello_haskell &gt;&gt;= putStrLn
     <p class='mb-4 leading-relaxed'>
       <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cabal repl</code> doesn’t look for <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>NIX_LDFLAGS</code> to find the dynamic library, see why <a href='https://discourse.nixos.org/t/shared-libraries-error-with-cabal-repl-in-nix-shell/8921/10' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>here</a>. This can be worked around in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>hello-haskell/default.nix</code> using:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # Inside `devShells.haskell`
-  shellHook = ''
-    export LIBRARY_PATH=${config.haskellProjects.default.outputs.finalPackages.rust_nix_template}/lib
-  '';
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># Inside `devShells.haskell`</span>
+  <span class='va'>shellHook</span> <span class='op'>=</span> <span class='st'>''</span>
+<span class='st'>    export LIBRARY_PATH=</span><span class='sc'>${</span>config<span class='op'>.</span>haskellProjects<span class='op'>.</span>default<span class='op'>.</span>outputs<span class='op'>.</span>finalPackages<span class='op'>.</span>rust_nix_template<span class='sc'>}</span><span class='st'>/lib</span>
+<span class='st'>  ''</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Re-enter the shell, and you’re set:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>❯ cd hello-haskell && cabal repl
-Build profile: -w ghc-9.4.8 -O1
-In order, the following will be built (use -v for more details):
- - hello-haskell-0.1.0.0 (exe:hello-haskell) (ephemeral targets)
-Preprocessing executable 'hello-haskell' for hello-haskell-0.1.0.0..
-GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
-[1 of 2] Compiling Main             ( app/Main.hs, interpreted )
-Ok, one module loaded.
-ghci&gt; main
-Hello, from rust!</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>❯</span> cd hello-haskell <span class='kw'>&&</span> <span class='ex'>cabal</span> repl
+<span class='ex'>Build</span> profile: <span class='at'>-w</span> ghc-9.4.8 <span class='at'>-O1</span>
+<span class='ex'>In</span> order, the following will be built <span class='er'>(</span><span class='ex'>use</span> <span class='at'>-v</span> for more details<span class='kw'>)</span><span class='bu'>:</span>
+ <span class='ex'>-</span> hello-haskell-0.1.0.0 <span class='er'>(</span><span class='ex'>exe:hello-haskell</span><span class='kw'>)</span> <span class='kw'>(</span><span class='ex'>ephemeral</span> targets<span class='kw'>)</span>
+<span class='ex'>Preprocessing</span> executable <span class='st'>'hello-haskell'</span> for hello-haskell-0.1.0.0..
+<span class='ex'>GHCi,</span> version 9.4.8: https://www.haskell.org/ghc/  :<span class='pp'>?</span> for help
+<span class='ex'>[1</span> of 2] Compiling Main             <span class='er'>(</span> <span class='ex'>app/Main.hs,</span> interpreted <span class='kw'>)</span>
+<span class='ex'>Ok,</span> one module loaded.
+<span class='ex'>ghci</span><span class='op'>&gt;</span> main
+<span class='ex'>Hello,</span> from rust!
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -1126,7 +1135,7 @@ Hello, from rust!</code></pre></div><div data-callout-metadata data-callout-fold
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

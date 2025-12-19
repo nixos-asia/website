@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -673,7 +666,7 @@
     <p class='mb-4 leading-relaxed'>
       Boot your computer from this USB flash drive, and expect to be greeted with a command line interface (CLI):
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-installer-cli.jpeg' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-disko/nixos-installer-cli.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-installer-cli.jpeg' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-disko/nixos-installer-cli.jpeg' style='width: inherit;' /></div>
     <h2 id='partition' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Partition the disk
@@ -713,7 +706,8 @@
     <p class='mb-4 leading-relaxed'>
       Retrieve the disk configuration to a temporary location, calling it <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko-config.nix</code> (we will use it latter):
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>curl https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid.nix -o /tmp/disko-config.nix</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='ex'>curl</span> https://raw.githubusercontent.com/nix-community/disko/master/example/hybrid.nix <span class='at'>-o</span> /tmp/disko-config.nix
+</code></pre></div>
     <h3 id='disk-config-edit' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Modify the disk configuration
@@ -731,11 +725,11 @@
     <p class='mb-4 leading-relaxed'>
       The above downloaded Nix file uses a hardcoded disk device. So, we need to replace it with the device name of the disk we want to install <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> on. We can use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>lsblk</code> to find it.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-lsblk.jpeg' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-disko/nixos-lsblk.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-lsblk.jpeg' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-disko/nixos-lsblk.jpeg' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
       In this case, the device name is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>vda</code>. The device file is located at <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/dev/vda</code>. We will use this to modify <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko-config.nix</code> we downloaded earlier.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-config.jpeg' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-disko/nixos-disko-config.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-config.jpeg' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-disko/nixos-disko-config.jpeg' style='width: inherit;' /></div>
     <h3 id='run-the-partitioning-script' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Run the partitioning script
@@ -753,14 +747,15 @@
     <p class='mb-4 leading-relaxed'>
       The disko flake provides an app that will take our partitioning scheme defined in Nix file above, partition the specified disk device and mount it at <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt</code>. We want this to happen prior to installing NixOS. Let’s do that now:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>sudo nix \
-  --experimental-features "nix-command flakes" \
-  run github:nix-community/disko -- \
-  --mode disko /tmp/disko-config.nix</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>sudo</span> nix <span class='dt'>\</span>
+  <span class='at'>--experimental-features</span> <span class='st'>"nix-command flakes"</span> <span class='dt'>\</span>
+  run github:nix-community/disko <span class='at'>--</span> <span class='dt'>\</span>
+  <span class='at'>--mode</span> disko /tmp/disko-config.nix
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Once the command completes, you should see the disk partitioned and mounted at <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt</code>:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-post-partition.jpeg' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-disko/nixos-disko-post-partition.jpeg' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-post-partition.jpeg' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-disko/nixos-disko-post-partition.jpeg' style='width: inherit;' /></div>
     <h2 id='configuration' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Generate initial NixOS configuration
@@ -778,7 +773,8 @@
     <p class='mb-4 leading-relaxed'>
       With the disk partitioned, we are ready to follow the usual NixOS installation process. The first step is to generate the initial NixOS configuration under <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt</code>.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>sudo nixos-generate-config --no-filesystems --root /mnt</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>sudo</span> nixos-generate-config <span class='at'>--no-filesystems</span> <span class='at'>--root</span> /mnt
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -827,23 +823,24 @@
     <p class='mb-4 leading-relaxed'>
       Before we can utilize <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code> in our generated configuration, we will <a href='configuration-as-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>convert our configuration to a flake</a>. This is a simple process of adding a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> file in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt/etc/nixos</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'># /mnt/etc/nixos/flake.nix
-{
-  inputs = {
-    # NOTE: Replace "nixos-23.11" with that which is in system.stateVersion of
-    # configuration.nix. You can also use latter versions if you wish to
-    # upgrade.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-  };
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    # NOTE: 'nixos' is the default hostname set by the installer
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # NOTE: Change this to aarch64-linux if you are on ARM
-      system = "x86_64-linux";
-      modules = [ ./configuration.nix ];
-    };
-  };
-}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='co'># /mnt/etc/nixos/flake.nix</span>
+<span class='kw'>{</span>
+  <span class='ex'>inputs</span> = {
+    <span class='co'># </span><span class='al'>NOTE</span><span class='co'>: Replace "nixos-23.11" with that which is in system.stateVersion of</span>
+    <span class='co'># configuration.nix. You can also use latter versions if you wish to</span>
+    <span class='co'># upgrade.</span>
+    <span class='ex'>nixpkgs.url</span> = <span class='st'>"github:NixOS/nixpkgs/nixos-23.11"</span><span class='kw'>;</span>
+  <span class='kw'>};</span>
+  <span class='ex'>outputs</span> = inputs@{ self, nixpkgs, ... }: {
+    <span class='co'># </span><span class='al'>NOTE</span><span class='co'>: 'nixos' is the default hostname set by the installer</span>
+    <span class='ex'>nixosConfigurations.nixos</span> = nixpkgs.lib.nixosSystem {
+      <span class='co'># </span><span class='al'>NOTE</span><span class='co'>: Change this to aarch64-linux if you are on ARM</span>
+      <span class='ex'>system</span> = <span class='st'>"x86_64-linux"</span><span class='kw'>;</span>
+      <span class='ex'>modules</span> = [ ./configuration.nix ]<span class='kw'>;</span>
+    <span class='er'>}</span><span class='kw'>;</span>
+  <span class='er'>}</span><span class='kw'>;</span>
+<span class='er'>}</span>
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -904,13 +901,14 @@
     <p class='mb-4 leading-relaxed'>
       Add the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code> flake input in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/mnt/etc/nixos/flake.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'># In `/mnt/etc/nixos/flake.nix`
-{
-  inputs = {
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-  };
-}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='co'># In `/mnt/etc/nixos/flake.nix`</span>
+<span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>disko</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:nix-community/disko"</span><span class='op'>;</span>
+    <span class='va'>disko</span>.<span class='va'>inputs</span>.<span class='va'>nixpkgs</span>.<span class='va'>follows</span> <span class='op'>=</span> <span class='st'>"nixpkgs"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -942,16 +940,17 @@
     <p class='mb-4 leading-relaxed'>
       Add the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code> nixosModule:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # In `outputs` of `/mnt/etc/nixos/flake.nix`
-  nixosConfigurations.nixos = {
-    # ...
-    modules = [
-      ./configuration.nix
-      inputs.disko.nixosModules.disko
-    ];
-  };
-}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-flake-with-disko.jpeg' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-disko/nixos-flake-with-disko.jpeg' style='width: inherit;' /></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># In `outputs` of `/mnt/etc/nixos/flake.nix`</span>
+  <span class='va'>nixosConfigurations</span>.<span class='va'>nixos</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='co'># ...</span>
+    <span class='va'>modules</span> <span class='op'>=</span> <span class='op'>[</span>
+      <span class='ss'>./configuration.nix</span>
+      inputs<span class='op'>.</span>disko<span class='op'>.</span>nixosModules<span class='op'>.</span>disko
+    <span class='op'>];</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-flake-with-disko.jpeg' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-disko/nixos-flake-with-disko.jpeg' style='width: inherit;' /></div>
         </li>
       
         <li>
@@ -959,7 +958,8 @@
     <p class='mb-4 leading-relaxed'>
       Move the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko-config.nix</code> to the flake directory:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>mv /tmp/disko-config.nix /mnt/etc/nixos</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>mv</span> /tmp/disko-config.nix /mnt/etc/nixos
+</code></pre></div>
         </li>
       
         <li>
@@ -967,18 +967,19 @@
     <p class='mb-4 leading-relaxed'>
       Add the disk configuration and use GRUB:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # In `/mnt/etc/nixos/configuration.nix`
-  imports = [
-    ./hardware-configuration.nix
-    ./disko-config.nix
-  ];
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-}</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' style='width: inherit;' /></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># In `/mnt/etc/nixos/configuration.nix`</span>
+  <span class='va'>imports</span> <span class='op'>=</span> <span class='op'>[</span>
+    <span class='ss'>./hardware-configuration.nix</span>
+    <span class='ss'>./disko-config.nix</span>
+  <span class='op'>];</span>
+  <span class='co'>#boot.loader.systemd-boot.enable = true;</span>
+  <span class='co'>#boot.loader.efi.canTouchEfiVariables = true;</span>
+  <span class='va'>boot</span>.<span class='va'>loader</span>.<span class='va'>grub</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='va'>boot</span>.<span class='va'>loader</span>.<span class='va'>grub</span>.<span class='va'>efiSupport</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='va'>boot</span>.<span class='va'>loader</span>.<span class='va'>grub</span>.<span class='va'>efiInstallAsRemovable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-disko/nixos-configuration-nix-with-disko-config.jpeg' style='width: inherit;' /></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -1010,11 +1011,12 @@
     <p class='mb-4 leading-relaxed'>
       Let’s check that our final configuration is correct by using <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nix repl</a>. In particular, we test the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>fileSystems</code> set by <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>disko</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'># First, create a flake.lock
-sudo nix --experimental-features "nix-command flakes" flake lock
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='co'># First, create a flake.lock</span>
+<span class='fu'>sudo</span> nix <span class='at'>--experimental-features</span> <span class='st'>"nix-command flakes"</span> flake lock
 
-# Start repl
-nix --experimental-features "nix-command flakes" repl</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-filesystems.jpeg' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-disko/nixos-disko-filesystems.jpeg' style='width: inherit;' /></div>
+<span class='co'># Start repl</span>
+<span class='ex'>nix</span> <span class='at'>--experimental-features</span> <span class='st'>"nix-command flakes"</span> repl
+</code></pre></div><div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-disko/nixos-disko-filesystems.jpeg' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-disko/nixos-disko-filesystems.jpeg' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
       If you see something similar to the above, everything’s good and we are ready to perform the actual installation.
     </p>
@@ -1036,9 +1038,10 @@ nix --experimental-features "nix-command flakes" repl</code></pre></div><div cla
     <p class='mb-4 leading-relaxed'>
       With our NixOS configuration in place, we will use the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixos-install</code> program to install NixOS:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>sudo nixos-install --root /mnt --flake '/mnt/etc/nixos#nixos'
-# NOTE: You will be prompted to set the root password at this point.
-sudo reboot</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>sudo</span> nixos-install <span class='at'>--root</span> /mnt <span class='at'>--flake</span> <span class='st'>'/mnt/etc/nixos#nixos'</span>
+<span class='co'># </span><span class='al'>NOTE</span><span class='co'>: You will be prompted to set the root password at this point.</span>
+<span class='fu'>sudo</span> reboot
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Once rebooted, you should be greeted with the NixOS login screen, allowing you to login to the machine using the root password you had set.
     </p>
@@ -1234,7 +1237,7 @@ sudo reboot</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

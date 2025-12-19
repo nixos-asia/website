@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -693,11 +686,12 @@
     <p class='mb-4 leading-relaxed'>
       The <a href='https://github.com/srid/flake-root' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake-root</code></a> <a href='flake-parts' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>flake-parts</a> module is needed to find the root of your project based on the presence of a file, by default it is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # Inside `inputs`
-  treefmt-nix.url = "github:numtide/treefmt-nix";
-  flake-root.url = "github:srid/flake-root";
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># Inside `inputs`</span>
+  <span class='va'>treefmt-nix</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:numtide/treefmt-nix"</span><span class='op'>;</span>
+  <span class='va'>flake-root</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:srid/flake-root"</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h3 id='import-flakemodule-output-of-treefmt-and-flake-root' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Import <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flakeModule</code> output of treefmt and flake-root
@@ -711,13 +705,14 @@
 
 
     </h3>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # Inside outputs' `flake-parts.lib.mkFlake` 
-  imports = [
-    inputs.treefmt-nix.flakeModule
-    inputs.flake-root.flakeModule
-  ];
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># Inside outputs' `flake-parts.lib.mkFlake` </span>
+  <span class='va'>imports</span> <span class='op'>=</span> <span class='op'>[</span>
+    inputs<span class='op'>.</span>treefmt-nix<span class='op'>.</span>flakeModule
+    inputs<span class='op'>.</span>flake-root<span class='op'>.</span>flakeModule
+  <span class='op'>];</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h3 id='configure-your-formatter' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Configure your formatter
@@ -735,22 +730,23 @@
     <p class='mb-4 leading-relaxed'>
       To actually enable the individual formatters you want to configure treefmt. The example configuration below only consists of formatters required by a haskell project using nix. Refer to <a href='https://numtide.github.io/treefmt/formatters/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>treefmt-doc</a> for more formatters.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # Inside mkFlake's `perSystem`
-  treefmt.config = {
-    inherit (config.flake-root) projectRootFile;
-    # This is the default, and can be overriden.
-    package = pkgs.treefmt;
-    # formats .hs files (fourmolu is also available)
-    programs.ormolu.enable = true;
-    # formats .nix files
-    programs.nixpkgs-fmt.enable = true;
-    # formats .cabal files
-    programs.cabal-fmt.enable = false;
-    # Suggests improvements for your code in .hs files
-    programs.hlint.enable = false;
-  };
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># Inside mkFlake's `perSystem`</span>
+  <span class='va'>treefmt</span>.<span class='va'>config</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='kw'>inherit</span> <span class='op'>(</span>config<span class='op'>.</span>flake<span class='op'>-</span>root<span class='op'>)</span> <span class='va'>projectRootFile</span><span class='op'>;</span>
+    <span class='co'># This is the default, and can be overriden.</span>
+    <span class='va'>package</span> <span class='op'>=</span> pkgs<span class='op'>.</span>treefmt<span class='op'>;</span>
+    <span class='co'># formats .hs files (fourmolu is also available)</span>
+    <span class='va'>programs</span>.<span class='va'>ormolu</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='co'># formats .nix files</span>
+    <span class='va'>programs</span>.<span class='va'>nixpkgs-fmt</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='co'># formats .cabal files</span>
+    <span class='va'>programs</span>.<span class='va'>cabal-fmt</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>false</span><span class='op'>;</span>
+    <span class='co'># Suggests improvements for your code in .hs files</span>
+    <span class='va'>programs</span>.<span class='va'>hlint</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>false</span><span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h3 id='add-treefmt-to-your-devshell' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Add treefmt to your devShell
@@ -768,14 +764,15 @@
     <p class='mb-4 leading-relaxed'>
       Finally, add the resulting treefmt wrapper (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>build.wrapper</code>) to your devShell. We also add the individual formatters (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>build.programs</code>) to the devShell, so that they can be used directly in text editors and IDEs.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  # Inside mkFlake's `perSystem`
-  haskellProjects.default = {
-    devShell.tools = _: {
-      treefmt = config.treefmt.build.wrapper;
-    } // config.treefmt.build.programs;
-  };
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='co'># Inside mkFlake's `perSystem`</span>
+  <span class='va'>haskellProjects</span>.<span class='va'>default</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>devShell</span>.<span class='va'>tools</span> <span class='op'>=</span> <span class='va'>_</span><span class='op'>:</span> <span class='op'>{</span>
+      <span class='va'>treefmt</span> <span class='op'>=</span> config<span class='op'>.</span>treefmt<span class='op'>.</span>build<span class='op'>.</span>wrapper<span class='op'>;</span>
+    <span class='op'>}</span> <span class='op'>//</span> config<span class='op'>.</span>treefmt<span class='op'>.</span>build<span class='op'>.</span>programs<span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h3 id='flake-check' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Flake check
@@ -825,8 +822,9 @@
     <p class='mb-4 leading-relaxed'>
       If there are folders where you wouldn’t want to run the formatter on, use the following:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
-  settings.formatter.&lt;formatter-name&gt;.excludes = [ "./foo/*" ];</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  <span class='co'># Inside mkFlake's `perSystem.treefmt.config`</span>
+  settings<span class='op'>.</span>formatter<span class='op'>.</span>&lt;formatter<span class='op'>-</span>name&gt;<span class='op'>.</span>excludes = <span class='op'>[</span> <span class='st'>"./foo/*"</span> <span class='op'>]</span>;
+</code></pre></div>
     <h3 id='use-a-different-package-for-formatter' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Use a different package for formatter
@@ -844,8 +842,9 @@
     <p class='mb-4 leading-relaxed'>
       The package shipped with the current <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> might not be the desired one, follow the snippet below to override the package (assuming <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs-21_11</code> is present in your flake’s inputs).
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
-  programs.ormolu.package = nixpkgs-21_11.haskellPackages.ormolu;</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  <span class='co'># Inside mkFlake's `perSystem.treefmt.config`</span>
+  programs<span class='op'>.</span>ormolu<span class='op'>.</span>package = nixpkgs<span class='dv'>-21</span>_11<span class='op'>.</span>haskellPackages<span class='op'>.</span>ormolu;
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       The same can be applied to other formatters.
     </p>
@@ -867,13 +866,14 @@
     <p class='mb-4 leading-relaxed'>
       You might want to change a certain behaviour of your formatter by overriding by passing the input to the executable. The following example shows how to pass <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ghc-opt</code> to ormolu:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  # Inside mkFlake's `perSystem.treefmt.config`
-  settings.formatter.ormolu = {
-    options = [
-      "--ghc-opt"
-      "-XTypeApplications"
-    ];
-  };</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  <span class='co'># Inside mkFlake's `perSystem.treefmt.config`</span>
+  settings<span class='op'>.</span>formatter<span class='op'>.</span>ormolu = <span class='op'>{</span>
+    <span class='va'>options</span> <span class='op'>=</span> <span class='op'>[</span>
+      <span class='st'>"--ghc-opt"</span>
+      <span class='st'>"-XTypeApplications"</span>
+    <span class='op'>];</span>
+  <span class='op'>}</span>;
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Ormolu requires this <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ghc-opt</code> because unlike a lot of language extensions which are enabled by default, there are some which aren’t. These can be found using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>ormolu --manual-exts</code>.
     </p>
@@ -1007,7 +1007,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

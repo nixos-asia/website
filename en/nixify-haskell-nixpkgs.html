@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -700,33 +693,35 @@
     <p class='mb-4 leading-relaxed'>
       Let’s build a simple flake for our Haskell project, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>todo-app</code>. Start by cloning the <a href='https://github.com/juspay/todo-app/tree/903c769d4bda0a8028fe3775415e9bdf29d80555' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>todo-app</a> repository and checking out the specified commit.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>git clone https://github.com/juspay/todo-app.git
-cd todo-app
-git checkout 076185e34f70e903b992b597232bc622eadfcd51</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='fu'>git</span> clone https://github.com/juspay/todo-app.git
+<span class='bu'>cd</span> todo-app
+<span class='fu'>git</span> checkout 076185e34f70e903b992b597232bc622eadfcd51
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Here’s a brief look at the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> for this purpose:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
-  outputs = { self, nixpkgs }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-      overlay = final: prev: {
-        todo-app = final.callCabal2nix "todo-app" ./. { };
-      };
-      myHaskellPackages = pkgs.haskellPackages.extend overlay;
-    in
-    {
-      packages.${system}.default = myHaskellPackages.todo-app;
-      apps.${system}.default = {
-        type = "app";
-        program = "${self.packages.${system}.default}/bin/todo-app";
-      };
-    };
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixpkgs-unstable"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='op'>{</span> <span class='va'>self</span><span class='op'>,</span> <span class='va'>nixpkgs</span> <span class='op'>}</span>:
+    <span class='kw'>let</span>
+      <span class='va'>system</span> <span class='op'>=</span> <span class='st'>"aarch64-darwin"</span><span class='op'>;</span>
+      <span class='va'>pkgs</span> <span class='op'>=</span> nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>;</span>
+      <span class='va'>overlay</span> <span class='op'>=</span> <span class='va'>final</span><span class='op'>:</span> <span class='va'>prev</span><span class='op'>:</span> <span class='op'>{</span>
+        <span class='va'>todo-app</span> <span class='op'>=</span> final<span class='op'>.</span>callCabal2nix <span class='st'>"todo-app"</span> <span class='ss'>./.</span> <span class='op'>{</span> <span class='op'>};</span>
+      <span class='op'>};</span>
+      <span class='va'>myHaskellPackages</span> <span class='op'>=</span> pkgs<span class='op'>.</span>haskellPackages<span class='op'>.</span>extend overlay<span class='op'>;</span>
+    <span class='kw'>in</span>
+    <span class='op'>{</span>
+      <span class='va'>packages</span>.<span class='sc'>${</span>system<span class='sc'>}</span>.<span class='va'>default</span> <span class='op'>=</span> myHaskellPackages<span class='op'>.</span>todo<span class='op'>-</span>app<span class='op'>;</span>
+      <span class='va'>apps</span>.<span class='sc'>${</span>system<span class='sc'>}</span>.<span class='va'>default</span> <span class='op'>=</span> <span class='op'>{</span>
+        <span class='va'>type</span> <span class='op'>=</span> <span class='st'>"app"</span><span class='op'>;</span>
+        <span class='va'>program</span> <span class='op'>=</span> <span class='st'>"</span><span class='sc'>${</span>self<span class='op'>.</span>packages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>.</span>default<span class='sc'>}</span><span class='st'>/bin/todo-app"</span><span class='op'>;</span>
+      <span class='op'>};</span>
+    <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now, let’s dissect it.
     </p>
@@ -785,17 +780,18 @@ git checkout 076185e34f70e903b992b597232bc622eadfcd51</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       You can use <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nix repl</a> to explore any flake’s output. In the repl session below, we locate and build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>aeson</code> package:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>nix repl github:nixos/nixpkgs/nixpkgs-unstable
-nix-repl&gt; pkgs = legacyPackages.${builtins.currentSystem}
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>nix repl <span class='va'>github</span><span class='op'>:</span><span class='ss'>nixos/nixpkgs/nixpkgs-unstable</span>
+nix<span class='op'>-</span>repl&gt; pkgs = legacyPackages<span class='op'>.</span><span class='sc'>${</span><span class='bu'>builtins</span><span class='op'>.</span>currentSystem<span class='sc'>}</span>
 
-nix-repl&gt; pkgs.haskellPackages.aeson
-«derivation /nix/store/sjaqjjnizd7ybirh94ixs51x4n17m97h-aeson-2.0.3.0.drv»
+nix<span class='op'>-</span>repl&gt; pkgs<span class='op'>.</span>haskellPackages<span class='op'>.</span>aeson
+«derivation <span class='ss'>/nix/store/sjaqjjnizd7ybirh94ixs51x4n17m97h-aeson-2.0.3.0.drv</span>»
 
-nix-repl&gt; :b pkgs.haskellPackages.aeson
+nix<span class='op'>-</span>repl&gt; :b pkgs<span class='op'>.</span>haskellPackages<span class='op'>.</span>aeson
 
-This derivation produced the following outputs:
-  doc -&gt; /nix/store/xjvm45wxqasnd5p2kk9ngcc0jbjhx1pf-aeson-2.0.3.0-doc
-  out -&gt; /nix/store/1dc6b11k93a6j9im50m7qj5aaa5p01wh-aeson-2.0.3.0</code></pre></div>
+This <span class='bu'>derivation</span> produced the following <span class='va'>outputs</span><span class='op'>:</span>
+  doc <span class='op'>-</span>&gt; <span class='ss'>/nix/store/xjvm45wxqasnd5p2kk9ngcc0jbjhx1pf-aeson-2.0.3.0-doc</span>
+  out <span class='op'>-</span>&gt; <span class='ss'>/nix/store/1dc6b11k93a6j9im50m7qj5aaa5p01wh-aeson-2.0.3.0</span>
+</code></pre></div>
   </div>
 </div>
     <h3 id='callcabal2nix' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
@@ -869,27 +865,28 @@ This derivation produced the following outputs:
     <p class='mb-4 leading-relaxed'>
       In the repl session below, we extend the default Haskell package set to override the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>shower</code> package to be built from the Git repo instead:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>nix-repl&gt; :b pkgs.haskellPackages.shower
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>nix<span class='op'>-</span>repl&gt; :b pkgs<span class='op'>.</span>haskellPackages<span class='op'>.</span>shower
 
-This derivation produced the following outputs:
-  doc -&gt; /nix/store/crzcx007h9j0p7qj35kym2rarkrjp9j1-shower-0.2.0.3-doc
-  out -&gt; /nix/store/zga3nhqcifrvd58yx1l9aj4raxhcj2mr-shower-0.2.0.3
+This <span class='bu'>derivation</span> produced the following <span class='va'>outputs</span><span class='op'>:</span>
+  doc <span class='op'>-</span>&gt; <span class='ss'>/nix/store/crzcx007h9j0p7qj35kym2rarkrjp9j1-shower-0.2.0.3-doc</span>
+  out <span class='op'>-</span>&gt; <span class='ss'>/nix/store/zga3nhqcifrvd58yx1l9aj4raxhcj2mr-shower-0.2.0.3</span>
 
-nix-repl&gt; myHaskellPackages = pkgs.haskellPackages.extend 
-    (self: super: {
-       shower = self.callCabal2nix "shower" 
-         (pkgs.fetchgit { 
-            url = "https://github.com/monadfix/shower.git";
-            rev = "2d71ea1"; 
-            sha256 = "sha256-vEck97PptccrMX47uFGjoBVSe4sQqNEsclZOYfEMTns="; 
-         }) {}; 
-    })
+nix<span class='op'>-</span>repl&gt; myHaskellPackages = pkgs<span class='op'>.</span>haskellPackages<span class='op'>.</span>extend 
+    <span class='op'>(</span><span class='va'>self</span><span class='op'>:</span> <span class='va'>super</span><span class='op'>:</span> <span class='op'>{</span>
+       <span class='va'>shower</span> <span class='op'>=</span> self<span class='op'>.</span>callCabal2nix <span class='st'>"shower"</span> 
+         <span class='op'>(</span>pkgs<span class='op'>.</span>fetchgit <span class='op'>{</span> 
+            <span class='va'>url</span> <span class='op'>=</span> <span class='st'>"https://github.com/monadfix/shower.git"</span><span class='op'>;</span>
+            <span class='va'>rev</span> <span class='op'>=</span> <span class='st'>"2d71ea1"</span><span class='op'>;</span> 
+            <span class='va'>sha256</span> <span class='op'>=</span> <span class='st'>"sha256-vEck97PptccrMX47uFGjoBVSe4sQqNEsclZOYfEMTns="</span><span class='op'>;</span> 
+         <span class='op'>})</span> <span class='op'>{};</span> 
+    <span class='op'>})</span>
 
-nix-repl&gt; :b myHaskellPackages.shower
+nix<span class='op'>-</span>repl&gt; :b myHaskellPackages<span class='op'>.</span>shower
 
-This derivation produced the following outputs:
-  doc -&gt; /nix/store/vkpfbnnzyywcpfj83pxnj3n8dfz4j4iy-shower-0.2.0.3-doc
-  out -&gt; /nix/store/55cgwfmayn84ynknhg74bj424q8fz5rl-shower-0.2.0.3</code></pre></div>
+This <span class='bu'>derivation</span> produced the following <span class='va'>outputs</span><span class='op'>:</span>
+  doc <span class='op'>-</span>&gt; <span class='ss'>/nix/store/vkpfbnnzyywcpfj83pxnj3n8dfz4j4iy-shower-0.2.0.3-doc</span>
+  out <span class='op'>-</span>&gt; <span class='ss'>/nix/store/55cgwfmayn84ynknhg74bj424q8fz5rl-shower-0.2.0.3</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Notice how we used <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>callCabal2nix</code> to build a new Haskell package from the source (located in the specified Git repository).
     </p>
@@ -930,31 +927,32 @@ This derivation produced the following outputs:
     <p class='mb-4 leading-relaxed'>
       Here’s the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> for setting up a development shell:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
-  outputs = { self, nixpkgs }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-      overlay = final: prev: {
-        todo-app = final.callCabal2nix "todo-app" ./. { };
-      };
-      myHaskellPackages = pkgs.haskellPackages.extend overlay;
-    in
-    {
-      devShells.${system}.default = myHaskellPackages.shellFor {
-        packages = p : [
-          p.todo-app
-        ];
-        nativeBuildInputs = with myHaskellPackages; [
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixpkgs-unstable"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='op'>{</span> <span class='va'>self</span><span class='op'>,</span> <span class='va'>nixpkgs</span> <span class='op'>}</span>:
+    <span class='kw'>let</span>
+      <span class='va'>system</span> <span class='op'>=</span> <span class='st'>"aarch64-darwin"</span><span class='op'>;</span>
+      <span class='va'>pkgs</span> <span class='op'>=</span> nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>;</span>
+      <span class='va'>overlay</span> <span class='op'>=</span> <span class='va'>final</span><span class='op'>:</span> <span class='va'>prev</span><span class='op'>:</span> <span class='op'>{</span>
+        <span class='va'>todo-app</span> <span class='op'>=</span> final<span class='op'>.</span>callCabal2nix <span class='st'>"todo-app"</span> <span class='ss'>./.</span> <span class='op'>{</span> <span class='op'>};</span>
+      <span class='op'>};</span>
+      <span class='va'>myHaskellPackages</span> <span class='op'>=</span> pkgs<span class='op'>.</span>haskellPackages<span class='op'>.</span>extend overlay<span class='op'>;</span>
+    <span class='kw'>in</span>
+    <span class='op'>{</span>
+      <span class='va'>devShells</span>.<span class='sc'>${</span>system<span class='sc'>}</span>.<span class='va'>default</span> <span class='op'>=</span> myHaskellPackages<span class='op'>.</span>shellFor <span class='op'>{</span>
+        <span class='va'>packages</span> <span class='op'>=</span> <span class='va'>p</span> <span class='op'>:</span> <span class='op'>[</span>
+          p<span class='op'>.</span>todo-app
+        <span class='op'>];</span>
+        <span class='va'>nativeBuildInputs</span> <span class='op'>=</span> <span class='kw'>with</span> myHaskellPackages<span class='op'>;</span> <span class='op'>[</span>
           ghcid
           cabal-install
-        ];
-      };
-    };
-}</code></pre></div>
+        <span class='op'>];</span>
+      <span class='op'>};</span>
+    <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h3 id='shellfor' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   shellFor
@@ -1033,35 +1031,36 @@ This derivation produced the following outputs:
     <p class='mb-4 leading-relaxed'>
       Here’s the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> for making <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run .#postgres</code> launch a Postgres server:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
-  outputs = { self, nixpkgs }:
-  let
-    system = "aarch64-darwin";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in
-  {
-    apps.${system}.postgres = {
-      type = "app";
-      program = 
-        let
-          script = pkgs.writeShellApplication {
-            name = "pg_start";
-            runtimeInputs = [ pkgs.postgresql ];
-            text = 
-            ''
-              # Initialize a database with data stored in current project dir
-              [ ! -d "./data/db" ] && initdb --no-locale -D ./data/db
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixpkgs-unstable"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='op'>{</span> <span class='va'>self</span><span class='op'>,</span> <span class='va'>nixpkgs</span> <span class='op'>}</span>:
+  <span class='kw'>let</span>
+    <span class='va'>system</span> <span class='op'>=</span> <span class='st'>"aarch64-darwin"</span><span class='op'>;</span>
+    <span class='va'>pkgs</span> <span class='op'>=</span> nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>;</span>
+  <span class='kw'>in</span>
+  <span class='op'>{</span>
+    <span class='va'>apps</span>.<span class='sc'>${</span>system<span class='sc'>}</span>.<span class='va'>postgres</span> <span class='op'>=</span> <span class='op'>{</span>
+      <span class='va'>type</span> <span class='op'>=</span> <span class='st'>"app"</span><span class='op'>;</span>
+      <span class='va'>program</span> <span class='op'>=</span> 
+        <span class='kw'>let</span>
+          <span class='va'>script</span> <span class='op'>=</span> pkgs<span class='op'>.</span>writeShellApplication <span class='op'>{</span>
+            <span class='va'>name</span> <span class='op'>=</span> <span class='st'>"pg_start"</span><span class='op'>;</span>
+            <span class='va'>runtimeInputs</span> <span class='op'>=</span> <span class='op'>[</span> pkgs<span class='op'>.</span>postgresql <span class='op'>];</span>
+            <span class='va'>text</span> <span class='op'>=</span> 
+            <span class='st'>''</span>
+<span class='st'>              # Initialize a database with data stored in current project dir</span>
+<span class='st'>              [ ! -d "./data/db" ] && initdb --no-locale -D ./data/db</span>
 
-              postgres -D ./data/db -k "$PWD"/data
-            '';
-          };
-        in "${script}/bin/pg_start";
-    };
-  };
-}</code></pre></div>
+<span class='st'>              postgres -D ./data/db -k "$PWD"/data</span>
+<span class='st'>            ''</span><span class='op'>;</span>
+          <span class='op'>};</span>
+        <span class='kw'>in</span> <span class='st'>"</span><span class='sc'>${</span>script<span class='sc'>}</span><span class='st'>/bin/pg_start"</span><span class='op'>;</span>
+    <span class='op'>};</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This flake defines a flake app that can be run using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run</code>. This app is simply a shell script that starts a Postgres server. <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> provides the convenient <a href='writeShellApplication' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>writeShellApplication</code></a> function to generate such a script. Note that <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>"${script}"</code> provides the path in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix/store</code> where the application is located.
     </p>
@@ -1098,100 +1097,101 @@ This derivation produced the following outputs:
     <p class='mb-4 leading-relaxed'>
       Now it’s time to consolidate all the previously discussed sections into a single <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>. Additionally, we should incorporate the necessary apps for <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>postgrest</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>createdb</code>. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>postgrest</code> app will start the service and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>createdb</code> will handle tasks such as loading the database dump, creating a database user, and configuring the database for postgREST.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
-  outputs = { self, nixpkgs }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-      overlay = final: prev: {
-        todo-app = final.callCabal2nix "todo-app" ./. { };
-      };
-      myHaskellPackages = pkgs.haskellPackages.extend overlay;
-    in
-    {
-      packages.${system}.default = myHaskellPackages.todo-app;
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixpkgs-unstable"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='op'>{</span> <span class='va'>self</span><span class='op'>,</span> <span class='va'>nixpkgs</span> <span class='op'>}</span>:
+    <span class='kw'>let</span>
+      <span class='va'>system</span> <span class='op'>=</span> <span class='st'>"aarch64-darwin"</span><span class='op'>;</span>
+      <span class='va'>pkgs</span> <span class='op'>=</span> nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>;</span>
+      <span class='va'>overlay</span> <span class='op'>=</span> <span class='va'>final</span><span class='op'>:</span> <span class='va'>prev</span><span class='op'>:</span> <span class='op'>{</span>
+        <span class='va'>todo-app</span> <span class='op'>=</span> final<span class='op'>.</span>callCabal2nix <span class='st'>"todo-app"</span> <span class='ss'>./.</span> <span class='op'>{</span> <span class='op'>};</span>
+      <span class='op'>};</span>
+      <span class='va'>myHaskellPackages</span> <span class='op'>=</span> pkgs<span class='op'>.</span>haskellPackages<span class='op'>.</span>extend overlay<span class='op'>;</span>
+    <span class='kw'>in</span>
+    <span class='op'>{</span>
+      <span class='va'>packages</span>.<span class='sc'>${</span>system<span class='sc'>}</span>.<span class='va'>default</span> <span class='op'>=</span> myHaskellPackages<span class='op'>.</span>todo<span class='op'>-</span>app<span class='op'>;</span>
 
-      devShells.${system}.default = myHaskellPackages.shellFor {
-        packages = p: [
-          p.todo-app
-        ];
-        buildInputs = with myHaskellPackages; [
+      <span class='va'>devShells</span>.<span class='sc'>${</span>system<span class='sc'>}</span>.<span class='va'>default</span> <span class='op'>=</span> myHaskellPackages<span class='op'>.</span>shellFor <span class='op'>{</span>
+        <span class='va'>packages</span> <span class='op'>=</span> <span class='va'>p</span><span class='op'>:</span> <span class='op'>[</span>
+          p<span class='op'>.</span>todo-app
+        <span class='op'>];</span>
+        <span class='va'>buildInputs</span> <span class='op'>=</span> <span class='kw'>with</span> myHaskellPackages<span class='op'>;</span> <span class='op'>[</span>
           ghcid
           cabal-install
           haskell-language-server
-        ];
-      };
+        <span class='op'>];</span>
+      <span class='op'>};</span>
 
-      apps.${system} = {
-        default = {
-          type = "app";
-          program = "${self.packages.${system}.default}/bin/todo-app";
-        };
-        postgres = {
-          type = "app";
-          program =
-            let
-              script = pkgs.writeShellApplication {
-                name = "pg_start";
-                runtimeInputs = [ pkgs.postgresql ];
-                text =
-                  ''
-                    # Initialize a database with data stored in current project dir
-                    [ ! -d "./data/db" ] && initdb --no-locale -D ./data/db
+      <span class='va'>apps</span>.<span class='sc'>${</span>system<span class='sc'>}</span> <span class='op'>=</span> <span class='op'>{</span>
+        <span class='va'>default</span> <span class='op'>=</span> <span class='op'>{</span>
+          <span class='va'>type</span> <span class='op'>=</span> <span class='st'>"app"</span><span class='op'>;</span>
+          <span class='va'>program</span> <span class='op'>=</span> <span class='st'>"</span><span class='sc'>${</span>self<span class='op'>.</span>packages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>.</span>default<span class='sc'>}</span><span class='st'>/bin/todo-app"</span><span class='op'>;</span>
+        <span class='op'>};</span>
+        <span class='va'>postgres</span> <span class='op'>=</span> <span class='op'>{</span>
+          <span class='va'>type</span> <span class='op'>=</span> <span class='st'>"app"</span><span class='op'>;</span>
+          <span class='va'>program</span> <span class='op'>=</span>
+            <span class='kw'>let</span>
+              <span class='va'>script</span> <span class='op'>=</span> pkgs<span class='op'>.</span>writeShellApplication <span class='op'>{</span>
+                <span class='va'>name</span> <span class='op'>=</span> <span class='st'>"pg_start"</span><span class='op'>;</span>
+                <span class='va'>runtimeInputs</span> <span class='op'>=</span> <span class='op'>[</span> pkgs<span class='op'>.</span>postgresql <span class='op'>];</span>
+                <span class='va'>text</span> <span class='op'>=</span>
+                  <span class='st'>''</span>
+<span class='st'>                    # Initialize a database with data stored in current project dir</span>
+<span class='st'>                    [ ! -d "./data/db" ] && initdb --no-locale -D ./data/db</span>
 
-                    postgres -D ./data/db -k "$PWD"/data
-                  '';
-              };
-            in
-            "${script}/bin/pg_start";
-        };
-        createdb = {
-          type = "app";
-          program =
-            let
-              script = pkgs.writeShellApplication {
-                name = "createDB";
-                runtimeInputs = [ pkgs.postgresql ];
-                text =
-                  ''
-                    # Create a database of your current user
-                    if ! psql -h "$PWD"/data -lqt | cut -d \| -f 1 | grep -qw "$(whoami)"; then
-                      createdb -h "$PWD"/data "$(whoami)"
-                    fi
+<span class='st'>                    postgres -D ./data/db -k "$PWD"/data</span>
+<span class='st'>                  ''</span><span class='op'>;</span>
+              <span class='op'>};</span>
+            <span class='kw'>in</span>
+            <span class='st'>"</span><span class='sc'>${</span>script<span class='sc'>}</span><span class='st'>/bin/pg_start"</span><span class='op'>;</span>
+        <span class='op'>};</span>
+        <span class='va'>createdb</span> <span class='op'>=</span> <span class='op'>{</span>
+          <span class='va'>type</span> <span class='op'>=</span> <span class='st'>"app"</span><span class='op'>;</span>
+          <span class='va'>program</span> <span class='op'>=</span>
+            <span class='kw'>let</span>
+              <span class='va'>script</span> <span class='op'>=</span> pkgs<span class='op'>.</span>writeShellApplication <span class='op'>{</span>
+                <span class='va'>name</span> <span class='op'>=</span> <span class='st'>"createDB"</span><span class='op'>;</span>
+                <span class='va'>runtimeInputs</span> <span class='op'>=</span> <span class='op'>[</span> pkgs<span class='op'>.</span>postgresql <span class='op'>];</span>
+                <span class='va'>text</span> <span class='op'>=</span>
+                  <span class='st'>''</span>
+<span class='st'>                    # Create a database of your current user</span>
+<span class='st'>                    if ! psql -h "$PWD"/data -lqt | cut -d \| -f 1 | grep -qw "$(whoami)"; then</span>
+<span class='st'>                      createdb -h "$PWD"/data "$(whoami)"</span>
+<span class='st'>                    fi</span>
 
-                    # Load DB dump
-                    psql -h "$PWD"/data &lt; db.sql
+<span class='st'>                    # Load DB dump</span>
+<span class='st'>                    psql -h "$PWD"/data &lt; db.sql</span>
 
-                    # Create configuration file for postgrest
-                    echo "db-uri = \"postgres://authenticator:mysecretpassword@localhost:5432/$(whoami)\"
-                    db-schemas = \"api\"
-                    db-anon-role = \"todo_user\"" &gt; data/db.conf
-                  '';
-              };
-            in
-            "${script}/bin/createDB";
-        };
-        postgrest = {
-          type = "app";
-          program =
-            let
-              script = pkgs.writeShellApplication {
-                name = "pgREST";
-                runtimeInputs = [ myHaskellPackages.postgrest ];
-                text =
-                  ''
-                    postgrest ./data/db.conf
-                  '';
-              };
-            in
-            "${script}/bin/pgREST";
-        };
-      };
-    };
-}</code></pre></div>
+<span class='st'>                    # Create configuration file for postgrest</span>
+<span class='st'>                    echo "db-uri = \"postgres://authenticator:mysecretpassword@localhost:5432/$(whoami)\"</span>
+<span class='st'>                    db-schemas = \"api\"</span>
+<span class='st'>                    db-anon-role = \"todo_user\"" &gt; data/db.conf</span>
+<span class='st'>                  ''</span><span class='op'>;</span>
+              <span class='op'>};</span>
+            <span class='kw'>in</span>
+            <span class='st'>"</span><span class='sc'>${</span>script<span class='sc'>}</span><span class='st'>/bin/createDB"</span><span class='op'>;</span>
+        <span class='op'>};</span>
+        <span class='va'>postgrest</span> <span class='op'>=</span> <span class='op'>{</span>
+          <span class='va'>type</span> <span class='op'>=</span> <span class='st'>"app"</span><span class='op'>;</span>
+          <span class='va'>program</span> <span class='op'>=</span>
+            <span class='kw'>let</span>
+              <span class='va'>script</span> <span class='op'>=</span> pkgs<span class='op'>.</span>writeShellApplication <span class='op'>{</span>
+                <span class='va'>name</span> <span class='op'>=</span> <span class='st'>"pgREST"</span><span class='op'>;</span>
+                <span class='va'>runtimeInputs</span> <span class='op'>=</span> <span class='op'>[</span> myHaskellPackages<span class='op'>.</span>postgrest <span class='op'>];</span>
+                <span class='va'>text</span> <span class='op'>=</span>
+                  <span class='st'>''</span>
+<span class='st'>                    postgrest ./data/db.conf</span>
+<span class='st'>                  ''</span><span class='op'>;</span>
+              <span class='op'>};</span>
+            <span class='kw'>in</span>
+            <span class='st'>"</span><span class='sc'>${</span>script<span class='sc'>}</span><span class='st'>/bin/pgREST"</span><span class='op'>;</span>
+        <span class='op'>};</span>
+      <span class='op'>};</span>
+    <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       For the complete souce code, visit <a href='https://github.com/juspay/todo-app/tree/tutorial/1' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>here</a>.
     </p>
@@ -1379,7 +1379,7 @@ This derivation produced the following outputs:
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

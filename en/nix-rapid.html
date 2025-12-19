@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -635,7 +628,7 @@
     <p class='mb-4 leading-relaxed'>
       The goal of this mini-tutorial is to introduce you to <a href='nix' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix</a> the language, including <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flakes</a>, as quickly as possible while also preparing the motivated learner to dive deeper into <a href='https://zero-to-nix.com/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>the whole Nix ecosystem</a>. At the end of this introduction, you will be able to create a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>flake.nix</a> that builds a package and provides a <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>developer environment</a> shell.
     </p>
-  <img class='inline mb-3' src='nix-tutorial/nix-rapid.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nix-tutorial/nix-rapid.png' style='width: inherit;' /><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <img class='inline mb-3' src='nix-tutorial/nix-rapid.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nix-tutorial/nix-rapid.png' style='width: inherit;' /><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -742,11 +735,12 @@
     <p class='mb-4 leading-relaxed'>
       The <a href='https://nixos.org/manual/nix/stable/language/index.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Nix programming language</a> provides a lot of general constructs. But at its most basic use, it makes heavy use of <em>nested hash maps</em> otherwise called an “attrset”. They are equivalent to <a href='https://hackage.haskell.org/package/containers-0.6.7/docs/Data-Map-Strict.html#t:Map' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>Map Text a</code></a> in Haskell. The following is a simple example of an attrset:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  foo = {
-    bar = 1;
-  };
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>foo</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>bar</span> <span class='op'>=</span> <span class='dv'>1</span><span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       We have an outer attrset with a single key <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>foo</code>, whose value is another attrset with a single key <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>bar</code> and a value of <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>1</code>.
     </p>
@@ -768,28 +762,30 @@
     <p class='mb-4 leading-relaxed'>
       Nix expressions can be readily evaluated in the <a href='repl' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Nix repl</a>. To start the repl, run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix repl</code>.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix repl
-Welcome to Nix 2.12.0. Type :? for help.
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix repl
+<span class='ex'>Welcome</span> to Nix 2.12.0. Type :<span class='pp'>?</span> for help.
 
-nix-repl&gt;</code></pre></div>
+<span class='ex'>nix-repl</span><span class='op'>&gt;</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       You can then evaluate expressions:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>nix-repl&gt; 2+3
-5
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>nix<span class='op'>-</span>repl&gt; <span class='dv'>2</span><span class='op'>+</span><span class='dv'>3</span>
+<span class='dv'>5</span>
 
-nix-repl&gt; x = { foo = { bar = 1; }; }
+nix<span class='op'>-</span>repl&gt; x = <span class='op'>{</span> <span class='va'>foo</span> <span class='op'>=</span> <span class='op'>{</span> <span class='va'>bar</span> <span class='op'>=</span> <span class='dv'>1</span><span class='op'>;</span> <span class='op'>};</span> <span class='op'>}</span>
 
-nix-repl&gt; x
-{ foo = { ... }; }
+nix<span class='op'>-</span>repl&gt; x
+<span class='op'>{</span> <span class='va'>foo</span> <span class='op'>=</span> <span class='op'>{</span> <span class='op'>...</span> <span class='op'>};</span> <span class='op'>}</span>
 
-nix-repl&gt; x.foo
-{ bar = 1; }
+nix<span class='op'>-</span>repl&gt; x<span class='op'>.</span>foo
+<span class='op'>{</span> <span class='va'>bar</span> <span class='op'>=</span> <span class='dv'>1</span><span class='op'>;</span> <span class='op'>}</span>
 
-nix-repl&gt; x.foo.bar
-1
+nix<span class='op'>-</span>repl&gt; x<span class='op'>.</span>foo<span class='op'>.</span>bar
+<span class='dv'>1</span>
 
-nix-repl&gt;</code></pre></div>
+nix<span class='op'>-</span>repl&gt;
+</code></pre></div>
     <h2 id='flakes' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a>
@@ -835,13 +831,14 @@ nix-repl&gt;</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       A Nix <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a> is defined in the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> file, which denotes an attrset containing two keys <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>inputs</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>outputs</code>. <em>Outputs</em> can reference <em>inputs</em>. Thus, changing an <em>input</em> can change the <em>outputs</em>. The following is a simple example of a flake:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = { };
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span> <span class='op'>};</span>
 
-  outputs = inputs: {
-    foo = 42;
-  };
-}</code></pre></div>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='va'>inputs</span><span class='op'>:</span> <span class='op'>{</span>
+    <span class='va'>foo</span> <span class='op'>=</span> <span class='dv'>42</span><span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This flake has zero <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>inputs</code>. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>outputs</code> is a <a href='https://nixos.org/manual/nix/stable/language/constructs.html#functions' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>function</a> that takes the (realised) inputs as an argument and returns the final output attrset. This output attrset, in our example, has a single key <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>foo</code> with a value of <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>42</code>.
     </p>
@@ -849,15 +846,17 @@ nix-repl&gt;</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       We can use the <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-show.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code></a> command to see the output structure of a flake:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix flake show
-path:/Users/srid/code/nixplay?lastModified=1675373998&amp;narHash=sha256-ifNiFGU1VV784kVcssn2rXIil%2feHfMLhPfmvaELefwA=
-└───foo: unknown
-$</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix flake show
+<span class='ex'>path:/Users/srid/code/nixplay?lastModified=1675373998</span><span class='kw'>&</span><span class='va'>narHash</span><span class='op'>=</span>sha256-ifNiFGU1VV784kVcssn2rXIil%2feHfMLhPfmvaELefwA=
+<span class='ex'>└───foo:</span> unknown
+<span class='ex'>$</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       We can use <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix eval</code></a> to evaluate any output. For example,
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix eval .#foo
-42</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix eval .#foo
+<span class='ex'>42</span>
+</code></pre></div>
     <h3 id='graph' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Graph
@@ -921,16 +920,17 @@ $</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Let’s do something more interesting with our <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> by adding the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> input:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixpkgs-unstable"</span><span class='op'>;</span>
+  <span class='op'>};</span>
 
-  outputs = inputs: {
-    # Note: If you are macOS, substitute `x86_64-linux` with `aarch64-darwin`
-    foo = inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay;
-  };
-}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='va'>inputs</span><span class='op'>:</span> <span class='op'>{</span>
+    <span class='co'># Note: If you are macOS, substitute `x86_64-linux` with `aarch64-darwin`</span>
+    <span class='va'>foo</span> <span class='op'>=</span> inputs<span class='op'>.</span>nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span>x86_64<span class='op'>-</span>linux<span class='op'>.</span>cowsay<span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -974,15 +974,16 @@ $</code></pre></div>
     </div>
   </div>
   <div class='callout-content text-gray-700 dark:text-gray-300'>
-    <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix repl --extra-experimental-features 'flakes repl-flake' github:nixos/nixpkgs/nixpkgs-unstable
-Welcome to Nix 2.12.0. Type :? for help.
+    <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix repl <span class='at'>--extra-experimental-features</span> <span class='st'>'flakes repl-flake'</span> github:nixos/nixpkgs/nixpkgs-unstable
+<span class='ex'>Welcome</span> to Nix 2.12.0. Type :<span class='pp'>?</span> for help.
 
-Loading installable 'github:nixos/nixpkgs/nixpkgs-unstable#'...
-Added 5 variables.
-nix-repl&gt; legacyPackages.aarch64-darwin.cowsay
-«derivation /nix/store/0s2vdpkpdiljmh8y06xgdw5vg2cqfs0m-cowsay-3.7.0.drv»
+<span class='ex'>Loading</span> installable <span class='st'>'github:nixos/nixpkgs/nixpkgs-unstable#'</span>...
+<span class='ex'>Added</span> 5 variables.
+<span class='ex'>nix-repl</span><span class='op'>&gt;</span> legacyPackages.aarch64-darwin.cowsay
+<span class='ex'>«derivation</span> /nix/store/0s2vdpkpdiljmh8y06xgdw5vg2cqfs0m-cowsay-3.7.0.drv»
 
-nix-repl&gt;</code></pre></div>
+<span class='ex'>nix-repl</span><span class='op'>&gt;</span>
+</code></pre></div>
   </div>
 </div>
     <h3 id='predefined-outputs' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
@@ -1052,27 +1053,29 @@ nix-repl&gt;</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code> is the most often used output. Let us extend our previous <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> to use it:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixpkgs-unstable"</span><span class='op'>;</span>
+  <span class='op'>};</span>
 
-  outputs = inputs: {
-    foo = 42;
-    packages.x86_64-linux = {
-      cowsay = inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay;
-    };
-  };
-}</code></pre></div>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='va'>inputs</span><span class='op'>:</span> <span class='op'>{</span>
+    <span class='va'>foo</span> <span class='op'>=</span> <span class='dv'>42</span><span class='op'>;</span>
+    <span class='va'>packages</span>.<span class='va'>x86_64-linux</span> <span class='op'>=</span> <span class='op'>{</span>
+      <span class='va'>cowsay</span> <span class='op'>=</span> inputs<span class='op'>.</span>nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span>x86_64<span class='op'>-</span>linux<span class='op'>.</span>cowsay<span class='op'>;</span>
+    <span class='op'>};</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Here, we are producing an output named <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code> that is an attrset of systems (currently, only <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>x86_64-linux</code>) to attrsets of packages. We are definining exactly one package, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code>, for the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>x86_64-linux</code> system.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix flake show
-path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09fX3hutGa8+dagOCSQKVYAsHI6BsnCSEQ7PG8=
-├───foo: unknown
-└───packages
-    └───aarch64-darwin
-        └───cowsay: package 'cowsay-3.7.0'</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix flake show
+<span class='ex'>path:/Users/srid/code/nixplay?lastModified=1675374260</span><span class='kw'>&</span><span class='va'>narHash</span><span class='op'>=</span>sha256-FRven09fX3hutGa8+dagOCSQKVYAsHI6BsnCSEQ7PG8=
+<span class='ex'>├───foo:</span> unknown
+<span class='ex'>└───packages</span>
+    <span class='ex'>└───aarch64-darwin</span>
+        <span class='ex'>└───cowsay:</span> package <span class='st'>'cowsay-3.7.0'</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Notice that <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code> recognizes the <em>type</em> of <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code>. With <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>foo</code>, it couldn’t (hence type is <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>unknown</code>) but with <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code>, it can (hence type is “package”).
     </p>
@@ -1080,19 +1083,21 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <p class='mb-4 leading-relaxed'>
       The <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code> output is recognized by <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code>.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix build .#cowsay</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix build .#cowsay
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       The <a href='https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-build.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code></a> command takes as argument a value of the form <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>&lt;flake-url&gt;#&lt;package-name&gt;</code>. By default, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.</code> (which is a <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake URL</a>) refers to the current flake. Thus, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build .#cowsay</code> will build the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cowsay</code> package from the current flake under the current system. <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code> produces a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>./result</code> symlink that points to the Nix store path containing the package:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ ./result/bin/cowsay hello
- _______
-&lt; hello &gt;
- -------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> ./result/bin/cowsay hello
+ <span class='ex'>_______</span>
+<span class='op'>&lt;</span> hello <span class='op'>&gt;</span>
+ <span class='ex'>-------</span>
+        <span class='ex'>\ </span>  ^__^
+         <span class='ex'>\ </span> <span class='er'>(</span><span class='ex'>oo</span><span class='kw'>)</span><span class='ex'>\_______</span>
+            <span class='kw'>(</span><span class='ex'>__</span><span class='kw'>)</span><span class='ex'>\ </span>      <span class='er'>)</span><span class='ex'>\/</span><span class='dt'>\</span>
+                <span class='kw'>||</span><span class='ex'>----w</span> <span class='kw'>|</span>
+                <span class='kw'>||</span>     <span class='kw'>||</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       If you run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code> without arguments, it will default to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.#default</code>.
     </p>
@@ -1114,20 +1119,21 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <p class='mb-4 leading-relaxed'>
       A flake app is similar to a flake package except it always refers to a runnable program. You can expose the cowsay executable from the cowsay package as the default flake app:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  };
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixpkgs-unstable"</span><span class='op'>;</span>
+  <span class='op'>};</span>
 
-  outputs = inputs: {
-    apps.x86_64-linux = {
-      default = {
-        type= "app";
-        program = "${inputs.nixpkgs.legacyPackages.x86_64-linux.cowsay}/bin/cowsay";
-      } ;
-    };
-  };
-}</code></pre></div>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='va'>inputs</span><span class='op'>:</span> <span class='op'>{</span>
+    <span class='va'>apps</span>.<span class='va'>x86_64-linux</span> <span class='op'>=</span> <span class='op'>{</span>
+      <span class='va'>default</span> <span class='op'>=</span> <span class='op'>{</span>
+        <span class='va'>type</span><span class='op'>=</span> <span class='st'>"app"</span><span class='op'>;</span>
+        <span class='va'>program</span> <span class='op'>=</span> <span class='st'>"</span><span class='sc'>${</span>inputs<span class='op'>.</span>nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span>x86_64<span class='op'>-</span>linux<span class='op'>.</span>cowsay<span class='sc'>}</span><span class='st'>/bin/cowsay"</span><span class='op'>;</span>
+      <span class='op'>}</span> <span class='op'>;</span>
+    <span class='op'>};</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now, you can run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix run</code> to run the cowsay app, which is equivalent to doing <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build .#cowsay && ./result/bin/cowsay</code> in the previous flake.
     </p>
@@ -1200,46 +1206,49 @@ path:/Users/srid/code/nixplay?lastModified=1675374260&amp;narHash=sha256-FRven09
     <p class='mb-4 leading-relaxed'>
       As an example, we will update our <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> to provide a devshell that contains the <a href='https://github.com/stedolan/jq' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>jq</a> tool.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  inputs = {
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-    };
-  };
-  outputs = inputs: {
-    foo = 42;
-    devShells = {  # nix develop
-      aarch64-darwin = {
-        default =
-          let 
-            pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
-          in pkgs.mkShell {
-            packages = [
-              pkgs.jq
-            ];
-          };
-      };
-    };
-  };
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span> <span class='op'>=</span> <span class='op'>{</span>
+      <span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixos-unstable"</span><span class='op'>;</span>
+    <span class='op'>};</span>
+  <span class='op'>};</span>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='va'>inputs</span><span class='op'>:</span> <span class='op'>{</span>
+    <span class='va'>foo</span> <span class='op'>=</span> <span class='dv'>42</span><span class='op'>;</span>
+    <span class='va'>devShells</span> <span class='op'>=</span> <span class='op'>{</span>  <span class='co'># nix develop</span>
+      <span class='va'>aarch64-darwin</span> <span class='op'>=</span> <span class='op'>{</span>
+        <span class='va'>default</span> <span class='op'>=</span>
+          <span class='kw'>let</span> 
+            <span class='va'>pkgs</span> <span class='op'>=</span> inputs<span class='op'>.</span>nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span>aarch64<span class='op'>-</span>darwin<span class='op'>;</span>
+          <span class='kw'>in</span> pkgs<span class='op'>.</span>mkShell <span class='op'>{</span>
+            <span class='va'>packages</span> <span class='op'>=</span> <span class='op'>[</span>
+              pkgs<span class='op'>.</span>jq
+            <span class='op'>];</span>
+          <span class='op'>};</span>
+      <span class='op'>};</span>
+    <span class='op'>};</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code> will recognize this output as a “development environmenet”:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix flake show
-path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD1wbjc+vQ+IUTMXWv%2fm%2f7qb91Hk3ip5MNefeU=
-├───devShells
-│   └───aarch64-darwin
-│       └───default: development environment 'nix-shell'
-└───foo: unknown</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix flake show
+<span class='ex'>path:/Users/srid/code/nixplay?lastModified=1675448105</span><span class='kw'>&</span><span class='va'>narHash</span><span class='op'>=</span>sha256-dikTfYD1wbjc+vQ+IUTMXWv%2fm%2f7qb91Hk3ip5MNefeU=
+<span class='ex'>├───devShells</span>
+<span class='ex'>│</span>   └───aarch64-darwin
+<span class='ex'>│</span>       └───default: development environment <span class='st'>'nix-shell'</span>
+<span class='ex'>└───foo:</span> unknown
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Just as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>packages</code> can be built using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code>, you can enter the devshell using <a href='https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix develop</code></a>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix develop
-❯ which jq
-/nix/store/33n0kx526i5dnv2gf39qv1p3a046p9yd-jq-1.6-bin/bin/jq
-❯ echo '{"foo": 42}' | jq .foo
-42
-❯ </code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix develop
+<span class='ex'>❯</span> which jq
+<span class='ex'>/nix/store/33n0kx526i5dnv2gf39qv1p3a046p9yd-jq-1.6-bin/bin/jq</span>
+<span class='ex'>❯</span> echo <span class='st'>'{"foo": 42}'</span> <span class='kw'>|</span> <span class='ex'>jq</span> .foo
+<span class='ex'>42</span>
+<span class='ex'>❯</span> 
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Typing <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>Ctrl+D</code> or <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>exit</code> will exit the devshell.
     </p>
@@ -1429,7 +1438,7 @@ path:/Users/srid/code/nixplay?lastModified=1675448105&amp;narHash=sha256-dikTfYD
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

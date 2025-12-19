@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -588,7 +581,7 @@
     <p class='mb-4 leading-relaxed'>
       Nix flakes support <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>self.submodules = true</code>, allowing git submodules to be referenced as flake inputs via <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>path:</code> URLs. This approach offers distinct advantages over GitHub-based inputs when co-developing dependencies alongside your main configuration.
     </p>
-  <img class='inline mb-3' src='blog/git-submodule-input/submodule-banner.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/blog/git-submodule-input/submodule-banner.png' style='width: inherit;' />
+  <img class='inline mb-3' src='blog/git-submodule-input/submodule-banner.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/blog/git-submodule-input/submodule-banner.png' style='width: inherit;' />
     <h2 id='pat' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   The Pattern
@@ -606,19 +599,21 @@
     <p class='mb-4 leading-relaxed'>
       Standard GitHub-based flake input:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>inputs = {
-  AI.url = "github:srid/AI";
-  AI.flake = false;
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>inputs = <span class='op'>{</span>
+  <span class='va'>AI</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:srid/AI"</span><span class='op'>;</span>
+  <span class='va'>AI</span>.<span class='va'>flake</span> <span class='op'>=</span> <span class='cn'>false</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Submodule-based alternative:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>inputs = {
-  self.submodules = true;
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>inputs = <span class='op'>{</span>
+  <span class='va'>self</span>.<span class='va'>submodules</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
   
-  AI.url = "path:vendor/AI";
-  AI.flake = false;
-}</code></pre></div>
+  <span class='va'>AI</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"path:vendor/AI"</span><span class='op'>;</span>
+  <span class='va'>AI</span>.<span class='va'>flake</span> <span class='op'>=</span> <span class='cn'>false</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add the submodule:
     </p>
@@ -645,7 +640,8 @@
     </p>
   
   </div>
-</div><div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>git submodule add https://github.com/srid/AI.git vendor/AI</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+</div><div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>git</span> submodule add https://github.com/srid/AI.git vendor/AI
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -811,10 +807,11 @@
     <p class='mb-4 leading-relaxed'>
       The <a href='https://github.com/srid/nixos-config' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>srid/nixos-config</code> repository</a> uses this pattern for <strong><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>vendor/AI</code></strong> (Claude Code configuration):
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>inputs = {
-  AI.url = "path:vendor/AI";
-  AI.flake = false;
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>inputs = <span class='op'>{</span>
+  <span class='va'>AI</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"path:vendor/AI"</span><span class='op'>;</span>
+  <span class='va'>AI</span>.<span class='va'>flake</span> <span class='op'>=</span> <span class='cn'>false</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       The <a href='https://github.com/srid/AI' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'><code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>srid/AI</code> repo</a> is then consumed as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>${AI}/nix/home-manager-module.nix</code> in home-manager modules. Changes to prompts, commands, or MCP configurations can be tested immediately by editing files in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>vendor/AI/</code>, rebuilding the home-manager configuration, and verifying behavior—all without leaving the local repository.
     </p>
@@ -1006,7 +1003,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

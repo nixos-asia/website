@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -633,8 +626,9 @@
     <p class='mb-4 leading-relaxed'>
       First, create the configuration directory:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>mkdir -p ~/.config/home-manager
-cd ~/.config/home-manager</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>mkdir</span> <span class='at'>-p</span> ~/.config/home-manager
+<span class='bu'>cd</span> ~/.config/home-manager
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now create two files in this directory.
     </p>
@@ -656,26 +650,27 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This file defines your inputs (dependencies) and outputs (configurations).
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  description = "My Home Manager configuration";
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>description</span> <span class='op'>=</span> <span class='st'>"My Home Manager configuration"</span><span class='op'>;</span>
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:nixos/nixpkgs/nixos-unstable"</span><span class='op'>;</span>
+    <span class='va'>home-manager</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:nix-community/home-manager"</span><span class='op'>;</span>
+    <span class='va'>home-manager</span>.<span class='va'>inputs</span>.<span class='va'>nixpkgs</span>.<span class='va'>follows</span> <span class='op'>=</span> <span class='st'>"nixpkgs"</span><span class='op'>;</span>
+  <span class='op'>};</span>
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "aarch64-darwin"; # Change if not on Apple Silicon Mac
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."YOUR_USERNAME" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ];
-      };
-    };
-}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='op'>{</span> <span class='va'>nixpkgs</span><span class='op'>,</span> <span class='va'>home-manager</span><span class='op'>,</span> <span class='op'>...</span> <span class='op'>}</span>:
+    <span class='kw'>let</span>
+      <span class='va'>system</span> <span class='op'>=</span> <span class='st'>"aarch64-darwin"</span><span class='op'>;</span> <span class='co'># Change if not on Apple Silicon Mac</span>
+      <span class='va'>pkgs</span> <span class='op'>=</span> nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>;</span>
+    <span class='kw'>in</span> <span class='op'>{</span>
+      <span class='va'>homeConfigurations</span>.<span class='st'>"YOUR_USERNAME"</span> <span class='op'>=</span> home<span class='op'>-</span>manager<span class='op'>.</span>lib<span class='op'>.</span>homeManagerConfiguration <span class='op'>{</span>
+        <span class='kw'>inherit</span> <span class='va'>pkgs</span><span class='op'>;</span>
+        <span class='va'>modules</span> <span class='op'>=</span> <span class='op'>[</span> <span class='ss'>./home.nix</span> <span class='op'>];</span>
+      <span class='op'>};</span>
+    <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -736,28 +731,29 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This file contains your actual configuration. Start with:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{ config, pkgs, ... }:
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span> <span class='va'>config</span><span class='op'>,</span> <span class='va'>pkgs</span><span class='op'>,</span> <span class='op'>...</span> <span class='op'>}</span>:
 
-{
-  # TODO: Change these to your actual username and home directory
-  home.username = "YOUR_USERNAME";
-  home.homeDirectory = "/Users/YOUR_USERNAME";
+<span class='op'>{</span>
+  <span class='co'># </span><span class='al'>TODO</span><span class='co'>: Change these to your actual username and home directory</span>
+  <span class='va'>home</span>.<span class='va'>username</span> <span class='op'>=</span> <span class='st'>"YOUR_USERNAME"</span><span class='op'>;</span>
+  <span class='va'>home</span>.<span class='va'>homeDirectory</span> <span class='op'>=</span> <span class='st'>"/Users/YOUR_USERNAME"</span><span class='op'>;</span>
 
-  # Don't change this after initial setup
-  home.stateVersion = "25.05"; 
+  <span class='co'># Don't change this after initial setup</span>
+  <span class='va'>home</span>.<span class='va'>stateVersion</span> <span class='op'>=</span> <span class='st'>"25.05"</span><span class='op'>;</span> 
 
-  # Ensure Nix binaries are in PATH
-  home.sessionPath = [
-    "$HOME/.nix-profile/bin"
-    "/nix/var/nix/profiles/default/bin"
-  ];
+  <span class='co'># Ensure Nix binaries are in PATH</span>
+  <span class='va'>home</span>.<span class='va'>sessionPath</span> <span class='op'>=</span> <span class='op'>[</span>
+    <span class='st'>"$HOME/.nix-profile/bin"</span>
+    <span class='st'>"/nix/var/nix/profiles/default/bin"</span>
+  <span class='op'>];</span>
 
-  # Let Home Manager manage itself
-  programs.home-manager.enable = true;
+  <span class='co'># Let Home Manager manage itself</span>
+  <span class='va'>programs</span>.<span class='va'>home-manager</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
 
-  # macOS uses Zsh by default, so we configure it here
-  programs.zsh.enable = true;
-}</code></pre></div>
+  <span class='co'># macOS uses Zsh by default, so we configure it here</span>
+  <span class='va'>programs</span>.<span class='va'>zsh</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h3 id='apply-configuration' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Apply configuration
@@ -775,7 +771,8 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Activate your configuration:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>nix run home-manager/master -- switch</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='ex'>nix</span> run home-manager/master <span class='at'>--</span> switch
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -796,7 +793,7 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       The first run downloads Home Manager and builds your configuration. This may take a few minutes. You should see output ending with something like:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='language-none'>Activating home-manager configuration for YOUR_USERNAME
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code>Activating home-manager configuration for YOUR_USERNAME
 ...</code></pre></div>
   </div>
 </div>
@@ -807,7 +804,8 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       From now on, whenever you modify your configuration, run:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>home-manager switch</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='ex'>home-manager</span> switch
+</code></pre></div>
     <h2 id='configure-git' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Configure Git
@@ -825,24 +823,25 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add the following inside the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>{ ... }</code> block in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>, after <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>programs.home-manager.enable = true;</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  # Shell aliases for Git
-  home.shellAliases = {
-    g = "git";
-    lg = "lazygit";
-  };
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  <span class='co'># Shell aliases for Git</span>
+  home<span class='op'>.</span>shellAliases = <span class='op'>{</span>
+    <span class='va'>g</span> <span class='op'>=</span> <span class='st'>"git"</span><span class='op'>;</span>
+    <span class='va'>lg</span> <span class='op'>=</span> <span class='st'>"lazygit"</span><span class='op'>;</span>
+  <span class='op'>}</span>;
 
-  programs.git = {
-    enable = true;
-    userName  = "Your Name";
-    userEmail = "your-email@example.com";
-    ignores = [ "*~" "*.swp" ".DS_Store" ];
-    aliases = {
-      ci = "commit";
-    };
-  };
+  programs<span class='op'>.</span>git = <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>userName</span>  <span class='op'>=</span> <span class='st'>"Your Name"</span><span class='op'>;</span>
+    <span class='va'>userEmail</span> <span class='op'>=</span> <span class='st'>"your-email@example.com"</span><span class='op'>;</span>
+    <span class='va'>ignores</span> <span class='op'>=</span> <span class='op'>[</span> <span class='st'>"*~"</span> <span class='st'>"*.swp"</span> <span class='st'>".DS_Store"</span> <span class='op'>];</span>
+    <span class='va'>aliases</span> <span class='op'>=</span> <span class='op'>{</span>
+      <span class='va'>ci</span> <span class='op'>=</span> <span class='st'>"commit"</span><span class='op'>;</span>
+    <span class='op'>};</span>
+  <span class='op'>}</span>;
   
-  # Terminal UI for Git
-  programs.lazygit.enable = true;</code></pre></div>
+  <span class='co'># Terminal UI for Git</span>
+  programs<span class='op'>.</span>lazygit<span class='op'>.</span>enable = <span class='cn'>true</span>;
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Run <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home-manager switch</code> and open a new terminal. Now <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>g status</code> works as <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>git status</code>!
     </p>
@@ -868,13 +867,14 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.starship = {
-    enable = true;
-    settings = {
-      # add_newline = false;
-      gcloud.disabled = true;
-    };
-  };</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  programs<span class='op'>.</span>starship = <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>settings</span> <span class='op'>=</span> <span class='op'>{</span>
+      <span class='co'># add_newline = false;</span>
+      <span class='va'>gcloud</span>.<span class='va'>disabled</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='op'>};</span>
+  <span class='op'>}</span>;
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       After switching and opening a new terminal, your prompt will look different—showing your directory and git branch.
     </p>
@@ -900,14 +900,15 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-  };
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  programs<span class='op'>.</span>zsh = <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>autosuggestion</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>syntaxHighlighting</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='op'>}</span>;
   
-  # Smart directory jumping - type `z &lt;pattern&gt;` instead of `cd`
-  programs.zoxide.enable = true;</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <span class='co'># Smart directory jumping - type `z &lt;pattern&gt;` instead of `cd`</span>
+  programs<span class='op'>.</span>zoxide<span class='op'>.</span>enable = <span class='cn'>true</span>;
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -952,10 +953,11 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  programs<span class='op'>.</span>direnv = <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>nix-direnv</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='op'>}</span>;
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now when you enter a project with a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>.envrc</code> file containing <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>use flake</code>, the development environment loads automatically.
     </p>
@@ -981,19 +983,20 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs = {
-    # Better cat with syntax highlighting
-    bat.enable = true;
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  programs = <span class='op'>{</span>
+    <span class='co'># Better cat with syntax highlighting</span>
+    <span class='va'>bat</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
     
-    # Fuzzy finder - press Ctrl+R to search shell history
-    fzf.enable = true;
+    <span class='co'># Fuzzy finder - press Ctrl+R to search shell history</span>
+    <span class='va'>fzf</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
     
-    # JSON processor
-    jq.enable = true;
+    <span class='co'># JSON processor</span>
+    <span class='va'>jq</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
     
-    # System monitor
-    btop.enable = true;
-  };</code></pre></div>
+    <span class='co'># System monitor</span>
+    <span class='va'>btop</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='op'>}</span>;
+</code></pre></div>
     <h2 id='additional-tools' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Additional Tools
@@ -1011,12 +1014,13 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       For packages without native Home Manager support, use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.packages</code>. You can <a href='https://search.nixos.org/packages' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>search for packages here</a>. Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  home.packages = with pkgs; [
-    ripgrep  # Better grep
-    fd       # Better find  
-    sd       # Better sed
-    tree     # Directory visualization
-  ];</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  home<span class='op'>.</span>packages = <span class='kw'>with</span> pkgs<span class='op'>;</span> <span class='op'>[</span>
+    ripgrep  <span class='co'># Better grep</span>
+    fd       <span class='co'># Better find  </span>
+    sd       <span class='co'># Better sed</span>
+    tree     <span class='co'># Directory visualization</span>
+  <span class='op'>]</span>;
+</code></pre></div>
     <h2 id='maintenance-garbage-collection' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Maintenance (Garbage Collection)
@@ -1034,10 +1038,11 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Nix keeps old versions of your configuration (for rollbacks) and caches project devShells. Over time, this uses disk space. Enable automatic cleanup—don’t worry, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix-direnv</code> pins your active project shells so they won’t be deleted:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
-  };</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  nix<span class='op'>.</span>gc = <span class='op'>{</span>
+    <span class='va'>automatic</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>options</span> <span class='op'>=</span> <span class='st'>"--delete-older-than 30d"</span><span class='op'>;</span>
+  <span class='op'>}</span>;
+</code></pre></div>
     <h2 id='complete-example' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Complete Example
@@ -1055,72 +1060,73 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Here’s a complete <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code> with everything we’ve covered:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{ config, pkgs, ... }:
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span> <span class='va'>config</span><span class='op'>,</span> <span class='va'>pkgs</span><span class='op'>,</span> <span class='op'>...</span> <span class='op'>}</span>:
 
-{
-  home.username = "YOUR_USERNAME";
-  home.homeDirectory = "/Users/YOUR_USERNAME";
-  home.stateVersion = "25.05";
-  home.sessionPath = [
-    "$HOME/.nix-profile/bin"
-    "/nix/var/nix/profiles/default/bin"
-  ];
+<span class='op'>{</span>
+  <span class='va'>home</span>.<span class='va'>username</span> <span class='op'>=</span> <span class='st'>"YOUR_USERNAME"</span><span class='op'>;</span>
+  <span class='va'>home</span>.<span class='va'>homeDirectory</span> <span class='op'>=</span> <span class='st'>"/Users/YOUR_USERNAME"</span><span class='op'>;</span>
+  <span class='va'>home</span>.<span class='va'>stateVersion</span> <span class='op'>=</span> <span class='st'>"25.05"</span><span class='op'>;</span>
+  <span class='va'>home</span>.<span class='va'>sessionPath</span> <span class='op'>=</span> <span class='op'>[</span>
+    <span class='st'>"$HOME/.nix-profile/bin"</span>
+    <span class='st'>"/nix/var/nix/profiles/default/bin"</span>
+  <span class='op'>];</span>
 
-  programs.home-manager.enable = true;
+  <span class='va'>programs</span>.<span class='va'>home-manager</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
 
-  # Git
-  home.shellAliases = {
-    g = "git";
-    lg = "lazygit";
-  };
-  programs.git = {
-    enable = true;
-    userName = "Your Name";
-    userEmail = "your-email@example.com";
-    ignores = [ "*~" "*.swp" ".DS_Store" ];
-    aliases.ci = "commit";
-  };
-  programs.lazygit.enable = true;
+  <span class='co'># Git</span>
+  <span class='va'>home</span>.<span class='va'>shellAliases</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>g</span> <span class='op'>=</span> <span class='st'>"git"</span><span class='op'>;</span>
+    <span class='va'>lg</span> <span class='op'>=</span> <span class='st'>"lazygit"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>programs</span>.<span class='va'>git</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>userName</span> <span class='op'>=</span> <span class='st'>"Your Name"</span><span class='op'>;</span>
+    <span class='va'>userEmail</span> <span class='op'>=</span> <span class='st'>"your-email@example.com"</span><span class='op'>;</span>
+    <span class='va'>ignores</span> <span class='op'>=</span> <span class='op'>[</span> <span class='st'>"*~"</span> <span class='st'>"*.swp"</span> <span class='st'>".DS_Store"</span> <span class='op'>];</span>
+    <span class='va'>aliases</span>.<span class='va'>ci</span> <span class='op'>=</span> <span class='st'>"commit"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>programs</span>.<span class='va'>lazygit</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
 
-  # Shell
-  programs.starship = {
-    enable = true;
-    settings = {
-      gcloud.disabled = true;
-    };
-  };
-  programs.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-  };
-  programs.zoxide.enable = true;
+  <span class='co'># Shell</span>
+  <span class='va'>programs</span>.<span class='va'>starship</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>settings</span> <span class='op'>=</span> <span class='op'>{</span>
+      <span class='va'>gcloud</span>.<span class='va'>disabled</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='op'>};</span>
+  <span class='op'>};</span>
+  <span class='va'>programs</span>.<span class='va'>zsh</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>autosuggestion</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>syntaxHighlighting</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>programs</span>.<span class='va'>zoxide</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
 
-  # Development
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
+  <span class='co'># Development</span>
+  <span class='va'>programs</span>.<span class='va'>direnv</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>nix-direnv</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='op'>};</span>
 
-  # Tools
-  programs.bat.enable = true;
-  programs.fzf.enable = true;
-  programs.jq.enable = true;
-  programs.btop.enable = true;
+  <span class='co'># Tools</span>
+  <span class='va'>programs</span>.<span class='va'>bat</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='va'>programs</span>.<span class='va'>fzf</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='va'>programs</span>.<span class='va'>jq</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='va'>programs</span>.<span class='va'>btop</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
 
-  home.packages = with pkgs; [
+  <span class='va'>home</span>.<span class='va'>packages</span> <span class='op'>=</span> <span class='kw'>with</span> pkgs<span class='op'>;</span> <span class='op'>[</span>
     ripgrep
     fd
     sd
     tree
-  ];
+  <span class='op'>];</span>
 
-  # Maintenance
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
-  };
-}</code></pre></div>
+  <span class='co'># Maintenance</span>
+  <span class='va'>nix</span>.<span class='va'>gc</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>automatic</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+    <span class='va'>options</span> <span class='op'>=</span> <span class='st'>"--delete-older-than 30d"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h2 id='whats-next' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   What’s Next
@@ -1176,8 +1182,9 @@ cd ~/.config/home-manager</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Run this once and try again:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash language-bash'>sudo mkdir -p /nix/var/nix/profiles/per-user/$(whoami)
-sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='bash'><span class='fu'>sudo</span> mkdir <span class='at'>-p</span> /nix/var/nix/profiles/per-user/<span class='va'>$(</span><span class='fu'>whoami</span><span class='va'>)</span>
+<span class='fu'>sudo</span> chown <span class='va'>$(</span><span class='fu'>whoami</span><span class='va'>)</span> /nix/var/nix/profiles/per-user/<span class='va'>$(</span><span class='fu'>whoami</span><span class='va'>)</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       <strong>Changes not taking effect?</strong>
     </p>
@@ -1209,36 +1216,38 @@ sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Create this complete <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  description = "My Home Manager configuration";
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>description</span> <span class='op'>=</span> <span class='st'>"My Home Manager configuration"</span><span class='op'>;</span>
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-  };
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:nixos/nixpkgs/nixos-unstable"</span><span class='op'>;</span>
+    <span class='va'>home-manager</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:nix-community/home-manager"</span><span class='op'>;</span>
+    <span class='va'>home-manager</span>.<span class='va'>inputs</span>.<span class='va'>nixpkgs</span>.<span class='va'>follows</span> <span class='op'>=</span> <span class='st'>"nixpkgs"</span><span class='op'>;</span>
+    <span class='va'>nix-index-database</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:nix-community/nix-index-database"</span><span class='op'>;</span>
+    <span class='va'>nix-index-database</span>.<span class='va'>inputs</span>.<span class='va'>nixpkgs</span>.<span class='va'>follows</span> <span class='op'>=</span> <span class='st'>"nixpkgs"</span><span class='op'>;</span>
+  <span class='op'>};</span>
 
-  outputs = { nixpkgs, home-manager, nix-index-database, ... }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."YOUR_USERNAME" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./home.nix
-          nix-index-database.hmModules.nix-index
-        ];
-      };
-    };
-}</code></pre></div>
+  <span class='va'>outputs</span> <span class='op'>=</span> <span class='op'>{</span> <span class='va'>nixpkgs</span><span class='op'>,</span> <span class='va'>home-manager</span><span class='op'>,</span> <span class='va'>nix-index-database</span><span class='op'>,</span> <span class='op'>...</span> <span class='op'>}</span>:
+    <span class='kw'>let</span>
+      <span class='va'>system</span> <span class='op'>=</span> <span class='st'>"aarch64-darwin"</span><span class='op'>;</span>
+      <span class='va'>pkgs</span> <span class='op'>=</span> nixpkgs<span class='op'>.</span>legacyPackages<span class='op'>.</span><span class='sc'>${</span>system<span class='sc'>}</span><span class='op'>;</span>
+    <span class='kw'>in</span> <span class='op'>{</span>
+      <span class='va'>homeConfigurations</span>.<span class='st'>"YOUR_USERNAME"</span> <span class='op'>=</span> home<span class='op'>-</span>manager<span class='op'>.</span>lib<span class='op'>.</span>homeManagerConfiguration <span class='op'>{</span>
+        <span class='kw'>inherit</span> <span class='va'>pkgs</span><span class='op'>;</span>
+        <span class='va'>modules</span> <span class='op'>=</span> <span class='op'>[</span>
+          <span class='ss'>./home.nix</span>
+          nix-index-database<span class='op'>.</span>hmModules<span class='op'>.</span>nix-index
+        <span class='op'>];</span>
+      <span class='op'>};</span>
+    <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>home.nix</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>  programs.nix-index.enable = true;
-  programs.nix-index-database.comma.enable = true;</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'>  programs<span class='op'>.</span>nix<span class='op'>-</span>index<span class='op'>.</span>enable = <span class='cn'>true</span>;
+  programs<span class='op'>.</span>nix<span class='op'>-</span>index<span class='op'>-</span>database<span class='op'>.</span>comma<span class='op'>.</span>enable = <span class='cn'>true</span>;
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>, cowsay "Hello!"</code> downloads and runs cowsay without installing it permanently.
     </p>
@@ -1351,7 +1360,7 @@ sudo chown $(whoami) /nix/var/nix/profiles/per-user/$(whoami)</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

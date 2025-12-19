@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -729,7 +722,7 @@
     </p>
   
   </div>
-</div><img class='inline mb-3' src='blog/replacing-docker-compose/docker-to-nix.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/blog/replacing-docker-compose/docker-to-nix.png' style='width: inherit;' />
+</div><img class='inline mb-3' src='blog/replacing-docker-compose/docker-to-nix.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/blog/replacing-docker-compose/docker-to-nix.png' style='width: inherit;' />
     <h2 id='what-does-it-take' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   What does it take?
@@ -769,9 +762,10 @@
     <p class='mb-4 leading-relaxed'>
       Running services in <a href='nixos' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>NixOS</a> is a breeze. For example, <a href='https://nixos.wiki/wiki/PostgreSQL' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>running a PostgreSQL Database</a> is as simple as adding one line to your configuration:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  services.postgresql.enable = true;
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>services</span>.<span class='va'>postgresql</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This starts the database natively, with a global data directory, without the need for a container. That’s great. What we need, however, is the same simplicity but with a project-specific data directory, applicable to macOS and other Linux distributions.
     </p>
@@ -861,7 +855,7 @@
     <p class='mb-4 leading-relaxed'>
       Now that we have all the answers, it’s time to replace <a href='https://github.com/nammayatri/nammayatri/blob/f056bb994fbf9adefa454319032ca35c34ea65bc/Backend/nix/arion-configuration.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>docker-compose in NY</a> with <a href='services-flake' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>services-flake</a>. We will only focus on a few services to keep it simple; for more details, refer to the <a href='https://github.com/nammayatri/nammayatri/pull/3718' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>PR</a>.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='blog/replacing-docker-compose/ny-services-flake.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/blog/replacing-docker-compose/ny-services-flake.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='blog/replacing-docker-compose/ny-services-flake.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/blog/replacing-docker-compose/ny-services-flake.png' style='width: inherit;' /></div>
     <h3 id='postgresql' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   PostgreSQL
@@ -883,9 +877,10 @@
     <p class='mb-4 leading-relaxed'>
       One of them is <a href='https://github.com/nammayatri/passetto/blob/nixify/process-compose.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>exported by passetto</a> (passetto is a Haskell application that encrypts data before storing it in postgres), and using it looks like:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  services.passetto.enable = true;
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>services</span>.<span class='va'>passetto</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       By leveraging the <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module system</a>, we can hide the implementation details and only expose the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>passetto</code> service to the user, enabling its use as shown above.
     </p>
@@ -893,9 +888,10 @@
     <p class='mb-4 leading-relaxed'>
       The other two instances are configured by the <a href='https://github.com/nammayatri/nammayatri/blob/ccab8da607cfd8d4e9f7d28b55b83e22eec1af9b/Backend/nix/services/postgres-with-replica.nix' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>postgres-with-replica module</a>. This module starts two services (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>primary</code> and <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>replica</code> databases) and a <a href='https://www.postgresql.org/docs/current/app-pgbasebackup.html' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>pg-basebackup</a> process (to synchronize <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>replica</code> with <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>primary</code> during initialization). For the user, it appears as follows:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  services.postgres-with-replica.enable = true;
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>services</span>.<span class='va'>postgres-with-replica</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h3 id='redis' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
       
   Redis
@@ -913,10 +909,11 @@
     <p class='mb-4 leading-relaxed'>
       NY uses <a href='https://redis.io/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Redis</a> as a cache and clustered version of it as a key-value database. Redis service comprises a single node, while the clustered version has 6 nodes (3 masters and 3 replicas). Adding them to the project is as simple as:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>{
-  services.redis.enable = true;
-  services.redis-cluster.enable = true;
-}</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='op'>{</span>
+  <span class='va'>services</span>.<span class='va'>redis</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+  <span class='va'>services</span>.<span class='va'>redis-cluster</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
+<span class='op'>}</span>
+</code></pre></div>
     <h2 id='cool-things' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Cool things
@@ -942,11 +939,12 @@
     <p class='mb-4 leading-relaxed'>
       This is what running them looks like:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'># Run load-test
-nix run github:nammayatri/nammayatri#load-test-dev
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='co'># Run load-test</span>
+<span class='ex'>nix</span> run github:nammayatri/nammayatri#load-test-dev
 
-# Run the entire backend
-nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
+<span class='co'># Run the entire backend</span>
+<span class='ex'>nix</span> run github:nammayatri/nammayatri#run-mobility-stack-nix
+</code></pre></div>
     <h2 id='next' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Up next
@@ -1042,7 +1040,7 @@ nix run github:nammayatri/nammayatri#run-mobility-stack-nix</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

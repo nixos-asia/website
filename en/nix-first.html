@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -598,7 +591,7 @@
     <p class='mb-4 leading-relaxed'>
       In this tutorial we will learn how to use existing packages from the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository and elsewhere. We will <em>not</em> be writing any Nix language code yet (we reserve that for the <a href='nix-rapid' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>next tutorial</a>).
     </p>
-  <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nix-tutorial/nix-first.png' style='width: inherit;' />
+  <img class='inline mb-3' src='nix-tutorial/nix-first.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nix-tutorial/nix-first.png' style='width: inherit;' />
     <h2 id='run' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Running a package
@@ -620,7 +613,7 @@
     <p class='mb-4 leading-relaxed'>
       We can download and run the <a href='https://en.wikipedia.org/wiki/Cowsay' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>cowsay</a> package as follows:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run nixpkgs#cowsay "G'day $USER"
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix run nixpkgs#cowsay "G'day $USER"
  ____________
 &lt; G'day srid &gt;
  ------------
@@ -675,12 +668,12 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     <p class='mb-4 leading-relaxed'>
       For example, here’s how we create a temporary shell containing the “cowsay” and “<a href='https://en.wikipedia.org/wiki/Fortune_(Unix)' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>fortune</a>” packages:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix shell nixpkgs#cowsay nixpkgs#fortune 
 ❯</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       From here, you can verify that both the programs are indeed in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>$PATH</code>. But where do they live?
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>❯ which cowsay
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>❯ which cowsay
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0/bin/cowsay
 ❯ which fortune
 /nix/store/mfw77f008xy0zb7dqdyggw0xj2gd4jjv-fortune-mod-3.20.0/bin/fortune
@@ -718,7 +711,7 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     <p class='mb-4 leading-relaxed'>
       Instead of entering an interactive shell, you can also run commands one-off using the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>-c</code> option.
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>nix shell nixpkgs#cowsay nixpkgs#fortune -c sh -c 'fortune | cowsay'</code></pre></div>
   </div>
 </div>
     <h2 id='under-the-hood' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
@@ -746,12 +739,12 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     <p class='mb-4 leading-relaxed'>
       To inspect the contents of a package without running it or creating a shell, we can use <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix build</code>. This will realize the package in the store and print its path:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix build nixpkgs#cowsay --no-link --print-out-paths
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix build nixpkgs#cowsay --no-link --print-out-paths
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       We can then inspect this directory structure (using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>tree</code>, which we can also run via Nix!):
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix run nixpkgs#tree /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
 /nix/store/n1lnrvgl43k6zln1s5wxcp2zh9bm0z63-cowsay-3.7.0
 ├── bin
 │   ├── cowsay
@@ -828,7 +821,7 @@ $</code></pre></div><div data-callout-metadata data-callout-fold data-callout='i
     <p class='mb-4 leading-relaxed'>
       If you want to keep a package available permanently (not just in a transient shell), you can install it into your user profile using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix profile install</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix profile install nixpkgs#cowsay nixpkgs#fortune
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix profile install nixpkgs#cowsay nixpkgs#fortune
 $ which cowsay
 /home/user/.nix-profile/bin/cowsay</code></pre></div>
     <p class='mb-4 leading-relaxed'>
@@ -856,7 +849,7 @@ $ which cowsay
     <p class='mb-4 leading-relaxed'>
       It is the specific identifier for the <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> repository (<a href='https://github.com/nixos/nixpkgs' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/nixos/nixpkgs</a>) defined in your local <a href='registry' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flake registry</a>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix registry list | grep nixpkgs
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix registry list | grep nixpkgs
 global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       A registry is simply a shortcut mapping (like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixpkgs</code>) to a full <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flake URL</a> (like <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>github:NixOS/nixpkgs/nixpkgs-unstable</code>).
@@ -865,7 +858,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       We can confirm which version of nixpkgs we are using:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>❯ nix flake metadata nixpkgs --json | nix run nixpkgs#jq -- -r .locked.rev
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>❯ nix flake metadata nixpkgs --json | nix run nixpkgs#jq -- -r .locked.rev
 317484b1ead87b9c1b8ac5261a8d2dd748a0492d</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
@@ -893,7 +886,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       You are not required to use a registry. Without a registry, getting a package off nixpkgs would instead involve its fully qualified <a href='flake-url' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>URL</a>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix run github:NixOS/nixpkgs/nixpkgs-unstable#cowsay
 ...</code></pre></div>
     <h2 id='external-software' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
@@ -916,11 +909,11 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       For example, <a href='https://emanote.srid.ca' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>Emanote</a> (which builds this website) can be run directly from its own GitHub repository:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix run github:srid/emanote</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix run github:srid/emanote</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Or installed:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>$ nix profile install github:srid/emanote</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>$ nix profile install github:srid/emanote</code></pre></div>
     <h2 id='whats-next' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   What’s next
@@ -1103,7 +1096,7 @@ global flake:nixpkgs github:NixOS/nixpkgs/nixpkgs-unstable</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -646,27 +639,28 @@
     <p class='mb-4 leading-relaxed'>
       For example, to override <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>pkgs.just</code> to <a href='https://nixos.zulipchat.com/#narrow/stream/420166-offtopic/topic/just.20recipe.20grouping/near/440732100' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>a later release</a>,
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'>self: super: {
-  just = super.just.overrideAttrs (oa: rec {
-    name = "${oa.pname}-${version}";
-    version = "1.27.0";
-    src = super.fetchFromGitHub {
-      owner = "casey";
-      repo = oa.pname;
-      rev = "refs/tags/${version}";
-      hash = "sha256-xyiIAw8PGMgYPtnnzSExcOgwG64HqC9TbBMTKQVG97k=";
-    };
-    # Overriding `cargoHash` has no effect; we must override the resultant
-    # `cargoDeps` and set the hash in its `outputHash` attribute.
-    cargoDeps = oa.cargoDeps.overrideAttrs (super.lib.const {
-      name = "${name}-vendor.tar.gz";
-      inherit src;
-      outputHash = "sha256-jMurOCr9On+sudgCzIBrPHF+6jCE/6dj5E106cAL2qw=";
-    });
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='va'>self</span><span class='op'>:</span> <span class='va'>super</span><span class='op'>:</span> <span class='op'>{</span>
+  <span class='va'>just</span> <span class='op'>=</span> super<span class='op'>.</span>just<span class='op'>.</span>overrideAttrs <span class='op'>(</span><span class='va'>oa</span><span class='op'>:</span> <span class='kw'>rec</span> <span class='op'>{</span>
+    <span class='va'>name</span> <span class='op'>=</span> <span class='st'>"</span><span class='sc'>${</span>oa<span class='op'>.</span>pname<span class='sc'>}</span><span class='st'>-</span><span class='sc'>${</span>version<span class='sc'>}</span><span class='st'>"</span><span class='op'>;</span>
+    <span class='va'>version</span> <span class='op'>=</span> <span class='st'>"1.27.0"</span><span class='op'>;</span>
+    <span class='va'>src</span> <span class='op'>=</span> super<span class='op'>.</span>fetchFromGitHub <span class='op'>{</span>
+      <span class='va'>owner</span> <span class='op'>=</span> <span class='st'>"casey"</span><span class='op'>;</span>
+      <span class='va'>repo</span> <span class='op'>=</span> oa<span class='op'>.</span>pname<span class='op'>;</span>
+      <span class='va'>rev</span> <span class='op'>=</span> <span class='st'>"refs/tags/</span><span class='sc'>${</span>version<span class='sc'>}</span><span class='st'>"</span><span class='op'>;</span>
+      <span class='va'>hash</span> <span class='op'>=</span> <span class='st'>"sha256-xyiIAw8PGMgYPtnnzSExcOgwG64HqC9TbBMTKQVG97k="</span><span class='op'>;</span>
+    <span class='op'>};</span>
+    <span class='co'># Overriding `cargoHash` has no effect; we must override the resultant</span>
+    <span class='co'># `cargoDeps` and set the hash in its `outputHash` attribute.</span>
+    <span class='va'>cargoDeps</span> <span class='op'>=</span> oa<span class='op'>.</span>cargoDeps<span class='op'>.</span>overrideAttrs <span class='op'>(</span>super<span class='op'>.</span>lib<span class='op'>.</span>const <span class='op'>{</span>
+      <span class='va'>name</span> <span class='op'>=</span> <span class='st'>"</span><span class='sc'>${</span>name<span class='sc'>}</span><span class='st'>-vendor.tar.gz"</span><span class='op'>;</span>
+      <span class='kw'>inherit</span> <span class='va'>src</span><span class='op'>;</span>
+      <span class='va'>outputHash</span> <span class='op'>=</span> <span class='st'>"sha256-jMurOCr9On+sudgCzIBrPHF+6jCE/6dj5E106cAL2qw="</span><span class='op'>;</span>
+    <span class='op'>});</span>
 
-    doCheck = false;
-  });
-}</code></pre></div>
+    <span class='va'>doCheck</span> <span class='op'>=</span> <span class='cn'>false</span><span class='op'>;</span>
+  <span class='op'>});</span>
+<span class='op'>}</span>
+</code></pre></div>
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -752,7 +746,7 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

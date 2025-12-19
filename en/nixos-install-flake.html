@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -644,7 +637,7 @@
     </p>
   
   </div>
-</div><img class='inline mb-3' src='nixos-install-flake/nixos-install-flake.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-flake/nixos-install-flake.png' style='width: inherit;' />
+</div><img class='inline mb-3' src='nixos-install-flake/nixos-install-flake.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-flake/nixos-install-flake.png' style='width: inherit;' />
     <h2 id='prepare' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Prepare to install NixOS
@@ -674,7 +667,7 @@
     <p class='mb-4 leading-relaxed'>
       NixOS will boot into a graphical environment with the installer already running.
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-installer.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-flake/nixos-installer.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-installer.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-flake/nixos-installer.png' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
       Go through the installation wizard; it is fairly similar to other distros. Once NixOS install is complete, reboot into your new system. You will be greeted with a login screen.
     </p>
@@ -708,9 +701,9 @@
     <p class='mb-4 leading-relaxed'>
       Your systems configuration includes everything from partition layout to kernel version to packages to services. It is defined in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/etc/nixos/configuration.nix</code>. The <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/etc/nixos</code> directory looks like this:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ ls -l /etc/nixos
--rw-r--r-- 1 root root 4001 Dec  9 16:03 configuration.nix
--rw-r--r-- 1 root root 1317 Dec  9 15:43 hardware-configuration.nix
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> ls <span class='at'>-l</span> /etc/nixos
+<span class='ex'>-rw-r--r--</span> 1 root root 4001 Dec  9 16:03 configuration.nix
+<span class='ex'>-rw-r--r--</span> 1 root root 1317 Dec  9 15:43 hardware-configuration.nix
 </code></pre></div><div data-callout-metadata data-callout-fold data-callout='info' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
@@ -739,7 +732,8 @@
     <p class='mb-4 leading-relaxed'>
       All system changes require a change to this <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code>. For example, in order to “install” or “uninstall” a package, we would edit this <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code> and activate it. Let’s do this now to install the <a href='https://neovim.io/' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>neovim</a> text editor. NixOS includes the nano editor by default:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>sudo nano /etc/nixos/configuration.nix</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='fu'>sudo</span> nano /etc/nixos/configuration.nix
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -786,29 +780,32 @@
     <p class='mb-4 leading-relaxed'>
       Your <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code> should now look like:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'># /etc/nixos/configuration.nix
-{
-  ...
-  environment.systemPackages = with pkgs; [
-    neovim
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='co'># /etc/nixos/configuration.nix</span>
+<span class='op'>{</span>
+  <span class='op'>...</span>
+  <span class='va'>environment</span>.<span class='va'>systemPackages</span> = <span class='va'>with</span> <span class='va'>pkgs</span>; [
+    <span class='va'>neovim</span>
   ];
-  ...
-  services.openssh.enable = true;
-  ...
-}</code></pre></div>
+  <span class='op'>...</span>
+  <span class='va'>services</span>.<span class='va'>openssh</span>.<span class='va'>enable</span> = <span class='va'>true</span>;
+  <span class='op'>...</span>
+<span class='op'>}</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Once the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code> file has been saved to disk, you must activate that new configuration using the <a href='https://nixos.wiki/wiki/Nixos-rebuild' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>nixos-rebuild</a> command:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>sudo nixos-rebuild switch</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='fu'>sudo</span> nixos-rebuild switch
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This will take a few minutes to complete―as it will have to fetch neovim and its dependencies from the official <a href='cache' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>binary cache</a> (<code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>cache.nixos.org</code>). Once it is done, you should expect to see something like this:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-rebuild-switch.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-flake/nixos-rebuild-switch.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-rebuild-switch.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-flake/nixos-rebuild-switch.png' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
       You can confirm that neovim is installed by running <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>which nvim</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ which nvim
-/run/current-system/sw/bin/nvim</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> which nvim
+<span class='ex'>/run/current-system/sw/bin/nvim</span>
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -866,27 +863,29 @@
     <p class='mb-4 leading-relaxed'>
       A problem with the default NixOS <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code> generated by the official installer is that it is not “pure” and thus not reproducible (see <a href='https://www.tweag.io/blog/2020-07-31-nixos-flakes/#what-problems-are-we-trying-to-solve' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>here</a>), as it still uses a mutable Nix channel (which is generally <a href='https://zero-to-nix.com/concepts/channels#the-problem-with-nix-channel' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>discouraged</a>). For this reason (among others), it is recommended to immediately switch to using <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkTag'>Flakes</a> for our NixOS configuration. Doing this is pretty simple. Just add a <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code> file in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/etc/nixos</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>sudo nvim /etc/nixos/flake.nix</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='fu'>sudo</span> nvim /etc/nixos/flake.nix
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Add the following:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix language-nix'># /etc/nixos/flake.nix
-{
-  inputs = {
-    # NOTE: Replace "nixos-23.11" with that which is in system.stateVersion of
-    # configuration.nix. You can also use latter versions if you wish to
-    # upgrade.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-  };
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    # NOTE: 'nixos' is the default hostname set by the installer
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      # NOTE: Change this to aarch64-linux if you are on ARM
-      system = "x86_64-linux";
-      modules = [ ./configuration.nix ];
-    };
-  };
-}</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='co'># /etc/nixos/flake.nix</span>
+<span class='op'>{</span>
+  <span class='va'>inputs</span> <span class='op'>=</span> <span class='op'>{</span>
+    <span class='co'># </span><span class='al'>NOTE</span><span class='co'>: Replace "nixos-23.11" with that which is in system.stateVersion of</span>
+    <span class='co'># configuration.nix. You can also use latter versions if you wish to</span>
+    <span class='co'># upgrade.</span>
+    <span class='va'>nixpkgs</span>.<span class='va'>url</span> <span class='op'>=</span> <span class='st'>"github:NixOS/nixpkgs/nixos-23.11"</span><span class='op'>;</span>
+  <span class='op'>};</span>
+  <span class='va'>outputs</span> <span class='op'>=</span> inputs@<span class='op'>{</span> <span class='va'>self</span><span class='op'>,</span> <span class='va'>nixpkgs</span><span class='op'>,</span> <span class='op'>...</span> <span class='op'>}</span>: <span class='op'>{</span>
+    <span class='co'># </span><span class='al'>NOTE</span><span class='co'>: 'nixos' is the default hostname set by the installer</span>
+    <span class='va'>nixosConfigurations</span>.<span class='va'>nixos</span> <span class='op'>=</span> nixpkgs<span class='op'>.</span>lib<span class='op'>.</span>nixosSystem <span class='op'>{</span>
+      <span class='co'># </span><span class='al'>NOTE</span><span class='co'>: Change this to aarch64-linux if you are on ARM</span>
+      <span class='va'>system</span> <span class='op'>=</span> <span class='st'>"x86_64-linux"</span><span class='op'>;</span>
+      <span class='va'>modules</span> <span class='op'>=</span> <span class='op'>[</span> <span class='ss'>./configuration.nix</span> <span class='op'>];</span>
+    <span class='op'>};</span>
+  <span class='op'>};</span>
+<span class='op'>}</span>
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='note' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #086DD310; border-left-color: #086DD3'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #086DD3'>
@@ -921,17 +920,19 @@
     <p class='mb-4 leading-relaxed'>
       Now, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/etc/nixos</code> is technically a <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>flake</a>. We can “inspect” this flake using the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code> command:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix flake show /etc/nixos
-error: experimental Nix feature 'nix-command' is disabled; use '--extra-experimental-features nix-command' to override</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix flake show /etc/nixos
+<span class='ex'>error:</span> experimental Nix feature <span class='st'>'nix-command'</span> is disabled<span class='kw'>;</span> <span class='ex'>use</span> <span class='st'>'--extra-experimental-features nix-command'</span> to override
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Oops, what happened here? As flakes is a so-called “experimental” feature, you must manually enable it. We’ll <em>temporarily</em> enable it for now, and then enable it <em>permanently</em> latter. The <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>--extra-experimental-features</code> flag can be used to enable experimental features. Let’s try again:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix --extra-experimental-features 'nix-command flakes' flake show /etc/nixos
-warning: creating lock file '/etc/nixos/flake.lock'
-error:
-       … while updating the lock file of flake 'path:/etc/nixos?lastModified=1702156351&amp;narHash=sha256-km4AQoP/ha066o7tALAzk4tV0HEE%2BNyd9SD%2BkxcoJDY%3D'
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix <span class='at'>--extra-experimental-features</span> <span class='st'>'nix-command flakes'</span> flake show /etc/nixos
+<span class='ex'>warning:</span> creating lock file <span class='st'>'/etc/nixos/flake.lock'</span>
+<span class='ex'>error:</span>
+       <span class='ex'>…</span> while updating the lock file of flake <span class='st'>'path:/etc/nixos?lastModified=1702156351&amp;narHash=sha256-km4AQoP/ha066o7tALAzk4tV0HEE%2BNyd9SD%2BkxcoJDY%3D'</span>
 
-       error: opening file '/etc/nixos/flake.lock': Permission denied</code></pre></div>
+       <span class='ex'>error:</span> opening file <span class='st'>'/etc/nixos/flake.lock'</span>: Permission denied
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Progress, but we hit another error—Nix understandably cannot write to root-owned directory (it tries to create the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.lock</code> file). One way to resolve this is to move the whole configuration to our home directory, which would also prepare the ground for storing it in <a href='git' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Git</a>. We will do this in the next section.
     </p>
@@ -977,24 +978,27 @@ error:
     <p class='mb-4 leading-relaxed'>
       Move the entire <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>/etc/nixos</code> directory to your home directory and gain control of it:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ sudo mv /etc/nixos ~/nixos-config && sudo chown -R $USER ~/nixos-config</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> sudo mv /etc/nixos ~/nixos-config <span class='kw'>&&</span> <span class='fu'>sudo</span> chown <span class='at'>-R</span> <span class='va'>$USER</span> ~/nixos-config
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Your configuration directory should now look like:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ ls -l ~/nixos-config/
-total 12
--rw-r--r-- 1 srid root 4001 Dec  9 16:03 configuration.nix
--rw-r--r-- 1 srid root  224 Dec  9 16:12 flake.nix
--rw-r--r-- 1 srid root 1317 Dec  9 15:43 hardware-configuration.nix</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> ls <span class='at'>-l</span> ~/nixos-config/
+<span class='ex'>total</span> 12
+<span class='ex'>-rw-r--r--</span> 1 srid root 4001 Dec  9 16:03 configuration.nix
+<span class='ex'>-rw-r--r--</span> 1 srid root  224 Dec  9 16:12 flake.nix
+<span class='ex'>-rw-r--r--</span> 1 srid root 1317 Dec  9 15:43 hardware-configuration.nix
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now let’s try <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code> on it, and this time it should work:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ cd ~/nixos-config
-$ nix --extra-experimental-features 'nix-command flakes' flake show
-warning: creating lock file '/home/srid/nixos-config/flake.lock'
-path:/home/srid/nixos-config?lastModified=1702156518&amp;narHash=sha256-nDtDyzk3fMfABicFuwqWitIkyUUw8BZ4SniPPyJNKjw%3D
-└───nixosConfigurations
-    └───nixos: NixOS configuration</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> cd ~/nixos-config
+<span class='ex'>$</span> nix <span class='at'>--extra-experimental-features</span> <span class='st'>'nix-command flakes'</span> flake show
+<span class='ex'>warning:</span> creating lock file <span class='st'>'/home/srid/nixos-config/flake.lock'</span>
+<span class='ex'>path:/home/srid/nixos-config?lastModified=1702156518</span><span class='kw'>&</span><span class='va'>narHash</span><span class='op'>=</span>sha256-nDtDyzk3fMfABicFuwqWitIkyUUw8BZ4SniPPyJNKjw%3D
+<span class='ex'>└───nixosConfigurations</span>
+    <span class='ex'>└───nixos:</span> NixOS configuration
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Voila! Incidentally, this flake has a single output, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixosConfigurations.nixos</code>, which is the NixOS configuration itself.
     </p>
@@ -1026,12 +1030,13 @@ path:/home/srid/nixos-config?lastModified=1702156518&amp;narHash=sha256-nDtDyzk3
     <p class='mb-4 leading-relaxed'>
       Once flake-ified, we can use the same command to activate the new configuration but we must additionally pass the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>--flake</code> flag, viz.:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'># The '.' is the path to the flake, which is current directory.
-$ sudo nixos-rebuild switch --flake .</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='co'># The '.' is the path to the flake, which is current directory.</span>
+<span class='ex'>$</span> sudo nixos-rebuild switch <span class='at'>--flake</span> .
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       If everything went well, you should see something like this:
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-rebuild-switch-flake.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-flake/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-rebuild-switch-flake.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-flake/nixos-rebuild-switch-flake.png' style='width: inherit;' /></div>
     <p class='mb-4 leading-relaxed'>
       Excellent, now we have a flake-ified NixOS configuration that is pure and reproducible!
     </p>
@@ -1075,10 +1080,11 @@ $ sudo nixos-rebuild switch --flake .</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Then, create a Git repository for your configuration:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ cd ~/nixos-config
-$ git config --global user.email "srid@srid.ca"
-$ git config --global user.name "Sridhar Ratnakumar"
-$ git init && git add . && git commit -m init</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> cd ~/nixos-config
+<span class='ex'>$</span> git config <span class='at'>--global</span> user.email <span class='st'>"srid@srid.ca"</span>
+<span class='ex'>$</span> git config <span class='at'>--global</span> user.name <span class='st'>"Sridhar Ratnakumar"</span>
+<span class='ex'>$</span> git init <span class='kw'>&&</span> <span class='fu'>git</span> add . <span class='kw'>&&</span> <span class='fu'>git</span> commit <span class='at'>-m</span> init
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       You may now <a href='https://docs.github.com/en/get-started/quickstart/create-a-repo' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>create a repository</a> on GitHub or your favourite Git host, and push your configuration repo to it.
     </p>
@@ -1132,26 +1138,27 @@ $ git init && git add . && git commit -m init</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       As a final step, let’s permanently enable <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a> on our system, which is particularly useful if you do a lot of <a href='dev' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>software development</a>. This time, instead of editing <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>configuration.nix</code> again, let’s do it in a separate <a href='modules' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>module</a> (for no particular reasons other than pedagogic purposes). Remember the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>modules</code> argument to <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nixosSystem</code> function in our <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.nix</code>? It is a list of modules, so we can add a second module there:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='diff language-diff'>diff --git a/flake.nix b/flake.nix
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='diff'><span class='kw'>diff --git a/flake.nix b/flake.nix</span>
 index cc77fb9..4e84bdf 100644
---- a/flake.nix
-+++ b/flake.nix
-@@ -8,7 +8,14 @@
+<span class='dt'>--- a/flake.nix</span>
+<span class='dt'>+++ b/flake.nix</span>
+<span class='dt'>@@ -8,7 +8,14 @@</span>
      # NOTE: 'nixos' is the default hostname
      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
        system = "x86_64-linux";
--      modules = [ ./configuration.nix ];
-+      modules = [
-+        ./configuration.nix
-+        {
-+          nix = {
-+            settings.experimental-features = [ "nix-command" "flakes" ];
-+          };
-+        }
-+      ];
+<span class='st'>-      modules = [ ./configuration.nix ];</span>
+<span class='va'>+      modules = [</span>
+<span class='va'>+        ./configuration.nix</span>
+<span class='va'>+        {</span>
+<span class='va'>+          nix = {</span>
+<span class='va'>+            settings.experimental-features = [ "nix-command" "flakes" ];</span>
+<span class='va'>+          };</span>
+<span class='va'>+        }</span>
+<span class='va'>+      ];</span>
      };
    };
- }</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
+ }
+</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout bg-opacity-5 bg-[#f5f5f5] dark:bg-gray-900 p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 border-gray-200 dark:border-gray-700 shadow-sm' role='note' style='background-color: #08BFBC10; border-left-color: #08BFBC'>
   <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
   </path>
   <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
@@ -1178,11 +1185,12 @@ index cc77fb9..4e84bdf 100644
     <p class='mb-4 leading-relaxed'>
       As before, we must activate the new configuration using <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>sudo nixos-rebuild switch --flake .</code>. Once that is done, we can verify that flakes is enabled by re-running <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix flake show</code> but without the <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>--extra-experimental-features</code> flag:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>$ nix flake show
-warning: Git tree '/home/srid/nixos-config' is dirty
-git+file:///home/srid/nixos-config
-└───nixosConfigurations
-    └───nixos: NixOS configuration</code></pre></div>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>$</span> nix flake show
+<span class='ex'>warning:</span> Git tree <span class='st'>'/home/srid/nixos-config'</span> is dirty
+<span class='fu'>git</span>+file:///home/srid/nixos-config
+<span class='ex'>└───nixosConfigurations</span>
+    <span class='ex'>└───nixos:</span> NixOS configuration
+</code></pre></div>
     <h2 id='recap' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Recap
@@ -1200,7 +1208,7 @@ git+file:///home/srid/nixos-config
     <p class='mb-4 leading-relaxed'>
       You have successfully installed NixOS. The entire system configuration is also stored in a Git repo, and can be reproduced at will during either a reinstallation or a new machine purchase. You can make changes to your configuration, commit them to Git, and push it to GitHub. Additionally we enabled <a href='flakes' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>Flakes</a> permanently, which means you can now use all the modern <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>nix</code> commands, such as running a package directly from <a href='nixpkgs' class='text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 px-1.5 py-0.5 rounded-md font-semibold no-underline hover:bg-green-100 dark:hover:bg-green-900' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> (same version pinned in <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>flake.lock</code> file):
     </p>
-  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-pony.png' alt='/nix/store/kdxg97w1i5jn2y9m8widmqjprhijnbly-global/nixos-install-flake/nixos-pony.png' style='width: inherit;' /></div>
+  <div class='flex justify-center items-center mx-auto'><img class='inline mb-3' src='nixos-install-flake/nixos-pony.png' alt='/nix/store/y912g4aha5p2fhbf6w5a2xlnyalqi01f-global/nixos-install-flake/nixos-pony.png' style='width: inherit;' /></div>
     <h2 id='end' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
       
   Up Next
@@ -1357,7 +1365,7 @@ git+file:///home/srid/nixos-config
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>

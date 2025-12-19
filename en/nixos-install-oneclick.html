@@ -31,22 +31,15 @@
       <base href='/en/' />
       <link href='static/nixos-asia.svg' rel='icon' />
     
-    <!-- highlight.js -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/hybrid.min.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js'></script>
-<!-- Include languages that Emanote itself uses -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/haskell.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/nix.min.js'></script>
-<script>hljs.highlightAll();</script>
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${value:highlightjs-ver}/languages/nix.min.js'></script>
+    <meta name='generator' content='Emanote' />
 
   
   
-  <link href='tailwind.css?instanceId=469e33d2-b8c4-44cb-b8d6-5680f75fb062' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=6e9dab51-caa8-4326-916e-56903504aef9' rel='stylesheet' type='text/css' />
 
-  <style data-category='global-font'>
+  <link rel='stylesheet' href='/_emanote-static/skylighting.css' />
+
+<style data-category='global-font'>
   /* Refined typography with system font stack */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -685,17 +678,18 @@
     </p>
   
   </div>
-</div><div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'># Assuming
-# - your system is x86_64-linux
-# - your harddrive device is /dev/sda
-FLAKE="github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"
-DISK_DEVICE=/dev/sda
-sudo nix \
-    --extra-experimental-features 'flakes nix-command' \
-    run github:nix-community/disko#disko-install -- \
-    --flake "$FLAKE" \
-    --write-efi-boot-entries \
-    --disk main "$DISK_DEVICE"</code></pre></div>
+</div><div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='co'># Assuming</span>
+<span class='co'># - your system is x86_64-linux</span>
+<span class='co'># - your harddrive device is /dev/sda</span>
+<span class='va'>FLAKE</span><span class='op'>=</span><span class='st'>"github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"</span>
+<span class='va'>DISK_DEVICE</span><span class='op'>=</span>/dev/sda
+<span class='fu'>sudo</span> nix <span class='dt'>\</span>
+    <span class='at'>--extra-experimental-features</span> <span class='st'>'flakes nix-command'</span> <span class='dt'>\</span>
+    run github:nix-community/disko#disko-install <span class='at'>--</span> <span class='dt'>\</span>
+    <span class='at'>--flake</span> <span class='st'>"</span><span class='va'>$FLAKE</span><span class='st'>"</span> <span class='dt'>\</span>
+    <span class='at'>--write-efi-boot-entries</span> <span class='dt'>\</span>
+    <span class='at'>--disk</span> main <span class='st'>"</span><span class='va'>$DISK_DEVICE</span><span class='st'>"</span>
+</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Here, <code class='py-1 px-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded border border-gray-200 dark:border-gray-700 text-[0.9em]'>"github:nixos-asia/website?dir=global/nixos-install-oneclick#oneclick"</code> is <a href='https://github.com/nixos-asia/website/tree/master/global/nixos-install-oneclick' class='text-green-600 dark:text-green-400 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>our own sample configuration</a> flake. Feel free to substitute it with your own flake.
     </p>
@@ -703,7 +697,7 @@ sudo nix \
     <p class='mb-4 leading-relaxed'>
       If everything goes well, you should see the installation successfully finish with a message like below:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text language-text'>...
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>...
 Random seed file /boot/loader/random-seed successfully written (32 bytes).
 Successfully initialized system token in EFI variable with 32 bytes.
 Created EFI boot entry "Linux Boot Manager".
@@ -791,11 +785,12 @@ installation finished!</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       This worked:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh language-sh'>[root@oneclick:~]# git clone https://github.com/nixos-asia/website.git
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>[root@oneclick:~]#</span> git clone https://github.com/nixos-asia/website.git
 
-[root@oneclick:~]# cd website/global/nixos-install-oneclick/
+<span class='ex'>[root@oneclick:~]#</span> cd website/global/nixos-install-oneclick/
 
-[root@oneclick:~/website/global/nixos-install-oneclick]# sudo nixos-rebuild switch --flake .</code></pre></div>
+<span class='ex'>[root@oneclick:~/website/global/nixos-install-oneclick]#</span> sudo nixos-rebuild switch <span class='at'>--flake</span> .
+</code></pre></div>
   <!-- Disabled until we can limit this template to a subset of notes (blog posts):
      https://github.com/nixos-asia/website/issues/9
 
@@ -908,7 +903,7 @@ installation finished!</code></pre></div>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.3.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.0'>
       <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>
