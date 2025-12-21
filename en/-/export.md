@@ -1868,7 +1868,7 @@ sidebar navigation.
 
 You can participate in the community discussion through the following venues.
 
-- [Telegram](https://t.me/nixosasia)
+- [Telegram](https://t.me/nixosasia) (**most active**)
 - [Discord](https://discord.gg/z5rHpFa7NN)
 - [GitHub Discussions](https://github.com/orgs/nixos-asia/discussions)
 - [Twitter / X](https://twitter.com/nixos_asia): We'll post all announcements here.
