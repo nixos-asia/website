@@ -65,7 +65,7 @@ This file defines your inputs (dependencies) and outputs (configurations).
 > - macOS (Intel): `x86_64-darwin`
 > - Linux: `x86_64-linux`
 > 
-> Replace `YOUR_USERNAME` with your actual username (run `whoami` to check).
+> Replace `YOUR_USERNAME` with your actual username (run `id -un` to check).
 
 ### 2. `home.nix`
 
