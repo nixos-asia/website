@@ -1277,7 +1277,7 @@ This file defines your inputs (dependencies) and outputs (configurations).
 > - macOS (Intel): `x86_64-darwin`
 > - Linux: `x86_64-linux`
 > 
-> Replace `YOUR_USERNAME` with your actual username (run `whoami` to check).
+> Replace `YOUR_USERNAME` with your actual username (run `id -un` to check).
 
 ### 2. `home.nix`
 
@@ -1309,7 +1309,7 @@ This file contains your actual configuration. Start with:
 ```
 
 > [!tip] Linux users
-> If you use Bash instead of Zsh, replace `programs.zsh.enable` with `programs.bash.enable` throughout this tutorial.
+> Change `home.homeDirectory` to `/home/YOUR_USERNAME` (Linux uses `/home` instead of `/Users`). Also, if you use Bash instead of Zsh, replace `programs.zsh.enable` with `programs.bash.enable` throughout this tutorial.
 
 ### Apply configuration
 
