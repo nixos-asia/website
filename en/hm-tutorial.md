@@ -97,7 +97,7 @@ This file contains your actual configuration. Start with:
 ```
 
 > [!tip] Linux users
-> If you use Bash instead of Zsh, replace `programs.zsh.enable` with `programs.bash.enable` throughout this tutorial.
+> Change `home.homeDirectory` to `/home/YOUR_USERNAME` (Linux uses `/home` instead of `/Users`). Also, if you use Bash instead of Zsh, replace `programs.zsh.enable` with `programs.bash.enable` throughout this tutorial.
 
 ### Apply configuration
 
