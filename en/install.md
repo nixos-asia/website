@@ -17,6 +17,14 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://artifacts.nixos.org/experimental
   sh -s -- install --no-confirm --extra-conf "trusted-users = $(whoami)"
 ```
 
+Enable flakes:
+
+```sh
+echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.custom.conf
+```
+
+Run health check:
+
 ```sh
 nix run nixpkgs#omnix -- health
 ```
