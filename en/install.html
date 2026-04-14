@@ -35,7 +35,7 @@
 
   
   
-  <link href='tailwind.css?instanceId=26bb516a-b80c-4864-9633-7d6fccfff322' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=69d8b27b-d426-4edb-ba1a-36169ec64017' rel='stylesheet' type='text/css' />
 
   <link rel='stylesheet' href='_emanote-static/skylighting.css' />
 
@@ -619,7 +619,16 @@
     </p>
   <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>curl</span> <span class='at'>--proto</span> <span class='st'>'=https'</span> <span class='at'>--tlsv1.2</span> <span class='at'>-sSf</span> <span class='at'>-L</span> https://artifacts.nixos.org/experimental-installer <span class='kw'>|</span> <span class='dt'>\</span>
   <span class='fu'>sh</span> <span class='at'>-s</span> <span class='at'>--</span> install <span class='at'>--no-confirm</span> <span class='at'>--extra-conf</span> <span class='st'>"trusted-users = </span><span class='va'>$(</span><span class='fu'>whoami</span><span class='va'>)</span><span class='st'>"</span>
-</code></pre></div><div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>nix</span> run nixpkgs#omnix <span class='at'>--</span> health
+</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Enable flakes:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='bu'>echo</span> <span class='st'>"experimental-features = nix-command flakes"</span> <span class='kw'>|</span> <span class='fu'>sudo</span> tee <span class='at'>-a</span> /etc/nix/nix.custom.conf
+</code></pre></div>
+    <p class='mb-4 leading-relaxed'>
+      Run health check:
+    </p>
+  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>nix</span> run nixpkgs#omnix <span class='at'>--</span> health
 </code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Expect to see all results in either green (or yellow).
