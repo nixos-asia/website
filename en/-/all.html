@@ -6,6 +6,18 @@
 <head>
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <script>
+    // Apply theme before first paint to avoid FOUC.
+    // Priority: explicit user choice (localStorage) > OS preference.
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('emanote-theme'); } catch (e) {}
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+      if (isDark) document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+    })();
+  </script>
   <title>
     Index – NixOS Asia
   </title>
@@ -28,23 +40,58 @@
 
   
   <emaNoteFeedUrl></emaNoteFeedUrl>
-  <link href='tailwind.css?instanceId=69d8b27b-d426-4edb-ba1a-36169ec64017' rel='stylesheet' type='text/css' />
+  <style id='emanote-theme-remap'>:root {
+  --color-primary-50: var(--color-green-50);
+  --color-primary-100: var(--color-green-100);
+  --color-primary-200: var(--color-green-200);
+  --color-primary-300: var(--color-green-300);
+  --color-primary-400: var(--color-green-400);
+  --color-primary-500: var(--color-green-500);
+  --color-primary-600: var(--color-green-600);
+  --color-primary-700: var(--color-green-700);
+  --color-primary-800: var(--color-green-800);
+  --color-primary-900: var(--color-green-900);
+  --color-primary-950: var(--color-green-950);
+}
+</style><link href='tailwind.css?instanceId=5ab16c5b-8cb2-4162-ae88-adf993c83135' rel='stylesheet' type='text/css' />
 
   <link rel='stylesheet' href='_emanote-static/skylighting.css' />
 
+<!-- Fonts are self-hosted under _emanote-static/fonts to keep the
+     generated static site fully offline-capable. See the README in
+     that directory for how to refresh. -->
+<link rel='stylesheet' href='_emanote-static/fonts/fonts.css' />
+
 <style data-category='global-font'>
-  /* Refined typography with system font stack */
+  /* Font option C (trial):
+     Prose: Lora (warm, variable, very readable book serif).
+     UI chrome: Space Grotesk (geometric with quirks — personal-webpage energy).
+     Code: Space Mono (pairs stylistically with Space Grotesk). */
+  :root {
+    --font-serif: 'Lora', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-serif);
     line-height: 1.7;
-    letter-spacing: 0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-sans);
     letter-spacing: -0.02em;
-    line-height: 1.3;
-    font-weight: 700;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  #sidebar, #breadcrumbs, #toc, #footer, #backlinks, .callout-title,
+  ema\:metadata, section[class*="font-mono"] {
+    font-family: var(--font-sans);
+  }
+
+  code, pre, kbd, samp, .font-mono {
+    font-family: var(--font-mono);
   }
 </style>
 
@@ -59,29 +106,25 @@
 </style>
 
 <style data-category='kbd'>
-  /* <kbd> styling */
+  /* <kbd> styling — flat with a subtle baseline, theme-variable colours */
   kbd {
-    background-color: #f7f7f7;
-    border-radius: 6px;
-    border: 1px solid #d1d5db;
-    box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.1),
-      0 2px 0 0 rgba(255, 255, 255, 0.8) inset;
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-300);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    color: var(--color-gray-800);
     display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85em;
     line-height: 1.2;
-    padding: 3px 6px;
+    padding: 2px 6px;
     white-space: nowrap;
-    font-size: 0.9em;
   }
 
-  /* Dark mode kbd styling */
   .dark kbd {
-    background-color: #374151;
-    border: 1px solid #4b5563;
-    box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.4),
-      0 2px 0 0 rgba(255, 255, 255, 0.08) inset;
-    color: #f3f4f6;
+    background-color: var(--color-gray-800);
+    border-color: var(--color-gray-700);
+    color: var(--color-gray-100);
   }
 </style>
 
@@ -93,29 +136,105 @@
   }
 </style>
 
+<style data-category='lists'>
+  /* Tighten nested list margins so a bulleted sub-list inside a numbered
+     item doesn't push its parent's siblings apart. */
+  main li > ul,
+  main li > ol {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+</style>
+
+<style data-category='task-list'>
+  /* Task-list items: swap the disc bullet for flex-aligned checkbox + body. */
+  main li:has(> svg.--ema-checkbox) {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    margin-left: -1rem;
+  }
+
+  main li:has(> svg.--ema-checkbox) > span {
+    flex: 1;
+  }
+</style>
+
+<style data-category='sidebar-tree'>
+  /* Folgezettel depth rails: nested tree levels get a subtle left border */
+  #sidebar .pl-2 .pl-2 {
+    border-left: 1px solid var(--color-gray-200);
+    margin-left: 0.25rem;
+  }
+
+  .dark #sidebar .pl-2 .pl-2 {
+    border-left-color: var(--color-gray-800);
+  }
+</style>
+
 <style data-category='toc'>
   a.--ema-toc {
     background-color: transparent !important;
   }
 
-  /* Active TOC item styling */
-  a.--ema-toc.toc-item-active {
+  /* Visual hierarchy by depth: each nested level (H3, H4, ...) is
+     progressively smaller, lighter, and more muted so a long TOC
+     stays scannable at a glance. Top-level (H2) items keep full
+     weight and contrast. */
+  #toc ul a.--ema-toc {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+  }
+
+  .dark #toc ul a.--ema-toc {
+    color: var(--color-gray-300);
+  }
+
+  #toc ul ul a.--ema-toc {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-gray-600);
+  }
+
+  .dark #toc ul ul a.--ema-toc {
+    color: var(--color-gray-400);
+  }
+
+  #toc ul ul ul a.--ema-toc {
+    font-size: 0.78125rem;
+    color: var(--color-gray-500);
+  }
+
+  .dark #toc ul ul ul a.--ema-toc {
+    color: var(--color-gray-500);
+  }
+
+  #toc ul ul ul ul a.--ema-toc {
+    font-size: 0.75rem;
+    color: var(--color-gray-400);
+  }
+
+  .dark #toc ul ul ul ul a.--ema-toc {
+    color: var(--color-gray-600);
+  }
+
+  /* Active TOC item — uses theme primary palette so per-site theme overrides
+     flow through without hardcoding a colour here. The selector is scoped
+     under #toc so it beats the per-depth color rules above. */
+  #toc a.--ema-toc.toc-item-active {
     font-weight: 600;
-    border-left: 3px solid #3b82f6;
+    border-left: 3px solid var(--color-primary-500);
     padding-left: calc(0.5rem - 3px) !important;
+    background-color: var(--color-primary-50) !important;
+    color: var(--color-primary-700) !important;
   }
 
-  /* Light mode active state */
-  a.--ema-toc.toc-item-active {
-    background-color: #eff6ff !important;
-    color: #1d4ed8 !important;
-  }
-
-  /* Dark mode active state */
-  .dark a.--ema-toc.toc-item-active {
-    background-color: #172554 !important;
-    color: #93c5fd !important;
-    border-left-color: #3b82f6;
+  .dark #toc a.--ema-toc.toc-item-active {
+    background-color: var(--color-primary-950) !important;
+    color: var(--color-primary-300) !important;
+    border-left-color: var(--color-primary-400);
   }
 </style>
 
@@ -190,6 +309,24 @@
 </style>
 
 <script>
+  // Theme toggle: persist choice in localStorage; the early-load script in
+  // base.tpl applies it before first paint so there's no FOUC on reload.
+  (function () {
+    window.emanote = window.emanote || {};
+    window.emanote.theme = {
+      toggle: function () {
+        var root = document.documentElement;
+        var isDark = root.classList.toggle('dark');
+        root.style.colorScheme = isDark ? 'dark' : 'light';
+        try { localStorage.setItem('emanote-theme', isDark ? 'dark' : 'light'); } catch (e) {}
+        // Mermaid reads system colour-scheme at init; reload so any diagrams re-render.
+        if (document.querySelector('.mermaid')) window.location.reload();
+      }
+    };
+  })();
+</script>
+
+<script>
   // Add copy buttons to code blocks
   document.addEventListener('DOMContentLoaded', function() {
     const copyIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>';
@@ -230,87 +367,45 @@
 </script>
 
 <style data-category='external-link'>
-  /* External link icon */
-  a[data-linkicon=""]::after {
-    content: ""
-  }
-
-  a[data-linkicon=none]::after {
-    content: ""
-  }
-
+  /* External/mail link glyphs — drawn with mask-image so they inherit the
+     link's currentColor (one rule for both light and dark themes). */
   a[data-linkicon="external"] {
-    padding-right: 24px;
+    padding-right: 1.1em;
   }
 
   a[data-linkicon="external"]::after {
-    margin-right: -24px;
-    content: url('data:image/svg+xml,\
-      <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
-        <g style="stroke:gray;stroke-width:1"> \
-          <line x1="5" y1="5" x2="5" y2="14" /> \
-          <line x1="14" y1="9" x2="14" y2="14" /> \
-          <line x1="5" y1="14" x2="14" y2="14" /> \
-          <line x1="5" y1="5" x2="9" y2="5"  /> \
-          <line x1="10" y1="2" x2="17" y2="2"  /> \
-          <line x1="17" y1="2" x2="17" y2="9" /> \
-          <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
-        </g> \
-      </svg>');
-  }
-
-  .dark a[data-linkicon="external"]::after {
-    content: url('data:image/svg+xml,\
-      <svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 20 20"> \
-        <g style="stroke:lightgray;stroke-width:1"> \
-          <line x1="5" y1="5" x2="5" y2="14" /> \
-          <line x1="14" y1="9" x2="14" y2="14" /> \
-          <line x1="5" y1="14" x2="14" y2="14" /> \
-          <line x1="5" y1="5" x2="9" y2="5"  /> \
-          <line x1="10" y1="2" x2="17" y2="2"  /> \
-          <line x1="17" y1="2" x2="17" y2="9" /> \
-          <line x1="10" y1="9" x2="17" y2="2" style="stroke-width:1.0" /> \
-        </g> \
-      </svg>');
+    content: "";
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 0.15em;
+    margin-right: -1.1em;
+    vertical-align: baseline;
+    background-color: currentColor;
+    opacity: 0.55;
+    -webkit-mask: var(--icon-external) no-repeat center / contain;
+    mask: var(--icon-external) no-repeat center / contain;
   }
 
   a[data-linkicon="external"][href^="mailto:"]::after {
-    content: url('data:image/svg+xml,\
-        <svg \
-          xmlns="http://www.w3.org/2000/svg" \
-          height="0.7em" \
-          fill="none" \
-          viewBox="0 0 24 24" \
-          stroke="gray" \
-          stroke-width="2"> \
-          <path \
-            stroke-linecap="round" \
-            stroke-linejoin="round" \
-            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
-        </svg>');
+    width: 0.9em;
+    height: 0.9em;
+    -webkit-mask: var(--icon-mail) no-repeat center / contain;
+    mask: var(--icon-mail) no-repeat center / contain;
   }
 
-  .dark a[data-linkicon="external"][href^="mailto:"]::after {
-    content: url('data:image/svg+xml,\
-        <svg \
-          xmlns="http://www.w3.org/2000/svg" \
-          height="0.7em" \
-          fill="none" \
-          viewBox="0 0 24 24" \
-          stroke="lightgray" \
-          stroke-width="2"> \
-          <path \
-            stroke-linecap="round" \
-            stroke-linejoin="round" \
-            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> \
-        </svg>');
+  :root {
+    --icon-external: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><g style="stroke:black;stroke-width:1;fill:none"><line x1="5" y1="5" x2="5" y2="14"/><line x1="14" y1="9" x2="14" y2="14"/><line x1="5" y1="14" x2="14" y2="14"/><line x1="5" y1="5" x2="9" y2="5"/><line x1="10" y1="2" x2="17" y2="2"/><line x1="17" y1="2" x2="17" y2="9"/><line x1="10" y1="9" x2="17" y2="2"/></g></svg>');
+    --icon-mail: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>');
   }
 </style>
   <!-- What goes in this file will appear on near the end of <head>-->
 
   <head-main></head-main>
-  <!-- Custom Stork-search styling for Emanote --><link rel='stylesheet' href='_emanote-static/stork/edible.css' media='(prefers-color-scheme: light)' />
-<link rel='stylesheet' href='_emanote-static/stork/edible-dark.css' media='(prefers-color-scheme: dark)' />
+  <!-- Custom Stork-search styling for Emanote. Both stylesheets are loaded
+     unconditionally; the active one is picked by toggling the wrapper's
+     CSS class, driven by the same .dark class the theme toggle manages. --><link rel='stylesheet' href='_emanote-static/stork/edible.css' />
+<link rel='stylesheet' href='_emanote-static/stork/edible-dark.css' />
 
 <style data-category='stork'>
   #stork-search-container {
@@ -328,7 +423,7 @@
 
   
     <script id='emanote-stork' data-emanote-base-url='/en/'>
-      window.emanote = {};
+      window.emanote = window.emanote || {};
       window.emanote.stork = {
         searchShown: false,
         indexIsStale: false,
@@ -454,7 +549,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Tutorials' href='tutorial'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Tutorials' href='tutorial'>
       Tutorials
     </a>
     
@@ -492,7 +587,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Tutorial Series' href='nix-tutorial'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Tutorial Series' href='nix-tutorial'>
       Nix Tutorial Series
     </a>
     
@@ -531,7 +626,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='First steps with Nix' href='nix-first'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='First steps with Nix' href='nix-first'>
       First steps with Nix
     </a>
     
@@ -573,7 +668,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rapid Introduction to Nix' href='nix-rapid'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rapid Introduction to Nix' href='nix-rapid'>
       Rapid Introduction to Nix
     </a>
     
@@ -615,7 +710,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Introduction to module system' href='nix-modules'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Introduction to module system' href='nix-modules'>
       Introduction to module system
     </a>
     
@@ -659,7 +754,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS Tutorial Series' href='nixos-tutorial'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS Tutorial Series' href='nixos-tutorial'>
       NixOS Tutorial Series
     </a>
     
@@ -697,7 +792,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
       Install NixOS with Flake configuration on Git
     </a>
     
@@ -736,7 +831,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
       Convert <code>configuration.nix</code> to be a flake
     </a>
     
@@ -781,7 +876,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
       Install NixOS with <code>disko</code> disk partitioning
     </a>
     
@@ -823,7 +918,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
       Install NixOS directly from a remote flake
     </a>
     
@@ -868,7 +963,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rust FFI in Haskell' href='haskell-rust-ffi'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rust FFI in Haskell' href='haskell-rust-ffi'>
       Rust FFI in Haskell
     </a>
     
@@ -909,7 +1004,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nixify Haskell projects' href='nixify-haskell'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nixify Haskell projects' href='nixify-haskell'>
       Nixify Haskell projects
     </a>
     
@@ -948,7 +1043,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using haskell-flake' href='nixify-haskell-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using haskell-flake' href='nixify-haskell-flake'>
       2. Using haskell-flake
     </a>
     
@@ -990,7 +1085,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
       1. Using nixpkgs only
     </a>
     
@@ -1032,7 +1127,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using flake-parts' href='nixify-haskell-parts'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using flake-parts' href='nixify-haskell-parts'>
       2. Using flake-parts
     </a>
     
@@ -1074,7 +1169,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='4. Using services-flake' href='nixify-services-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='4. Using services-flake' href='nixify-services-flake'>
       4. Using services-flake
     </a>
     
@@ -1119,7 +1214,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Declarative User Environments with Home Manager' href='hm-tutorial'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Declarative User Environments with Home Manager' href='hm-tutorial'>
       Declarative User Environments with Home Manager
     </a>
     
@@ -1163,7 +1258,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Blog' href='blog'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Blog' href='blog'>
       Blog
     </a>
     
@@ -1202,7 +1297,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Git Submodules as Nix Flake Inputs' href='blog/git-submodule-input'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Git Submodules as Nix Flake Inputs' href='blog/git-submodule-input'>
       Git Submodules as Nix Flake Inputs
     </a>
     
@@ -1244,7 +1339,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -1288,7 +1383,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Events' href='event'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Events' href='event'>
       Events
     </a>
     
@@ -1327,7 +1422,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Using home-manager to manage dotfiles, packages, services' href='event/nix-dev-home'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Using home-manager to manage dotfiles, packages, services' href='event/nix-dev-home'>
       Using <code>home-manager</code> to manage dotfiles, packages, services
     </a>
     
@@ -1369,7 +1464,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake: Services simplified for Dev/CI workflows' href='event/services-flake-meetup'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake: Services simplified for Dev/CI workflows' href='event/services-flake-meetup'>
       services-flake: Services simplified for Dev/CI workflows
     </a>
     
@@ -1411,7 +1506,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Getting Started with Nix for Haskell & Rust' href='event/srid-nix-dev'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Getting Started with Nix for Haskell & Rust' href='event/srid-nix-dev'>
       Getting Started with Nix for Haskell & Rust
     </a>
     
@@ -1455,7 +1550,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='HOWTO' href='howto'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='HOWTO' href='howto'>
       HOWTO
     </a>
     
@@ -1494,7 +1589,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
       Separate Git “profiles”
     </a>
     
@@ -1536,7 +1631,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
       Installing fonts using home-manager
     </a>
     
@@ -1578,7 +1673,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Use a local directory as flake input' href='howto/local-flake-input'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Use a local directory as flake input' href='howto/local-flake-input'>
       Use a local directory as flake input
     </a>
     
@@ -1620,7 +1715,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Use a specific version of nix' href='howto/nix-package'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Use a specific version of nix' href='howto/nix-package'>
       Use a specific version of <code>nix</code>
     </a>
     
@@ -1662,7 +1757,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Copying packages to a remote Nix store' href='howto/remote-cp'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Copying packages to a remote Nix store' href='howto/remote-cp'>
       Copying packages to a remote Nix store
     </a>
     
@@ -1704,7 +1799,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Uninstall Nix' href='howto/uninstall-nix'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Uninstall Nix' href='howto/uninstall-nix'>
       Uninstall Nix
     </a>
     
@@ -1746,7 +1841,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='traceVerbose' href='traceVerbose'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='traceVerbose' href='traceVerbose'>
       <code>traceVerbose</code>
     </a>
     
@@ -1790,7 +1885,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Topics' href='topics'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Topics' href='topics'>
       Topics
     </a>
     
@@ -1828,7 +1923,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix' href='nix'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix' href='nix'>
       Nix
     </a>
     
@@ -1866,7 +1961,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install Nix' href='install'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install Nix' href='install'>
       Install Nix
     </a>
     
@@ -1905,7 +2000,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
       Nix is broken after macOS upgrade
     </a>
     
@@ -1950,7 +2045,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Binary Cache' href='cache'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Binary Cache' href='cache'>
       Binary Cache
     </a>
     
@@ -1991,7 +2086,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix for Development' href='dev'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix for Development' href='dev'>
       Nix for Development
     </a>
     
@@ -2030,7 +2125,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -2072,7 +2167,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='direnv: manage dev environments' href='direnv'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='direnv: manage dev environments' href='direnv'>
       <code>direnv</code>: manage dev environments
     </a>
     
@@ -2113,7 +2208,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Git' href='git'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Git' href='git'>
       Git
     </a>
     
@@ -2152,7 +2247,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
       Separate Git “profiles”
     </a>
     
@@ -2196,7 +2291,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Haskell' href='haskell'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Haskell' href='haskell'>
       Haskell
     </a>
     
@@ -2234,7 +2329,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nixify Haskell projects' href='nixify-haskell'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nixify Haskell projects' href='nixify-haskell'>
       Nixify Haskell projects
     </a>
     
@@ -2273,7 +2368,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using haskell-flake' href='nixify-haskell-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using haskell-flake' href='nixify-haskell-flake'>
       2. Using haskell-flake
     </a>
     
@@ -2315,7 +2410,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='1. Using nixpkgs only' href='nixify-haskell-nixpkgs'>
       1. Using nixpkgs only
     </a>
     
@@ -2357,7 +2452,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using flake-parts' href='nixify-haskell-parts'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='2. Using flake-parts' href='nixify-haskell-parts'>
       2. Using flake-parts
     </a>
     
@@ -2399,7 +2494,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='4. Using services-flake' href='nixify-services-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='4. Using services-flake' href='nixify-services-flake'>
       4. Using services-flake
     </a>
     
@@ -2446,7 +2541,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rust' href='rust'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rust' href='rust'>
       Rust
     </a>
     
@@ -2485,7 +2580,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='buildRustPackage' href='buildRustPackage'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='buildRustPackage' href='buildRustPackage'>
       <code>buildRustPackage</code>
     </a>
     
@@ -2530,7 +2625,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
       Auto formatting using <code>treefmt-nix</code>
     </a>
     
@@ -2572,7 +2667,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='VSCode' href='vscode'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='VSCode' href='vscode'>
       VSCode
     </a>
     
@@ -2614,7 +2709,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Why Choose Nix for develoment?' href='why-dev'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Why Choose Nix for develoment?' href='why-dev'>
       Why Choose Nix for develoment?
     </a>
     
@@ -2658,7 +2753,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Derivation' href='drv'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Derivation' href='drv'>
       Derivation
     </a>
     
@@ -2697,7 +2792,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Import From Derivation (IFD)' href='ifd'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Import From Derivation (IFD)' href='ifd'>
       Import From Derivation (IFD)
     </a>
     
@@ -2741,7 +2836,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flakes' href='flakes'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flakes' href='flakes'>
       Flakes
     </a>
     
@@ -2780,7 +2875,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
       Convert <code>configuration.nix</code> to be a flake
     </a>
     
@@ -2821,7 +2916,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='flake-parts' href='flake-parts'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='flake-parts' href='flake-parts'>
       flake-parts
     </a>
     
@@ -2860,7 +2955,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='process-compose-flake' href='process-compose-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='process-compose-flake' href='process-compose-flake'>
       process-compose-flake
     </a>
     
@@ -2901,7 +2996,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake' href='services-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake' href='services-flake'>
       services-flake
     </a>
     
@@ -2940,7 +3035,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -2985,7 +3080,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
       Auto formatting using <code>treefmt-nix</code>
     </a>
     
@@ -3030,7 +3125,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flake URL' href='flake-url'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flake URL' href='flake-url'>
       Flake URL
     </a>
     
@@ -3072,7 +3167,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
       Nix does not recognize a new file I added
     </a>
     
@@ -3114,7 +3209,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flake registry' href='registry'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Flake registry' href='registry'>
       Flake registry
     </a>
     
@@ -3156,7 +3251,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rapid Introduction to Nix' href='nix-rapid'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Rapid Introduction to Nix' href='nix-rapid'>
       Rapid Introduction to Nix
     </a>
     
@@ -3200,7 +3295,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Gotchas' href='gotchas'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Gotchas' href='gotchas'>
       Gotchas
     </a>
     
@@ -3239,7 +3334,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
       Nix is broken after macOS upgrade
     </a>
     
@@ -3281,7 +3376,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nested devShells can cause problems' href='gotchas/nested-devshells'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nested devShells can cause problems' href='gotchas/nested-devshells'>
       Nested devShells can cause problems
     </a>
     
@@ -3323,7 +3418,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix does not recognize a new file I added' href='gotchas/new-file'>
       Nix does not recognize a new file I added
     </a>
     
@@ -3365,7 +3460,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix’s sqlite database is corrupted/broken' href='gotchas/sqlite-corruption'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix’s sqlite database is corrupted/broken' href='gotchas/sqlite-corruption'>
       Nix’s sqlite database is corrupted/broken
     </a>
     
@@ -3409,7 +3504,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='home-manager' href='home-manager'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='home-manager' href='home-manager'>
       home-manager
     </a>
     
@@ -3448,7 +3543,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Separate Git “profiles”' href='howto/git-profiles'>
       Separate Git “profiles”
     </a>
     
@@ -3490,7 +3585,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
       Installing fonts using home-manager
     </a>
     
@@ -3532,7 +3627,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Declarative User Environments with Home Manager' href='hm-tutorial'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Declarative User Environments with Home Manager' href='hm-tutorial'>
       Declarative User Environments with Home Manager
     </a>
     
@@ -3577,7 +3672,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix-darwin' href='nix-darwin'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix-darwin' href='nix-darwin'>
       nix-darwin
     </a>
     
@@ -3618,7 +3713,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nixpkgs' href='nixpkgs'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nixpkgs' href='nixpkgs'>
       nixpkgs
     </a>
     
@@ -3656,7 +3751,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Module System' href='modules'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Module System' href='modules'>
       Module System
     </a>
     
@@ -3694,7 +3789,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='flake-parts' href='flake-parts'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='flake-parts' href='flake-parts'>
       flake-parts
     </a>
     
@@ -3733,7 +3828,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='process-compose-flake' href='process-compose-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='process-compose-flake' href='process-compose-flake'>
       process-compose-flake
     </a>
     
@@ -3774,7 +3869,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake' href='services-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='services-flake' href='services-flake'>
       services-flake
     </a>
     
@@ -3813,7 +3908,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Replacing docker-compose with Nix for development' href='blog/replacing-docker-compose'>
       Replacing docker-compose with Nix for development
     </a>
     
@@ -3858,7 +3953,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Auto formatting using treefmt-nix' href='treefmt'>
       Auto formatting using <code>treefmt-nix</code>
     </a>
     
@@ -3903,7 +3998,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Introduction to module system' href='nix-modules'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Introduction to module system' href='nix-modules'>
       Introduction to module system
     </a>
     
@@ -3948,7 +4043,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='writeShellApplication' href='writeShellApplication'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='writeShellApplication' href='writeShellApplication'>
       <code>writeShellApplication</code>
     </a>
     
@@ -3993,7 +4088,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix repl' href='repl'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix repl' href='repl'>
       nix repl
     </a>
     
@@ -4035,7 +4130,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Shell' href='shell'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Shell' href='shell'>
       Nix Shell
     </a>
     
@@ -4076,7 +4171,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Store' href='store'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Store' href='store'>
       Nix Store
     </a>
     
@@ -4115,7 +4210,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Store path' href='store-path'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Store path' href='store-path'>
       Store path
     </a>
     
@@ -4162,7 +4257,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS' href='nixos'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS' href='nixos'>
       NixOS
     </a>
     
@@ -4200,7 +4295,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS Tutorial Series' href='nixos-tutorial'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='NixOS Tutorial Series' href='nixos-tutorial'>
       NixOS Tutorial Series
     </a>
     
@@ -4238,7 +4333,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with Flake configuration on Git' href='nixos-install-flake'>
       Install NixOS with Flake configuration on Git
     </a>
     
@@ -4277,7 +4372,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Convert configuration.nix to be a flake' href='configuration-as-flake'>
       Convert <code>configuration.nix</code> to be a flake
     </a>
     
@@ -4322,7 +4417,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS with disko disk partitioning' href='nixos-install-disko'>
       Install NixOS with <code>disko</code> disk partitioning
     </a>
     
@@ -4364,7 +4459,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Install NixOS directly from a remote flake' href='nixos-install-oneclick'>
       Install NixOS directly from a remote flake
     </a>
     
@@ -4411,7 +4506,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='macOS' href='macos'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='macOS' href='macos'>
       macOS
     </a>
     
@@ -4450,7 +4545,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix is broken after macOS upgrade' href='gotchas/macos-upgrade'>
       Nix is broken after macOS upgrade
     </a>
     
@@ -4492,7 +4587,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Installing fonts using home-manager' href='howto/hm-fonts'>
       Installing fonts using home-manager
     </a>
     
@@ -4534,7 +4629,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix-darwin' href='nix-darwin'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='nix-darwin' href='nix-darwin'>
       nix-darwin
     </a>
     
@@ -4582,7 +4677,7 @@
   
         
     </span>
-    <a class='hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-700 dark:hover:text-green-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Jobs' href='jobs'>
+    <a class='hover:bg-primary-50 dark:hover:bg-primary-950 hover:text-primary-700 dark:hover:text-primary-300 transition-colors rounded-md px-2 py-1 truncate flex-1' title='Nix Jobs' href='jobs'>
       Nix Jobs
     </a>
     
@@ -4608,7 +4703,7 @@
     
       
         <a href='/en/' title='Go to Home'>
-          <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
             <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
           </svg>
         </a>
@@ -4617,19 +4712,19 @@
   </div>
   <div>
     <a href='-/all' title='View Index'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.5.4.1'>
-      <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.6.0.0'>
+      <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
     </a>
   </div>
   <div>
     <a href='-/tags' title='View tags'>
-      <svg class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+      <svg class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
@@ -4637,7 +4732,7 @@
   </div>
   <div>
     <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
@@ -4658,14 +4753,22 @@
 </div>
 
 <script>
-  const wrapper = document.getElementById('stork-wrapper');
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  wrapper.classList.add(isDark ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    wrapper.classList.remove('stork-wrapper-edible', 'stork-wrapper-edible-dark');
-    wrapper.classList.add(e.matches ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
-  });
+  // Block-scoped so Ema's reloadScripts can re-execute on route switches
+  // without hitting "Identifier 'wrapper' has already been declared".
+  {
+    const wrapper = document.getElementById('stork-wrapper');
+    const applyTheme = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      wrapper.classList.remove('stork-wrapper-edible', 'stork-wrapper-edible-dark');
+      wrapper.classList.add(isDark ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
+    };
+    applyTheme();
+    // Theme toggle mutates the .dark class on <html>; mirror it onto the
+    // stork wrapper so the search dialog re-skins live without a reload.
+    new MutationObserver(applyTheme).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['class']
+    });
+  }
 </script>
   
     
