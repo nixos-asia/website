@@ -14,8 +14,12 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <script>
-    // Apply theme before first paint to avoid FOUC.
+    // Apply theme before first paint to avoid FOUC. Must run synchronously
+    // here (no module loader, no defer) — that's why this is the one
+    // theme-related script that doesn't live in _emanote-static/js/.
     // Priority: explicit user choice (localStorage) > OS preference.
+    // The 'emanote-theme' key is mirrored by STORAGE_KEY in
+    // _emanote-static/js/theme-toggle.js — keep both in sync.
     (function () {
       var stored = null;
       try { stored = localStorage.getItem('emanote-theme'); } catch (e) {}
@@ -60,23 +64,40 @@
   --color-primary-900: var(--color-green-900);
   --color-primary-950: var(--color-green-950);
 }
-</style><link href='tailwind.css?instanceId=5ab16c5b-8cb2-4162-ae88-adf993c83135' rel='stylesheet' type='text/css' />
+</style><link href='tailwind.css?instanceId=d80b5602-bd49-452d-a9cb-9e7339b3bf04' rel='stylesheet' type='text/css' />
 
+  <!-- styles.tpl is the escape hatch for CSS that inline Tailwind can't
+     express: @keyframes, :target, ::marker bodies that need multiple
+     properties, decorative ::before/::after stacks, @media queries,
+     font-feature-settings, and cross-cutting rules that apply to
+     Pandoc-rendered HTML we don't author class-by-class.
+
+     Prefer inline Tailwind in the templates (components/*.tpl) for
+     anything expressible as utility classes — colors, spacing,
+     typography, hover/dark/motion-reduce variants, before:content-[''],
+     marker:*, align-super, etc. Use arbitrary values (e.g.
+     [font-variant-numeric:oldstyle-nums]) before reaching for a new
+     rule here. Only land in this file when the alternative would be a
+     pile of [...] utilities so ugly that a CSS block reads cleaner. -->
   <link rel='stylesheet' href='_emanote-static/skylighting.css' />
+
 
 <!-- Fonts are self-hosted under _emanote-static/fonts to keep the
      generated static site fully offline-capable. See the README in
      that directory for how to refresh. -->
-<link rel='stylesheet' href='_emanote-static/fonts/fonts.css' />
+
+  <link rel='stylesheet' href='_emanote-static/fonts/fonts.css' />
+
 
 <style data-category='global-font'>
-  /* Font option C (trial):
-     Prose: Lora (warm, variable, very readable book serif).
-     UI chrome: Space Grotesk (geometric with quirks — personal-webpage energy).
-     Code: Space Mono (pairs stylistically with Space Grotesk). */
+  /* Prose: Lora (warm, variable, very readable book serif).
+     UI chrome: Mona Sans (variable display+text sans, more characterful
+     than Inter/Space Grotesk; GitHub uses it as their display face).
+     Code: Space Mono (pairs stylistically with the prose serif at body
+     sizes; the slab terminals echo Lora's serifs). */
   :root {
     --font-serif: 'Lora', ui-serif, Georgia, 'Times New Roman', serif;
-    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'Mona Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
 
@@ -87,18 +108,102 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
-    letter-spacing: -0.02em;
     line-height: 1.2;
     font-weight: 600;
   }
+  /* Negative tracking is a display-typography move; below ~24px it
+     makes Mona Sans glyphs touch and reduces legibility. Scope to the
+     larger headings only. */
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+  }
 
-  #sidebar, #breadcrumbs, #toc, #footer, #backlinks, .callout-title,
+  #sidebar, #breadcrumbs, #toc, #footer,
+  #backlinks, #backlinks-margin, #backlinks-bottom, #right-panel,
+  .callout-title,
   ema\:metadata, section[class*="font-mono"] {
     font-family: var(--font-sans);
   }
 
   code, pre, kbd, samp, .font-mono {
     font-family: var(--font-mono);
+  }
+
+  /* Block-level prose images (an <img> that's the only content of its
+     paragraph) get a subtle frame: thin gray border, rounded corners,
+     centered with a bit of vertical breathing room. Inline images
+     (e.g. emoji, small icons inside flowing text) stay un-styled via
+     the :only-child gate. */
+  main p > img:only-child {
+    display: block;
+    margin: 1rem auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-gray-200);
+  }
+  .dark main p > img:only-child {
+    border-color: var(--color-gray-800);
+  }
+
+  /* Tables — Pandoc emits standard <table> HTML with no classes, so we
+     style by element. Scoped under `main` to avoid hitting tables in
+     chrome surfaces (sidebar tree, footnote popover, etc). */
+  main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  main thead {
+    border-bottom: 2px solid var(--color-gray-200);
+    text-align: left;
+  }
+  main thead th {
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    letter-spacing: -0.01em;
+  }
+  main tbody tr {
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+  main tbody tr:hover {
+    background-color: var(--color-gray-50);
+  }
+  main tbody td {
+    padding: 0.5rem 0.75rem;
+    vertical-align: top;
+  }
+  .dark main thead {
+    border-bottom-color: var(--color-gray-700);
+  }
+  .dark main thead th {
+    color: var(--color-gray-100);
+  }
+  .dark main tbody tr {
+    border-bottom-color: var(--color-gray-800);
+  }
+  .dark main tbody tr:hover {
+    background-color: rgb(255 255 255 / 0.03);
+  }
+  /* heist-extra's Pandoc renderer hardcodes
+     `border-r-2 border-l-2 border-gray-300` on every cell and
+     `border-b-2 border-t-2 border-gray-300` on every row, producing
+     a heavy "spreadsheet" look with vertical cell borders. !important
+     overrides win over those class utilities — leaving only the
+     thead bottom-rule and tbody row separators we set above for the
+     editorial GitHub-style table. (Upstream TODO note in
+     `Heist.Extra.Splices.Pandoc.Render`: "Move tailwind styles to
+     pandoc.tpl".) */
+  main table th,
+  main table td {
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+  }
+  main table thead tr,
+  main table tbody tr {
+    border-top-width: 0 !important;
   }
 </style>
 
@@ -141,6 +246,29 @@
     color: inherit;
     text-decoration: underline;
   }
+
+  /* Foldable callouts (Obsidian [!type]+ / [!type]-): suppress the native
+     <details>/<summary> disclosure marker since we render our own chevron,
+     and rotate the chevron based on open state. */
+  details.callout-foldable > summary {
+    list-style: none;
+  }
+
+  details.callout-foldable > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details.callout-foldable[open] > summary .callout-fold-marker svg {
+    transform: rotate(180deg);
+  }
+
+  /* Nested callouts: drop the outer block margin so the inner callout
+     hugs the body of its parent rather than introducing a paragraph gap.
+     Both foldable (<details>) and non-foldable (<div>) outer callouts wrap
+     their body in `.callout-content`, so a single selector covers both. */
+  .callout .callout-content > .callout:last-child {
+    margin-bottom: 0;
+  }
 </style>
 
 <style data-category='lists'>
@@ -154,30 +282,34 @@
 </style>
 
 <style data-category='task-list'>
-  /* Task-list items: swap the disc bullet for flex-aligned checkbox + body. */
-  main li:has(> svg.--ema-checkbox) {
-    list-style: none;
-    display: flex;
-    gap: 0.5rem;
-    align-items: baseline;
-    margin-left: -1rem;
-  }
+  /* In-prose Pandoc task list (a Markdown bullet list with `[ ]`/`[x]`
+     items). Pandoc emits the task as a regular <li> with a checkbox
+     SVG (.--ema-checkbox) followed by a <span> of inlines. We drop
+     the disc marker and absolutely position the checkbox in the
+     marker slot so task text shares the same left edge as plain
+     bullet text in the same list — mixed task/non-task lists then
+     read as one column instead of two subtly-misaligned ones.
 
-  main li:has(> svg.--ema-checkbox) > span {
-    flex: 1;
+     Scoped to `main ul.list-disc` so the special tasks index page
+     (`/-/tasks`, which uses its own list shape, not list-disc)
+     doesn't pick up the absolute-position rule and shove the
+     checkbox off-screen. */
+  main ul.list-disc li:has(> svg.--ema-checkbox) {
+    list-style: none;
+    position: relative;
+  }
+  main ul.list-disc li:has(> svg.--ema-checkbox) > svg.--ema-checkbox {
+    position: absolute;
+    left: -1.5rem;
+    top: 0.3em;
   }
 </style>
 
 <style data-category='sidebar-tree'>
-  /* Folgezettel depth rails: nested tree levels get a subtle left border */
-  #sidebar .pl-2 .pl-2 {
-    border-left: 1px solid var(--color-gray-200);
-    margin-left: 0.25rem;
-  }
-
-  .dark #sidebar .pl-2 .pl-2 {
-    border-left-color: var(--color-gray-800);
-  }
+  /* Folgezettel depth rails removed — indent alone is enough to
+     convey hierarchy and the rule was visual noise the user can do
+     without. (Re-add later as a 1px gray-100 / gray-900 hairline
+     if deep trees become hard to follow.) */
 </style>
 
 <style data-category='toc'>
@@ -227,21 +359,19 @@
     color: var(--color-gray-600);
   }
 
-  /* Active TOC item — uses theme primary palette so per-site theme overrides
-     flow through without hardcoding a colour here. The selector is scoped
-     under #toc so it beats the per-depth color rules above. */
+  /* Active TOC item — neutral grey since TOC entries map to headings
+     in the prose, which render in plain text. Keeping primary out of
+     here lets the wikilink / title strip own the primary palette and
+     stand out as the page's only "destination" affordance. */
   #toc a.--ema-toc.toc-item-active {
     font-weight: 600;
-    border-left: 3px solid var(--color-primary-500);
-    padding-left: calc(0.5rem - 3px) !important;
-    background-color: var(--color-primary-50) !important;
-    color: var(--color-primary-700) !important;
+    background-color: var(--color-gray-100) !important;
+    color: var(--color-gray-900) !important;
   }
 
   .dark #toc a.--ema-toc.toc-item-active {
-    background-color: var(--color-primary-950) !important;
-    color: var(--color-primary-300) !important;
-    border-left-color: var(--color-primary-400);
+    background-color: var(--color-gray-800) !important;
+    color: var(--color-gray-100) !important;
   }
 </style>
 
@@ -315,63 +445,8 @@
   }
 </style>
 
-<script>
-  // Theme toggle: persist choice in localStorage; the early-load script in
-  // base.tpl applies it before first paint so there's no FOUC on reload.
-  (function () {
-    window.emanote = window.emanote || {};
-    window.emanote.theme = {
-      toggle: function () {
-        var root = document.documentElement;
-        var isDark = root.classList.toggle('dark');
-        root.style.colorScheme = isDark ? 'dark' : 'light';
-        try { localStorage.setItem('emanote-theme', isDark ? 'dark' : 'light'); } catch (e) {}
-        // Mermaid reads system colour-scheme at init; reload so any diagrams re-render.
-        if (document.querySelector('.mermaid')) window.location.reload();
-      }
-    };
-  })();
-</script>
-
-<script>
-  // Add copy buttons to code blocks
-  document.addEventListener('DOMContentLoaded', function() {
-    const copyIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>';
-    const checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
-
-    document.querySelectorAll('pre code').forEach(function(codeBlock) {
-      const pre = codeBlock.parentElement;
-
-      // Create copy button
-      const button = document.createElement('button');
-      button.className = 'code-copy-button';
-      button.innerHTML = copyIcon;
-      button.setAttribute('aria-label', 'Copy code to clipboard');
-      button.setAttribute('title', 'Copy code');
-
-      button.addEventListener('click', function() {
-        const text = codeBlock.textContent;
-        navigator.clipboard.writeText(text).then(function() {
-          button.innerHTML = checkIcon;
-          button.setAttribute('title', 'Copied!');
-          setTimeout(function() {
-            button.innerHTML = copyIcon;
-            button.setAttribute('title', 'Copy code');
-          }, 2000);
-        }).catch(function(err) {
-          console.error('Copy failed:', err);
-          button.setAttribute('title', 'Copy failed');
-          setTimeout(function() {
-            button.innerHTML = copyIcon;
-            button.setAttribute('title', 'Copy code');
-          }, 2000);
-        });
-      });
-
-      pre.appendChild(button);
-    });
-  });
-</script>
+<!-- Theme toggle and code-copy behaviors moved to
+     _emanote-static/js/{theme-toggle,code-copy}.js — see issue #643. -->
 
 <style data-category='external-link'>
   /* External/mail link glyphs — drawn with mask-image so they inherit the
@@ -406,17 +481,53 @@
     --icon-mail: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="black" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>');
   }
 </style>
+
+<style data-category='page-load-reveal'>
+  /* One orchestrated entrance on first paint: sidebar fades in; main
+     content fades and drifts up ~8px with a small stagger. Pure CSS so
+     it runs pre-paint without JS; gated on prefers-reduced-motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes ema-fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes ema-rise-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: none; }
+    }
+    #sidebar {
+      animation: ema-fade-in 400ms ease-out both;
+    }
+    main {
+      animation: ema-rise-in 480ms 60ms ease-out both;
+    }
+  }
+</style>
+
+  <!-- Footnote popup CSS escape hatch. The behavior itself lives in
+     _emanote-static/js/footnote-popup.js (see issue #643); the Popover
+     ::backdrop pseudo-element is the one bit that has no Tailwind
+     variant, so it stays inline here next to the markup contract. --><style data-category='footnote-popup'>
+  #emanote-footnote-popover::backdrop { background: transparent; }
+</style>
+
   <!-- What goes in this file will appear on near the end of <head>-->
 
   
     
-      <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+      
+        <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+      
     
   
   <!-- Custom Stork-search styling for Emanote. Both stylesheets are loaded
      unconditionally; the active one is picked by toggling the wrapper's
-     CSS class, driven by the same .dark class the theme toggle manages. --><link rel='stylesheet' href='_emanote-static/stork/edible.css' />
-<link rel='stylesheet' href='_emanote-static/stork/edible-dark.css' />
+     CSS class, driven by the same .dark class the theme toggle manages. -->
+  <link rel='stylesheet' href='_emanote-static/stork/edible.css' />
+
+
+  <link rel='stylesheet' href='_emanote-static/stork/edible-dark.css' />
+
 
 <style data-category='stork'>
   #stork-search-container {
@@ -429,92 +540,21 @@
   }
 </style>
 
+<!-- Vendor WASM loader. Defines window.stork synchronously so the
+     stork.js module (loaded via the importmap entry from base.tpl)
+     can call stork.initialize / stork.register at evaluate time. -->
 
-<script src='_emanote-static/stork/stork.js'></script>
+  <script src='_emanote-static/stork/stork.js'></script>
 
-  
-    <script id='emanote-stork' data-emanote-base-url='/en/'>
-      window.emanote = window.emanote || {};
-      window.emanote.stork = {
-        searchShown: false,
-        indexIsStale: false,
-        toggleSearch: function () {
-          window.emanote.stork.refreshIndex();
-          document.getElementById('stork-search-container').classList.toggle('hidden');
-          window.emanote.stork.searchShown = document.body.classList.toggle('stork-overflow-hidden-important');
-          if (window.emanote.stork.searchShown) {
-            document.getElementById('stork-search-input').focus();
-          }
-        },
-        clearSearch: function () {
-          document.getElementById('stork-search-container').classList.add('hidden');
-          document.body.classList.remove('stork-overflow-hidden-important');
-          window.emanote.stork.searchShown = false;
-        },
 
-        getBaseUrl: function () {
-          const baseUrl = document.getElementById("emanote-stork").getAttribute('data-emanote-base-url') || '/';
-          return baseUrl;
-        },
-
-        registerIndex: function (options) {
-          const indexName = 'emanote-search'; // used to match input[data-stork] attribute value
-          const indexUrl = window.emanote.stork.getBaseUrl() + '-/stork.st';
-          stork.register(
-            indexName,
-            indexUrl,
-            options);
-        },
-
-        init: function () {
-          if (document.readyState !== 'complete') {
-            window.addEventListener('load', function () {
-              stork.initialize(window.emanote.stork.getBaseUrl() + '_emanote-static/stork/stork.wasm');
-              window.emanote.stork.registerIndex();
-            });
-
-            document.addEventListener('keydown', event => {
-              if (window.emanote.stork.searchShown && event.key === 'Escape') {
-                window.emanote.stork.clearSearch();
-                event.preventDefault();
-              } else if ((event.key == 'k' || event.key == 'K') && (event.ctrlKey || event.metaKey)) {
-                window.emanote.stork.toggleSearch();
-                event.preventDefault();
-              }
-            });
-          } else {
-            // This section is called during Ema's hot reload.
-            //
-            // Mark the current index as stale, and refresh it *only when* the
-            // user actually invokes search.
-            //
-            // We do not refresh the index *right away*, as that will cause
-            // memory leaks in the browser. See
-            // https://github.com/srid/emanote/issues/411#issuecomment-1402056235
-            console.log("stork: Marking index as stale");
-            window.emanote.stork.markIndexAsStale();
-          }
-        },
-
-        markIndexAsStale: function () {
-          window.emanote.stork.indexIsStale = true;
-        },
-
-        refreshIndex: function () {
-          if (window.emanote.stork.indexIsStale) {
-            console.log("stork: Reloading index");
-            window.emanote.stork.indexIsStale = false;
-            // NOTE: This will leak memory. See the comment above.
-            window.emanote.stork.registerIndex({ forceOverwrite: true });
-          }
-        }
-
-      };
-
-      window.emanote.stork.init();
-    </script>
-  
-
+  <!-- Site-authored interactive behaviors (issue #643). The splice emits
+       an importmap (so live-server's per-file ?t=<mtime> propagates
+       through ES module imports) plus the main entry as a deferred
+       module. The FOUC theme applier above stays inline because it
+       must run pre-paint; the vendor Stork WASM loader above stays
+       inline because window.stork must be defined synchronously
+       before the stork.js module evaluates. -->
+  <script type='importmap' im-preserve='true' data-ema-skip='true'>{"imports":{"@emanote/code-copy":"./_emanote-static/js/code-copy.js","@emanote/footnote-popup":"./_emanote-static/js/footnote-popup.js","@emanote/morph":"./_emanote-static/js/morph.js","@emanote/stork":"./_emanote-static/js/stork.js","@emanote/theme-toggle":"./_emanote-static/js/theme-toggle.js","@emanote/timeline-heatmap":"./_emanote-static/js/timeline-heatmap.js","@emanote/toc-spy":"./_emanote-static/js/toc-spy.js"}}</script><script type='module' src='_emanote-static/js/main.js'></script>
 </head>
 
 <!-- DoNotFormat -->
@@ -625,7 +665,7 @@
         
       </ul>
     </div>
-    <button class='shrink-0 px-3 border-l border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer' title='Search (Ctrl+K)' type='button' onclick='window.emanote.stork.toggleSearch()'>
+    <button class='shrink-0 px-3 border-l border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer' title='Search (Ctrl+K)' type='button' data-emanote-stork-toggle>
       <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-primary-700' f
  fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
   <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
@@ -647,10 +687,15 @@
       
 
       
-        <div id='container' class='relative md:shadow-md md:rounded-lg md:mb-8 bg-white dark:bg-gray-900 md:border md:border-gray-200 dark:md:border-gray-800'>
+        <!-- No-sidebar layout (e.g. neuron-style): same card chrome,
+             same attached title strip, no left/right panels. Backlinks
+             render as the full-card variant since backlinks-bottom is
+             gated on lg:hidden and there's no right-panel here. Footer
+             is the last child so md:rounded-b-lg matches the curve. -->
+        <div id='container' class='relative flex flex-col md:shadow-md md:rounded-lg md:mb-8 bg-white dark:bg-gray-900 md:border md:border-gray-200 dark:md:border-gray-800'>
           
   <div class='absolute -top-6 right-1 md:right-0 flex flex-row items-center justify-center space-x-2 text-gray-500 dark:text-gray-400'>
-    <button title='Search (Ctrl+K)' class='cursor-pointer' onclick='window.emanote.stork.toggleSearch()'>
+    <button title='Search (Ctrl+K)' class='cursor-pointer' data-emanote-stork-toggle>
       <svg xmlns='http://www.w3.org/2000/svg' style='width: 1rem;' class='hover:text-primary-700' f
  fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
   <path stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
@@ -666,20 +711,37 @@
     </button>
   </div>
 
-          <!-- Main body column -->
-          <div class='flex-1 w-full bg-white dark:bg-gray-800'>
-  <main class='px-6 py-8 max-w-7xl mx-auto'>
-    <h1 class='mb-10 px-8 py-5 text-4xl md:text-5xl font-bold text-white text-center bg-primary-600 dark:bg-primary-800 rounded-2xl shadow-sm'>
-  <code>direnv</code>: manage dev environments
-</h1>
+          <!-- Note title attached as a top strip on the container card (see
+     layouts/default.tpl). The md:rounded-t-lg matches the container's
+     md:rounded-lg so the strip's top corners flow into the card's
+     curve; the bottom is square + thin border so it sits flush against
+     the inner row below.
 
-    
-      <article class='overflow-auto'>
+     Calm tint instead of a saturated banner — neuron-style "tinted
+     label" rather than a brand bar. The primary palette still anchors
+     the page identity but at low intensity, so the prose below isn't
+     out-shouted. --><header class='px-8 py-5 md:rounded-t-lg bg-primary-50 dark:bg-primary-950/40 text-primary-700 dark:text-primary-300 text-center border-b border-primary-200/60 dark:border-primary-800/40'>
+  <h1 class='text-3xl md:text-4xl font-semibold tracking-tight'>
+    <code>direnv</code>: manage dev environments
+  </h1>
+</header>
+
+          <!-- min-w-0 lets the flex item shrink below its min-content (default
+     min-width:auto on flex items would otherwise let a long URL in a
+     code block push the column past the container, dragging the
+     right-panel outside the card chrome). --><div class='flex-1 min-w-0 bg-white dark:bg-gray-800'>
+  <main class='px-6 py-8 max-w-7xl mx-auto'>
+    <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
 
 
 
+<!-- Heading scale ~1.20 ratio (text-4xl→base via Tailwind's discrete steps).
+     h2 keeps a subtle bottom rule as the "section break" cue but at 1px in a
+     light gray that doesn't compete with the heading itself. h5/h6 fade
+     gray-* one stop down each level so they recede without losing
+     hierarchy. All semibold (600) — uniform weight, hierarchy via size. -->
 
 
 
@@ -688,41 +750,49 @@
 
 
     <p class='mb-4 leading-relaxed'>
-      <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>direnv</code> (along with <a href='https://github.com/nix-community/nix-direnv' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a>) allows one to persist
-    <sup class='px-0.5'>
-      <a class='text-primary-600 dark:text-primary-400 hover:underline' href='direnv#fn1'>
-        1
-      </a>
-    </sup>
-   nix <a href='dev' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:bg-primary-50 dark:hover:bg-primary-950 px-1 -mx-1 rounded transition-colors' data-wikilink-type='WikiLinkTag'>development</a> <a href='shell' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:bg-primary-50 dark:hover:bg-primary-950 px-1 -mx-1 rounded transition-colors' data-wikilink-type='WikiLinkNormal'>shell</a> environments and share them seamlessly with text editors and IDEs. It obviates having to run <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>nix develop</code> manually every time you open a new terminal. The moment you <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>cd</code> into your project directory, the devshell is automatically activated, thanks to <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>direnv</code>.
+      <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>direnv</code> (along with <a href='https://github.com/nix-community/nix-direnv' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a>) allows one to persist<sup data-footnote-ref='1' role='button' tabindex='0' aria-label='Footnote 1' class='footnote-ref text-[0.7em] leading-[0] align-super pr-[0.08em] font-medium cursor-pointer select-none text-primary-600 dark:text-primary-400 hover:underline hover:underline-offset-2 hover:decoration-1 [font-variant-numeric:lining-nums] [&.emanote-footnote-active]:bg-primary-100 dark:[&.emanote-footnote-active]:bg-primary-900 [&.emanote-footnote-active]:rounded [&.emanote-footnote-active]:px-[0.2em] focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:rounded-sm focus-visible:outline-none'>1</sup> nix <a href='dev' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkTag'>development</a> <a href='shell' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>shell</a> environments and share them seamlessly with text editors and IDEs. It obviates having to run <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>nix develop</code> manually every time you open a new terminal. The moment you <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>cd</code> into your project directory, the devshell is automatically activated, thanks to <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>direnv</code>.
     </p>
-  <div data-callout-metadata data-callout-fold data-callout='tip' class='callout p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 shadow-sm' role='note' style='background-color: color-mix(in srgb, #08BFBC 8%, transparent); border-left-color: #08BFBC'>
-  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-  </path>
-  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
-    <div class='callout-icon flex-shrink-0'>
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        
+  
+
+
+
+
+  <div data-callout-metadata data-callout-fold data-callout='tip' data-footnote-scope
+ class='callout p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 shadow-sm' role='note' style='background-color: color-mix(in srgb, #08BFBC 8%, transparent); border-left-color: #08BFBC'>
+    <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
+      
+  <div class='callout-icon flex-shrink-0'>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+      
     <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
     </path>
   
-      </svg>
-    </div>
-    <div class='ml-3'>
-       Starship
-    </div>
+    </svg>
   </div>
+
+      <div class='ml-3'>
+         Starship
+      </div>
+    </div>
+    
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      It is recommended to use <a href='https://starship.rs/' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'><strong>starship</strong></a> along with nix-direnv, because it gives a visual indication of the current environment. For example, if you are in a <a href='shell' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:bg-primary-50 dark:hover:bg-primary-950 px-1 -mx-1 rounded transition-colors' data-wikilink-type='WikiLinkNormal'>Nix Shell</a>, your terminal prompt automatically changes to something like this:
+      It is recommended to use <a href='https://starship.rs/' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'><strong>starship</strong></a> along with nix-direnv, because it gives a visual indication of the current environment. For example, if you are in a <a href='shell' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>Nix Shell</a>, your terminal prompt automatically changes to something like this:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='sh'><span class='ex'>srid</span> on nixos haskell-template on  master <span class='pp'>[</span><span class='ss'>!</span><span class='pp'>]</span> via λ 9.2.6 via ❄️  impure <span class='er'>(</span><span class='ex'>ghc-shell-for-haskell-template-0.1.0.0-0-env</span><span class='kw'>)</span>
+  <div class='mb-6 text-sm'><pre><code class='sh'><span class='ex'>srid</span> on nixos haskell-template on  master <span class='pp'>[</span><span class='ss'>!</span><span class='pp'>]</span> via λ 9.2.6 via ❄️  impure <span class='er'>(</span><span class='ex'>ghc-shell-for-haskell-template-0.1.0.0-0-env</span><span class='kw'>)</span>
 <span class='ex'>❯</span>
 </code></pre></div>
   </div>
-</div>
-    <h2 id='setup' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+
+  </div>
+
+
+
+
+
+
+    <h2 id='setup' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 pb-1 border-b border-gray-100 dark:border-gray-700 text-3xl'>
       
   Setup
   
@@ -735,12 +805,12 @@
 
 
     </h2>
-  <div class='flex items-center justify-center mb-8'><div xmlhtmlRaw><iframe width="560" height="315" src="https://www.youtube.com/embed/1joZLTgYLxY?si=ljZLcFAIhrJ7XawV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div></div>
+  <div class='flex items-center justify-center mb-8'><rawhtml xmlhtmlRaw style='display: contents'><iframe width="560" height="315" src="https://www.youtube.com/embed/1joZLTgYLxY?si=ljZLcFAIhrJ7XawV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</rawhtml></div>
     <p class='mb-4 leading-relaxed'>
-      If you use <a href='home-manager' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:bg-primary-50 dark:hover:bg-primary-950 px-1 -mx-1 rounded transition-colors' data-wikilink-type='WikiLinkNormal'>home-manager</a>, both <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>nix-direnv</code> and <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>starship</code> can be installed using the following configuration:
+      If you use <a href='home-manager' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>home-manager</a>, both <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>nix-direnv</code> and <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>starship</code> can be installed using the following configuration:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='nix'><span class='co'># home.nix</span>
+  <div class='mb-6 text-sm'><pre><code class='nix'><span class='co'># home.nix</span>
 programs<span class='op'>.</span>direnv = <span class='op'>{</span>
   <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
   <span class='va'>nix-direnv</span>.<span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
@@ -748,31 +818,45 @@ programs<span class='op'>.</span>direnv = <span class='op'>{</span>
 programs<span class='op'>.</span>starship = <span class='op'>{</span>
   <span class='va'>enable</span> <span class='op'>=</span> <span class='cn'>true</span><span class='op'>;</span>
 <span class='op'>}</span>;
-</code></pre></div><div data-callout-metadata data-callout-fold data-callout='tip' class='callout p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 shadow-sm' role='note' style='background-color: color-mix(in srgb, #08BFBC 8%, transparent); border-left-color: #08BFBC'>
-  <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
-  </path>
-  <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
-    <div class='callout-icon flex-shrink-0'>
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
-        
+</code></pre></div>
+
+
+
+
+  <div data-callout-metadata data-callout-fold data-callout='tip' data-footnote-scope
+ class='callout p-5 pt-4 pb-3 rounded-xl mb-6 border-l-4 shadow-sm' role='note' style='background-color: color-mix(in srgb, #08BFBC 8%, transparent); border-left-color: #08BFBC'>
+    <div class='callout-title flex items-center mb-3 font-semibold text-lg' style='color: #08BFBC'>
+      
+  <div class='callout-icon flex-shrink-0'>
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5'>
+      
     <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'>
     </path>
   
-      </svg>
-    </div>
-    <div class='ml-3'>
-       Newcomer Tip
-    </div>
+    </svg>
   </div>
+
+      <div class='ml-3'>
+         Newcomer Tip
+      </div>
+    </div>
+    
   <div class='callout-content text-gray-700 dark:text-gray-300'>
     
     <p class='mb-4 leading-relaxed'>
-      If you have never used <a href='home-manager' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:bg-primary-50 dark:hover:bg-primary-950 px-1 -mx-1 rounded transition-colors' data-wikilink-type='WikiLinkNormal'>home-manager</a> before, we recommend that you set it up by following the instrutions at <a href='https://github.com/juspay/nixos-unified-template' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/juspay/nixos-unified-template</a> (which is based on <a href='https://nixos-unified.org/' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>nixos-unified</a>, thus works on macOS and Linux).
+      If you have never used <a href='home-manager' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>home-manager</a> before, we recommend that you set it up by following the instrutions at <a href='https://github.com/juspay/nixos-unified-template' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>https://github.com/juspay/nixos-unified-template</a> (which is based on <a href='https://nixos-unified.org/' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>nixos-unified</a>, thus works on macOS and Linux).
     </p>
   
   </div>
-</div>
-    <h3 id='text-editor-configuration' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
+
+  </div>
+
+
+
+
+
+
+    <h3 id='text-editor-configuration' class='group mt-8 mb-4 font-semibold text-gray-900 dark:text-gray-50 text-2xl'>
       
   Text Editor configuration
   
@@ -786,7 +870,7 @@ programs<span class='op'>.</span>starship = <span class='op'>{</span>
 
     </h3>
   
-    <h4 id='vscode' class='group mt-8 mb-4 font-semibold text-gray-900 dark:text-gray-50 text-2xl'>
+    <h4 id='vscode' class='group mt-6 mb-3 font-semibold text-gray-900 dark:text-gray-50 text-xl'>
       
   VSCode
   
@@ -801,10 +885,10 @@ programs<span class='op'>.</span>starship = <span class='op'>{</span>
     </h4>
   
     <p class='mb-4 leading-relaxed'>
-      For VSCode, use <a href='https://marketplace.visualstudio.com/items?itemName=mkhl.direnv' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>Martin Kühl’s direnv extension</a>.
+      For VSCode, use <a href='https://marketplace.visualstudio.com/items?itemName=mkhl.direnv' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>Martin Kühl’s direnv extension</a>.
     </p>
   
-    <h4 id='doom-emacs' class='group mt-8 mb-4 font-semibold text-gray-900 dark:text-gray-50 text-2xl'>
+    <h4 id='doom-emacs' class='group mt-6 mb-3 font-semibold text-gray-900 dark:text-gray-50 text-xl'>
       
   Doom Emacs
   
@@ -819,10 +903,10 @@ programs<span class='op'>.</span>starship = <span class='op'>{</span>
     </h4>
   
     <p class='mb-4 leading-relaxed'>
-      Doom Emacs has the <a href='https://github.com/doomemacs/doomemacs/tree/master/modules/tools/direnv' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>:tools</code> <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>direnv</code> module</a> to automatically load the devshell environment when you open the project directory.
+      Doom Emacs has the <a href='https://github.com/doomemacs/doomemacs/tree/master/modules/tools/direnv' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'><code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>:tools</code> <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>direnv</code> module</a> to automatically load the devshell environment when you open the project directory.
     </p>
   
-    <h2 id='add-a-envrc' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='add-a-envrc' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 pb-1 border-b border-gray-100 dark:border-gray-700 text-3xl'>
       
   Add a <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.envrc</code>
   
@@ -839,12 +923,12 @@ programs<span class='op'>.</span>starship = <span class='op'>{</span>
     <p class='mb-4 leading-relaxed'>
       To enable direnv on Flake-based projects, add the following to your <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.envrc</code>:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>use flake</code></pre></div>
+  <div class='mb-6 text-sm'><pre><code class='text'>use flake</code></pre></div>
     <p class='mb-4 leading-relaxed'>
       Now run <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>direnv allow</code> to authorize the current <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.envrc</code> file. You can now <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>cd</code> into the project directory in a terminal and the devshell will be automatically activated.
     </p>
   
-    <h3 id='reload-automatically-when-some-files-change' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 text-3xl'>
+    <h3 id='reload-automatically-when-some-files-change' class='group mt-8 mb-4 font-semibold text-gray-900 dark:text-gray-50 text-2xl'>
       
   Reload automatically when some files change
   
@@ -858,9 +942,9 @@ programs<span class='op'>.</span>starship = <span class='op'>{</span>
 
     </h3>
   
-    <h4 id='---when-cabal-files-change' class='group mt-8 mb-4 font-semibold text-gray-900 dark:text-gray-50 text-2xl'>
+    <h4 id='---when-cabal-files-change' class='group mt-6 mb-3 font-semibold text-gray-900 dark:text-gray-50 text-xl'>
       
-  <a href='haskell' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:bg-primary-50 dark:hover:bg-primary-950 px-1 -mx-1 rounded transition-colors' data-wikilink-type='WikiLinkNormal'>Haskell</a> - when <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> files change
+  <a href='haskell' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>Haskell</a> - when <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> files change
   
   <a href='direnv#---when-cabal-files-change' class='--ema-anchor ml-2'>
     <span class='text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 group-hover:opacity-100 opacity-0 cursor-pointer text-sm align-middle transition-opacity' aria-label='Copy link' title='Copy link to heading'><svg class='inline w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
@@ -873,15 +957,15 @@ programs<span class='op'>.</span>starship = <span class='op'>{</span>
     </h4>
   
     <p class='mb-4 leading-relaxed'>
-      Since both <a href='nixify-haskell-nixpkgs' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:bg-primary-50 dark:hover:bg-primary-950 px-1 -mx-1 rounded transition-colors' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> file changes. This can be achieved using the <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>watch_file</code> function. Modify your <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.envrc</code> to contain:
+      Since both <a href='nixify-haskell-nixpkgs' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>nixpkgs</a> and <a href='https://community.flake.parts/haskell-flake' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>haskell-flake</a> use Nix expressions that read the <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> file to get dependency information, you will want the devshell be recreated every time a <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> file changes. This can be achieved using the <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>watch_file</code> function. Modify your <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.envrc</code> to contain:
     </p>
-  <div class='py-4 pr-4 mb-6 text-sm font-mono rounded-lg overflow-x-auto'><pre><code class='text'>watch_file *.cabal
+  <div class='mb-6 text-sm'><pre><code class='text'>watch_file *.cabal
 use flake</code></pre></div>
     <p class='mb-4 leading-relaxed'>
-      As a result of this whenever you change a <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> file, direnv will reload the environment. If you are using VSCode, you will see a notification that the environment has changed, prompting you to restart it (<a href='https://github.com/nammayatri/nammayatri/tree/main/Backend#visual-studio-code' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>see example</a>).
+      As a result of this whenever you change a <code class='py-0 px-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono rounded text-[0.9em] leading-normal'>.cabal</code> file, direnv will reload the environment. If you are using VSCode, you will see a notification that the environment has changed, prompting you to restart it (<a href='https://github.com/nammayatri/nammayatri/tree/main/Backend#visual-studio-code' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>see example</a>).
     </p>
   
-    <h2 id='external-links' class='group mt-12 mb-6 font-bold text-gray-900 dark:text-gray-50 pb-2 border-b-2 border-gray-200 dark:border-gray-800 text-4xl'>
+    <h2 id='external-links' class='group mt-10 mb-5 font-semibold text-gray-900 dark:text-gray-50 pb-1 border-b border-gray-100 dark:border-gray-700 text-3xl'>
       
   External Links
   
@@ -898,17 +982,19 @@ use flake</code></pre></div>
     <ul class='my-4 ml-6 list-disc space-y-1.5 leading-relaxed marker:text-gray-400 dark:marker:text-gray-500'>
       
         <li>
-          <a href='https://determinate.systems/posts/nix-direnv' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>Effortless dev environments with Nix and direnv</a>
+          <a href='https://determinate.systems/posts/nix-direnv' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>Effortless dev environments with Nix and direnv</a>
         </li>
       
     </ul>
   
-    <aside title='Footnotes' class='mt-12 pt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400 border-t-2 border-gray-200 dark:border-gray-800'>
-      <header class='mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400'>Footnotes</header>
-      <ol class='list-decimal pl-6 space-y-3 marker:font-mono marker:text-xs marker:text-gray-400 dark:marker:text-gray-500'>
+    <!-- Screen: hidden (popup is the UI). Print: revealed with standard
+         footnote-list styling so printed output includes the cited bodies. -->
+    <aside data-footnote-list aria-hidden='true' class='hidden print:block mt-10 text-sm'>
+      <header class='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2'>Footnotes</header>
+      <ol class='list-decimal pl-6 space-y-2'>
         
-          <li id='fn1' class='pl-2'>
-            <a href='https://github.com/nix-community/nix-direnv' class='text-primary-700 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a> prevents garbage collection of the devshell, so you do not have to re-download things again. direnv also enables activating the devshell in your current shell, without needing to use a customized bash.
+          <li data-footnote-id='1'>
+            <a href='https://github.com/nix-community/nix-direnv' class='transition-colors text-primary-600 dark:text-primary-300 no-underline hover:underline decoration-primary-500 decoration-1 hover:decoration-2 underline-offset-4' data-linkicon='external' target='_blank' rel='noopener'>nix-direnv</a> prevents garbage collection of the devshell, so you do not have to re-download things again. direnv also enables activating the devshell in your current shell, without needing to use a customized bash.
           </li>
         
       </ol>
@@ -941,139 +1027,163 @@ use flake</code></pre></div>
 </div>
 </article>
     
-    <div class='flex flex-col lg:flex-row lg:space-x-4 mt-8'>
-      
-      
-  <div id='backlinks' class='flex-1 mt-8'>
-    <header class='mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400'>Links to this page</header>
-    <ul class='grid grid-cols-1 md:grid-cols-2 gap-3'>
-      
-        <li class='bg-white dark:bg-gray-950 border-l-2 border-primary-400 dark:border-primary-500 rounded-r-md p-3 shadow-sm hover:shadow-md hover:border-primary-600 dark:hover:border-primary-300 transition-all'>
-          <a class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline block mb-2' href='vscode'>
-            VSCode
-          </a>
-          
-            <div class='mb-4 overflow-x-auto text-sm text-gray-500 dark:text-gray-300'>
-  
-    <div class='mt-2'>
-      <div>Setup <a href='direnv' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline decoration-primary-500' data-wikilink-type='WikiLinkNormal'>direnv</a> and install the <a href='https://marketplace.visualstudio.com/items?itemName=mkhl.direnv' class='text-primary-700 dark:text-primary-300 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>direnv VSCode extension</a>.</div>
-    </div>
-  
-    <div class='mt-2'>
-      <div><p>If you use <a href='direnv' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline decoration-primary-500' data-wikilink-type='WikiLinkNormal'>direnv</a>, it is rather simple to get setup with VSCode:</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li class='bg-white dark:bg-gray-950 border-l-2 border-primary-400 dark:border-primary-500 rounded-r-md p-3 shadow-sm hover:shadow-md hover:border-primary-600 dark:hover:border-primary-300 transition-all'>
-          <a class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline block mb-2' href='event/nix-dev-home'>
-            Using <code>home-manager</code> to manage dotfiles, packages, services
-          </a>
-          
-            <div class='mb-4 overflow-x-auto text-sm text-gray-500 dark:text-gray-300'>
-  
-    <div class='mt-2'>
-      <div><p>Among the various examples, we will showcase how to configure Neovim declaratively in Nix, and have it work across platforms. In addition, we will show how to use <a href='direnv' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline decoration-primary-500' data-wikilink-type='WikiLinkNormal'>direnv</a> to develop projects uniformly across different machines.</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li class='bg-white dark:bg-gray-950 border-l-2 border-primary-400 dark:border-primary-500 rounded-r-md p-3 shadow-sm hover:shadow-md hover:border-primary-600 dark:hover:border-primary-300 transition-all'>
-          <a class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline block mb-2' href='dev'>
-            Nix for Development
-          </a>
-          
-            <div class='mb-4 overflow-x-auto text-sm text-gray-500 dark:text-gray-300'>
-  
-    <div class='mt-2'>
-      <div><a href='direnv' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline decoration-primary-500' data-wikilink-type='WikiLinkBranch'><code>direnv</code>: manage dev environments</a></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-        <li class='bg-white dark:bg-gray-950 border-l-2 border-primary-400 dark:border-primary-500 rounded-r-md p-3 shadow-sm hover:shadow-md hover:border-primary-600 dark:hover:border-primary-300 transition-all'>
-          <a class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline block mb-2' href='hm-tutorial'>
-            Declarative User Environments with Home Manager
-          </a>
-          
-            <div class='mb-4 overflow-x-auto text-sm text-gray-500 dark:text-gray-300'>
-  
-    <div class='mt-2'>
-      <div><p><a href='direnv' class='text-primary-700 dark:text-primary-300 font-semibold no-underline hover:underline decoration-primary-500' data-wikilink-type='WikiLinkNormal'>Direnv</a> loads environment variables automatically when you <code>cd</code> into directories. This is essential for Nix-based development.</p></div>
-    </div>
-  
-</div>
-          
-        </li>
-      
-    </ul>
-  </div>
-
-
-    </div>
-    
-  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
-    
-  </section>
 
     <!-- What goes in this file will at the very end of the main div -->
   </main>
 </div>
+          <div class='px-6 pb-8'>
+            <!-- Card-style "Linked from" used by the no-sidebar layout (e.g.
+     /neuron-layout) and error.tpl, where there's no right-panel or
+     bottom-strip. Same row shape as backlinks-bottom.tpl: chip on
+     top, context indented under it with a left rule, divide-y rule
+     between adjacent entries. The outer chrome is light because
+     the parent container already supplies the rounded card. -->
+  <section id='backlinks' class='mt-8 border-t border-gray-200 dark:border-gray-800 pt-4'>
+    <header class='mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400'>
+      Linked from
+    </header>
+    <ul class='divide-y divide-gray-200 dark:divide-gray-800 text-sm'>
+      
+        <li class='group py-3 first:pt-0 last:pb-0'>
+          <a class="inline-block bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-2 py-0.5 rounded-sm hover:bg-primary-100/80 dark:hover:bg-primary-900/70 transition-colors after:content-none group-has-[[data-wikilink-type=WikiLinkEmbed]]:after:content-['embeds'] after:ml-2 after:px-[0.45em] after:py-[0.05em] after:text-[0.65em] after:font-medium after:tracking-wider after:uppercase after:text-primary-700 after:bg-primary-100 dark:after:text-primary-200 dark:after:bg-primary-800 after:rounded after:align-[0.15em]" href='vscode'>
+            VSCode
+          </a>
+          <div class='mt-2 ml-2 pl-3 border-l-2 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400'>
+            
+              <!-- Each <context> iteration emits its own <div>; a thin top-rule on
+     every-but-first sibling makes the boundary between contexts obvious
+     (otherwise adjacent contexts read as one continuous block of prose).
+     Within a single context, [&_p+p]:mt-2 spaces adjacent paragraphs. --><!-- emanote-backlink-context is a stable hook for e2e regression tests
+     (see tests/step_definitions/smoke_steps.ts: every backlink context
+     wrapper has overflow-y "visible"). The wrapper now lives nested
+     inside backlinks-margin's flyout / backlinks-bottom / backlinks card,
+     so a class is the structure-independent way to target it. --><div class='emanote-backlink-context text-sm text-gray-500 dark:text-gray-300 [&>div+div]:border-t [&>div+div]:border-gray-200 dark:[&>div+div]:border-gray-700 [&>div+div]:pt-3 [&>div+div]:mt-3 [&amp;_p]:m-0 [&amp;_p+p]:mt-2 [&amp;_pre]:overflow-x-auto [&amp;_table]:overflow-x-auto'>
+  
+    <div>
+      <div>Setup <a href='direnv' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>direnv</a> and install the <a href='https://marketplace.visualstudio.com/items?itemName=mkhl.direnv' class='transition-colors text-primary-600 dark:text-primary-300 underline decoration-1 hover:decoration-2' data-linkicon='external' target='_blank' rel='noopener'>direnv VSCode extension</a>.</div>
+    </div>
+  
+    <div>
+      <div><p>If you use <a href='direnv' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>direnv</a>, it is rather simple to get setup with VSCode:</p></div>
+    </div>
+  
+</div>
+            
+          </div>
+        </li>
+      
+        <li class='group py-3 first:pt-0 last:pb-0'>
+          <a class="inline-block bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-2 py-0.5 rounded-sm hover:bg-primary-100/80 dark:hover:bg-primary-900/70 transition-colors after:content-none group-has-[[data-wikilink-type=WikiLinkEmbed]]:after:content-['embeds'] after:ml-2 after:px-[0.45em] after:py-[0.05em] after:text-[0.65em] after:font-medium after:tracking-wider after:uppercase after:text-primary-700 after:bg-primary-100 dark:after:text-primary-200 dark:after:bg-primary-800 after:rounded after:align-[0.15em]" href='event/nix-dev-home'>
+            Using <code>home-manager</code> to manage dotfiles, packages, services
+          </a>
+          <div class='mt-2 ml-2 pl-3 border-l-2 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400'>
+            
+              <!-- Each <context> iteration emits its own <div>; a thin top-rule on
+     every-but-first sibling makes the boundary between contexts obvious
+     (otherwise adjacent contexts read as one continuous block of prose).
+     Within a single context, [&_p+p]:mt-2 spaces adjacent paragraphs. --><!-- emanote-backlink-context is a stable hook for e2e regression tests
+     (see tests/step_definitions/smoke_steps.ts: every backlink context
+     wrapper has overflow-y "visible"). The wrapper now lives nested
+     inside backlinks-margin's flyout / backlinks-bottom / backlinks card,
+     so a class is the structure-independent way to target it. --><div class='emanote-backlink-context text-sm text-gray-500 dark:text-gray-300 [&>div+div]:border-t [&>div+div]:border-gray-200 dark:[&>div+div]:border-gray-700 [&>div+div]:pt-3 [&>div+div]:mt-3 [&amp;_p]:m-0 [&amp;_p+p]:mt-2 [&amp;_pre]:overflow-x-auto [&amp;_table]:overflow-x-auto'>
+  
+    <div>
+      <div><p>Among the various examples, we will showcase how to configure Neovim declaratively in Nix, and have it work across platforms. In addition, we will show how to use <a href='direnv' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>direnv</a> to develop projects uniformly across different machines.</p></div>
+    </div>
+  
+</div>
+            
+          </div>
+        </li>
+      
+        <li class='group py-3 first:pt-0 last:pb-0'>
+          <a class="inline-block bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-2 py-0.5 rounded-sm hover:bg-primary-100/80 dark:hover:bg-primary-900/70 transition-colors after:content-none group-has-[[data-wikilink-type=WikiLinkEmbed]]:after:content-['embeds'] after:ml-2 after:px-[0.45em] after:py-[0.05em] after:text-[0.65em] after:font-medium after:tracking-wider after:uppercase after:text-primary-700 after:bg-primary-100 dark:after:text-primary-200 dark:after:bg-primary-800 after:rounded after:align-[0.15em]" href='dev'>
+            Nix for Development
+          </a>
+          <div class='mt-2 ml-2 pl-3 border-l-2 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400'>
+            
+              <!-- Each <context> iteration emits its own <div>; a thin top-rule on
+     every-but-first sibling makes the boundary between contexts obvious
+     (otherwise adjacent contexts read as one continuous block of prose).
+     Within a single context, [&_p+p]:mt-2 spaces adjacent paragraphs. --><!-- emanote-backlink-context is a stable hook for e2e regression tests
+     (see tests/step_definitions/smoke_steps.ts: every backlink context
+     wrapper has overflow-y "visible"). The wrapper now lives nested
+     inside backlinks-margin's flyout / backlinks-bottom / backlinks card,
+     so a class is the structure-independent way to target it. --><div class='emanote-backlink-context text-sm text-gray-500 dark:text-gray-300 [&>div+div]:border-t [&>div+div]:border-gray-200 dark:[&>div+div]:border-gray-700 [&>div+div]:pt-3 [&>div+div]:mt-3 [&amp;_p]:m-0 [&amp;_p+p]:mt-2 [&amp;_pre]:overflow-x-auto [&amp;_table]:overflow-x-auto'>
+  
+    <div>
+      <div><a href='direnv' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkBranch'><code>direnv</code>: manage dev environments</a></div>
+    </div>
+  
+</div>
+            
+          </div>
+        </li>
+      
+        <li class='group py-3 first:pt-0 last:pb-0'>
+          <a class="inline-block bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-2 py-0.5 rounded-sm hover:bg-primary-100/80 dark:hover:bg-primary-900/70 transition-colors after:content-none group-has-[[data-wikilink-type=WikiLinkEmbed]]:after:content-['embeds'] after:ml-2 after:px-[0.45em] after:py-[0.05em] after:text-[0.65em] after:font-medium after:tracking-wider after:uppercase after:text-primary-700 after:bg-primary-100 dark:after:text-primary-200 dark:after:bg-primary-800 after:rounded after:align-[0.15em]" href='hm-tutorial'>
+            Declarative User Environments with Home Manager
+          </a>
+          <div class='mt-2 ml-2 pl-3 border-l-2 border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400'>
+            
+              <!-- Each <context> iteration emits its own <div>; a thin top-rule on
+     every-but-first sibling makes the boundary between contexts obvious
+     (otherwise adjacent contexts read as one continuous block of prose).
+     Within a single context, [&_p+p]:mt-2 spaces adjacent paragraphs. --><!-- emanote-backlink-context is a stable hook for e2e regression tests
+     (see tests/step_definitions/smoke_steps.ts: every backlink context
+     wrapper has overflow-y "visible"). The wrapper now lives nested
+     inside backlinks-margin's flyout / backlinks-bottom / backlinks card,
+     so a class is the structure-independent way to target it. --><div class='emanote-backlink-context text-sm text-gray-500 dark:text-gray-300 [&>div+div]:border-t [&>div+div]:border-gray-200 dark:[&>div+div]:border-gray-700 [&>div+div]:pt-3 [&>div+div]:mt-3 [&amp;_p]:m-0 [&amp;_p+p]:mt-2 [&amp;_pre]:overflow-x-auto [&amp;_table]:overflow-x-auto'>
+  
+    <div>
+      <div><p><a href='direnv' class='transition-colors bg-primary-50/70 dark:bg-primary-950/50 text-primary-600 dark:text-primary-300 font-semibold tracking-tight px-1 py-0.5 rounded-sm box-decoration-clone hover:bg-primary-100/80 dark:hover:bg-primary-900/70' data-wikilink-type='WikiLinkNormal'>Direnv</a> loads environment variables automatically when you <code>cd</code> into directories. This is essential for Nix-based development.</p></div>
+    </div>
+  
+</div>
+            
+          </div>
+        </li>
+      
+    </ul>
+  </section>
+
+
+          </div>
+          <!-- Footer attached to the bottom of the main card as a thin text-link
+     strip — the previous unlabelled icon row read as an orphaned mobile
+     bottom-nav and floated outside the card. Now: muted text labels
+     left, the Emanote attribution right, sharing the card's chrome via
+     a top-border separator and the same bg-gray-50 the sidebar /
+     right-panel use. md:rounded-b-lg matches the container's rounded
+     corners so the footer's tinted bg curves with the card. --><footer class='border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 px-5 py-2.5 md:rounded-b-lg flex flex-wrap items-center justify-between gap-x-5 gap-y-1 text-xs text-gray-500 dark:text-gray-400'>
+  
+  <nav class='flex items-center gap-x-5'>
+    
+      
+        <a class='hover:text-primary-700 dark:hover:text-primary-300 transition-colors' href='/en/' title='Go to Home'>Home</a>
+      
+    
+    <a class='hover:text-primary-700 dark:hover:text-primary-300 transition-colors' href='-/all' title='View Index'>Index</a>
+    <a class='hover:text-primary-700 dark:hover:text-primary-300 transition-colors' href='-/tags' title='View tags'>Tags</a>
+    <a class='hover:text-primary-700 dark:hover:text-primary-300 transition-colors' href='-/tasks' title='View tasks'>Tasks</a>
+  </nav>
+  <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 2.0.0.0' class='flex items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity'>
+    
+      <img class='w-3.5 h-3.5' src='_emanote-static/emanote-logo.svg' alt />
+    
+    <span>Emanote 2.0.0.0</span>
+  </a>
+</footer>
+
         </div>
       
-      <footer class='flex items-center justify-center mt-10 mb-10'>
-  <div class='inline-flex items-center justify-center space-x-6 px-8 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg'>
-    
-  <div>
-    
-      
-        <a href='/en/' title='Go to Home'>
-          <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
-          </svg>
-        </a>
-      
-    
-  </div>
-  <div>
-    <a href='-/all' title='View Index'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>
-      </svg>
-    </a>
-  </div>
-  <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 1.6.0.0'>
-      <img class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' src='_emanote-static/emanote-logo.svg' alt='Emanote logo' />
-    </a>
-  </div>
-  <div>
-    <a href='-/tags' title='View tags'>
-      <svg class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
-        </path>
-      </svg>
-    </a>
-  </div>
-  <div>
-    <a href='-/tasks' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-8 h-8 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 p-1.5 rounded-md transition-all hover:shadow-md hover:-translate-y-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
-      </svg>
-    </a>
-  </div>
-  </div>
-</footer>
     </div>
   
   <div id='stork-search-container' class='hidden fixed w-screen h-screen inset-0 backdrop-filter backdrop-blur-sm'>
-  <div class='fixed w-screen h-screen inset-0' onclick='window.emanote.stork.toggleSearch()'></div>
+  <!-- Backdrop close: data-emanote-stork-toggle is wired in stork.js
+       via event delegation. Toggling closes here because the backdrop
+       is only visible while the modal is open. -->
+  <div class='fixed w-screen h-screen inset-0' data-emanote-stork-toggle></div>
 
   <div class='container mx-auto p-10 mt-10'>
     <div id='stork-wrapper' class='container mx-auto'>
@@ -1083,24 +1193,9 @@ use flake</code></pre></div>
   </div>
 </div>
 
-<script>
-  // Block-scoped so Ema's reloadScripts can re-execute on route switches
-  // without hitting "Identifier 'wrapper' has already been declared".
-  {
-    const wrapper = document.getElementById('stork-wrapper');
-    const applyTheme = () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      wrapper.classList.remove('stork-wrapper-edible', 'stork-wrapper-edible-dark');
-      wrapper.classList.add(isDark ? 'stork-wrapper-edible-dark' : 'stork-wrapper-edible');
-    };
-    applyTheme();
-    // Theme toggle mutates the .dark class on <html>; mirror it onto the
-    // stork wrapper so the search dialog re-skins live without a reload.
-    new MutationObserver(applyTheme).observe(document.documentElement, {
-      attributes: true, attributeFilter: ['class']
-    });
-  }
-</script>
+<!-- Theme mirror (.dark on <html> → .stork-wrapper-edible-dark on
+     #stork-wrapper) moved into _emanote-static/js/stork.js. -->
+
   
     
   
