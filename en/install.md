@@ -23,13 +23,13 @@ Enable flakes:
 echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.custom.conf
 ```
 
-Run health check:
+Run hello world:
 
 ```sh
-nix run nixpkgs#omnix -- health
+nix run nixpkgs#hello
 ```
 
-Expect to see all results in either green (or yellow).
+Expect it to print `Hello, world!`.
 
 ## Next Steps
 
